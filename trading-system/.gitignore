@@ -1,0 +1,7 @@
+.env
+venv/
+__pycache__/
+*.pyc
+output/
+logs/
+data/sec_cache/

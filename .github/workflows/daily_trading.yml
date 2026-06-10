@@ -1,0 +1,55 @@
+name: Daily Trading Analysis
+
+on:
+  schedule:
+    # 07:00 UTC = 08:00 CET (Winter) / 09:00 CEST (Sommer)
+    # Laueft Mo-Fr, Wochenende keine Boersenanalyse
+    - cron: "0 7 * * 1-5"
+  workflow_dispatch:  # Manueller Start per Knopf auf GitHub
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: trading-system/requirements.txt
+
+      - name: Abhaengigkeiten installieren
+        working-directory: trading-system
+        run: pip install -r requirements.txt
+
+      - name: Tagesanalyse ausfuehren
+        working-directory: trading-system
+        env:
+          GROQ_API_KEY:           ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_TOKEN:         ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID:       ${{ secrets.TELEGRAM_CHAT_ID }}
+          GMX_EMAIL:              ${{ secrets.GMX_EMAIL }}
+          GMX_PASSWORT:           ${{ secrets.GMX_PASSWORT }}
+          EMAIL_ABSENDER_FILTER:  ${{ secrets.EMAIL_ABSENDER_FILTER }}
+          CI: "true"
+        run: python main.py
+
+      - name: Marktgedaechtnis committen
+        run: |
+          git config user.name  "Trading Intelligence Bot"
+          git config user.email "bot@trading-intelligence.local"
+          git add trading-system/data/
+          git diff --cached --quiet || git commit -m "Marktgedaechtnis $(date +'%Y-%m-%d')"
+          git pull --rebase
+          git push
