@@ -33,6 +33,25 @@ jobs:
         working-directory: trading-system
         run: pip install -r requirements.txt
 
+      - name: Telegram Token pruefen
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: |
+          TOKEN="$TELEGRAM_TOKEN"
+          echo "Token-Laenge: ${#TOKEN}"
+          if [[ "$TOKEN" == *"="* ]]; then
+            echo "FEHLER: Token enthaelt '=' — bitte NUR den Wert eintragen (ohne TELEGRAM_TOKEN=)"
+            exit 1
+          fi
+          RESULT=$(curl -s "https://api.telegram.org/bot${TOKEN}/getMe")
+          echo "Telegram API Antwort: $RESULT"
+          if echo "$RESULT" | grep -q '"ok":true'; then
+            echo "Token OK!"
+          else
+            echo "FEHLER: Token ungueltig!"
+            exit 1
+          fi
+
       - name: Tagesanalyse ausfuehren
         working-directory: trading-system
         env:
