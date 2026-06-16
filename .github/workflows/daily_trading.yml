@@ -33,22 +33,45 @@ jobs:
         working-directory: trading-system
         run: pip install -r requirements.txt
 
-      - name: Telegram Token pruefen
+      - name: Telegram Token und Chat-ID pruefen
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           TOKEN="$TELEGRAM_TOKEN"
+          CHAT_ID="$TELEGRAM_CHAT_ID"
+
           echo "Token-Laenge: ${#TOKEN}"
+          echo "Chat-ID-Laenge: ${#CHAT_ID}"
+          echo "Chat-ID (letzte 4 Zeichen): ...${CHAT_ID: -4}"
+
           if [[ "$TOKEN" == *"="* ]]; then
-            echo "FEHLER: Token enthaelt '=' — bitte NUR den Wert eintragen (ohne TELEGRAM_TOKEN=)"
+            echo "FEHLER: Token enthaelt '=' — bitte NUR den Wert eintragen"
             exit 1
           fi
+          if [[ "$CHAT_ID" == *"="* ]]; then
+            echo "FEHLER: Chat-ID enthaelt '=' — bitte NUR den Wert eintragen"
+            exit 1
+          fi
+
           RESULT=$(curl -s "https://api.telegram.org/bot${TOKEN}/getMe")
-          echo "Telegram API Antwort: $RESULT"
           if echo "$RESULT" | grep -q '"ok":true'; then
             echo "Token OK!"
           else
-            echo "FEHLER: Token ungueltig!"
+            echo "FEHLER: Token ungueltig! Antwort: $RESULT"
+            exit 1
+          fi
+
+          echo "Sende Test-Nachricht an Chat-ID..."
+          SEND=$(curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            -d "chat_id=${CHAT_ID}" \
+            -d "text=✅ GitHub Actions Verbindungstest OK" \
+            -d "parse_mode=HTML")
+          echo "Antwort: $SEND"
+          if echo "$SEND" | grep -q '"ok":true'; then
+            echo "Test-Nachricht erfolgreich gesendet!"
+          else
+            echo "FEHLER: Test-Nachricht fehlgeschlagen — Chat-ID pruefen!"
             exit 1
           fi
 
