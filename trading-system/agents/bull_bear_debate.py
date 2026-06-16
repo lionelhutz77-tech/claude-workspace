@@ -125,8 +125,8 @@ BULL-ARGUMENTE:
 BEAR-ARGUMENTE:
 {bear_text}
 
-Triff eine finale Entscheidung. Sei kritisch — wenn die Argumente gemischt sind, empfiehl ABWARTEN.
-Nur bei klarer Ueberlegenheit einer Seite: KAUFEN oder VERKAUFEN.
+Triff eine finale Entscheidung. Wenn das technische Signal positiv ist und die Bull-Argumente ueberwiegen, empfiehl KAUFEN — auch bei leicht gemischten Signalen.
+ABWARTEN nur wenn wirklich beide Seiten gleichstark sind. VERKAUFEN nur bei klar negativen Signalen.
 Antworte in exakt diesem Format:
 
 GEWINNER: [BULL oder BEAR oder UNENTSCHIEDEN]

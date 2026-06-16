@@ -176,7 +176,7 @@ def berechne_positionsgroessen(signale: list[dict]) -> dict[str, float]:
     # Gewichtung nach Signal-Staerke (gesamt_punkte, Minimum 0.1)
     gewichte = []
     for s in kandidaten:
-        punkte = max(float(s.get("gesamt_punkte", 1.0)), 0.1)
+        punkte = max(float(s.get("gesamt_punkte") or 1.0), 0.1)
         gewichte.append(punkte)
 
     summe_gewichte = sum(gewichte)
@@ -386,7 +386,7 @@ def speichere_tageswert():
         """).fetchone()
 
         tagesrendite = 0.0
-        if gestern:
+        if gestern and gestern["depotwert"]:
             tagesrendite = (depotwert / gestern["depotwert"] - 1) * 100
 
         conn.execute("""

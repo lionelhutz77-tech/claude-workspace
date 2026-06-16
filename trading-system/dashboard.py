@@ -641,7 +641,9 @@ def _depot_sektion(stats: dict) -> str:
     verlauf     = stats.get("verlauf", [])[-30:]
     chart_html  = ""
     if len(verlauf) > 1:
-        werte    = [v["depotwert"] for v in verlauf]
+        werte    = [v["depotwert"] for v in verlauf if v["depotwert"] is not None]
+        if not werte:
+            werte = [0.0]
         min_w    = min(werte)
         max_w    = max(werte)
         spanne   = max_w - min_w if max_w != min_w else 1
