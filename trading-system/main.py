@@ -656,16 +656,19 @@ def main():
     speichere_multi()
     multi_stats = hole_alle_statistiken()
 
-    # HTML-Dashboard erstellen und im Browser oeffnen
-    print("\n  HTML-Dashboard wird erstellt...")
-    speichere_und_oeffne(ergebnisse, backtest_ergebnisse, depot_stats,
-                         retro_ergebnisse, multi_stats, lern_ergebnis)
-
-    # Telegram-Benachrichtigung senden
+    # Telegram zuerst senden (bevor optionale Schritte wie Dashboard crashen koennen)
     print("\n  Sende Telegram-Bericht...")
     sende_tagesbericht(ergebnisse, depot_stats)
     if geschlossene_pos:
         sende_positions_update(geschlossene_pos)
+
+    # HTML-Dashboard erstellen (nicht kritisch -- Fehler stoppen den Lauf nicht)
+    try:
+        print("\n  HTML-Dashboard wird erstellt...")
+        speichere_und_oeffne(ergebnisse, backtest_ergebnisse, depot_stats,
+                             retro_ergebnisse, multi_stats, lern_ergebnis)
+    except Exception as e:
+        print(f"  [Dashboard] Fehler (nicht kritisch): {e}")
 
 
 if __name__ == "__main__":
