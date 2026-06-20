@@ -67,7 +67,11 @@ SIGNAL_WERT = {
     "bearish":           -2,
 }
 
-AKTIEN_LISTE = ["AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META"]
+AKTIEN_LISTE = [
+    "AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META",
+    "RHM.DE", "EVK.DE", "ALV.DE", "MC.PA",
+    "AMD", "LMT", "SMCI", "XOM",
+]
 KRYPTO_LISTE = ["BTC", "ETH", "SOL", "BNB", "XRP"]
 
 

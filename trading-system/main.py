@@ -62,8 +62,15 @@ from valuation_agent       import scanne_alle as val_scanne_alle, wende_an as we
 # ---------------------------------------------------------------------------
 
 # Welche Assets sollen heute analysiert werden?
-AKTIEN  = ["MSFT", "NVDA", "TSLA", "AAPL", "AMZN"]
-KRYPTOS = ["BTC", "ETH", "SOL"]
+AKTIEN = [
+    # US Core
+    "MSFT", "NVDA", "TSLA", "AAPL", "AMZN",
+    # EU Portfolio
+    "RHM.DE", "EVK.DE", "ALV.DE", "MC.PA",
+    # US Portfolio + AMD
+    "AMD", "LMT", "SMCI", "XOM",
+]
+KRYPTOS = ["BTC", "ETH", "SOL", "XRP"]
 
 TRENNLINIE = "=" * 65
 DOPPELLINIE = "#" * 65
