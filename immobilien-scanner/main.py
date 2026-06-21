@@ -52,65 +52,64 @@ def load_config() -> Dict:
 
 def scrape_all_sources(config: Dict) -> List[Dict]:
     """
-    Alle aktivierten Scraper ausführen (Placeholder)
+    Alle aktivierten Scraper ausführen
 
     Returns:
-        Liste von Immobilien-Daten (minimal):
-        {
-            "adresse": str,
-            "kaufpreis": int,
-            "wohnungen": int,
-            "baujahr": int,
-            "groesse_qm": int,
-            "renovierungen": str,
-            "merkmal_garten": bool,
-            "merkmal_balkon": bool,
-            "merkmal_garage": int,
-            "quelle": str,
-            "link": str
-        }
+        Liste von Immobilien-Daten
     """
     logger.info("🔄 Scraping aller Quellen...")
 
     all_properties = []
+    postleitzahl = config['search_criteria']['postleitzahl']
 
-    # TODO: Implementiere Scraper für jede Quelle
-    # from scrapers.immoscout import scrape_immoscout24
-    # from scrapers.immonet import scrape_immonet
-    # etc.
+    # Scraper-Import
+    try:
+        from scrapers.immoscout import run_sync as scrape_immoscout24
+        from scrapers.immonet import run_sync as scrape_immonet
+        from scrapers.sparkasse import run_sync as scrape_sparkasse
+        from scrapers.volksbank import run_sync as scrape_volksbank
+        from scrapers.kl_immobilien import scrape_kl_immobilien
+    except ImportError as e:
+        logger.warning(f"⚠️  Scraper-Import fehlgeschlagen: {e}")
+        return []
 
-    # Placeholder: Test-Daten
-    logger.warning("⚠️  Scraper noch nicht implementiert, verwende Test-Daten")
-    all_properties = [
-        {
-            "adresse": "Musterstraße 42, 46149 Oberhausen",
-            "kaufpreis": 450000,
-            "wohnungen": 4,
-            "baujahr": 1985,
-            "groesse_qm": 320,
-            "renovierungen": "Bad 2020, Fenster 2018",
-            "merkmal_garten": True,
-            "merkmal_balkon": True,
-            "merkmal_garage": 2,
-            "quelle": "ImmoScout24",
-            "link": "https://immobilienscout24.de/example"
-        },
-        {
-            "adresse": "Königstr. 100, 46145 Oberhausen",
-            "kaufpreis": 380000,
-            "wohnungen": 3,
-            "baujahr": 1975,
-            "groesse_qm": 240,
-            "renovierungen": "Heizung 2015",
-            "merkmal_garten": False,
-            "merkmal_balkon": True,
-            "merkmal_garage": 0,
-            "quelle": "KL Immobilien",
-            "link": "https://kl-immo-web.de/example"
-        }
-    ]
+    # Liste der aktivierten Scraper
+    scrapers = []
 
-    logger.info(f"✅ {len(all_properties)} Immobilien gefunden")
+    if config['scraper_sources'].get('immoscout24', {}).get('enabled', True):
+        scrapers.append(("ImmoScout24", scrape_immoscout24))
+
+    if config['scraper_sources'].get('immonet', {}).get('enabled', True):
+        scrapers.append(("Immonet", scrape_immonet))
+
+    if config['scraper_sources'].get('sparkasse', {}).get('enabled', True):
+        scrapers.append(("Sparkasse", scrape_sparkasse))
+
+    if config['scraper_sources'].get('volksbank', {}).get('enabled', True):
+        scrapers.append(("Volksbank", scrape_volksbank))
+
+    if config['scraper_sources'].get('kl_immobilien', {}).get('enabled', True):
+        scrapers.append(("KL Immobilien", scrape_kl_immobilien))
+
+    # Scraper ausführen
+    for name, scraper_func in scrapers:
+        try:
+            logger.info(f"▶️  {name} lädt...")
+            props = scraper_func(postleitzahl)
+            all_properties.extend(props)
+            logger.info(f"✅ {name}: {len(props)} Props")
+        except Exception as e:
+            logger.error(f"❌ Fehler in {name}: {e}")
+
+    # Duplikate entfernen (gleiche Adresse + Preis)
+    unique_props = {}
+    for prop in all_properties:
+        key = (prop['adresse'], prop['kaufpreis'])
+        if key not in unique_props:
+            unique_props[key] = prop
+
+    all_properties = list(unique_props.values())
+    logger.info(f"✅ Gesamt nach Duplikat-Filter: {len(all_properties)} Immobilien gefunden")
     return all_properties
 
 
@@ -155,9 +154,13 @@ def run_pipeline():
 
     # 4. Evaluieren (Groq)
     logger.info("🤖 Groq-Evaluierung lädt...")
-    # TODO: from evaluator import evaluate_properties
-    # evaluated_properties = evaluate_properties(cleaned_properties, config)
-    evaluated_properties = cleaned_properties  # Placeholder
+    try:
+        from evaluator import evaluate_properties
+        evaluated_properties = evaluate_properties(cleaned_properties, config)
+        logger.info(f"✅ {len(evaluated_properties)} Props evaluiert")
+    except Exception as e:
+        logger.error(f"❌ Groq-Evaluierung fehlgeschlagen: {e}")
+        evaluated_properties = cleaned_properties
 
     # 5. Filtern (nur Schwellwerte erfüllt)
     filtered = [
@@ -168,10 +171,15 @@ def run_pipeline():
 
     # 6. Mail versenden
     logger.info("📧 Report wird vorbereitet...")
-    # TODO: from mailer import send_report
-    # success = send_report(filtered, config)
-    # if success:
-    #     logger.info("✅ Mail versendet!")
+    try:
+        from mailer import send_report
+        success = send_report(filtered, config)
+        if success:
+            logger.info("✅ Mail versendet!")
+        else:
+            logger.warning("⚠️  Mail-Versand fehlgeschlagen")
+    except Exception as e:
+        logger.error(f"❌ Mail-Fehler: {e}")
 
     # 7. Archivieren
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
