@@ -97,7 +97,7 @@ mail:
   smtp_user: "${GMX_USER}"  # Aus .env
   smtp_password: "${GMX_APP_PASSWORD}"  # Aus .env (App-Passwort!)
   from_email: "${GMX_USER}"
-  to_email: "hertz.r.kanal@gmx.de"  # Zieladresse (bitte überprüfen!)
+  to_email: "hutz.erkan@gmx.de"  # ✅ Zieladresse bestätigt
   subject_prefix: "[Immobilien-Scanner]"
   send_day_of_week: 6  # 6 = Sonntag
   send_hour: 12
