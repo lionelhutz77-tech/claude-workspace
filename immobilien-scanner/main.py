@@ -62,7 +62,7 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     all_properties = []
     postleitzahl = config['search_criteria']['postleitzahl']
 
-    # Scraper-Import (alle Quellen)
+    # Scraper-Import (ALLE 13 QUELLEN)
     try:
         from scrapers.immoscout import run_sync as scrape_immoscout24
         from scrapers.immonet import run_sync as scrape_immonet
@@ -73,11 +73,14 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
         from scrapers.piezonka import scrape_piezonka
         from scrapers.immo_oberhausen import scrape_immo_oberhausen
         from scrapers.marquardt import scrape_marquardt
+        from scrapers.bloemker import scrape_bloemker  # BOTTROP
+        from scrapers.vanoepen import scrape_vanoepen  # BOTTROP
+        from scrapers.boenighausen import scrape_boenighausen  # BOTTROP
     except ImportError as e:
         logger.warning(f"⚠️  Scraper-Import fehlgeschlagen: {e}")
         return []
 
-    # Liste der aktivierten Scraper (9 Quellen)
+    # Liste der aktivierten Scraper (13 Quellen: 9 OB + 3 Bottrop + optional)
     scrapers = []
 
     if config['scraper_sources'].get('immoscout24', {}).get('enabled', True):
@@ -107,7 +110,16 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     if config['scraper_sources'].get('marquardt', {}).get('enabled', True):
         scrapers.append(("Marquardt Immobilien", scrape_marquardt))
 
-    # Scraper ausführen
+    if config['scraper_sources'].get('bloemker', {}).get('enabled', True):
+        scrapers.append(("Blömker Immobilien", scrape_bloemker))
+
+    if config['scraper_sources'].get('vanoepen', {}).get('enabled', True):
+        scrapers.append(("Immobilien van Oepen", scrape_vanoepen))
+
+    if config['scraper_sources'].get('boenighausen', {}).get('enabled', True):
+        scrapers.append(("Bönighausen Immobilien", scrape_boenighausen))
+
+    # Scraper ausführen (13 Quellen parallel)
     for name, scraper_func in scrapers:
         try:
             logger.info(f"▶️  {name} lädt...")
@@ -168,15 +180,19 @@ def run_pipeline():
     # 3. Bereinigen
     cleaned_properties = clean_data(raw_properties)
 
-    # 4. Evaluieren (Groq)
-    logger.info("🤖 Groq-Evaluierung lädt...")
+    # 4. Evaluieren (Groq ULTRA-PRO v2.0)
+    logger.info("🤖 Groq ULTRA-PRO Evaluierung (Phase 1+2)...")
     try:
-        from evaluator import evaluate_properties
-        evaluated_properties = evaluate_properties(cleaned_properties, config)
-        logger.info(f"✅ {len(evaluated_properties)} Props evaluiert")
+        from evaluator_pro import evaluate_properties_pro
+        evaluated_properties = evaluate_properties_pro(cleaned_properties, config)
+        logger.info(f"✅ {len(evaluated_properties)} Props mit Mietpotenzial + ESG + Lage + Stress-Test evaluiert")
     except Exception as e:
-        logger.error(f"❌ Groq-Evaluierung fehlgeschlagen: {e}")
-        evaluated_properties = cleaned_properties
+        logger.error(f"❌ Groq-Pro Evaluierung fehlgeschlagen: {e}")
+        try:
+            from evaluator import evaluate_properties
+            evaluated_properties = evaluate_properties(cleaned_properties, config)
+        except:
+            evaluated_properties = cleaned_properties
 
     # 5. Filtern (nur Schwellwerte erfüllt)
     filtered = [

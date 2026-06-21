@@ -130,6 +130,27 @@ scraper_sources:
     type: "html"
     delay_seconds: 1
 
+  bloemker:
+    enabled: true
+    url: "https://bloemker-immobilien.de"
+    type: "html"
+    delay_seconds: 1
+    region: "Bottrop"
+
+  vanoepen:
+    enabled: true
+    url: "https://immobilien-vanoepen.de"
+    type: "html"
+    delay_seconds: 1
+    region: "Bottrop"
+
+  boenighausen:
+    enabled: true
+    url: "https://www.boenighausen-immobilien.de"
+    type: "html"
+    delay_seconds: 1
+    region: "Bottrop/Ruhrgebiet"
+
 # Mail-Setup
 mail:
   smtp_server: "mail.gmx.net"
