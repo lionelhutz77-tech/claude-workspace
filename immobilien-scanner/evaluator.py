@@ -44,19 +44,25 @@ SCHWELLWERTE:
 FOLGENDE IMMOBILIEN analysieren:
 {properties_text}
 
-PRO IMMOBILIE BERECHNE UND BEWERTE:
-1. **Cashflow pro Monat**: (Kaltmiete × Wohnungen) - (Verwaltung + Instandh. + Versicherung + Leerstand)
-2. **Groß-Finanzierungsbedarf**: Kaufpreis × (1 - LTV%)
-3. **Monatliche Kreditrate**: (Kaufpreis × LTV%) / (360 Monate / 12) × (Zinssatz + Tilgung)%
-4. **Netto-Cashflow**: Cashflow - Kreditrate
-5. **Brutto-Rendite**: (Cashflow × 12 / Kaufpreis) × 100
-6. **Netto-Rendite**: (Netto-Cashflow × 12 / Eigenkapital) × 100
+PRO IMMOBILIE BERECHNE UND BEWERTE (investmentpunk-Stil):
 
-ROTE FLAGGEN prüfen:
-- Baujahr älter als {config['evaluation_thresholds']['baujahr_vor']}? (→ feuchte Keller, alte Heizung wahrscheinlich)
-- Renovierungsangaben vorhanden? (→ Kosten einschätzen)
-- Renovierungskosten > {config['evaluation_thresholds']['max_renovierungskosten']}€? (AUSSCHLUSSKRITERIUM)
-- Netto-Cashflow < {config['evaluation_thresholds']['min_cashflow_monatlich']}€? (AUSSCHLUSSKRITERIUM)
+**FINANZIELLE METRIKEN:**
+1. **Kaltmiete-Basis**: {config['search_criteria']['kaltmiete_pro_einheit']}€ × Wohnungen × 12 = Jahresmiete
+2. **Brutto-Rendite**: (Jahresmiete / Kaufpreis) × 100 ← FILTER 1: Min. 6%!
+3. **Kosten (monatlich)**: (Verwaltung + Instandh. + Versicherung + Leerstand)
+4. **Cashflow-vor-Kredit**: (Kaltmiete × Wohnungen) - Kosten
+5. **Kreditrate (monatlich)**: (Kaufpreis × {config['search_criteria']['ltv_prozent']}%) / (30 Jahre × 12) × ({config['search_criteria']['zinssatz_prozent']}% + {config['search_criteria']['tilgung_prozent']}%)
+6. **Netto-Cashflow**: Cashflow-vor-Kredit - Kreditrate ← FILTER 2: Min. {config['evaluation_thresholds']['min_cashflow_monatlich']}€!
+7. **Netto-Rendite (auf EK)**: (Netto-Cashflow × 12 / Eigenkapital) × 100 ← ZIEL: > 8-10%!
+8. **Price-Factor**: Kaufpreis / Jahresmiete ← investmentpunk: < 18 ist gut!
+
+**ROTE FLAGGEN (investmentpunk-basiert):**
+- ❌ Brutto-Rendite < 6%? (Break-even) → AUSSCHLUSS
+- ❌ Netto-Cashflow < {config['evaluation_thresholds']['min_cashflow_monatlich']}€? → AUSSCHLUSS
+- ❌ Baujahr < {config['evaluation_thresholds']['baujahr_vor']}? (feuchte Keller, alte Heizung) → ⚠️ ROT
+- ❌ Renovierungskosten > {config['evaluation_thresholds']['max_renovierungskosten']}€? → ⚠️ ROT / AUSSCHLUSS
+- ❌ C-Lage mit hohem Leerstand-Risiko? → ⚠️ ROT
+- ❌ Große Wohnungen (> 4 Zimmer, einzeln)? → ⚠️ WARNUNG
 
 POSITIVE MERKMALE geben +5 Punkte je:
 - Garten vorhanden
@@ -65,11 +71,21 @@ POSITIVE MERKMALE geben +5 Punkte je:
 - Renoviert (letzte 10 Jahre)
 - Neue Heizung (letzte 5 Jahre)
 
-SCORING (0-100):
-- < 40: NICHT EMPFOHLEN (rote Flaggen überwiegen)
-- 40-60: PRÜFEN (Potenzial, aber Risiken)
-- 60-80: GUT (rentabel, moderate Risiken)
-- 80+: SEHR GUT (hohe Rendite, wenig Risiken)
+SCORING (0-100) — investmentpunk-Style:
+- < 40: ❌ NICHT EMPFOHLEN (rote Flaggen überwiegen, < 6% Brutto oder < 500€ Cashflow)
+- 40-60: ⚠️ PRÜFEN (6-7% Brutto, ok Cashflow, aber Renovierungs-/Leerstand-Risiken)
+- 60-80: ✅ GUT (6-8% Brutto, 600-1000€ Cashflow, moderate Risiken, B-Lage ok)
+- 80+: 🔥 SEHR GUT (> 8% Brutto, > 1000€ Cashflow, stabile Lage, echtes MFH)
+
+**Score-Berechnung:**
+- Basis: Brutto-Rendite in % (6-10% = 0-100 Punkte)
+- +10 Punkte: Brutto > 8%
+- +10 Punkte: Netto-Cashflow > 1000€/Monat
+- +10 Punkte: Baujahr > 1970
+- +5 Punkte pro Feature: Garten, Balkon, Garage, Renoviert
+- -20 Punkte: Baujahr < 1950 (Keller-Risiko)
+- -15 Punkte: Renovierungs-Kosten > 30k€
+- -25 Punkte: Renovierungs-Kosten > 50k€ (AUSSCHLUSS)
 
 **OUTPUT-FORMAT** (JSON, pro Immobilie):
 {{

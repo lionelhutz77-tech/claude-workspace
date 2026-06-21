@@ -30,9 +30,9 @@ search_criteria:
 
 # Bewertungs-Schwellwerte (für Groq-Ranking)
 evaluation_thresholds:
-  min_cashflow_monatlich: 500  # EUR pro Einheit
-  min_rendite_prozent: 5  # p.a.
-  max_renovierungskosten: 50000
+  min_cashflow_monatlich: 500  # EUR/Monat pro Einheit (investmentpunk: 500€ min, 1000€+ sehr gut)
+  min_rendite_prozent: 6  # % p.a. BRUTTO (investmentpunk: 6% = break-even, 6-8% prüfen, 8%+ kaufen)
+  max_renovierungskosten: 50000  # EUR (> 50k = AUSSCHLUSS)
 
   # Rote Flaggen
   baujahr_vor: 1950  # Ältere Gebäude → Risiko-Analyse
