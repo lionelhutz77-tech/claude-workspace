@@ -1,0 +1,109 @@
+# Immobilien-Scanner Konfiguration für Oberhausen (46149)
+
+search_criteria:
+  # Geografisch
+  postleitzahl: "46149"
+  stadt: "Oberhausen"
+  suchradius_km: 5  # Optional für erweiterte Suche
+
+  # Immobilien-Typ
+  min_wohnungen: 2
+  immobilien_typ: "Mehrfamilienhaus"  # oder auch "Haus", "Wohnung" möglich
+
+  # Kaufpreis (optional Filter)
+  min_kaufpreis: 100000
+  max_kaufpreis: 750000
+
+  # Miet-Annahmen
+  kaltmiete_pro_einheit: 950  # EUR/Monat
+
+  # Nebenkosten-Berechnung (monatlich pro Wohnung)
+  verwaltungsquote_prozent: 10  # % der Kaltmiete
+  instandhaltung_euro_pro_qm: 1.50
+  versicherung_monatlich: 40
+  leerstand_puffer_prozent: 3
+
+  # Finanzierung (für Renditeberechnung)
+  ltv_prozent: 80  # Loan-to-Value
+  zinssatz_prozent: 4.0
+  tilgung_prozent: 1.0
+
+# Bewertungs-Schwellwerte (für Groq-Ranking)
+evaluation_thresholds:
+  min_cashflow_monatlich: 500  # EUR pro Einheit
+  min_rendite_prozent: 5  # p.a.
+  max_renovierungskosten: 50000
+
+  # Rote Flaggen
+  baujahr_vor: 1950  # Ältere Gebäude → Risiko-Analyse
+
+  # Positive Merkmale (Bonus)
+  positive_features:
+    - "Garten"
+    - "Balkon"
+    - "Garage"
+    - "Renoviert"
+    - "Neue Heizung"
+    - "Neue Fenster"
+
+# Quellen zum Scrapen
+scraper_sources:
+  immoscout24:
+    enabled: true
+    url: "https://www.immobilienscout24.de"
+    type: "javascript"  # JS-rendern nötig
+    delay_seconds: 3
+
+  immonet:
+    enabled: true
+    url: "https://www.immonet.de"
+    type: "javascript"
+    delay_seconds: 3
+
+  sparkasse:
+    enabled: true
+    url: "https://immobilien.sparkasse.de"
+    type: "javascript"
+    delay_seconds: 2
+
+  volksbank:
+    enabled: true
+    url: "https://www.volksbank-immobilien-rhein-ruhr.de"
+    type: "html"
+    delay_seconds: 1
+
+  kl_immobilien:
+    enabled: true
+    url: "https://kl-immo-web.de/immobilienangebot"
+    type: "html"
+    delay_seconds: 1
+
+  von_poll:
+    enabled: true
+    url: "https://www.von-poll.com/de/immobilien/oberhausen"
+    type: "javascript"
+    delay_seconds: 2
+
+  arr_immobilien:
+    enabled: true
+    url: "https://www.arr-immobilien.de"
+    type: "html"
+    delay_seconds: 1
+
+# Mail-Setup
+mail:
+  smtp_server: "mail.gmx.net"
+  smtp_port: 587
+  smtp_user: "${GMX_USER}"  # Aus .env
+  smtp_password: "${GMX_APP_PASSWORD}"  # Aus .env (App-Passwort!)
+  from_email: "${GMX_USER}"
+  to_email: "hertz.r.kanal@gmx.de"  # Zieladresse (bitte überprüfen!)
+  subject_prefix: "[Immobilien-Scanner]"
+  send_day_of_week: 6  # 6 = Sonntag
+  send_hour: 12
+  send_minute: 0
+
+# Logging
+logging:
+  level: "INFO"
+  file: "immobilien_scanner.log"
