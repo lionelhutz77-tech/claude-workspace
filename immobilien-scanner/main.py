@@ -62,18 +62,22 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     all_properties = []
     postleitzahl = config['search_criteria']['postleitzahl']
 
-    # Scraper-Import
+    # Scraper-Import (alle Quellen)
     try:
         from scrapers.immoscout import run_sync as scrape_immoscout24
         from scrapers.immonet import run_sync as scrape_immonet
         from scrapers.sparkasse import run_sync as scrape_sparkasse
         from scrapers.volksbank import run_sync as scrape_volksbank
         from scrapers.kl_immobilien import scrape_kl_immobilien
+        from scrapers.sariguel import scrape_sariguel
+        from scrapers.piezonka import scrape_piezonka
+        from scrapers.immo_oberhausen import scrape_immo_oberhausen
+        from scrapers.marquardt import scrape_marquardt
     except ImportError as e:
         logger.warning(f"⚠️  Scraper-Import fehlgeschlagen: {e}")
         return []
 
-    # Liste der aktivierten Scraper
+    # Liste der aktivierten Scraper (9 Quellen)
     scrapers = []
 
     if config['scraper_sources'].get('immoscout24', {}).get('enabled', True):
@@ -90,6 +94,18 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
 
     if config['scraper_sources'].get('kl_immobilien', {}).get('enabled', True):
         scrapers.append(("KL Immobilien", scrape_kl_immobilien))
+
+    if config['scraper_sources'].get('sariguel', {}).get('enabled', True):
+        scrapers.append(("CT-Immobilien (Sariguel)", scrape_sariguel))
+
+    if config['scraper_sources'].get('piezonka', {}).get('enabled', True):
+        scrapers.append(("Piezonka-Immobilien", scrape_piezonka))
+
+    if config['scraper_sources'].get('immo_oberhausen', {}).get('enabled', True):
+        scrapers.append(("Immobilien-Oberhausen", scrape_immo_oberhausen))
+
+    if config['scraper_sources'].get('marquardt', {}).get('enabled', True):
+        scrapers.append(("Marquardt Immobilien", scrape_marquardt))
 
     # Scraper ausführen
     for name, scraper_func in scrapers:

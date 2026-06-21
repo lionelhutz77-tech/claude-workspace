@@ -106,6 +106,30 @@ scraper_sources:
     type: "html"
     delay_seconds: 1
 
+  sariguel:
+    enabled: true
+    url: "https://www.ct-immobilien.de"
+    type: "html"
+    delay_seconds: 1
+
+  piezonka:
+    enabled: true
+    url: "https://piezonka-immobilien-1.jimdosite.com"
+    type: "html"
+    delay_seconds: 1
+
+  immo_oberhausen:
+    enabled: true
+    url: "https://www.immobilien-oberhausen.com"
+    type: "html"
+    delay_seconds: 1
+
+  marquardt:
+    enabled: true
+    url: "https://www.immo-marquardt.de"
+    type: "html"
+    delay_seconds: 1
+
 # Mail-Setup
 mail:
   smtp_server: "mail.gmx.net"
