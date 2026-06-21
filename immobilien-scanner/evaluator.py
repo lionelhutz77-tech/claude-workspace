@@ -9,14 +9,20 @@ from groq import Groq
 
 def evaluate_properties(properties: List[Dict], config: Dict) -> List[Dict]:
     """
-    Bewertet Immobilien mit Groq API basierend auf Kriterien
+    Bewertet Immobilien mit Groq API basierend auf ZWEI KATEGORIEN:
+
+    1. PROFIT: Mehrfamilienhäuser überall, 6%+ Rendite (klassisches Investment)
+    2. FAMILY: PLZ 46149, 0%+ Rendite ok (Vermietung an Eltern/Bekannte)
 
     Args:
         properties: Liste von Immobilien-Daten
-        config: Config-Dict mit Schwellwerten
+        config: Config-Dict mit Schwellwerten (beide Kategorien)
 
     Returns:
-        properties mit hinzugefügten Feldern: score, rendite, cashflow, rote_flaggen, empfehlung
+        properties mit Feldern:
+        - score_profit, kategorie_profit, empfehlung_profit
+        - score_family, kategorie_family, empfehlung_family
+        - kategorie (primary)
     """
 
     client = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -44,25 +50,45 @@ SCHWELLWERTE:
 FOLGENDE IMMOBILIEN analysieren:
 {properties_text}
 
-PRO IMMOBILIE BERECHNE UND BEWERTE (investmentpunk-Stil):
+PRO IMMOBILIE BERECHNE UND BEWERTE (ZWEI KATEGORIEN):
 
-**FINANZIELLE METRIKEN:**
+**FINANZIELLE METRIKEN (für beide Kategorien):**
 1. **Kaltmiete-Basis**: {config['search_criteria']['kaltmiete_pro_einheit']}€ × Wohnungen × 12 = Jahresmiete
-2. **Brutto-Rendite**: (Jahresmiete / Kaufpreis) × 100 ← FILTER 1: Min. 6%!
+2. **Brutto-Rendite**: (Jahresmiete / Kaufpreis) × 100
 3. **Kosten (monatlich)**: (Verwaltung + Instandh. + Versicherung + Leerstand)
 4. **Cashflow-vor-Kredit**: (Kaltmiete × Wohnungen) - Kosten
 5. **Kreditrate (monatlich)**: (Kaufpreis × {config['search_criteria']['ltv_prozent']}%) / (30 Jahre × 12) × ({config['search_criteria']['zinssatz_prozent']}% + {config['search_criteria']['tilgung_prozent']}%)
-6. **Netto-Cashflow**: Cashflow-vor-Kredit - Kreditrate ← FILTER 2: Min. {config['evaluation_thresholds']['min_cashflow_monatlich']}€!
-7. **Netto-Rendite (auf EK)**: (Netto-Cashflow × 12 / Eigenkapital) × 100 ← ZIEL: > 8-10%!
-8. **Price-Factor**: Kaufpreis / Jahresmiete ← investmentpunk: < 18 ist gut!
+6. **Netto-Cashflow**: Cashflow-vor-Kredit - Kreditrate
+7. **Netto-Rendite (auf EK)**: (Netto-Cashflow × 12 / Eigenkapital) × 100
+8. **Price-Factor**: Kaufpreis / Jahresmiete ← investmentpunk: < 18 ist gut
 
-**ROTE FLAGGEN (investmentpunk-basiert):**
-- ❌ Brutto-Rendite < 6%? (Break-even) → AUSSCHLUSS
-- ❌ Netto-Cashflow < {config['evaluation_thresholds']['min_cashflow_monatlich']}€? → AUSSCHLUSS
-- ❌ Baujahr < {config['evaluation_thresholds']['baujahr_vor']}? (feuchte Keller, alte Heizung) → ⚠️ ROT
-- ❌ Renovierungskosten > {config['evaluation_thresholds']['max_renovierungskosten']}€? → ⚠️ ROT / AUSSCHLUSS
-- ❌ C-Lage mit hohem Leerstand-Risiko? → ⚠️ ROT
-- ❌ Große Wohnungen (> 4 Zimmer, einzeln)? → ⚠️ WARNUNG
+**KATEGORIE 1: PROFIT (klassisches Investment)**
+- Min. Brutto-Rendite: 6%
+- Min. Netto-Cashflow: {config['evaluation_thresholds']['category_profit']['min_cashflow_monatlich']}€
+- Suchradius: Ganz Oberhausen (überall)
+- Zielgruppe: Selbsttragend, Hebel-Effekt
+
+**KATEGORIE 2: FAMILY (Vermietung an Eltern/Bekannte)**
+- Min. Brutto-Rendite: 0% (auch negativ ok!)
+- Min. Netto-Cashflow: {config['evaluation_thresholds']['category_family']['min_cashflow_monatlich']}€ (auch -500€ ok)
+- PLZ: 46149 ONLY (zentral, wo Familie ist)
+- Zielgruppe: Sichere Mieter, emotionales Investment, Vermögensaufbau
+
+**ROTE FLAGGEN (kategorie-spezifisch):**
+
+**PROFIT (6%+ Rendite erforderlich):**
+- ❌ Brutto-Rendite < 6% → AUSSCHLUSS (break-even!)
+- ❌ Netto-Cashflow < 500€ → AUSSCHLUSS (zu knapp)
+- ❌ Renovierungskosten > 50k€ → ⚠️ ROT/AUSSCHLUSS
+- ❌ Baujahr < 1950 → ⚠️ ROT (feuchte Keller)
+- ❌ C-Lage hohes Leerstand-Risiko → ⚠️ ROT
+
+**FAMILY (auch 0% ok, aber Risiken prüfen):**
+- ⚠️ Brutto-Rendite < 3% → Warnung, aber nicht AUSSCHLUSS
+- ⚠️ Netto-Cashflow < -500€ → AUSSCHLUSS (zu viel Eigenkapital-Zehrung)
+- ⚠️ Renovierungskosten > 75k€ → Warnung (aber verkraftbar)
+- ⚠️ Baujahr < 1960 → Warnung (aber Familie kennt es)
+- ✅ Bekannte Mieter → BONUS! (sicherer als fremd)
 
 POSITIVE MERKMALE geben +5 Punkte je:
 - Garten vorhanden
@@ -71,37 +97,68 @@ POSITIVE MERKMALE geben +5 Punkte je:
 - Renoviert (letzte 10 Jahre)
 - Neue Heizung (letzte 5 Jahre)
 
-SCORING (0-100) — investmentpunk-Style:
-- < 40: ❌ NICHT EMPFOHLEN (rote Flaggen überwiegen, < 6% Brutto oder < 500€ Cashflow)
-- 40-60: ⚠️ PRÜFEN (6-7% Brutto, ok Cashflow, aber Renovierungs-/Leerstand-Risiken)
-- 60-80: ✅ GUT (6-8% Brutto, 600-1000€ Cashflow, moderate Risiken, B-Lage ok)
-- 80+: 🔥 SEHR GUT (> 8% Brutto, > 1000€ Cashflow, stabile Lage, echtes MFH)
+SCORING (0-100) — ZWEI KATEGORIEN:
 
-**Score-Berechnung:**
-- Basis: Brutto-Rendite in % (6-10% = 0-100 Punkte)
-- +10 Punkte: Brutto > 8%
-- +10 Punkte: Netto-Cashflow > 1000€/Monat
-- +10 Punkte: Baujahr > 1970
-- +5 Punkte pro Feature: Garten, Balkon, Garage, Renoviert
-- -20 Punkte: Baujahr < 1950 (Keller-Risiko)
-- -15 Punkte: Renovierungs-Kosten > 30k€
-- -25 Punkte: Renovierungs-Kosten > 50k€ (AUSSCHLUSS)
+**KATEGORIE 1: PROFIT**
+- < 40: ❌ NICHT EMPFOHLEN (< 6% Brutto ODER < 500€ Cashflow)
+- 40-60: ⚠️ PRÜFEN (6-7% Brutto, ok Cashflow, Risiken)
+- 60-80: ✅ GUT (6-8% Brutto, 600-1000€ Cashflow, B-Lage)
+- 80+: 🔥 SEHR GUT (> 8% Brutto, > 1000€ Cashflow, echtes MFH)
 
-**OUTPUT-FORMAT** (JSON, pro Immobilie):
+**KATEGORIE 2: FAMILY**
+- < 30: ❌ NICHT EMPFOHLEN (< -500€ Cashflow, zu viel Zehrung)
+- 30-50: ⚠️ WARNUNG (< 3% Brutto, negativ Cashflow aber ok)
+- 50-70: ✅ GUT (0-3% Brutto, neutral bis leicht positiv, Familie ok)
+- 70+: 🔥 SEHR GUT (> 3% Brutto, positiv Cashflow, beste Lage zentral)
+
+**PROFIT Score-Berechnung:**
+- Basis: Brutto-Rendite in % (6-10% = 0-100)
+- +10: Brutto > 8%
+- +10: Netto-Cashflow > 1000€
+- +10: Baujahr > 1970
+- +5 pro Feature (Garten, Balkon, Garage, Renoviert)
+- -20: Baujahr < 1950
+- -15: Renovierungen 30-50k€
+- -25: Renovierungen > 50k€
+
+**FAMILY Score-Berechnung:**
+- Basis: (Brutto-Rendite + 10) × 5 (um 0% auf 50 Punkte zu machen)
+- +10: Zentral 46149
+- +10: Baujahr > 1960 (nicht zu alt für Familie)
+- +15: Sichere Mieter (Familie bekannt) ← BONUS!
+- +5 pro Feature (Garten für Kinder, Garage, etc.)
+- -10: Baujahr < 1960 (aber nicht so schlimm wie PROFIT)
+- -5: Renovierungen > 30k€
+
+**OUTPUT-FORMAT** (JSON, pro Immobilie — BEIDE Kategorien):
 {{
   "adresse": "...",
   "kaufpreis": 12345,
   "wohnungen": 5,
   "baujahr": 1975,
+
   "cashflow_monatlich": 637,
   "brutto_rendite": 6.2,
   "netto_cashflow": 150,
   "netto_rendite": 8.5,
-  "score": 72,
-  "rote_flaggen": ["Baujahr 1975: Wahrscheinlich feuchte Keller", "Renovierung ansteht (Bad ~15k€)"],
-  "positive_merkmale": ["Garage vorhanden", "Garten"],
-  "empfehlung": "GUT - Rendite ok, aber Keller-Prüfung vor Kauf essentiell",
-  "prioritaet": 1
+
+  "rote_flaggen": ["Baujahr 1975: Wahrscheinlich feuchte Keller", "Renovierung ~15k€"],
+  "positive_merkmale": ["Garage", "Garten"],
+
+  "kategorie_profit": {{
+    "qualifiziert": true,
+    "score": 72,
+    "empfehlung": "GUT - 6-8% Brutto, moderate Risiken",
+    "prioritaet": 2
+  }},
+
+  "kategorie_family": {{
+    "qualifiziert": false,
+    "score": 45,
+    "grund": "Liegt nicht in PLZ 46149 (zentral), eher randlage",
+    "empfehlung": "Nicht für Familie (zu weit weg)",
+    "prioritaet": null
+  }}
 }}
 
 Rangiere nach Priorität (Score absteigend). Gib nur gültige JSON-Array zurück, keine Erklärungen.

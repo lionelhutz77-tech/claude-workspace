@@ -1,5 +1,6 @@
 """
 GMx SMTP Mail-Integration für Immobilien-Scanner Reports
+Zwei Kategorien: PROFIT (6%+) und FAMILY (0%+, PLZ 46149)
 """
 
 import os
@@ -12,10 +13,10 @@ from datetime import datetime
 
 def send_report(properties: List[Dict], config: Dict) -> bool:
     """
-    Sendet einen HTML-Report mit den Top-Immobilien via GMx
+    Sendet einen HTML-Report mit ZWEI Kategorien via GMx
 
     Args:
-        properties: Evaluierte Immobilien-Liste (von evaluator.py)
+        properties: Evaluierte Immobilien-Liste
         config: Config-Dict mit Mail-Einstellungen
 
     Returns:
@@ -29,15 +30,20 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
         print("❌ FEHLER: GMX_USER oder GMX_APP_PASSWORD nicht gesetzt (.env)")
         return False
 
-    # Top 5-10 nach Score filtern
-    top_props = sorted(properties, key=lambda x: x.get("score", 0), reverse=True)[:10]
+    # Filtern nach Kategorie
+    profit_props = [p for p in properties if p.get("kategorie_profit", {}).get("qualifiziert", False)]
+    family_props = [p for p in properties if p.get("kategorie_family", {}).get("qualifiziert", False)]
 
-    if not top_props:
+    # Top 10 pro Kategorie
+    profit_top = sorted(profit_props, key=lambda x: x.get("kategorie_profit", {}).get("score", 0), reverse=True)[:10]
+    family_top = sorted(family_props, key=lambda x: x.get("kategorie_family", {}).get("score", 0), reverse=True)[:10]
+
+    if not profit_top and not family_top:
         print("⚠️  Keine empfehlenswerten Immobilien gefunden diese Woche")
         return False
 
-    # HTML-Report bauen
-    html = build_html_report(top_props, config)
+    # HTML-Report bauen (beide Kategorien)
+    html = build_html_report(profit_top, family_top, config)
 
     try:
         # Verbindung zu GMx
@@ -68,49 +74,110 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
         return False
 
 
-def build_html_report(properties: List[Dict], config: Dict) -> str:
+def build_html_report(profit_props: List[Dict], family_props: List[Dict], config: Dict) -> str:
     """
-    Erstellt einen formatierten HTML-Report
+    Erstellt einen HTML-Report mit ZWEI Kategorien
     """
 
-    rows = ""
-    for i, prop in enumerate(properties, 1):
-        # Farbe nach Score
-        if prop["score"] >= 80:
-            color = "#d4edda"  # Grün
-        elif prop["score"] >= 60:
-            color = "#fff3cd"  # Gelb
-        else:
-            color = "#f8d7da"  # Rot
+    def build_category_rows(properties: List[Dict], category_key: str) -> str:
+        """Hilfsfunktion für Tabellenzeilen einer Kategorie"""
+        rows = ""
+        for i, prop in enumerate(properties, 1):
+            cat = prop.get(category_key, {})
+            score = cat.get("score", 0)
 
-        rote_flaggen = "<br>".join(f"⚠️ {f}" for f in prop.get("rote_flaggen", []))
-        positive = "<br>".join(f"✅ {f}" for f in prop.get("positive_merkmale", []))
+            # Farbe nach Score
+            if score >= 70:
+                color = "#d4edda"  # Grün
+            elif score >= 50:
+                color = "#fff3cd"  # Gelb
+            else:
+                color = "#f8d7da"  # Rot
 
-        rows += f"""
-        <tr style="background-color: {color};">
-            <td style="padding: 12px; border-bottom: 1px solid #ddd;"><strong>{i}. {prop['adresse']}</strong></td>
-            <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: right;">
-                <strong style="font-size: 18px; color: #2c3e50;">{prop['score']}/100</strong>
-            </td>
-            <td style="padding: 12px; border-bottom: 1px solid #ddd;">
-                Kaufpreis: <strong>{prop['kaufpreis']:,}€</strong><br>
-                Wohnungen: <strong>{prop['wohnungen']}</strong><br>
-                Baujahr: <strong>{prop['baujahr']}</strong>
-            </td>
-            <td style="padding: 12px; border-bottom: 1px solid #ddd;">
-                Cashflow: <strong style="color: #27ae60;">{prop['netto_cashflow']}€/Monat</strong><br>
-                Rendite: <strong>{prop['netto_rendite']:.1f}%</strong> p.a.
-            </td>
-            <td style="padding: 12px; border-bottom: 1px solid #ddd; font-size: 12px;">
-                <strong>Rote Flaggen:</strong><br>{rote_flaggen or "✅ Keine"}<br><br>
-                <strong>Pluspunkte:</strong><br>{positive or "—"}
-            </td>
-            <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">
-                <a href="{prop['link']}" style="color: #3498db; text-decoration: none;">
-                    <strong>Link →</strong>
-                </a>
-            </td>
-        </tr>
+            rote_flaggen = "<br>".join(f"⚠️ {f}" for f in prop.get("rote_flaggen", []))
+            positive = "<br>".join(f"✅ {f}" for f in prop.get("positive_merkmale", []))
+
+            rows += f"""
+            <tr style="background-color: {color};">
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;"><strong>{i}. {prop['adresse']}</strong></td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: right;">
+                    <strong style="font-size: 18px; color: #2c3e50;">{score}/100</strong>
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <strong>{prop['kaufpreis']:,}€</strong><br>
+                    {prop['wohnungen']} Whg | Baujahr {prop['baujahr']}
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <strong>{prop['brutto_rendite']:.1f}%</strong> Brutto<br>
+                    <span style="color: #27ae60;"><strong>{prop['netto_cashflow']}€</strong>/Mo</span><br>
+                    {prop['netto_rendite']:.1f}% auf EK
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd; font-size: 11px;">
+                    <strong>Risiken:</strong><br>{rote_flaggen or "✅ Keine"}<br><br>
+                    <strong>Plus:</strong><br>{positive or "—"}
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">
+                    <a href="{prop['link']}" style="color: #3498db; text-decoration: none; font-weight: bold;">
+                        Link →
+                    </a>
+                </td>
+            </tr>
+            """
+        return rows
+
+    profit_rows = build_category_rows(profit_props, "kategorie_profit")
+    family_rows = build_category_rows(family_props, "kategorie_family")
+
+    # Zähler
+    profit_count = len(profit_props)
+    family_count = len(family_props)
+
+    html_category_1 = ""
+    if profit_props:
+        html_category_1 = f"""
+        <h2 style="color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
+            🏢 Kategorie 1: PROFIT (6%+ Rendite, Selbsttragend)
+        </h2>
+        <p><strong>{profit_count} Objekte</strong> | Ganz Oberhausen + Umgebung | Klassisches Investment</p>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <thead>
+                <tr style="background-color: #27ae60; color: white;">
+                    <th style="padding: 12px; text-align: left;">Adresse</th>
+                    <th style="padding: 12px; text-align: right;">Score</th>
+                    <th style="padding: 12px;">Eckdaten</th>
+                    <th style="padding: 12px;">Rendite & Cashflow</th>
+                    <th style="padding: 12px;">Risiken & Plus</th>
+                    <th style="padding: 12px;">Quelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {profit_rows}
+            </tbody>
+        </table>
+        """
+
+    html_category_2 = ""
+    if family_props:
+        html_category_2 = f"""
+        <h2 style="color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px;">
+            👨‍👩‍👧‍👦 Kategorie 2: FAMILY (0%+, PLZ 46149, für Eltern/Bekannte)
+        </h2>
+        <p><strong>{family_count} Objekte</strong> | Zentral 46149 | Vermietung an Familie (Rendite sekundär)</p>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <thead>
+                <tr style="background-color: #e74c3c; color: white;">
+                    <th style="padding: 12px; text-align: left;">Adresse</th>
+                    <th style="padding: 12px; text-align: right;">Score</th>
+                    <th style="padding: 12px;">Eckdaten</th>
+                    <th style="padding: 12px;">Rendite & Cashflow</th>
+                    <th style="padding: 12px;">Risiken & Plus</th>
+                    <th style="padding: 12px;">Quelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {family_rows}
+            </tbody>
+        </table>
         """
 
     html = f"""
@@ -119,62 +186,53 @@ def build_html_report(properties: List[Dict], config: Dict) -> str:
         <meta charset="UTF-8">
         <style>
             body {{ font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }}
-            .container {{ max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; }}
+            .container {{ max-width: 1400px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; }}
             h1 {{ color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }}
-            h2 {{ color: #34495e; margin-top: 30px; }}
-            table {{ width: 100%; border-collapse: collapse; margin: 20px 0; }}
-            th {{ background-color: #3498db; color: white; padding: 12px; text-align: left; }}
+            h2 {{ margin-top: 40px; }}
+            table {{ width: 100%; border-collapse: collapse; }}
+            th {{ padding: 12px; text-align: left; font-weight: bold; }}
             td {{ padding: 12px; border-bottom: 1px solid #ddd; }}
             .summary {{ background-color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 20px 0; }}
             .footer {{ font-size: 12px; color: #7f8c8d; margin-top: 30px; text-align: center; }}
+            .legend {{ background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0; }}
+            .legend-item {{ margin: 8px 0; }}
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>🏘️ Immobilien-Scanner Report</h1>
+            <h1>🏘️ Immobilien-Scanner Report (ZWEI Kategorien)</h1>
             <p><strong>Woche vom {datetime.now().strftime('%d.%m.%Y')}</strong> | Region: Oberhausen (46149)</p>
 
             <div class="summary">
-                <p><strong>Diese Woche:</strong> {len(properties)} Immobilien analysiert</p>
-                <p><strong>Empfehlungen:</strong> {len(properties)} interessant</p>
-                <p><strong>Durchschnitt-Score:</strong> {sum(p.get('score', 0) for p in properties) / len(properties):.0f}/100</p>
+                <p><strong>Kategorie 1 (PROFIT):</strong> {profit_count} Objekte mit 6%+ Rendite (selbsttragend)</p>
+                <p><strong>Kategorie 2 (FAMILY):</strong> {family_count} Objekte für Familie/Eltern (0%+ ok)</p>
+                <p><strong>Gesamt:</strong> {profit_count + family_count} interessante Immobilien diese Woche</p>
             </div>
 
-            <h2>Top 10 Objekte (nach Score rankiert)</h2>
-            <table>
-                <thead>
-                    <tr style="background-color: #3498db; color: white;">
-                        <th>Adresse</th>
-                        <th>Score</th>
-                        <th>Eckdaten</th>
-                        <th>Finanzen</th>
-                        <th>Risiken & Chancen</th>
-                        <th>Quelle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
+            {html_category_1}
 
-            <h2>Bewertungs-Legende</h2>
-            <ul>
-                <li><strong style="color: #27ae60;">80+:</strong> Sehr gute Rendite, wenig Risiken → Aktiv prüfen</li>
-                <li><strong style="color: #f39c12;">60-80:</strong> Gute Rendite, moderate Risiken → Detailanalyse empfohlen</li>
-                <li><strong style="color: #e74c3c;">< 60:</strong> Schwache Rendite oder hohe Risiken → Nur bei special Interest</li>
-            </ul>
+            {html_category_2}
 
-            <h2>Nächste Schritte</h2>
-            <ol>
-                <li>Top-Objekte in vollständiger Maklerbeschreibung prüfen (Exposé lesen)</li>
-                <li><strong>Rote Flaggen checken:</strong> Baujahr → Besichtigung mit Fachmann</li>
-                <li>Vor Kaufvertrag: <strong>Bankfinanzierung vorab klären</strong> (LTV 80%, Zins~4%)</li>
-                <li>Mietermarkt Oberhausen: 950€ Kaltmiete ist realistisch für 3-4 Zimmer</li>
-            </ol>
+            <div class="legend">
+                <h3>📋 Score-Legende</h3>
+                <div class="legend-item"><strong style="color: #27ae60;">70-100:</strong> 🟢 Sehr empfohlen — aktiv prüfen</div>
+                <div class="legend-item"><strong style="color: #f39c12;">50-70:</strong> 🟡 Prüfen — Potenzial vorhanden</div>
+                <div class="legend-item"><strong style="color: #e74c3c;">< 50:</strong> 🔴 Nur bei speziellem Interest</div>
+            </div>
+
+            <div class="legend">
+                <h3>🎯 Nächste Schritte</h3>
+                <ol>
+                    <li><strong>Kategorie 1 (PROFIT):</strong> Makler kontaktieren, Exposés anfordern, mit Bankberater finanzierbar checken</li>
+                    <li><strong>Kategorie 2 (FAMILY):</strong> Mit Eltern besprechen, gemeinsam besichtigen, Verständigung über Vermietung/Nutzung</li>
+                    <li>Rote Flaggen checken (Baujahr, Renovierungen) → Fachanwalt/Gutachter konsultieren</li>
+                    <li>Price-Factor prüfen: Kaufpreis/Jahresmiete < 18 ist gut</li>
+                </ol>
+            </div>
 
             <div class="footer">
                 <p>Automatisiert generiert von Immobilien-Scanner | {datetime.now().strftime('%d.%m.%Y %H:%M')} Uhr</p>
-                <p>Disclaimer: Dies ist eine automatische Analyse, keine Anlageberatung. Vor Kauf immer Experten konsultieren.</p>
+                <p><strong>Disclaimer:</strong> Dies ist eine automatische Analyse, keine Anlageberatung. Vor jedem Kauf Experten konsultieren!</p>
             </div>
         </div>
     </body>
@@ -190,23 +248,35 @@ if __name__ == "__main__":
     with open("config.yaml", "r") as f:
         config = yaml.safe_load(f)
 
-    test_props = [
-        {
-            "adresse": "Musterstraße 42, 46149 Oberhausen",
-            "kaufpreis": 450000,
-            "wohnungen": 4,
-            "baujahr": 1985,
-            "netto_cashflow": 637,
-            "netto_rendite": 8.5,
-            "score": 72,
-            "rote_flaggen": ["Baujahr 1985: Wahrscheinlich feuchte Keller"],
-            "positive_merkmale": ["Garage", "Garten"],
-            "link": "https://example.com/1"
-        }
-    ]
+    test_profit = [{
+        "adresse": "Musterstraße 42, 46149 Oberhausen",
+        "kaufpreis": 450000,
+        "wohnungen": 4,
+        "baujahr": 1985,
+        "brutto_rendite": 7.2,
+        "netto_cashflow": 637,
+        "netto_rendite": 8.5,
+        "rote_flaggen": ["Baujahr 1985"],
+        "positive_merkmale": ["Garage", "Garten"],
+        "link": "https://example.com/1",
+        "kategorie_profit": {"score": 72, "qualifiziert": True}
+    }]
 
-    # Nur HTML generieren (nicht versenden) für Test
-    html = build_html_report(test_props, config)
-    with open("test_report.html", "w", encoding="utf-8") as f:
+    test_family = [{
+        "adresse": "Königstr. 100, 46149 Oberhausen",
+        "kaufpreis": 320000,
+        "wohnungen": 2,
+        "baujahr": 1995,
+        "brutto_rendite": 2.8,
+        "netto_cashflow": -150,
+        "netto_rendite": -2.0,
+        "rote_flaggen": [],
+        "positive_merkmale": ["Zentral", "Garten"],
+        "link": "https://example.com/2",
+        "kategorie_family": {"score": 65, "qualifiziert": True}
+    }]
+
+    html = build_html_report(test_profit, test_family, config)
+    with open("test_report_zwei_kategorien.html", "w", encoding="utf-8") as f:
         f.write(html)
-    print("✅ Test-Report generiert: test_report.html")
+    print("✅ Test-Report generiert: test_report_zwei_kategorien.html")
