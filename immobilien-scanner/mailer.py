@@ -27,7 +27,7 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
     smtp_password = os.getenv("GMX_APP_PASSWORD")
 
     if not smtp_user or not smtp_password:
-        print("❌ FEHLER: GMX_USER oder GMX_APP_PASSWORD nicht gesetzt (.env)")
+        print("[ERROR] GMX_USER oder GMX_APP_PASSWORD nicht gesetzt (.env)")
         return False
 
     # Filtern nach Kategorie
@@ -39,7 +39,7 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
     family_top = sorted(family_props, key=lambda x: x.get("kategorie_family", {}).get("score", 0), reverse=True)[:10]
 
     if not profit_top and not family_top:
-        print("⚠️  Keine empfehlenswerten Immobilien gefunden diese Woche")
+        print("[WARNING] Keine empfehlenswerten Immobilien gefunden diese Woche")
         return False
 
     # HTML-Report bauen (beide Kategorien)
@@ -63,14 +63,14 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
         server.sendmail(smtp_user, config["mail"]["to_email"], msg.as_string())
         server.quit()
 
-        print(f"✅ Mail versendet an {config['mail']['to_email']}")
+        print(f"[OK] Mail versendet an {config['mail']['to_email']}")
         return True
 
     except smtplib.SMTPException as e:
-        print(f"❌ SMTP-Fehler: {e}")
+        print(f"[ERROR] SMTP-Fehler: {e}")
         return False
     except Exception as e:
-        print(f"❌ Fehler beim E-Mail-Versand: {e}")
+        print(f"[ERROR] Fehler beim E-Mail-Versand: {e}")
         return False
 
 

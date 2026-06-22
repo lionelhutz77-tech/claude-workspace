@@ -43,7 +43,7 @@ def load_config() -> Dict:
     """Config laden"""
     config_path = Path("config.yaml")
     if not config_path.exists():
-        logger.error("❌ config.yaml nicht gefunden!")
+        logger.error("[ERROR] config.yaml nicht gefunden!")
         sys.exit(1)
 
     with open(config_path, "r", encoding="utf-8") as f:
@@ -57,7 +57,7 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     Returns:
         Liste von Immobilien-Daten
     """
-    logger.info("🔄 Scraping aller Quellen...")
+    logger.info("[SCRAPE] Scraping aller Quellen...")
 
     all_properties = []
     postleitzahl = config['search_criteria']['postleitzahl']
@@ -77,7 +77,7 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
         from scrapers.vanoepen import scrape_vanoepen  # BOTTROP
         from scrapers.boenighausen import scrape_boenighausen  # BOTTROP
     except ImportError as e:
-        logger.warning(f"⚠️  Scraper-Import fehlgeschlagen: {e}")
+        logger.warning(f"[WARNING] Scraper-Import fehlgeschlagen: {e}")
         return []
 
     # Liste der aktivierten Scraper (13 Quellen: 9 OB + 3 Bottrop + optional)
@@ -122,12 +122,12 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     # Scraper ausführen (13 Quellen parallel)
     for name, scraper_func in scrapers:
         try:
-            logger.info(f"▶️  {name} lädt...")
+            logger.info(f"[LOAD] {name} ladet...")
             props = scraper_func(postleitzahl)
             all_properties.extend(props)
-            logger.info(f"✅ {name}: {len(props)} Props")
+            logger.info(f"[OK] {name}: {len(props)} Props")
         except Exception as e:
-            logger.error(f"❌ Fehler in {name}: {e}")
+            logger.error(f"[ERROR] Fehler in {name}: {e}")
 
     # Duplikate entfernen (gleiche Adresse + Preis)
     unique_props = {}
@@ -137,19 +137,19 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
             unique_props[key] = prop
 
     all_properties = list(unique_props.values())
-    logger.info(f"✅ Gesamt nach Duplikat-Filter: {len(all_properties)} Immobilien gefunden")
+    logger.info(f"[OK] Gesamt nach Duplikat-Filter: {len(all_properties)} Immobilien gefunden")
     return all_properties
 
 
 def clean_data(properties: List[Dict]) -> List[Dict]:
     """Daten validieren und vereinheitlichen"""
-    logger.info("🧹 Daten bereinigen...")
+    logger.info("[CLEAN] Daten bereinigen...")
 
     cleaned = []
     for prop in properties:
         # Validierung
         if not all(k in prop for k in ["adresse", "kaufpreis", "wohnungen"]):
-            logger.warning(f"⚠️  Unvollständig: {prop.get('adresse', '???')}")
+            logger.warning(f"[WARNING] Unvollstaendig: {prop.get('adresse', '???')}")
             continue
 
         # Typkonvertierung
@@ -160,19 +160,19 @@ def clean_data(properties: List[Dict]) -> List[Dict]:
 
         cleaned.append(prop)
 
-    logger.info(f"✅ {len(cleaned)}/{len(properties)} gültig")
+    logger.info(f"[OK] {len(cleaned)}/{len(properties)} gültig")
     return cleaned
 
 
 def run_pipeline():
     """Haupt-Pipeline"""
     logger.info("=" * 60)
-    logger.info("🚀 IMMOBILIEN-SCANNER GESTARTET")
+    logger.info("[START] IMMOBILIEN-SCANNER GESTARTET")
     logger.info("=" * 60)
 
     # 1. Config laden
     config = load_config()
-    logger.info(f"📋 Config geladen: {config['search_criteria']['postleitzahl']} {config['search_criteria']['stadt']}")
+    logger.info(f"[CONFIG] Config geladen: {config['search_criteria']['postleitzahl']} {config['search_criteria']['stadt']}")
 
     # 2. Scrapen
     raw_properties = scrape_all_sources(config)
@@ -181,13 +181,13 @@ def run_pipeline():
     cleaned_properties = clean_data(raw_properties)
 
     # 4. Evaluieren (Groq ULTRA-PRO v2.0)
-    logger.info("🤖 Groq ULTRA-PRO Evaluierung (Phase 1+2)...")
+    logger.info("[EVAL] Groq ULTRA-PRO Evaluierung (Phase 1+2)...")
     try:
         from evaluator_pro import evaluate_properties_pro
         evaluated_properties = evaluate_properties_pro(cleaned_properties, config)
-        logger.info(f"✅ {len(evaluated_properties)} Props mit Mietpotenzial + ESG + Lage + Stress-Test evaluiert")
+        logger.info(f"[OK] {len(evaluated_properties)} Props mit Mietpotenzial + ESG + Lage + Stress-Test evaluiert")
     except Exception as e:
-        logger.error(f"❌ Groq-Pro Evaluierung fehlgeschlagen: {e}")
+        logger.error(f"[ERROR] Groq-Pro Evaluierung fehlgeschlagen: {e}")
         try:
             from evaluator import evaluate_properties
             evaluated_properties = evaluate_properties(cleaned_properties, config)
@@ -199,19 +199,19 @@ def run_pipeline():
         p for p in evaluated_properties
         if p.get("netto_cashflow", 0) >= config["evaluation_thresholds"]["min_cashflow_monatlich"]
     ]
-    logger.info(f"📊 Nach Filterung: {len(filtered)}/{len(evaluated_properties)} empfohlenswert")
+    logger.info(f"[FILTER] Nach Filterung: {len(filtered)}/{len(evaluated_properties)} empfohlenswert")
 
     # 6. Mail versenden
-    logger.info("📧 Report wird vorbereitet...")
+    logger.info("[MAIL] Report wird vorbereitet...")
     try:
         from mailer import send_report
         success = send_report(filtered, config)
         if success:
-            logger.info("✅ Mail versendet!")
+            logger.info("[OK] Mail versendet!")
         else:
-            logger.warning("⚠️  Mail-Versand fehlgeschlagen")
+            logger.warning("[WARNING] Mail-Versand fehlgeschlagen")
     except Exception as e:
-        logger.error(f"❌ Mail-Fehler: {e}")
+        logger.error(f"[ERROR] Mail-Fehler: {e}")
 
     # 7. Archivieren
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -221,10 +221,10 @@ def run_pipeline():
     archive_file = data_dir / f"scan_{timestamp}.json"
     with open(archive_file, "w", encoding="utf-8") as f:
         json.dump(evaluated_properties, f, indent=2, ensure_ascii=False)
-    logger.info(f"💾 Daten archiviert: {archive_file}")
+    logger.info(f"[ARCHIVE] Daten archiviert: {archive_file}")
 
     logger.info("=" * 60)
-    logger.info("✅ PIPELINE ABGESCHLOSSEN")
+    logger.info("[DONE] PIPELINE ABGESCHLOSSEN")
     logger.info("=" * 60)
 
 
@@ -232,5 +232,5 @@ if __name__ == "__main__":
     try:
         run_pipeline()
     except Exception as e:
-        logger.exception(f"❌ Kritischer Fehler: {e}")
+        logger.exception(f"[CRITICAL] Kritischer Fehler: {e}")
         sys.exit(1)
