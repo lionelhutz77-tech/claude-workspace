@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+"""Legt den Bauplan (spec.json) fuer das Higgsfield-Smartwatch-Karussell an.
+Bilder werden separat via Higgsfield-MCP erzeugt und in raw/ abgelegt."""
+import json
+from pathlib import Path
+
+spec = {
+    "thema": "Smartwatch als Fessel",
+    "quelle": "Higgsfield Soul 2.0",
+    "hook": {
+        "zeilen": ["Weißt du noch?", "Als eine Uhr nur eines tat:",
+                   "die Zeit zeigen?", "", "Als man wirklich",
+                   "abschalten konnte?"],
+        "prompt": "hook"
+    },
+    "paare": [
+        {"oben_text": "Früher: Die Uhr zeigte nur die Zeit", "oben_prompt": "p0_oben",
+         "unten_text": "Heute: Sie vibriert bei jeder Nachricht", "unten_prompt": "p0_unten"},
+        {"oben_text": "Früher: Auf dem Spaziergang war man weg", "oben_prompt": "p1_oben",
+         "unten_text": "Heute: Die Arbeit erreicht dich am Arm", "unten_prompt": "p1_unten"},
+        {"oben_text": "Früher: Man aß in Ruhe zusammen", "oben_prompt": "p2_oben",
+         "unten_text": "Heute: Beim Essen blinkt es am Arm", "unten_prompt": "p2_unten"},
+        {"oben_text": "Früher: Man bewegte sich aus Freude", "oben_prompt": "p3_oben",
+         "unten_text": "Heute: Die Uhr zählt jeden Schritt", "unten_prompt": "p3_unten"},
+        {"oben_text": "Früher: Nachts war einfach Ruhe", "oben_prompt": "p4_oben",
+         "unten_text": "Heute: Selbst der Schlaf wird vermessen", "unten_prompt": "p4_unten"},
+    ],
+    "cta": {"zeilen": ["Wann hast du zuletzt", "bewusst alles abgelegt?"], "prompt": "cta"},
+    "caption": ("Weißt du noch? Früher zeigte eine Uhr einfach nur die Zeit. Man "
+                "ging spazieren und war wirklich weg, man aß in Ruhe, bewegte "
+                "sich aus reiner Freude, und nachts war einfach Ruhe. Heute sitzt "
+                "an unserem Handgelenk ein kleines Gerät, das vibriert, zählt, "
+                "misst und uns nie ganz loslässt. Wann hast du zuletzt bewusst "
+                "alles abgelegt und warst einfach nur da? Schreib mir EIN Wort "
+                "in die Kommentare. 👇"),
+    "hashtags": ("#Smartwatch #DigitalDetox #Achtsamkeit #Entschleunigung "
+                 "#Erreichbarkeit #InnehaltenStattScrollen #WenigerIstMehr "
+                 "#Abschalten #Momente #Gedankenwelt #ZeitFürMich #SlowLiving "
+                 "#BewusstLeben #Handysucht #DigitaleBalance #ZurückZurRuhe "
+                 "#FrüherVsHeute #Nachdenklich #Lebensweisheiten #EchteMomente")
+}
+
+base = Path("output/queue/item_07")
+(base / "raw").mkdir(parents=True, exist_ok=True)
+json.dump(spec, open(base / "spec.json", "w", encoding="utf-8"),
+          ensure_ascii=False, indent=2)
+print("Bauplan item_07 (Smartwatch / Higgsfield) angelegt:", base)

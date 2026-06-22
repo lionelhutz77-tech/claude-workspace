@@ -1,0 +1,10 @@
+# Geheime Schlüssel — NIE committen
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

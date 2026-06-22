@@ -1,0 +1,8 @@
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_00.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_01.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_02.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_03.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_04.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_05.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_06.mp4'
+file 'C:\Users\HP\Documents\Claude\instagram-system\output\media\rezept_001\v3\clips\clip_07.mp4'

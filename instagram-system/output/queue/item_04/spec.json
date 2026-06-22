@@ -1,0 +1,59 @@
+{
+  "thema": "Ein Geschenk, das zählt",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als die Vorfreude",
+      "größer war als das Geschenk selbst?",
+      "",
+      "Als ein einziges Päckchen",
+      "wochenlang glücklich machte?"
+    ],
+    "prompt": "a young girl excitedly unwrapping a gift"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Wochenlange Vorfreude auf Weihnachten",
+      "oben_prompt": "a family looking at a Adventskalender",
+      "unten_text": "Heute: Sofortige Erfüllung von Wünschen online",
+      "unten_prompt": "close-up seen from behind over a persons shoulder looking down at a smartphone held naturally in one hand, the screen shows an online shopping app with products, thumb about to tap, cozy modern room, natural realistic hand"
+    },
+    {
+      "oben_text": "Früher: Ein Spielzeug monatelang bespielt",
+      "oben_prompt": "a boy playing with a Lego castle",
+      "unten_text": "Heute: Ein Spielzeug nach einem Tag vergessen",
+      "unten_prompt": "a child leaving a toy car on the floor"
+    },
+    {
+      "oben_text": "Früher: Ein Dankesbrief nach dem Geschenk",
+      "oben_prompt": "a girl sitting at a table writing a thank-you letter, holding a single pen in one hand, focused and happy, warm soft light, only one person",
+      "unten_text": "Heute: Ein Dankes-SMS oder Like",
+      "unten_prompt": "a person typing a thank-you message on a smartphone"
+    },
+    {
+      "oben_text": "Früher: Das Auspack-Ritual mit der Familie",
+      "oben_prompt": "a family of four kneeling on the floor beside a decorated Christmas tree, gently unwrapping a present together, photographed from the side at a distance, full figures visible, warm cozy living room, nobody facing the camera, calm candid moment",
+      "unten_text": "Heute: Das Auspacken allein vor dem Bildschirm",
+      "unten_prompt": "a person sitting alone in front of a computer screen"
+    },
+    {
+      "oben_text": "Früher: Selbst etwas gebastelt statt gekauft",
+      "oben_prompt": "a child crafting a handmade gift",
+      "unten_text": "Heute: Ein Geschenk online bestellen und liefern lassen",
+      "unten_prompt": "a person clicking a 'buy now' button on a website"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Was war dein liebstes Geschenk in der Kindheit?",
+      "Was machte es so besonders?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "a warm friendly young woman smiling gently while looking at an old printed photo album she holds naturally with both hands, golden hour light, head and shoulders, realistic correct hands"
+  },
+  "caption": "Weißt du noch? Früher war die Vorfreude oft größer als das Geschenk selbst. Ein einziges Päckchen, wochenlang ersehnt, machte den ganzen Tag glücklich – und ein Spielzeug wurde monatelang bespielt, nicht nach einem Tag vergessen. Heute ist alles sofort verfügbar. Vielleicht ist genau deshalb etwas vom Zauber verloren gegangen. Was war dein liebstes Geschenk als Kind? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Geschenk #Kindheit #Weihnachten #Spielzeug #Dankbarkeit #Liebe #Familie #Freundschaft #Erinnerungen #Nostalgie #Geschichten"
+}

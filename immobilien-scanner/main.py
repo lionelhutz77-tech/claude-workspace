@@ -62,65 +62,97 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
     all_properties = []
     postleitzahl = config['search_criteria']['postleitzahl']
 
-    # Scraper-Import (ALLE 13 QUELLEN)
-    try:
-        from scrapers.immoscout import run_sync as scrape_immoscout24
-        from scrapers.immonet import run_sync as scrape_immonet
-        from scrapers.sparkasse import run_sync as scrape_sparkasse
-        from scrapers.volksbank import run_sync as scrape_volksbank
-        from scrapers.kl_immobilien import scrape_kl_immobilien
-        from scrapers.sariguel import scrape_sariguel
-        from scrapers.piezonka import scrape_piezonka
-        from scrapers.immo_oberhausen import scrape_immo_oberhausen
-        from scrapers.marquardt import scrape_marquardt
-        from scrapers.bloemker import scrape_bloemker  # BOTTROP
-        from scrapers.vanoepen import scrape_vanoepen  # BOTTROP
-        from scrapers.boenighausen import scrape_boenighausen  # BOTTROP
-    except ImportError as e:
-        logger.warning(f"[WARNING] Scraper-Import fehlgeschlagen: {e}")
-        return []
+    # Scraper-Imports (nur aktivierte laden)
+    scrapers_to_import = {}
 
-    # Liste der aktivierten Scraper (13 Quellen: 9 OB + 3 Bottrop + optional)
-    scrapers = []
+    # HTML-Scraper (kein Playwright-Problem)
+    if config['scraper_sources'].get('kl_immobilien', {}).get('enabled', False):
+        try:
+            from scrapers.kl_immobilien import scrape_kl_immobilien
+            scrapers_to_import['KL Immobilien'] = scrape_kl_immobilien
+        except ImportError as e:
+            logger.error(f"[ERROR] KL Immobilien Import: {e}")
 
-    if config['scraper_sources'].get('immoscout24', {}).get('enabled', True):
-        scrapers.append(("ImmoScout24", scrape_immoscout24))
+    if config['scraper_sources'].get('sariguel', {}).get('enabled', False):
+        try:
+            from scrapers.sariguel import scrape_sariguel
+            scrapers_to_import['CT-Immobilien (Sariguel)'] = scrape_sariguel
+        except ImportError as e:
+            logger.error(f"[ERROR] Sariguel Import: {e}")
 
-    if config['scraper_sources'].get('immonet', {}).get('enabled', True):
-        scrapers.append(("Immonet", scrape_immonet))
+    if config['scraper_sources'].get('piezonka', {}).get('enabled', False):
+        try:
+            from scrapers.piezonka import scrape_piezonka
+            scrapers_to_import['Piezonka-Immobilien'] = scrape_piezonka
+        except ImportError as e:
+            logger.error(f"[ERROR] Piezonka Import: {e}")
 
-    if config['scraper_sources'].get('sparkasse', {}).get('enabled', True):
-        scrapers.append(("Sparkasse", scrape_sparkasse))
+    if config['scraper_sources'].get('immo_oberhausen', {}).get('enabled', False):
+        try:
+            from scrapers.immo_oberhausen import scrape_immo_oberhausen
+            scrapers_to_import['Immobilien-Oberhausen'] = scrape_immo_oberhausen
+        except ImportError as e:
+            logger.error(f"[ERROR] Immo-Oberhausen Import: {e}")
 
-    if config['scraper_sources'].get('volksbank', {}).get('enabled', True):
-        scrapers.append(("Volksbank", scrape_volksbank))
+    if config['scraper_sources'].get('marquardt', {}).get('enabled', False):
+        try:
+            from scrapers.marquardt import scrape_marquardt
+            scrapers_to_import['Marquardt Immobilien'] = scrape_marquardt
+        except ImportError as e:
+            logger.error(f"[ERROR] Marquardt Import: {e}")
 
-    if config['scraper_sources'].get('kl_immobilien', {}).get('enabled', True):
-        scrapers.append(("KL Immobilien", scrape_kl_immobilien))
+    if config['scraper_sources'].get('bloemker', {}).get('enabled', False):
+        try:
+            from scrapers.bloemker import scrape_bloemker
+            scrapers_to_import['Blömker Immobilien'] = scrape_bloemker
+        except ImportError as e:
+            logger.error(f"[ERROR] Blömker Import: {e}")
 
-    if config['scraper_sources'].get('sariguel', {}).get('enabled', True):
-        scrapers.append(("CT-Immobilien (Sariguel)", scrape_sariguel))
+    if config['scraper_sources'].get('vanoepen', {}).get('enabled', False):
+        try:
+            from scrapers.vanoepen import scrape_vanoepen
+            scrapers_to_import['Immobilien van Oepen'] = scrape_vanoepen
+        except ImportError as e:
+            logger.error(f"[ERROR] van Oepen Import: {e}")
 
-    if config['scraper_sources'].get('piezonka', {}).get('enabled', True):
-        scrapers.append(("Piezonka-Immobilien", scrape_piezonka))
+    if config['scraper_sources'].get('boenighausen', {}).get('enabled', False):
+        try:
+            from scrapers.boenighausen import scrape_boenighausen
+            scrapers_to_import['Bönighausen Immobilien'] = scrape_boenighausen
+        except ImportError as e:
+            logger.error(f"[ERROR] Bönighausen Import: {e}")
 
-    if config['scraper_sources'].get('immo_oberhausen', {}).get('enabled', True):
-        scrapers.append(("Immobilien-Oberhausen", scrape_immo_oberhausen))
+    # JavaScript-Scraper (Playwright) — nur wenn nötig
+    if config['scraper_sources'].get('immoscout24', {}).get('enabled', False):
+        try:
+            from scrapers.immoscout import run_sync as scrape_immoscout24
+            scrapers_to_import['ImmoScout24'] = scrape_immoscout24
+        except ImportError as e:
+            logger.warning(f"[WARNING] ImmoScout24 Import (Playwright): {e}")
 
-    if config['scraper_sources'].get('marquardt', {}).get('enabled', True):
-        scrapers.append(("Marquardt Immobilien", scrape_marquardt))
+    if config['scraper_sources'].get('immonet', {}).get('enabled', False):
+        try:
+            from scrapers.immonet import run_sync as scrape_immonet
+            scrapers_to_import['Immonet'] = scrape_immonet
+        except ImportError as e:
+            logger.warning(f"[WARNING] Immonet Import (Playwright): {e}")
 
-    if config['scraper_sources'].get('bloemker', {}).get('enabled', True):
-        scrapers.append(("Blömker Immobilien", scrape_bloemker))
+    if config['scraper_sources'].get('sparkasse', {}).get('enabled', False):
+        try:
+            from scrapers.sparkasse import run_sync as scrape_sparkasse
+            scrapers_to_import['Sparkasse'] = scrape_sparkasse
+        except ImportError as e:
+            logger.warning(f"[WARNING] Sparkasse Import (Playwright): {e}")
 
-    if config['scraper_sources'].get('vanoepen', {}).get('enabled', True):
-        scrapers.append(("Immobilien van Oepen", scrape_vanoepen))
+    if config['scraper_sources'].get('volksbank', {}).get('enabled', False):
+        try:
+            from scrapers.volksbank import run_sync as scrape_volksbank
+            scrapers_to_import['Volksbank'] = scrape_volksbank
+        except ImportError as e:
+            logger.warning(f"[WARNING] Volksbank Import (Playwright): {e}")
 
-    if config['scraper_sources'].get('boenighausen', {}).get('enabled', True):
-        scrapers.append(("Bönighausen Immobilien", scrape_boenighausen))
-
-    # Scraper ausführen (13 Quellen parallel)
-    for name, scraper_func in scrapers:
+    # Scraper ausführen
+    for name, scraper_func in scrapers_to_import.items():
         try:
             logger.info(f"[LOAD] {name} ladet...")
             props = scraper_func(postleitzahl)
@@ -180,24 +212,20 @@ def run_pipeline():
     # 3. Bereinigen
     cleaned_properties = clean_data(raw_properties)
 
-    # 4. Evaluieren (Groq ULTRA-PRO v2.0)
-    logger.info("[EVAL] Groq ULTRA-PRO Evaluierung (Phase 1+2)...")
+    # 4. Evaluieren (Simple lokale Regellogik)
+    logger.info("[EVAL] Einfache lokale Evaluierung...")
     try:
-        from evaluator_pro import evaluate_properties_pro
-        evaluated_properties = evaluate_properties_pro(cleaned_properties, config)
-        logger.info(f"[OK] {len(evaluated_properties)} Props mit Mietpotenzial + ESG + Lage + Stress-Test evaluiert")
+        from evaluator_simple import evaluate_properties_simple
+        evaluated_properties = evaluate_properties_simple(cleaned_properties, config)
+        logger.info(f"[OK] {len(evaluated_properties)} Props evaluiert")
     except Exception as e:
-        logger.error(f"[ERROR] Groq-Pro Evaluierung fehlgeschlagen: {e}")
-        try:
-            from evaluator import evaluate_properties
-            evaluated_properties = evaluate_properties(cleaned_properties, config)
-        except:
-            evaluated_properties = cleaned_properties
+        logger.error(f"[ERROR] Evaluierung fehlgeschlagen: {e}")
+        evaluated_properties = cleaned_properties
 
     # 5. Filtern (nur Schwellwerte erfüllt)
     filtered = [
         p for p in evaluated_properties
-        if p.get("netto_cashflow", 0) >= config["evaluation_thresholds"]["min_cashflow_monatlich"]
+        if p.get("netto_cashflow", 0) >= config["evaluation_thresholds"]["category_profit"]["min_cashflow_monatlich"]
     ]
     logger.info(f"[FILTER] Nach Filterung: {len(filtered)}/{len(evaluated_properties)} empfohlenswert")
 
@@ -222,6 +250,16 @@ def run_pipeline():
     with open(archive_file, "w", encoding="utf-8") as f:
         json.dump(evaluated_properties, f, indent=2, ensure_ascii=False)
     logger.info(f"[ARCHIVE] Daten archiviert: {archive_file}")
+
+    # 8. Lokalen Report im Browser oeffnen (falls vorhanden)
+    report_file = Path("reports") / "report_neuester.html"
+    if report_file.exists() and filtered:
+        try:
+            import webbrowser
+            webbrowser.open(report_file.resolve().as_uri())
+            logger.info(f"[OPEN] Report im Browser geoeffnet: {report_file.resolve()}")
+        except Exception as e:
+            logger.warning(f"[WARNING] Report konnte nicht geoeffnet werden: {e}")
 
     logger.info("=" * 60)
     logger.info("[DONE] PIPELINE ABGESCHLOSSEN")

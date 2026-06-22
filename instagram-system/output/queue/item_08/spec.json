@@ -1,0 +1,60 @@
+{
+  "thema": "Spontane Verabredungen",
+  "quelle": "Higgsfield Soul 2.0",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als man einfach klingelte",
+      "und der andere da war?",
+      "",
+      "Als ein Plan ein Plan blieb",
+      "und niemand absagte?"
+    ],
+    "prompt": "hook"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Spontan an der Tür geklingelt",
+      "oben_prompt": "p0_oben",
+      "unten_text": "Heute: Drei Tage vorher per Chat angefragt",
+      "unten_prompt": "p0_unten"
+    },
+    {
+      "oben_text": "Früher: Ein Versprechen galt",
+      "oben_prompt": "p1_oben",
+      "unten_text": "Heute: Kurz vorher kommt die Absage",
+      "unten_prompt": "p1_unten"
+    },
+    {
+      "oben_text": "Früher: Am Treffpunkt gewartet, bis er kam",
+      "oben_prompt": "p2_oben",
+      "unten_text": "Heute: \"Bin gleich da\" – und dann doch nicht",
+      "unten_prompt": "p2_unten"
+    },
+    {
+      "oben_text": "Früher: Der ganze Nachmittag war offen",
+      "oben_prompt": "p3_oben",
+      "unten_text": "Heute: Jedes Treffen ist durchgetaktet",
+      "unten_prompt": "p3_unten"
+    },
+    {
+      "oben_text": "Früher: Von Angesicht zu Angesicht verabredet",
+      "oben_prompt": "p4_oben",
+      "unten_text": "Heute: Alles läuft über Nachrichten",
+      "unten_prompt": "p4_unten"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du zuletzt",
+      "einfach spontan geklingelt?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "cta"
+  },
+  "caption": "Weißt du noch? Früher klingelte man einfach - und der Nachmittag gehörte euch. Ein Versprechen war ein Versprechen, niemand sagte kurzfristig ab. Heute wird drei Tage vorher angefragt und eine Stunde vorher abgesagt. Dabei ist es das Spontane, das Verbindungen echt macht. Wann hast du zuletzt einfach spontan geklingelt? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Verbindlichkeit #Spontanität #EchteFreundschaft #Miteinander #ZeitFüreinander #FrüherVsHeute #Lebensweisheiten #Nachdenklich #BewusstLeben #Gedankenwelt #Menschlichkeit #Achtsamkeit #Erinnerungen #Werte #EchteVerbindung"
+}

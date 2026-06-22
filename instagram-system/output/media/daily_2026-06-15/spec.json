@@ -1,0 +1,59 @@
+{
+  "thema": "Musik mit Wert",
+  "hook": {
+    "zeilen": [
+      "Weisst du noch, wie aufgeregt du warst, wenn ein neues Album deiner Lieblingsband erschien?",
+      "Du hast Wochen gewartet, um endlich deine Hände auf die neue LP zu legen.",
+      "",
+      "Das Warten hat sich gelohnt, wenn du das Cover betrachtet und die Texte auswendig gelernt hast.",
+      "Jedes Album war ein Schatz, den du immer wieder hervorholtest."
+    ],
+    "prompt": "a young girl holding a vinyl record, looking excited"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: LPs sammeln und hüten",
+      "oben_prompt": "a boy holding a stack of vinyl records, smiling",
+      "unten_text": "Heute: Musik online hören und vergessen",
+      "unten_prompt": "a teenager listening to music on their phone, looking distracted"
+    },
+    {
+      "oben_text": "Früher: Songtexte auswendig lernen",
+      "oben_prompt": "a girl sitting on her bed, reading a booklet",
+      "unten_text": "Heute: Liedtexte auf dem Bildschirm lesen",
+      "unten_prompt": "a young woman reading song lyrics on her tablet"
+    },
+    {
+      "oben_text": "Früher: Musik mit Freunden teilen",
+      "oben_prompt": "two friends listening to music together, laughing",
+      "unten_text": "Heute: Musik online teilen und liken",
+      "unten_prompt": "a person sharing music on social media, looking at their phone"
+    },
+    {
+      "oben_text": "Früher: Alben kaufen und besitzen",
+      "oben_prompt": "an older man holding a vinyl record, smiling",
+      "unten_text": "Heute: Musik online streamen und nicht besitzen",
+      "unten_prompt": "a person streaming music on their computer, looking unsure"
+    },
+    {
+      "oben_text": "Früher: Musik als Erinnerung an eine Zeit",
+      "oben_prompt": "a family listening to music together, smiling",
+      "unten_text": "Heute: Musik als Hintergrundgeräusch",
+      "unten_prompt": "a person listening to music in the background, doing something else"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Was ist deine Lieblingsmusik aus deiner Kindheit?",
+      "Welche Erinnerungen verbindest du mit bestimmten Liedern?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977",
+      "für mehr Erinnerungen."
+    ],
+    "prompt": "a smiling woman holding a vinyl record, winking at the camera"
+  },
+  "caption": "Musik war früher mehr als nur ein Hintergrundgeräusch. Wir haben uns auf Alben gefreut, Songtexte auswendig gelernt und Musik mit Freunden geteilt. Heute ist Musik überall verfügbar, aber hat sie auch an Wert verloren? Was ist deine Lieblingsmusik aus deiner Kindheit? Schreib es in die Kommentare und teile deine Erinnerungen mit uns!",
+  "hashtags": "#Musik #Erinnerungen #Kindheit #Vinyl #Streaming #Musikliebe #Nostalgie #FrüherWarAllesBesser #MusikalsErinnerung #Lieblingslied #Musiksammlung #Vinylsammlung #Musikfreunde #Musikerinnerungen"
+}

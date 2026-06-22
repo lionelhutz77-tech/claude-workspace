@@ -1,0 +1,77 @@
+{
+  "name": "dynamisches_rezept_reel",
+  "quelle_inspiration": "veganer.wandel — Kartoffel-Kichererbsen-Burger (3785 Likes, 695 Shares, Stand 2026-06-12)",
+  "analyse_datum": "2026-06-12",
+  "stilregeln": {
+    "hintergrund": "dunkel bis schwarz, dramatisches Seitenlicht (Low-Key)",
+    "farben": "warme Food-Töne (orange/gold/braun) leuchten vor dunklem Grund",
+    "tiefenschaerfe": "gering — Motiv scharf, Rest weich",
+    "kamera": "extreme Close-ups, Untersicht/Augenhöhe statt Draufsicht",
+    "text": "weiß, fett, zentriert, mit dünner schwarzer Outline; nur 1-2 Zeilen gleichzeitig",
+    "audio": "Original-Audio (Koch-Geräusche: brutzeln, rieseln) statt nur Musik",
+    "bewegungsunschaerfe": "Motion Blur bei schnellen Aktionen (Werfen, Schuetten) ist erwuenscht - vermittelt Tempo und Echtheit",
+    "hook_mimik": "Im Hook prueft die Person die Zutat mit skeptisch-interessiertem Blick - baut Spannung auf"
+  },
+  "dramaturgie": [
+    {
+      "szene": 1,
+      "typ": "hook",
+      "dauer_s": 2,
+      "inhalt": "Person/Produkt + Versprechen als Text ('say hello to your new favourite burger'). Sofortiges Nutzenversprechen, kein Intro."
+    },
+    {
+      "szene": 2,
+      "typ": "zutaten_action",
+      "dauer_s": 3,
+      "inhalt": "Hauptzutat wird IN BEWEGUNG gezeigt (Dose wird geworfen/gefangen, Kartoffel von oben ins Bild). Keine statische Zutatenliste."
+    },
+    {
+      "szene": 3,
+      "typ": "prep_matchcuts",
+      "dauer_s": 8,
+      "inhalt": "Zubereitungsschritte als Match-Cuts: Objekt verlaesst das Bild und ist im naechsten Shot bereits im naechsten Zustand (geschaelt, gerieben, gemischt). Jeder Schritt 1-2 s."
+    },
+    {
+      "szene": 4,
+      "typ": "sensorik_closeups",
+      "dauer_s": 8,
+      "inhalt": "Sinnliche Detail-Shots: Gewuerz rieselt vom Loeffel, Marinade wird gepinselt, Crumbs fallen, es brutzelt in der Pfanne. Bewegung in JEDEM Shot."
+    },
+    {
+      "szene": 5,
+      "typ": "assembly",
+      "dauer_s": 5,
+      "inhalt": "Zusammenbau schwebend: Patty wird ueber dem Bun gehalten und abgesenkt, Toppings werden draufgelegt. Haende sichtbar."
+    },
+    {
+      "szene": 6,
+      "typ": "hero_finale",
+      "dauer_s": 4,
+      "inhalt": "Fertiges Gericht als Hero-Shot: erst extremes Close-up (Textur, Sauce laeuft), dann Totale auf dunklem Teller, Produkt dreht sich zur Kamera."
+    }
+  ],
+  "kernprinzipien": [
+    "BEWEGUNG in jedem einzelnen Shot — nichts steht still",
+    "Match-Cut-Uebergaenge statt harter Schnitte (Objekt raus = Zustandswechsel)",
+    "Essen ist der Star: Person nur im Hook, danach nur Haende",
+    "Geraeusche verkaufen das Essen (ASMR-Effekt)",
+    "Gesamtlaenge ~30 s, kein Shot laenger als 3 s ausser Hero-Finale",
+    "Rezeptdetails gehoeren in die Caption, nicht ins Video",
+    "Werkzeug-Close-ups (Stampfer, Reibe, Pinsel) als wiederkehrende Prep-Shots"
+  ],
+  "umsetzbarkeit_mit_freien_tools": {
+    "heute_machbar": [
+      "Ken-Burns-Effekt (Zoom/Schwenk) auf KI-Bildern per FFmpeg zoompan — ersetzt Standbilder",
+      "Schnellere Schnitte: 8-12 Bilder a 2-3 s statt 5 Slides a 7 s",
+      "Close-up-Prompts fuer Stable Horde (Textur, fallende Zutaten, Dampf)",
+      "Low-Key-Look per Prompt: 'dark background, dramatic side light, shallow depth of field'",
+      "Brutzel-/Kuechengeraeusche als Audio-Layer (freesound.org CC0) unter der Musik"
+    ],
+    "nicht_machbar_ohne_echtvideo": [
+      "Echte Match-Cuts mit durchgehender Bewegung",
+      "Haende, die real interagieren (KI-Haende sind riskant/fehlerhaft)",
+      "Original-Kochgeraeusche synchron zum Bild"
+    ],
+    "fazit": "Wir bauen die Dramaturgie (Hook -> Action -> Close-ups -> Hero) und den Look (dunkel, nah, warm) nach — mit animierten KI-Bildern statt Realvideo."
+  }
+}

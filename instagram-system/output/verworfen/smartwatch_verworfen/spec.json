@@ -1,0 +1,55 @@
+{
+  "thema": "Smartwatch als Fessel",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als eine Uhr nur eines tat:",
+      "die Zeit zeigen?",
+      "",
+      "Als man wirklich",
+      "abschalten konnte?"
+    ],
+    "prompt": "a person standing in a sunny meadow with arms outstretched, seen from behind, feeling free and happy, wide open sky, golden hour"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Die Uhr zeigte nur die Zeit",
+      "oben_prompt": "extreme close-up of a single classic analog wristwatch on a wrist, a person calmly checking the time, only ONE watch, relaxed quiet moment",
+      "unten_text": "Heute: Sie vibriert bei jeder Nachricht",
+      "unten_prompt": "close-up of a smartwatch on a wrist lighting up with a buzzing message notification, person glancing at it distracted, modern setting"
+    },
+    {
+      "oben_text": "Früher: Auf dem Spaziergang war man weg",
+      "oben_prompt": "a person walking away down a sunny forest path, seen from behind, relaxed and free, hands resting at their sides, full figure, wide shot",
+      "unten_text": "Heute: Die Arbeit erreicht dich am Arm",
+      "unten_prompt": "a person standing on a city sidewalk calmly raising their wrist to glance at a smartwatch, natural relaxed posture, seen from the side, upper body visible, cool daylight"
+    },
+    {
+      "oben_text": "Früher: Man aß in Ruhe zusammen",
+      "oben_prompt": "a happy family of four sitting around a dinner table talking and laughing, wide shot from a distance, warm cozy light, hands relaxed",
+      "unten_text": "Heute: Beim Essen blinkt es am Arm",
+      "unten_prompt": "a man sitting at a dinner table looking down at his smartwatch, seen from the side, plate of food on the table, cool tones"
+    },
+    {
+      "oben_text": "Früher: Man bewegte sich aus Freude",
+      "oben_prompt": "two happy children running and playing through a green meadow, full figures seen from a distance, joyful, no adults in the foreground",
+      "unten_text": "Heute: Die Uhr zählt jeden Schritt",
+      "unten_prompt": "a jogger in a park pausing and calmly glancing down at the smartwatch on their wrist, natural relaxed posture, seen from the side, upper body visible"
+    },
+    {
+      "oben_text": "Früher: Nachts war einfach Ruhe",
+      "oben_prompt": "a person sleeping peacefully in bed, face relaxed on the pillow, hands tucked under the blanket, calm dark bedroom, soft moonlight",
+      "unten_text": "Heute: Selbst der Schlaf wird vermessen",
+      "unten_prompt": "a smartwatch glowing on a wrist resting on a bed at night showing sleep data, dark bedroom, only the watch and wrist visible"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du zuletzt",
+      "bewusst alles abgelegt?"
+    ],
+    "prompt": "a relaxed happy person smiling peacefully outdoors without any device, enjoying the moment, head and shoulders"
+  },
+  "caption": "Weißt du noch? Früher zeigte eine Uhr einfach nur die Zeit – und sonst nichts. Man ging spazieren und war wirklich weg, man aß in Ruhe, bewegte sich aus reiner Freude und nachts war einfach Ruhe. Heute sitzt an unserem Handgelenk ein kleines Gerät, das vibriert, zählt, misst und uns nie ganz loslässt. Wann hast du zuletzt bewusst alles abgelegt und warst einfach nur da? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Smartwatch #DigitalDetox #Achtsamkeit #Entschleunigung #Erreichbarkeit #InnehaltenStattScrollen #weniger ist mehr #Abschalten #Momente #Gedankenwelt #ZeitFürMich #SlowLiving #BewusstLeben #Handysucht #DigitaleBalance #ZurückZurRuhe #FrüherVsHeute #Nachdenklich #Lebensweisheiten #EchteMomente"
+}

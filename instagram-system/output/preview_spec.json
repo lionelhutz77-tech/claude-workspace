@@ -1,0 +1,58 @@
+{
+  "thema": "Smartwatch als Fessel",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch, wie frei wir waren?",
+      "Ohne ständige Erreichbarkeit...",
+      "",
+      "Die Kindheit war eine andere Zeit.",
+      "Eine Zeit, in der wir uns nicht umsahen."
+    ],
+    "prompt": "a young boy playing outside without a watch, english"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Briefe schreiben",
+      "oben_prompt": "a girl writing a letter with a pen, english",
+      "unten_text": "Heute: Nachrichten tippen",
+      "unten_prompt": "a person typing a message on a smartphone, english"
+    },
+    {
+      "oben_text": "Früher: Uhren ohne Funktion",
+      "oben_prompt": "an old analog watch, english",
+      "unten_text": "Heute: Smartwatches mit vielen Funktionen",
+      "unten_prompt": "a person wearing a smartwatch, english"
+    },
+    {
+      "oben_text": "Früher: Freizeit ohne Plan",
+      "oben_prompt": "a group of children playing outside, english",
+      "unten_text": "Heute: Termine und Erinnerungen",
+      "unten_prompt": "a person checking their calendar on a smartphone, english"
+    },
+    {
+      "oben_text": "Früher: Gespräche face-to-face",
+      "oben_prompt": "two friends talking to each other, english",
+      "unten_text": "Heute: Gespräche über Bildschirme",
+      "unten_prompt": "a person video-calling with someone, english"
+    },
+    {
+      "oben_text": "Früher: Stille und Ruhe",
+      "oben_prompt": "a person reading a book in a quiet room, english",
+      "unten_text": "Heute: Ständige Benachrichtigungen",
+      "unten_prompt": "a person receiving notifications on their smartphone, english"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wie siehst du die Zukunft der Kommunikation?",
+      "Wirst du deine Smartwatch noch lange tragen?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "a person smiling and looking at their smartphone, english"
+  },
+  "caption": "Die Smartwatch als Fessel - permanente Erreichbarkeit. Wie frei waren wir früher, ohne ständige Erreichbarkeit? Heute sind wir immer online und erreichbar. Wie siehst du die Zukunft der Kommunikation? Wirst du deine Smartwatch noch lange tragen? Schreib es in die Kommentare. Wie hast du dich entschieden?",
+  "hashtags": "#Smartwatch #PermanenteErreichbarkeit #Kommunikation #Freiheit #Zeit #Gesellschaft #Technologie #Innovation #Digitalisierung #Online #Offline #Gespräche #Kontakt #Beziehungen #Zukunft"
+}

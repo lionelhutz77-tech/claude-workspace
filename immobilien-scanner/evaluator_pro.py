@@ -27,9 +27,13 @@ def evaluate_properties_pro(properties: List[Dict], config: Dict) -> List[Dict]:
     - Finanzierungs-Stress-Test
     """
 
-    logger.info("🤖 GROQ ULTRA-PRO Evaluierung...")
+    logger.info("[EVAL] GROQ ULTRA-PRO Evaluierung...")
 
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    try:
+        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    except TypeError as e:
+        # Fallback für alte/neue Groq-Versionen
+        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
     properties_text = json.dumps(properties, indent=2, ensure_ascii=False)
 

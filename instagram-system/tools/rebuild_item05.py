@@ -1,0 +1,70 @@
+# -*- coding: utf-8 -*-
+"""Setzt item_05 als 'Zu Hause beieinander' neu auf (komposition-bewusste Prompts)."""
+import json
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from tools.carousel_builder import build_from_spec
+from tools.carousel_to_reel import build_reel
+
+HOME = "cozy warm home interior, full figures, natural relaxed, warm light"
+spec = {
+    "thema": "Zu Hause beieinander",
+    "hook": {
+        "zeilen": ["Weißt du noch?", "Als zu Hause ein Ort", "voller Stimmen war?",
+                   "", "Nicht voller", "leuchtender Bildschirme?"],
+        "prompt": ("a happy family sitting together on a sofa in a cozy living "
+                   "room at golden hour, warm inviting, seen from a comfortable "
+                   "distance, full figures")
+    },
+    "paare": [
+        {"oben_text": "Früher: Sonntags lasen wir gemeinsam die Zeitung",
+         "oben_prompt": "a family sitting together on a cozy sofa on a sunday morning reading a newspaper together, full figures, " + HOME,
+         "unten_text": "Heute: Jeder scrollt allein durchs Handy",
+         "unten_prompt": "a young person sitting alone on a living room sofa scrolling a smartphone, seen from behind over the shoulder so the screen faces away from the camera, cozy home"},
+        {"oben_text": "Früher: Abends spielten wir zusammen",
+         "oben_prompt": "a family playing a board game together around a living room table, laughing, full figures, " + HOME,
+         "unten_text": "Heute: Jeder versinkt im eigenen Bildschirm",
+         "unten_prompt": "several family members sitting in a living room each absorbed in their own smartphone, seen from the side, nobody interacting, screens facing away from the camera"},
+        {"oben_text": "Früher: Wir hörten Musik und sangen mit",
+         "oben_prompt": "a family at home listening to music together and singing along in a cozy living room, joyful, full figures, " + HOME,
+         "unten_text": "Heute: Jeder mit Kopfhörern in seiner Welt",
+         "unten_prompt": "a young person sitting alone on a couch wearing headphones in their own world, calm, cozy living room"},
+        {"oben_text": "Früher: Wir backten und aßen Kuchen zusammen",
+         "oben_prompt": "a family baking and eating cake together in a warm home kitchen, happy, full figures, " + HOME,
+         "unten_text": "Heute: Erst das Foto, dann der Genuss",
+         "unten_prompt": "a person photographing a slice of cake on a plate with a smartphone, seen from behind so the phone screen faces away from the camera, home kitchen"},
+        {"oben_text": "Früher: Am Esstisch erzählten wir vom Tag",
+         "oben_prompt": "a family talking and sharing stories around the dinner table at home, warm cozy light, full figures, " + HOME,
+         "unten_text": "Heute: Am Tisch tippt jeder aufs Handy",
+         "unten_prompt": "a family sitting at a dinner table each looking down at their own smartphone, food on the table untouched, seen from the side"},
+    ],
+    "cta": {
+        "zeilen": ["Wann hast du zuletzt", "zu Hause das Handy weggelegt?"],
+        "prompt": ("a warm happy family enjoying time together at home on a sofa "
+                   "without any devices, cozy living room, golden light, full figures")
+    },
+    "caption": ("Weißt du noch? Früher war zuhause ein Ort voller Stimmen - "
+                "gemeinsam die Zeitung gelesen, abends gespielt, Musik gehört, "
+                "am Esstisch vom Tag erzählt. Heute sitzen wir oft im selben "
+                "Raum und sind doch jeder für sich, das Gesicht im Bildschirm. "
+                "Dabei sind es genau diese gemeinsamen Momente, die ein Zuhause "
+                "ausmachen. Wann hast du zuletzt zu Hause bewusst das Handy "
+                "weggelegt? Schreib mir EIN Wort in die Kommentare. 👇"),
+    "hashtags": ("#ZuHause #FamilienZeit #AchtsamLeben #DigitalDetox "
+                 "#GemeinsameMomente #Entschleunigung #Miteinander #Praesenz "
+                 "#WenigerIstMehr #FrüherVsHeute #Erinnerungen #Gedankenwelt "
+                 "#BewusstLeben #EchteVerbindung #InnehaltenStattScrollen "
+                 "#Lebensweisheiten #Nachdenklich #Familienliebe #ZeitFürUns "
+                 "#HandyWeglegen")
+}
+
+base = Path("output/queue/item_05")
+json.dump(spec, open(base / "spec.json", "w", encoding="utf-8"),
+          ensure_ascii=False, indent=2)
+for f in (base / "raw").glob("*.png"):
+    f.unlink()
+print("Neue 'Zu Hause'-Spec gesetzt, alte Bilder geloescht -> baue neu")
+build_from_spec(spec, base, stil="nostalgie")
+build_reel(base / "slides", base / "reel.mp4")
+print("item_05 'Zu Hause beieinander' neu gebaut")

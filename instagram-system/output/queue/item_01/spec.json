@@ -1,0 +1,59 @@
+{
+  "thema": "Augenblick statt Status",
+  "hook": {
+    "zeilen": [
+      "Erinnerst du dich noch?",
+      "an die Zeit, als die Gegenwart zählte?",
+      "",
+      "Wann hast du zuletzt einfach gelebt?",
+      "ohne zu teilen, was du tust?"
+    ],
+    "prompt": "a young girl laughing with friends in a park"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Unbeschwerte Tage mit Freunden",
+      "oben_prompt": "two boys playing soccer in a green meadow",
+      "unten_text": "Heute: Perfekte Selfies für die sozialen Medien",
+      "unten_prompt": "a teenager taking a selfie in front of a monument"
+    },
+    {
+      "oben_text": "Früher: Gespräche ohne Ablenkung",
+      "oben_prompt": "an older man talking to a woman in a cozy café",
+      "unten_text": "Heute: Chats mit Emojis und Likes",
+      "unten_prompt": "a woman typing on her phone with a cup of coffee nearby"
+    },
+    {
+      "oben_text": "Früher: Spontane Abenteuer",
+      "oben_prompt": "a family on a hiking trip with a scenic view",
+      "unten_text": "Heute: Geplante Events für das perfekte Foto",
+      "unten_prompt": "a group of friends posing for a photo at a music festival"
+    },
+    {
+      "oben_text": "Früher: Gemeinsame Erinnerungen",
+      "oben_prompt": "a couple looking at old photo albums together",
+      "unten_text": "Heute: Geteilte Momente für die Öffentlichkeit",
+      "unten_prompt": "a person sharing a photo on their phone with a friend"
+    },
+    {
+      "oben_text": "Früher: Echte Beziehungen",
+      "oben_prompt": "a young girl hugging her grandmother",
+      "unten_text": "Heute: Virtuelle Freundschaften",
+      "unten_prompt": "a person video chatting with a friend on their phone"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Was zählt für dich?",
+      "Die Zeit mit anderen?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977",
+      "für mehr Erinnerungen."
+    ],
+    "prompt": "a smiling woman waving at the camera"
+  },
+  "caption": "Erinnerst du dich noch an die Zeit, als die Gegenwart zählte? Wann hast du zuletzt einfach gelebt, ohne zu teilen, was du tust? Wir möchten wissen, was für dich wichtig ist. Schreibe es in die Kommentare und teile deine Gedanken mit uns. Folge @kiai1977 für mehr Erinnerungen und warme Momente.",
+  "hashtags": "#AugenblickStattStatus #FrüherWarAllesBesser #SozialeMedien #GemeinsameErinnerungen #EchteBeziehungen #VirtuelleFreundschaften #Erinnerungen #Nostalgie #LebenImMoment #GegenwartZählt #Freundschaft #Familie #Liebe #Glück #Zufriedenheit #Lebensfreude #Simplizität #Authentizität #Wahrheit"
+}

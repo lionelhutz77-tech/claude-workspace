@@ -1,0 +1,60 @@
+{
+  "thema": "Den Moment erleben",
+  "quelle": "Higgsfield Soul 2.0",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als ein Konzert",
+      "einfach ein Konzert war?",
+      "",
+      "Als man mittendrin war —",
+      "ohne Bildschirm dazwischen?"
+    ],
+    "prompt": "hook"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Beim Konzert mitgesungen und getanzt",
+      "oben_prompt": "p0_oben",
+      "unten_text": "Heute: Die halbe Show durch die Handykamera",
+      "unten_prompt": "p0_unten"
+    },
+    {
+      "oben_text": "Früher: Den Sonnenuntergang einfach angeschaut",
+      "oben_prompt": "p1_oben",
+      "unten_text": "Heute: Erst zehn Fotos, dann vielleicht schauen",
+      "unten_prompt": "p1_unten"
+    },
+    {
+      "oben_text": "Früher: Ein Moment blieb in Erinnerung",
+      "oben_prompt": "p2_oben",
+      "unten_text": "Heute: Ein Moment landet in der Cloud",
+      "unten_prompt": "p2_unten"
+    },
+    {
+      "oben_text": "Früher: Ganz da, wo man war",
+      "oben_prompt": "p3_oben",
+      "unten_text": "Heute: In Gedanken schon beim Posten",
+      "unten_prompt": "p3_unten"
+    },
+    {
+      "oben_text": "Früher: Mit den Augen festgehalten",
+      "oben_prompt": "p4_oben",
+      "unten_text": "Heute: Nur noch durch die Linse gesehen",
+      "unten_prompt": "p4_unten"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du zuletzt etwas erlebt,",
+      "ohne es zu filmen?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "cta"
+  },
+  "caption": "Weißt du noch? Früher war ein Konzert einfach ein Konzert - man war mittendrin, ohne Bildschirm dazwischen. Heute landet der schönste Moment erst in der Cloud, bevor wir ihn wirklich erleben. Dabei bleibt am meisten, was wir mit den Augen festhalten. Wann hast du zuletzt etwas erlebt, ohne es zu filmen? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#ImMoment #Präsenz #EchteMomente #Achtsamkeit #HierUndJetzt #FrüherVsHeute #Lebensweisheiten #Nachdenklich #BewusstLeben #Gedankenwelt #Menschlichkeit #Achtsamkeit #Erinnerungen #Werte #EchteVerbindung"
+}

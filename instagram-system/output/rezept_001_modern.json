@@ -1,0 +1,108 @@
+{
+  "titel_original": "Klare Bouillon oder Fleischbrühe",
+  "titel_modern": "Klar geklärte Rinderbouillon mit Wurzelgemüse, Sahne und Erbsen",
+  "jahr_original": 1845,
+  "kurzbeschreibung": "Eine moderne Interpretation von Davidis klarer Bouillon: langsam geköcheltes Rindfleisch, Suppengrün und ein Hauch Sahne, geklärt mit Eiweiß und verfeinert mit Butter – alles im Sinne der originalen Klarheit und Würze.",
+  "portionen": 2,
+  "zeit_minuten": 150,
+  "zutaten": [
+    {
+      "menge": "400 g",
+      "zutat": "Rindfleisch (z. B. Keule)",
+      "einkauf": "Fleischtheke, 400 g",
+      "restlos": true
+    },
+    {
+      "menge": "1,5 l",
+      "zutat": "Wasser",
+      "einkauf": "Vorrat",
+      "restlos": true
+    },
+    {
+      "menge": "1 Bund",
+      "zutat": "Suppengrün (Möhre, Lauch, Sellerie, Petersilienwurzel)",
+      "einkauf": "1 Bund (Packung)",
+      "restlos": true
+    },
+    {
+      "menge": "1 Stück",
+      "zutat": "große Zwiebel",
+      "einkauf": "Lose Ware",
+      "restlos": true
+    },
+    {
+      "menge": "200 ml",
+      "zutat": "Sahne",
+      "einkauf": "1 Becher (200 ml)",
+      "restlos": true
+    },
+    {
+      "menge": "25 g",
+      "zutat": "Butter",
+      "einkauf": "1 Packung (250 g) - Teilverbrauch, Butter haelt sich",
+      "restlos": false
+    },
+    {
+      "menge": "150 g",
+      "zutat": "TK‑Erbsen",
+      "einkauf": "1 Beutel (450 g) - wiederverschliessbar, Rest bleibt im TK",
+      "restlos": false
+    },
+    {
+      "menge": "2 Eiweiß",
+      "zutat": "Eiweiß (von frischen Eiern)",
+      "einkauf": "Lose Ware",
+      "restlos": true
+    },
+    {
+      "menge": "1 TL",
+      "zutat": "Mehl",
+      "einkauf": "Vorrat",
+      "restlos": true
+    },
+    {
+      "menge": "nach Geschmack",
+      "zutat": "Salz",
+      "einkauf": "Vorrat"
+    },
+    {
+      "menge": "nach Geschmack",
+      "zutat": "schwarzer Pfeffer",
+      "einkauf": "Vorrat"
+    },
+    {
+      "menge": "einige Zweige",
+      "zutat": "frische Petersilie",
+      "einkauf": "Lose Ware",
+      "restlos": true
+    }
+  ],
+  "schritte": [
+    "Fleisch unter kaltem Wasser abspülen, trocken tupfen und in einen großen Topf geben. Mit 1,5 l kaltem Wasser auffüllen und langsam zum Kochen bringen.",
+    "Sobald die Brühe zu kochen beginnt, den entstehenden Schaum mit einem Schaumlöffel abschöpfen. Hitze reduzieren und 1 h 30 min leicht köcheln lassen.",
+    "Nach 1 h das ganze Suppengrün und die grob gehackte Zwiebel hinzufügen und weitere 30 min köcheln lassen.",
+    "Die Brühe durch ein feines Sieb oder ein mit heißem Wasser ausgespültes Leinentuch gießen. Die klare Brühe zurück in den Topf geben.",
+    "Eiweiß leicht schlagen, 100 ml der heißen Brühe einrühren, dann die Mischung zurück in den Topf geben. Bei mittlerer Hitze langsam aufkochen lassen, dann erneut durch das Sieb gießen – die Suppe ist nun klar.",
+    "In einem kleinen Topf 25 g Butter schmelzen, das Mehl einruehren und kurz anschwitzen (Mehlschwitze). Die Sahne (200 ml, ganzer Becher) einruehren, kurz aufkochen lassen und in die klare Bruehe einziehen. Mit Salz und Pfeffer abschmecken.",
+    "150 g TK-Erbsen in kochendem Wasser 2 Minuten blanchieren, abgiessen und zur Suppe geben. Kurz erwaermen, aber nicht mehr kochen lassen.",
+    "Suppe in tiefe Teller schöpfen, mit frisch gehackter Petersilie bestreuen und sofort servieren."
+  ],
+  "einkaufsliste": [
+    "Rindfleisch (Keule), 400 g vom Metzger",
+    "1 Bund Suppengrün (Möhre, Lauch, Sellerie, Petersilienwurzel)",
+    "1 große Zwiebel",
+    "1 Becher Sahne (200 ml)",
+    "Butter, 25 g (für die Mehlschwitze)",
+    "TK-Erbsen, 150 g (Beutel ist wiederverschließbar)"
+  ],
+  "tipp": "Für extra klare Bouillon das Eiweiß erst einrühren, wenn die Brühe bereits durch ein Sieb gegossen wurde – so bleibt das Eiweiß nicht von Fettpartikeln umgeben und bindet die Schwebeteilchen optimal.",
+  "instagram_caption": "Aus Henriette Davidis' 1845er Klassiker entsteht heute eine samtige Rinderbouillon, klar geklärt mit Eiweiß und verfeinert mit Mehlschwitze mit Sahne. Das Suppengrün gibt Tiefe, die Erbsen sorgen für Frische – ein historischer Geschmack im modernen Gewand. 🍲✨ #KlassikerNeu interpretiert #Rinderbouillon #1845 #Kochkunst #DeutscheKüche 🤖 Erstellt mit KI",
+  "schritte_kurz": [
+    "Fleisch abspülen, trocken tupfen, mit 1,5 l Wasser kochen.",
+    "Schaum abschöpfen, Hitze reduzieren, 1 h 30 min köcheln.",
+    "Suppengrün und Zwiebel hinzufügen, weitere 30 min köcheln.",
+    "Brühe sieben, Eiweiß mit 100 ml Brühe mischen, zurückgeben.",
+    "Mehlschwitze aus 25 g Butter, Mehl, 200 ml Sahne einrühren, einziehen.",
+    "Erbsen 2 min blanchieren, zur Suppe geben, Petersilie streuen."
+  ]
+}

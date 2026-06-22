@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def scrape_piezonka(postleitzahl: str = "46149") -> List[Dict]:
     """Piezonka-Immobilien Oberhausen"""
 
-    logger.info("🔄 Scraping Piezonka-Immobilien...")
+    logger.info("[SCRAPE] Scraping Piezonka-Immobilien...")
     properties = []
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"})
@@ -28,7 +28,7 @@ def scrape_piezonka(postleitzahl: str = "46149") -> List[Dict]:
         soup = BeautifulSoup(response.content, "html.parser")
         listings = soup.select(".property, .listing, .jm-row, article")
 
-        logger.info(f"📊 Listings: {len(listings)}")
+        logger.info(f"[DATA] Listings: {len(listings)}")
 
         for listing in listings[:30]:
             try:
@@ -69,12 +69,12 @@ def scrape_piezonka(postleitzahl: str = "46149") -> List[Dict]:
                 properties.append(prop)
 
             except Exception as e:
-                logger.warning(f"⚠️  Parse-Fehler: {e}")
+                logger.warning(f"[WARNING]  Parse-Fehler: {e}")
 
     except Exception as e:
-        logger.error(f"❌ Fehler Piezonka: {e}")
+        logger.error(f"[ERROR] Fehler Piezonka: {e}")
 
-    logger.info(f"✅ Piezonka: {len(properties)} Objekte")
+    logger.info(f"[OK] Piezonka: {len(properties)} Objekte")
     return properties
 
 

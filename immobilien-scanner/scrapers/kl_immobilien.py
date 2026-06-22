@@ -26,7 +26,7 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> Lis
         Liste von Immobilien-Daten
     """
 
-    logger.info(f"🔄 Scraping KL Immobilien...")
+    logger.info(f"[SCRAPE] Scraping KL Immobilien...")
 
     properties = []
     session = requests.Session()
@@ -38,7 +38,7 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> Lis
         # KL Immobilien Listings-Seite
         url = "https://kl-immo-web.de/immobilienangebot/"
 
-        logger.info(f"📍 Navigiere zu: {url}")
+        logger.info(f"[PIN] Navigiere zu: {url}")
         response = session.get(url, timeout=10)
         response.raise_for_status()
 
@@ -52,7 +52,7 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> Lis
         if not listings:
             listings = soup.find_all("a", href=re.compile(r"/immobilie|/expose|/objekt"))
 
-        logger.info(f"📊 Gefundene Listings: {len(listings)}")
+        logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
 
         for i, listing in enumerate(listings[:30]):
             try:
@@ -110,19 +110,19 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> Lis
                 # Nur hinzufügen, wenn Kaufpreis > 0 (echte Angebote)
                 if kaufpreis > 50000:
                     properties.append(prop)
-                    logger.debug(f"✅ {adresse[:50]} ({kaufpreis}€)")
+                    logger.debug(f"[OK] {adresse[:50]} ({kaufpreis}€)")
 
             except Exception as e:
-                logger.warning(f"⚠️  Parse-Fehler in Listing {i}: {e}")
+                logger.warning(f"[WARNING]  Parse-Fehler in Listing {i}: {e}")
 
             time.sleep(delay)
 
     except requests.RequestException as e:
-        logger.error(f"❌ HTTP-Fehler KL Immobilien: {e}")
+        logger.error(f"[ERROR] HTTP-Fehler KL Immobilien: {e}")
     except Exception as e:
-        logger.error(f"❌ Fehler beim Scraping KL Immobilien: {e}")
+        logger.error(f"[ERROR] Fehler beim Scraping KL Immobilien: {e}")
 
-    logger.info(f"✅ KL Immobilien: {len(properties)} Objekte gefunden")
+    logger.info(f"[OK] KL Immobilien: {len(properties)} Objekte gefunden")
     return properties
 
 
@@ -147,6 +147,6 @@ def extract_number(text: str, pattern: str, default: int = 0) -> int:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     results = scrape_kl_immobilien()
-    print(f"\n✅ Ergebnis: {len(results)} Props")
+    print(f"\n[OK] Ergebnis: {len(results)} Props")
     for r in results[:3]:
         print(f"  - {r['adresse'][:50]} | {r['kaufpreis']}€ | {r['wohnungen']} Whg")

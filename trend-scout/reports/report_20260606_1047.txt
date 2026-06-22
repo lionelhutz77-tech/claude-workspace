@@ -1,0 +1,92 @@
+TREND SCOUT v2 -- 06.06.2026 10:47
+============================================================
+
+RISING QUERIES (4 Wochen):
+
+Rente:
+  - bürgergeld wird eventuell durch eine vorzeitige rente mit abschlägen ab 2027 ersetzt
+  - rente ab 70
+  - rente mit 70 beschlossen
+  - rente mit 70
+  - rente 70
+  - wann wird die rente ausgezahlt
+  - rente mit 63
+
+Gesundheit:
+  - mette-marit gesundheit verschlechtert
+  - zentrum für sexuelle gesundheit und familienplanung
+  - mette marit gesundheit
+  - praxis für seelische gesundheit duisburg
+  - mette-marit gesundheit update
+  - gesundheit kannst du lernen
+  - mette-marit gesundheit
+  - dak gesundheit sitz
+
+Schulden:
+  - barcelona schulden
+
+Steuern:
+  - auszahlung lebensversicherung steuern
+  - steuerfreibetrag 2026
+
+Freelancer:
+  - salesforce developer freelancer
+  - freelancer game
+
+Haushalt:
+  - haushalt der europäischen union
+  - bürgergeld auszahlung single haushalt
+
+Versicherung:
+  - huk moped versicherung
+  - vrk versicherung
+
+STRUKTURELL (19):
+  - [Rente] Rente bürgergeld wird eventuell durch eine vorzeitige rente mit abschlägen ab 2027 ersetzt
+  - [Rente] rente ab 70
+  - [Rente] rente mit 70 beschlossen
+  - [Rente] rente mit 70
+  - [Rente] rente 70
+  - [Rente] wann wird die rente ausgezahlt
+  - [Rente] rente mit 63
+  - [Gesundheit] zentrum für sexuelle gesundheit und familienplanung
+  - [Gesundheit] praxis für seelische gesundheit duisburg
+  - [Gesundheit] gesundheit kannst du lernen
+  - [Gesundheit] dak gesundheit sitz
+  - [Steuern] auszahlung lebensversicherung steuern
+  - [Steuern] steuerfreibetrag 2026
+  - [Freelancer] salesforce developer freelancer
+  - [Freelancer] freelancer game
+  - [Haushalt] haushalt der europäischen union
+  - [Haushalt] bürgergeld auszahlung single haushalt
+  - [Versicherung] huk moped versicherung
+  - [Versicherung] vrk versicherung
+
+ANALYSE:
+
+## 1. Rente mit 70
+**Warum jetzt:** Die Debatte um die Rente mit 70 ist aktuell sehr präsent in Deutschland, insbesondere vor dem Hintergrund der Diskussionen um die Rentenreform und die Zukunft der Altersvorsorge. Die Menschen suchen nach Informationen und Tools, um ihre eigene Rentensituation besser zu verstehen und zu planen.
+**Marktluecke:** Die meisten Konkurrenzprodukte sind entweder sehr allgemein oder konzentrieren sich auf die digitale Rentenübersicht, ohne tiefe Analysen oder persönliche Beratung anzubieten. Ein Produkt, das sich speziell auf die Rente mit 70 konzentriert und die Nutzer unterstützt, ihre individuelle Rentensituation zu berechnen und zu optimieren, wäre einzigartig.
+**Produkt-Idee:** Ein Online-Rentenrechner, der es Nutzern ermöglicht, ihre Rentenansprüche zu berechnen, unterschiedliche Szenarien zu simulieren (z.B. früheres oder späteres Renteneintrittsalter) und Empfehlungen für eine optimale Rentenstrategie gibt. Das Produkt könnte auch eine Community-Plattform enthalten, auf der Nutzer Fragen stellen und Erfahrungen teilen können.
+**Konkurrenz-Risiko:** Die Konkurrenz ist vorhanden, aber es gibt noch Platz für ein spezialisiertes Produkt, das sich auf die Rente mit 70 konzentriert. Das Risiko besteht darin, dass etablierte Anbieter von Rentenrechnern oder Finanzбератungsunternehmen ähnliche Produkte entwickeln könnten.
+**MVP in 4 Wochen:** Ein grundlegender Online-Rentenrechner, der die wichtigsten Funktionen wie Rentenansprüche-Berechnung und grundlegende Szenarien-Simulation umfasst. Die Community-Plattform könnte in einer späteren Version hinzugefügt werden.
+**Monetarisierung:** Abonnement-Modell für Premium-Funktionen wie detaillierte Analysen und persönliche Beratung. Preis: 9,99 € pro Monat oder 99,99 € pro Jahr.
+**Risiken:** Die Rentenreform und -gesetzgebung können sich ändern, was das Produkt anfällig für Veraltung macht. Es ist wichtig, das Produkt regelmäßig zu aktualisieren und sich an veränderte Bedingungen anzupassen.
+
+## 2. Gesundheit kannst du lernen
+**Warum jetzt:** Die Menschen suchen nach Möglichkeiten, ihre Gesundheit zu verbessern und zu lernen, wie sie ihre Gesundheit aktiv gestalten können. Dieses Thema ist aktuell sehr präsent und wird von vielen Menschen nachgefragt.
+**Marktluecke:** Viele Konkurrenzprodukte sind entweder sehr allgemein oder konzentrieren sich auf spezielle Aspekte der Gesundheit, ohne ein umfassendes Bild zu bieten. Ein Produkt, das sich auf die Lehre von Gesundheit konzentriert und den Nutzern ermöglicht, ihre Gesundheit durch Wissen und Strategien zu verbessern, wäre einzigartig.
+**Produkt-Idee:** Ein Online-Kurs oder eine App, die es Nutzern ermöglicht, ihre Gesundheit durch Wissen und Strategien zu verbessern. Das Produkt könnte Module zu Themen wie Ernährung, Bewegung, Schlaf und Stressmanagement enthalten und den Nutzern ermöglichen, ihre Fortschritte zu verfolgen und Ziele zu setzen.
+**Konkurrenz-Risiko:** Die Konkurrenz ist vorhanden, aber es gibt noch Platz für ein spezialisiertes Produkt, das sich auf die Lehre von Gesundheit konzentriert. Das Risiko besteht darin, dass etablierte Anbieter von Gesundheitskursen oder -apps ähnliche Produkte entwickeln könnten.
+**MVP in 4 Wochen:** Ein grundlegender Online-Kurs, der die wichtigsten Module wie Ernährung und Bewegung umfasst. Die App-Funktionen könnten in einer späteren Version hinzugefügt werden.
+**Monetarisierung:** Einmaliger Kaufpreis für den Kurs oder Abonnement-Modell für Premium-Inhalte. Preis: 29,99 € für den Kurs oder 9,99 € pro Monat für Premium-Inhalte.
+**Risiken:** Die Konkurrenz kann sehr stark sein, und es kann schwierig sein, das Produkt von anderen abzuheben. Es ist wichtig, einzigartige Funktionen und Inhalte zu entwickeln, um sich von der Konkurrenz abzuheben.
+
+## 3. Rente mit 63
+**Warum jetzt:** Die Rente mit 63 ist ein aktuelles Thema in Deutschland, insbesondere vor dem Hintergrund der Diskussionen um die Rentenreform und die Zukunft der Altersvorsorge. Die Menschen suchen nach Informationen und Tools, um ihre eigene Rentensituation besser zu verstehen und zu planen.
+**Marktluecke:** Die meisten Konkurrenzprodukte sind entweder sehr allgemein oder konzentrieren sich auf die digitale Rentenübersicht, ohne tiefe Analysen oder persönliche Beratung anzubieten. Ein Produkt, das sich speziell auf die Rente mit 63 konzentriert und die Nutzer unterstützt, ihre individuelle Rentensituation zu berechnen und zu optimieren, wäre einzigartig.
+**Produkt-Idee:** Ein Online-Rentenrechner, der es Nutzern ermöglicht, ihre Rentenansprüche zu berechnen, unterschiedliche Szenarien zu simulieren (z.B. früheres oder späteres Renteneintrittsalter) und Empfehlungen für eine optimale Rentenstrategie gibt. Das Produkt könnte auch eine Community-Plattform enthalten, auf der Nutzer Fragen stellen und Erfahrungen teilen können.
+**Konkurrenz-Risiko:** Die Konkurrenz ist vorhanden, aber es gibt noch Platz für ein spezialisiertes Produkt, das sich auf die Rente mit 63 konzentriert. Das Risiko besteht darin, dass etablierte Anbieter von Rentenrechnern oder Finanzбератungsunternehmen ähnliche Produkte entwickeln könnten.
+**MVP in 4 Wochen:** Ein grundlegender Online-Rentenrechner, der die wichtigsten Funktionen wie Rentenansprüche-Berechnung und grundlegende Szenarien-Simulation umfasst. Die Community-Plattform könnte in einer späteren Version hinzugefügt werden.
+**Monetarisierung:** Abonnement-Modell für Premium-Funktionen wie detaillierte Analysen und persönliche Beratung. Preis: 9,99 € pro Monat oder 99,99 € pro Jahr.
+**Risiken:** Die Rentenreform und -gesetzgebung können sich ändern, was das Produkt anfällig für Veraltung macht. Es ist wichtig, das Produkt regelmäßig zu aktualisieren und sich an veränderte Bedingungen anzupassen.

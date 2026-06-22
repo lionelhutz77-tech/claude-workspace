@@ -1,0 +1,60 @@
+{
+  "thema": "Nachbarschaft",
+  "quelle": "Higgsfield Soul 2.0",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als man jeden",
+      "im Viertel kannte?",
+      "",
+      "Als ein Nachbar mehr war",
+      "als ein Name am Klingelschild?"
+    ],
+    "prompt": "hook"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Man kannte jedes Kind in der Straße",
+      "oben_prompt": "p0_oben",
+      "unten_text": "Heute: Man grüßt sich kaum im Treppenhaus",
+      "unten_prompt": "p0_unten"
+    },
+    {
+      "oben_text": "Früher: Für eine Tasse Mehl geklingelt",
+      "oben_prompt": "p1_oben",
+      "unten_text": "Heute: Lieber alles online bestellt",
+      "unten_prompt": "p1_unten"
+    },
+    {
+      "oben_text": "Früher: Die Straße passte auf die Kinder auf",
+      "oben_prompt": "p2_oben",
+      "unten_text": "Heute: Jeder bleibt für sich",
+      "unten_prompt": "p2_unten"
+    },
+    {
+      "oben_text": "Früher: Auf der Bank vorm Haus zusammengesessen",
+      "oben_prompt": "p3_oben",
+      "unten_text": "Heute: Hinter geschlossener Tür allein",
+      "unten_prompt": "p3_unten"
+    },
+    {
+      "oben_text": "Früher: Ein neuer Nachbar wurde begrüßt",
+      "oben_prompt": "p4_oben",
+      "unten_text": "Heute: Man weiß nicht, wer nebenan wohnt",
+      "unten_prompt": "p4_unten"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du zuletzt",
+      "deinen Nachbarn gegrüßt?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "cta"
+  },
+  "caption": "Weißt du noch? Früher kannte man jeden im Viertel - jedes Kind, jeden Nachbarn. Man klingelte für eine Tasse Mehl und passte gemeinsam aufeinander auf. Heute grüßt man sich kaum noch im Treppenhaus. Dabei beginnt Gemeinschaft mit einem einfachen Hallo. Wann hast du zuletzt deinen Nachbarn gegrüßt? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Nachbarschaft #Gemeinschaft #Zusammenhalt #Viertel #Miteinander #FrüherVsHeute #Lebensweisheiten #Nachdenklich #BewusstLeben #Gedankenwelt #Menschlichkeit #Achtsamkeit #Erinnerungen #Werte #EchteVerbindung"
+}

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def scrape_immo_oberhausen(postleitzahl: str = "46149") -> List[Dict]:
     """Immobilien-Oberhausen.com"""
 
-    logger.info("🔄 Scraping Immobilien-Oberhausen...")
+    logger.info("[SCRAPE] Scraping Immobilien-Oberhausen...")
     properties = []
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"})
@@ -28,7 +28,7 @@ def scrape_immo_oberhausen(postleitzahl: str = "46149") -> List[Dict]:
         soup = BeautifulSoup(response.content, "html.parser")
         listings = soup.select(".property, .listing, .immobilie, .item")
 
-        logger.info(f"📊 Listings: {len(listings)}")
+        logger.info(f"[DATA] Listings: {len(listings)}")
 
         for listing in listings[:30]:
             try:
@@ -69,12 +69,12 @@ def scrape_immo_oberhausen(postleitzahl: str = "46149") -> List[Dict]:
                 properties.append(prop)
 
             except Exception as e:
-                logger.warning(f"⚠️  Parse-Fehler: {e}")
+                logger.warning(f"[WARNING]  Parse-Fehler: {e}")
 
     except Exception as e:
-        logger.error(f"❌ Fehler Immobilien-Oberhausen: {e}")
+        logger.error(f"[ERROR] Fehler Immobilien-Oberhausen: {e}")
 
-    logger.info(f"✅ Immobilien-Oberhausen: {len(properties)} Objekte")
+    logger.info(f"[OK] Immobilien-Oberhausen: {len(properties)} Objekte")
     return properties
 
 

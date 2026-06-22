@@ -26,7 +26,7 @@ async def scrape_sparkasse(postleitzahl: str = "46149", delay: float = 1.5) -> L
         Liste von Immobilien-Daten
     """
 
-    logger.info(f"🔄 Scraping Sparkasse Immobilien für PLZ {postleitzahl}...")
+    logger.info(f"[SCRAPE] Scraping Sparkasse Immobilien für PLZ {postleitzahl}...")
 
     properties = []
 
@@ -42,7 +42,7 @@ async def scrape_sparkasse(postleitzahl: str = "46149", delay: float = 1.5) -> L
             # Sparkasse API-basierte Such-URL
             url = f"https://immobilien.sparkasse.de/immobilien/nrw/oberhausen.html"
 
-            logger.info(f"📍 Navigiere zu: {url}")
+            logger.info(f"[PIN] Navigiere zu: {url}")
             await page.goto(url, wait_until="networkidle", timeout=30000)
             await page.wait_for_timeout(2000)
 
@@ -53,7 +53,7 @@ async def scrape_sparkasse(postleitzahl: str = "46149", delay: float = 1.5) -> L
                 # Fallback: generische Suche
                 listings = await page.query_selector_all("article, div.listing")
 
-            logger.info(f"📊 Gefundene Listings: {len(listings)}")
+            logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
 
             for i, listing in enumerate(listings[:40]):
                 try:
@@ -102,20 +102,20 @@ async def scrape_sparkasse(postleitzahl: str = "46149", delay: float = 1.5) -> L
 
                     if kaufpreis > 50000 and wohnungen >= 2:
                         properties.append(prop)
-                        logger.debug(f"✅ {adresse.strip()[:50]}")
+                        logger.debug(f"[OK] {adresse.strip()[:50]}")
 
                 except Exception as e:
-                    logger.warning(f"⚠️  Parse-Fehler in Listing {i}: {e}")
+                    logger.warning(f"[WARNING]  Parse-Fehler in Listing {i}: {e}")
 
                 time.sleep(delay)
 
         except Exception as e:
-            logger.error(f"❌ Fehler beim Scraping Sparkasse: {e}")
+            logger.error(f"[ERROR] Fehler beim Scraping Sparkasse: {e}")
 
         finally:
             await browser.close()
 
-    logger.info(f"✅ Sparkasse: {len(properties)} Objekte gefunden")
+    logger.info(f"[OK] Sparkasse: {len(properties)} Objekte gefunden")
     return properties
 
 
@@ -145,4 +145,4 @@ def run_sync(postleitzahl: str = "46149") -> List[Dict]:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     results = run_sync("46149")
-    print(f"\n✅ Ergebnis: {len(results)} Props")
+    print(f"\n[OK] Ergebnis: {len(results)} Props")

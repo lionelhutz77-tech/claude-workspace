@@ -1,0 +1,60 @@
+{
+  "thema": "Im Café wirklich da sein",
+  "quelle": "Higgsfield Soul 2.0",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als ein Kaffee zu zweit",
+      "wirklich zu zweit war?",
+      "",
+      "Als das Handy",
+      "in der Tasche blieb?"
+    ],
+    "prompt": "hook"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Geredet, bis der Kaffee kalt war",
+      "oben_prompt": "p0_oben",
+      "unten_text": "Heute: Beide tippen, statt zu reden",
+      "unten_prompt": "p0_unten"
+    },
+    {
+      "oben_text": "Früher: Das Handy blieb in der Tasche",
+      "oben_prompt": "p1_oben",
+      "unten_text": "Heute: Es liegt griffbereit auf dem Tisch",
+      "unten_prompt": "p1_unten"
+    },
+    {
+      "oben_text": "Früher: Blickkontakt über den Tisch",
+      "oben_prompt": "p2_oben",
+      "unten_text": "Heute: Blick nach unten aufs Display",
+      "unten_prompt": "p2_unten"
+    },
+    {
+      "oben_text": "Früher: Blinkte nichts, war man einfach da",
+      "oben_prompt": "p3_oben",
+      "unten_text": "Heute: Jede Vibration unterbricht das Gespräch",
+      "unten_prompt": "p3_unten"
+    },
+    {
+      "oben_text": "Früher: Man ging, weil es schön war",
+      "oben_prompt": "p4_oben",
+      "unten_text": "Heute: Man bleibt, ist aber längst woanders",
+      "unten_prompt": "p4_unten"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du dein Handy zuletzt",
+      "einfach weggelegt?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "cta"
+  },
+  "caption": "Weißt du noch? Früher war ein Kaffee zu zweit wirklich zu zweit - das Handy blieb in der Tasche, der Blick beim anderen. Heute liegt das Handy griffbereit und jede Vibration unterbricht das Gespräch. Echte Nähe entsteht, wenn wir ganz da sind. Wann hast du dein Handy zuletzt einfach weggelegt? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Präsenz #Aufmerksamkeit #EchteNähe #HandyWeglegen #ZeitZuZweit #FrüherVsHeute #Lebensweisheiten #Nachdenklich #BewusstLeben #Gedankenwelt #Menschlichkeit #Achtsamkeit #Erinnerungen #Werte #EchteVerbindung"
+}

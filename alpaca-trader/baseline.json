@@ -1,0 +1,74 @@
+{
+  "erstellt": "2026-06-16T12:13:37",
+  "segmente": {
+    "1_Risiko_Picks": {
+      "name": "Eigene Risiko-Picks (Trading-System)",
+      "positionen": {
+        "AFL": {
+          "stueck": 57,
+          "einstieg": 116.93
+        },
+        "LNT": {
+          "stueck": 90,
+          "einstieg": 73.54
+        },
+        "CTAS": {
+          "stueck": 38,
+          "einstieg": 174.72
+        }
+      }
+    },
+    "2_Republikaner": {
+      "name": "Republikaner (MAGA-ETF)",
+      "positionen": {
+        "MAGA": {
+          "stueck": 363,
+          "einstieg": 54.97
+        }
+      }
+    },
+    "3_Demokraten": {
+      "name": "Demokraten (DEMZ-ETF)",
+      "positionen": {
+        "DEMZ": {
+          "stueck": 430,
+          "einstieg": 46.51
+        }
+      }
+    },
+    "4_Trump_nah": {
+      "name": "Trump-nah (Trump-Scanner)",
+      "positionen": {
+        "DJT": {
+          "stueck": 473,
+          "einstieg": 8.45
+        },
+        "PLTR": {
+          "stueck": 29,
+          "einstieg": 134.86
+        },
+        "COIN": {
+          "stueck": 23,
+          "einstieg": 169.7
+        },
+        "XOM": {
+          "stueck": 28,
+          "einstieg": 140.87
+        },
+        "LMT": {
+          "stueck": 7,
+          "einstieg": 530.18
+        }
+      }
+    },
+    "5_Benchmark": {
+      "name": "Benchmark breiter Markt (SPY)",
+      "positionen": {
+        "SPY": {
+          "stueck": 26,
+          "einstieg": 754.5
+        }
+      }
+    }
+  }
+}

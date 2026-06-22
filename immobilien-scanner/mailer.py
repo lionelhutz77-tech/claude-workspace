@@ -9,26 +9,48 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import List, Dict
 from datetime import datetime
+from pathlib import Path
+
+
+def save_local_report(html: str) -> str:
+    """
+    Speichert den HTML-Report immer lokal (Fallback wenn Mail nicht geht)
+
+    Returns:
+        Pfad zur gespeicherten Report-Datei
+    """
+    reports_dir = Path("reports")
+    reports_dir.mkdir(exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_file = reports_dir / f"report_{timestamp}.html"
+
+    with open(report_file, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    # Auch als "report_neuester.html" speichern (immer gleicher Name = leicht zu finden)
+    latest_file = reports_dir / "report_neuester.html"
+    with open(latest_file, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    abs_path = report_file.resolve()
+    print(f"[OK] Lokaler Report gespeichert: {abs_path}")
+    print(f"[INFO] Immer aktuell unter: {latest_file.resolve()}")
+    return str(abs_path)
 
 
 def send_report(properties: List[Dict], config: Dict) -> bool:
     """
     Sendet einen HTML-Report mit ZWEI Kategorien via GMx
+    + speichert IMMER einen lokalen HTML-Report (Fallback)
 
     Args:
         properties: Evaluierte Immobilien-Liste
         config: Config-Dict mit Mail-Einstellungen
 
     Returns:
-        True bei Erfolg, False bei Fehler
+        True bei Mail-Erfolg, False bei Mail-Fehler (lokaler Report immer da)
     """
-
-    smtp_user = os.getenv("GMX_USER")
-    smtp_password = os.getenv("GMX_APP_PASSWORD")
-
-    if not smtp_user or not smtp_password:
-        print("[ERROR] GMX_USER oder GMX_APP_PASSWORD nicht gesetzt (.env)")
-        return False
 
     # Filtern nach Kategorie
     profit_props = [p for p in properties if p.get("kategorie_profit", {}).get("qualifiziert", False)]
@@ -44,6 +66,17 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
 
     # HTML-Report bauen (beide Kategorien)
     html = build_html_report(profit_top, family_top, config)
+
+    # IMMER lokal speichern (Fallback, egal ob Mail klappt)
+    save_local_report(html)
+
+    # Mail-Versand versuchen
+    smtp_user = os.getenv("GMX_USER")
+    smtp_password = os.getenv("GMX_APP_PASSWORD")
+
+    if not smtp_user or not smtp_password:
+        print("[WARNING] GMX-Credentials fehlen — Mail uebersprungen (lokaler Report ist da)")
+        return False
 
     try:
         # Verbindung zu GMx
@@ -67,10 +100,10 @@ def send_report(properties: List[Dict], config: Dict) -> bool:
         return True
 
     except smtplib.SMTPException as e:
-        print(f"[ERROR] SMTP-Fehler: {e}")
+        print(f"[WARNING] SMTP-Fehler (lokaler Report ist trotzdem da): {e}")
         return False
     except Exception as e:
-        print(f"[ERROR] Fehler beim E-Mail-Versand: {e}")
+        print(f"[WARNING] Mail-Fehler (lokaler Report ist trotzdem da): {e}")
         return False
 
 

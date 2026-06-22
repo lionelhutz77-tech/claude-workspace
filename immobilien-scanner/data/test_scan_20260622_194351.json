@@ -1,0 +1,104 @@
+[
+  {
+    "adresse": "Musterstraße 42, 46149 Oberhausen",
+    "kaufpreis": 450000,
+    "wohnungen": 4,
+    "baujahr": 1985,
+    "groesse_qm": 320,
+    "energieklasse": "D",
+    "renovierungen": "Bad 2020",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 2,
+    "quelle": "Test-Mock",
+    "link": "https://example.com/test1",
+    "brutto_rendite": 10.1,
+    "netto_cashflow": 2736.0,
+    "netto_rendite": 36.5,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 100,
+      "empfehlung": "Brutto 10.1%, Cashflow 2736€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 90,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Königstraße 100, 46149 Oberhausen",
+    "kaufpreis": 320000,
+    "wohnungen": 2,
+    "baujahr": 1995,
+    "groesse_qm": 180,
+    "energieklasse": "C",
+    "renovierungen": "Fassade 2019",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "quelle": "Test-Mock",
+    "link": "https://example.com/test2",
+    "brutto_rendite": 7.1,
+    "netto_cashflow": 1307.0,
+    "netto_rendite": 24.5,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 80,
+      "empfehlung": "Brutto 7.1%, Cashflow 1307€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Sterkrader Str. 150, 46145 Oberhausen",
+    "kaufpreis": 550000,
+    "wohnungen": 6,
+    "baujahr": 1978,
+    "groesse_qm": 420,
+    "energieklasse": "E",
+    "renovierungen": "Keine",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "quelle": "Test-Mock",
+    "link": "https://example.com/test3",
+    "brutto_rendite": 12.4,
+    "netto_cashflow": 4228.0,
+    "netto_rendite": 46.1,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 75,
+      "empfehlung": "Brutto 12.4%, Cashflow 4228€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  }
+]

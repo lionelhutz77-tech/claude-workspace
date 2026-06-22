@@ -1,0 +1,99 @@
+{
+  "name": "Inhaltliche Leitplanken @kiai1977",
+  "stand": "2026-06-14",
+  "zweck": "Verbindliche Regeln fuer jede automatisch generierte Folge (Karussell/Reel). Der Themen- und Bild-Generator MUSS diese einhalten.",
+  "tonalitaet": {
+    "grundhaltung": "Nett, freundlich, positiv. Nachdenklich, nicht anklagend.",
+    "nicht": "Nicht ueberspitzt, nicht ueberdreht, nicht zynisch, nicht moralisierend mit erhobenem Zeigefinger.",
+    "gefuehl": "Der Betrachter soll sich verstanden und eingeladen fuehlen, nicht beschuldigt."
+  },
+  "jugendfreiheit": {
+    "regel": "Immer oberhalb der Guertellinie. Strikt jugendfrei (FSK 0).",
+    "verboten": "Keine Nacktheit, keine sexualisierten Darstellungen, keine Gewalt, keine Politik/Religion als Reizthema, keine Diskriminierung, kein Alkohol/Drogen als Aufhaenger.",
+    "ziel": "Familientauglich, fuer jede Altersgruppe unbedenklich."
+  },
+  "repraesentation": {
+    "regel": "Ausgewogene, natuerliche Vielfalt ueber die Bilder hinweg.",
+    "geschlecht": "Maennlich UND weiblich abwechselnd zeigen, ueber eine Serie hinweg ausgewogen.",
+    "alter": "Junge UND alte Menschen, Kinder, Familien, verschiedene Lebensphasen.",
+    "natuerlich": "Vielfalt soll selbstverstaendlich wirken, nicht aufgesetzt oder als Quote inszeniert.",
+    "umsetzung_prompt": "Bild-Prompts gezielt variieren: mal junge Frau, mal aelterer Mann, mal Kind, mal Familie, mal Paar - nicht immer dieselbe Personengruppe.",
+    "ethnie": "Deutscher/europaeischer Kontext: dargestellte Personen sollen im besten Fall Europaeer sein (hellhaeutig, mitteleuropaeisch). In Bild-Prompts explizit 'white European' / 'fair-skinned European' angeben. Gilt fuer ALLE aktuellen und kuenftigen Slides (User-Vorgabe 2026-06-19)."
+  },
+  "authentizitaet": {
+    "regel": "Themen sollen aus echtem, persoenlichem Empfinden kommen - Dinge, die frueher tatsaechlich schoener/einfacher/verbindlicher waren.",
+    "quelle": "User-eigene Erinnerungen und Beobachtungen bevorzugen (siehe persoenliche_themen).",
+    "vermeiden": "Keine beliebigen Floskeln, keine erfundene Nostalgie ohne Substanz."
+  },
+  "framing_hinweis": "Diese Themen NIE als 'Kinder heute sind schlecht' oder 'frueher war alles besser' anklagen. Immer warm/wehmuetig erzaehlen und mit einer Einladung oder Hoffnung enden ('Lass es uns wieder so machen', 'Vielleicht koennen wir...'). Der Betrachter soll laecheln und nicken, nicht sich schlecht fuehlen.",
+  "persoenliche_themen": [
+    {
+      "thema": "Spontane, verbindliche Verabredungen",
+      "frueher": "Man klingelte einfach bei jemandem, er war spontan da, man verbrachte den ganzen Nachmittag zusammen.",
+      "heute": "Verabredung laeuft ueber WhatsApp, wird kurzfristig abgesagt - das Verbindliche und Spontane ist weg.",
+      "gefuehl": "Sehnsucht nach echter, unkomplizierter Verbindlichkeit"
+    },
+    {
+      "thema": "Draussen spielen & Grundvertrauen",
+      "frueher": "Raus, den ganzen Tag unterwegs, dreckig und zufrieden heimkommen - Eltern vertrauten, ohne zu kontrollieren.",
+      "heute": "Standige Erreichbarkeit, Eltern muessen wissen wo das Kind ist - das tiefe Grundvertrauen fehlt.",
+      "gefuehl": "Freiheit und Vertrauen der Kindheit"
+    },
+    {
+      "thema": "Nachbarschaft & jedes Kind kennen",
+      "frueher": "Man kannte jedes Nachbarskind, konnte sich frei von links nach rechts bewegen, gehoerte dazu.",
+      "heute": "Anonymitaet, Isolation - man kennt die Nachbarn kaum noch.",
+      "gefuehl": "Zugehoerigkeit und Gemeinschaft im Viertel"
+    },
+    {
+      "thema": "Gemeinschaftssinn statt Ich-Fixierung",
+      "frueher": "Man liess sich im Verkehr rein und bedankte sich, man teilte, man nahm Ruecksicht.",
+      "heute": "Wer jemanden vorlaesst, wird angehupt; auf der Rutsche macht keiner mehr Platz - jeder ist sein eigener Mittelpunkt.",
+      "gefuehl": "Ruecksicht, Hoeflichkeit, Miteinander"
+    },
+    {
+      "thema": "Fantasie & Kreativitaet beim Spielen",
+      "frueher": "Man ging raus, baute etwas, machte Quatsch, erfand Spiele - aus Langeweile kam Kreativitaet.",
+      "heute": "Kinder gehen raus, aber das Handy ist dabei - einer spielt, die anderen schauen aufs Display.",
+      "gefuehl": "Erfindungsgeist und echte Spielfreude"
+    },
+    {
+      "thema": "Nachsicht statt Meckern",
+      "frueher": "Man hatte Verstaendnis, wenn jemand langsamer oder anders war.",
+      "heute": "Schnell wird geschimpft und gemeckert, ohne eigene Fehler zu sehen.",
+      "gefuehl": "Geduld, Milde, Verstaendnis fuereinander"
+    },
+    {
+      "thema": "Im Cafe nicht im Moment",
+      "frueher": "Man sass zusammen, redete, war ganz da.",
+      "heute": "Alle legen das Handy auf den Tisch; blinkt es, greifen alle sofort danach statt im Hier und Jetzt zu sein.",
+      "gefuehl": "Praesenz, ungeteilte Aufmerksamkeit fuereinander"
+    },
+    {
+      "thema": "Den Moment erleben statt festhalten",
+      "frueher": "Ein Konzert war einfach ein Konzert - man war mittendrin, ohne Bildschirm dazwischen.",
+      "heute": "Permanente Erreichbarkeit verhindert echtes Geniessen; wer das Handy bewusst weglaesst, wird komisch angeschaut.",
+      "gefuehl": "Den Augenblick wirklich auskosten"
+    },
+    {
+      "thema": "Augenblick statt Status",
+      "frueher": "Die Zeit mit den Freunden, mit denen man unterwegs war, zaehlte.",
+      "heute": "Anderen zu zeigen was man tut, ist wichtiger geworden als die Menschen, mit denen man gerade zusammen ist.",
+      "gefuehl": "Echte gemeinsame Zeit statt Selbstdarstellung"
+    },
+    {
+      "thema": "Musik mit Wert statt Wegwerf-Streaming",
+      "frueher": "Man wartete wochenlang auf den Release einer LP/EP, studierte das Cover und lernte die Texte aus dem Booklet auswendig - jedes Album war ein Schatz.",
+      "heute": "Inflationaeres Streaming, ein Lied nach dem anderen - nichts bleibt haengen, nichts hat mehr Gewicht.",
+      "gefuehl": "Vorfreude, Wertschaetzung, sich auf eine Sache wirklich einlassen"
+    },
+    {
+      "thema": "Ein Geschenk, das zaehlt",
+      "frueher": "Man freute sich riesig ueber EIN tolles Geschenk zu Weihnachten - egal was es kostete.",
+      "heute": "Kinder sind mit der Masse an Geschenken ueberfordert, die Freude verliert sich im Ueberfluss.",
+      "gefuehl": "Echte Freude, Dankbarkeit, weniger ist mehr"
+    }
+  ],
+  "themen_strategie": "Diese persoenlichen Themen sind die Basis - aber NICHT exklusiv. Auch breitere, viele Menschen bewegende Themen aufgreifen, wo eine Luecke/ein Bedarf sichtbar ist. Persoenliche Themen geben den ehrlichen Kern, der den Account von austauschbarer Massenware unterscheidet.",
+  "themen_vermeiden": "Themen vermeiden, bei denen JEDES Heute-Bild ein extremes Hand-/Handgelenk-/Geraete-Close-up erfordert (z.B. Smartwatch) - FLUX patzt dort zuverlaessig. Lieber Themen mit abwechslungsreichen, weiter gefassten Szenen."
+}

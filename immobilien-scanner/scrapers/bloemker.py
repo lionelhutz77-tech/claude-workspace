@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 logger = logging.getLogger(__name__)
 
 def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
-    logger.info("🔄 Blömker Immobilien...")
+    logger.info("[SCRAPE] Blömker Immobilien...")
     properties = []
     try:
         session = requests.Session()
@@ -48,11 +48,11 @@ def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
                     "quelle": "Blömker Immobilien", "link": link
                 })
             except Exception as e:
-                logger.warning(f"⚠️  {e}")
+                logger.warning(f"[WARNING]  {e}")
     except Exception as e:
-        logger.error(f"❌ Blömker: {e}")
+        logger.error(f"[ERROR] Blömker: {e}")
 
-    logger.info(f"✅ Blömker: {len(properties)} Objekte")
+    logger.info(f"[OK] Blömker: {len(properties)} Objekte")
     return properties
 
 def parse_price(s: str) -> int:

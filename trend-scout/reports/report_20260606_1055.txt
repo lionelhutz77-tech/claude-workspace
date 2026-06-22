@@ -1,0 +1,150 @@
+TREND SCOUT v2 -- 06.06.2026 10:55
+============================================================
+
+RISING QUERIES (4 Wochen):
+
+Rente:
+  - rente mit 70
+  - rente mit 63
+  - rente mit 67
+  - renteneintrittsalter erhoehen
+  - rentenluecke berechnen
+
+Gesundheit:
+  - gesundheit kannst du lernen
+  - praevention krankenkasse
+  - gesundheits-app test
+
+KI lernen:
+  - ki kurs kostenlos
+  - chatgpt fuer excel
+  - ki tools fuer selbstaendige
+  - automatisierung ohne code
+
+Nebeneinkommen:
+  - passives einkommen 2026
+  - nebenjob von zuhause
+  - digitale produkte verkaufen
+
+Steuern:
+  - steuererklarung selbststaendige
+  - steuer app vergleich 2026
+
+Freelancer:
+  - freelancer plattform deutschland
+  - freiberufler krankenversicherung
+
+Schulden:
+  - schuldenberatung kostenlos
+  - privatinsolvenz 2026
+
+STRUKTURELL (21):
+  - [Rente] rente mit 70
+  - [Rente] rente mit 63
+  - [Rente] rente mit 67
+  - [Rente] renteneintrittsalter erhoehen
+  - [Rente] rentenluecke berechnen
+  - [Gesundheit] gesundheit kannst du lernen
+  - [Gesundheit] praevention krankenkasse
+  - [Gesundheit] gesundheits-app test
+  - [KI lernen] ki kurs kostenlos
+  - [KI lernen] chatgpt fuer excel
+  - [KI lernen] ki tools fuer selbstaendige
+  - [KI lernen] automatisierung ohne code
+  - [Nebeneinkommen] passives einkommen 2026
+  - [Nebeneinkommen] nebenjob von zuhause
+  - [Nebeneinkommen] digitale produkte verkaufen
+  - [Steuern] steuererklarung selbststaendige
+  - [Steuern] steuer app vergleich 2026
+  - [Freelancer] freelancer plattform deutschland
+  - [Freelancer] freiberufler krankenversicherung
+  - [Schulden] schuldenberatung kostenlos
+  - [Schulden] privatinsolvenz 2026
+
+ANALYSE:
+
+Nach Analyse aller 12 Themen habe ich festgestellt, dass es einige Themen gibt, bei denen die Konkurrenz bereits gute Lösungen anbietet. Hier sind meine Ergebnisse:
+
+1. **Rente mit 70**
+   * **Konkurrenz (namentlich):** FOCUS online, WELT, Capital.de
+   * **Echte Luecke:** Die meisten Artikel und Ratgeber behandeln das Thema allgemein, aber es fehlt an einer interaktiven Plattform, die den Nutzern ermöglicht, ihre individuellen Rentenpläne zu erstellen und zu verwalten.
+   * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, ihre Rentenpläne zu erstellen, zu verwalten und zu optimieren, einschließlich einer Datenbank mit Rentenreformen und -änderungen.
+   * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, ihre Rentenpläne zu erstellen und zu verwalten, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+   * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+   * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+2. **Rente mit 63**
+   * **Konkurrenz (namentlich):** Deutsche Rentenversicherung, Finanzentest.de
+   * **KEIN PRODUKT MOEGLICH** - Die Konkurrenz bietet bereits umfangreiche und kostenlose Informationen und Tools an, um die Rente mit 63 zu planen und zu berechnen.
+
+3. **Rente mit 67**
+   * **Konkurrenz (namentlich):** Rentenplanungs-Apps, Stiftung Warentest
+   * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, ihre Rentenpläne zu erstellen und zu verwalten, einschließlich einer umfassenden Datenbank mit Rentenreformen und -änderungen.
+   * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, ihre Rentenpläne zu erstellen, zu verwalten und zu optimieren, einschließlich einer Datenbank mit Rentenreformen und -änderungen.
+   * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, ihre Rentenpläne zu erstellen und zu verwalten, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+   * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+   * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+4. **Renteneintrittsalter erhoehen**
+   * **Konkurrenz (namentlich):** Digitale Rentenübersicht, Rentencountdown-App
+   * **KEIN PRODUKT MOEGLICH** - Die Konkurrenz bietet bereits umfangreiche und kostenlose Informationen und Tools an, um das Renteneintrittsalter zu berechnen und zu planen.
+
+5. **Rentenluecke berechnen**
+   * **Konkurrenz (namentlich):** Rentenrechner, Finanzentest.de
+   * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, ihre Rentenlücken zu berechnen und zu planen, einschließlich einer umfassenden Datenbank mit Rentenreformen und -änderungen.
+   * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, ihre Rentenlücken zu berechnen und zu planen, einschließlich einer Datenbank mit Rentenreformen und -änderungen.
+   * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, ihre Rentenlücken zu berechnen, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+   * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+   * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+6. **Gesundheit kannst du lernen**
+   * **Konkurrenz (namentlich):** Samsung DE, Investmentfonds kaufen
+   * **KEIN PRODUKT MOEGLICH** - Die Konkurrenz bietet bereits umfangreiche und kostenlose Informationen und Tools an, um Gesundheit und Fitness zu fördern.
+
+7. **Praevention krankenkasse**
+   * **Konkurrenz (namentlich):** Zentrale Prüfstelle Prävention, 7Mind Resilienz
+   * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, ihre Gesundheit und Prävention zu planen und zu verwalten, einschließlich einer umfassenden Datenbank mit Präventionsmaßnahmen und -angeboten.
+   * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, ihre Gesundheit und Prävention zu planen und zu verwalten, einschließlich einer Datenbank mit Präventionsmaßnahmen und -angeboten.
+   * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, ihre Gesundheit und Prävention zu planen, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+   * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+   * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+8. **Gesundheits-app test**
+   * **Konkurrenz (namentlich):** Stiftung Warentest, Gesund Informiert
+   * **KEIN PRODUKT MOEGLICH** - Die Konkurrenz bietet bereits umfangreiche und kostenlose Informationen und Tools an, um Gesundheits-Apps zu testen und zu bewerten.
+
+9. **KI Kurs kostenlos**
+   * **Konkurrenz (namentlich):** T-Aktie, Overweight für DHL Group
+   * **KEIN PRODUKT MOEGLICH** - Die Konkurrenz bietet bereits umfangreiche und kostenlose Informationen und Tools an, um KI und KI-Kurse zu finden.
+
+10. **ChatGPT fuer Excel**
+    * **Konkurrenz (namentlich):** ChatGPT und Microsoft Excel, MS Excel mit ChatGPT nutzen
+    * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, ChatGPT und Excel zu integrieren, um Daten zu analysieren und Trends zu erkennen.
+    * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, ChatGPT und Excel zu integrieren, um Daten zu analysieren und Trends zu erkennen.
+    * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, ChatGPT und Excel zu integrieren, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+    * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+    * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+11. **KI Tools fuer Selbstaendige**
+    * **Konkurrenz (namentlich):** Über 10 kostenlose KI-Tools, Die besten KI-Tools für Selbstständige
+    * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, KI-Tools für Selbstständige zu finden und zu bewerten, einschließlich einer umfassenden Datenbank mit KI-Tools und -Anbietern.
+    * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, KI-Tools für Selbstständige zu finden und zu bewerten, einschließlich einer Datenbank mit KI-Tools und -Anbietern.
+    * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, KI-Tools für Selbstständige zu finden, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+    * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+    * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+12. **Automatisierung ohne Code**
+    * **Konkurrenz (namentlich):** Die 11 No-Code-Software-Tools, Die 8 besten No-Code-Tools
+    * **Echte Luecke:** Es fehlt an einer Plattform, die es Nutzern ermöglicht, Automatisierung ohne Code zu finden und zu bewerten, einschließlich einer umfassenden Datenbank mit No-Code-Tools und -Anbietern.
+    * **Produkt-Idee:** Eine Online-Plattform, die Nutzern ermöglicht, Automatisierung ohne Code zu finden und zu bewerten, einschließlich einer Datenbank mit No-Code-Tools und -Anbietern.
+    * **MVP in 4 Wochen:** Eine grundlegende Version der Plattform, die es Nutzern ermöglicht, Automatisierung ohne Code zu finden, ohne jedoch bereits alle Funktionen und Datenbanken zu enthalten.
+    * **Monetarisierung:** Abonnement-Modell, bei dem Nutzer für Premium-Funktionen und -Inhalte zahlen.
+    * **Groesstes Risiko:** Die Plattform könnte nicht genug Nutzer anziehen, um rentabel zu sein.
+
+Basierend auf meiner Analyse sind die Top 3 Themen:
+
+1. **Rente mit 70**
+2. **ChatGPT fuer Excel**
+3. **KI Tools fuer Selbstaendige**
+
+Diese Themen haben die größte Marktlücke und das höchste Potenzial für ein erfolgreiches Produkt.

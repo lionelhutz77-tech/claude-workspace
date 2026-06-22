@@ -65,25 +65,25 @@ evaluation_thresholds:
 # Quellen zum Scrapen
 scraper_sources:
   immoscout24:
-    enabled: true
+    enabled: false
     url: "https://www.immobilienscout24.de"
     type: "javascript"  # JS-rendern nötig
     delay_seconds: 3
 
   immonet:
-    enabled: true
+    enabled: false
     url: "https://www.immonet.de"
     type: "javascript"
     delay_seconds: 3
 
   sparkasse:
-    enabled: true
+    enabled: false
     url: "https://immobilien.sparkasse.de"
     type: "javascript"
     delay_seconds: 2
 
   volksbank:
-    enabled: true
+    enabled: false
     url: "https://www.volksbank-immobilien-rhein-ruhr.de"
     type: "html"
     delay_seconds: 1
@@ -95,13 +95,13 @@ scraper_sources:
     delay_seconds: 1
 
   von_poll:
-    enabled: true
+    enabled: false
     url: "https://www.von-poll.com/de/immobilien/oberhausen"
     type: "javascript"
     delay_seconds: 2
 
   arr_immobilien:
-    enabled: true
+    enabled: false
     url: "https://www.arr-immobilien.de"
     type: "html"
     delay_seconds: 1

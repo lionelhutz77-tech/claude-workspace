@@ -1,0 +1,59 @@
+{
+  "thema": "Nachsicht statt Meckern",
+  "hook": {
+    "zeilen": [
+      "Erinnern Sie sich noch?",
+      "An die Zeit, als...",
+      "",
+      "wir uns Zeit nahmen, um zuzuhören?",
+      "Und nicht gleich meckerten?"
+    ],
+    "prompt": "a young girl listening to an older woman, smiling"
+  },
+  "paare": [
+    {
+      "oben_text": "Frueher: Langsamkeit war okay",
+      "oben_prompt": "a boy riding a bike with training wheels, laughing",
+      "unten_text": "Heute: Schnelligkeit ist alles",
+      "unten_prompt": "a teenager staring at a smartphone, frustrated"
+    },
+    {
+      "oben_text": "Frueher: Fehler waren Lernchancen",
+      "oben_prompt": "an older man helping a young boy to fix a bike",
+      "unten_text": "Heute: Fehler sind Grund zum Meckern",
+      "unten_prompt": "a woman scolding a child for spilling something"
+    },
+    {
+      "oben_text": "Frueher: Wir halfen einander",
+      "oben_prompt": "two neighbors chatting over a fence, smiling",
+      "unten_text": "Heute: Wir sind isoliert",
+      "unten_prompt": "a person sitting alone in a crowded city, looking down"
+    },
+    {
+      "oben_text": "Frueher: Wir nahmen uns Zeit",
+      "oben_prompt": "a family having a picnic in a park, laughing",
+      "unten_text": "Heute: Wir sind immer in Eile",
+      "unten_prompt": "a businessman rushing to catch a train, stressed"
+    },
+    {
+      "oben_text": "Frueher: Wir waren geduldig",
+      "oben_prompt": "a teacher patiently explaining a concept to a student",
+      "unten_text": "Heute: Wir sind ungeduldig",
+      "unten_prompt": "a person tapping their foot impatiently, waiting in line"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wie können wir wieder mehr Nachsicht zeigen?",
+      "Indem wir uns Zeit nehmen, um zuzuhören?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977",
+      "für mehr Erinnerungen."
+    ],
+    "prompt": "a woman smiling and winking at the camera, with a warm background"
+  },
+  "caption": "Erinnern Sie sich noch an die Zeit, als wir uns Zeit nahmen, um zuzuhören? Als wir Fehler als Lernchancen sahen und einander halfen? Heute scheint es, als ob Schnelligkeit und Effizienz alles sind. Aber was können wir tun, um wieder mehr Nachsicht zu zeigen? Schreiben Sie uns in die Kommentare, wie Sie Nachsicht in Ihrem Alltag zeigen!",
+  "hashtags": "#Nachsicht #Schnelligkeit #Fehler #Lernchancen #Hilfe #Geduld #Milde #Verständnis #Erinnerungen #Kindheit #Jugend #Früher #Heute #Lebensweisheiten #PositivesDenken #GuteVibes #Freundschaft #Familie #Gemeinschaft"
+}

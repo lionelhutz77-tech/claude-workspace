@@ -1,0 +1,18 @@
+TREND SCOUT REPORT -- 06.06.2026 10:15
+============================================================
+
+TRENDING HEUTE:
+- KI Tools
+- Nebeneinkommen
+- Energie sparen
+- ChatGPT
+- Automatisierung
+- Rente
+- Inflation
+- Side Hustle
+- Freelancer
+- Wohnung kaufen
+
+ANALYSE:
+
+FEHLER: ANTHROPIC_API_KEY nicht gesetzt. Bitte .env Datei erstellen.

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def scrape_sariguel(postleitzahl: str = "46149") -> List[Dict]:
     """CT-Immobilien / Sariguel Immobilien"""
 
-    logger.info(f"🔄 Scraping CT-Immobilien (Sariguel)...")
+    logger.info(f"[SCRAPE] Scraping CT-Immobilien (Sariguel)...")
     properties = []
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"})
@@ -30,7 +30,7 @@ def scrape_sariguel(postleitzahl: str = "46149") -> List[Dict]:
         # Suche nach Listings
         listings = soup.select(".property, .listing, .immobilie, article")
 
-        logger.info(f"📊 Gefundene Listings: {len(listings)}")
+        logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
 
         for listing in listings[:30]:
             try:
@@ -80,12 +80,12 @@ def scrape_sariguel(postleitzahl: str = "46149") -> List[Dict]:
                 properties.append(prop)
 
             except Exception as e:
-                logger.warning(f"⚠️  Parse-Fehler: {e}")
+                logger.warning(f"[WARNING]  Parse-Fehler: {e}")
 
     except Exception as e:
-        logger.error(f"❌ Fehler CT-Immobilien: {e}")
+        logger.error(f"[ERROR] Fehler CT-Immobilien: {e}")
 
-    logger.info(f"✅ CT-Immobilien: {len(properties)} Objekte")
+    logger.info(f"[OK] CT-Immobilien: {len(properties)} Objekte")
     return properties
 
 

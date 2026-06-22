@@ -25,7 +25,7 @@ async def scrape_immoscout24(postleitzahl: str = "46149", delay: float = 2.0) ->
         Liste von Immobilien-Daten
     """
 
-    logger.info(f"🔄 Scraping ImmoScout24 für PLZ {postleitzahl}...")
+    logger.info(f"[SCRAPE] Scraping ImmoScout24 für PLZ {postleitzahl}...")
 
     properties = []
 
@@ -43,13 +43,13 @@ async def scrape_immoscout24(postleitzahl: str = "46149", delay: float = 2.0) ->
             # ImmoScout-Format: /Suche/de/immobilie-kaufen?postcode=46149&objecttype=2
             url = f"https://www.immobilienscout24.de/Suche/de/immobilie-kaufen?postcode={postleitzahl}&objecttype=2"
 
-            logger.info(f"📍 Navigiere zu: {url}")
+            logger.info(f"[PIN] Navigiere zu: {url}")
             await page.goto(url, wait_until="networkidle", timeout=30000)
             await page.wait_for_timeout(2000)  # Seite laden
 
             # Alle Listings scrollen und laden
             listings = await page.query_selector_all("li.is-search-result")
-            logger.info(f"📊 Gefundene Listings: {len(listings)}")
+            logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
 
             for i, listing in enumerate(listings[:50]):  # Max 50 pro Session
                 try:
@@ -87,20 +87,20 @@ async def scrape_immoscout24(postleitzahl: str = "46149", delay: float = 2.0) ->
                         "link": link
                     }
                     properties.append(prop)
-                    logger.debug(f"✅ {adresse} ({kaufpreis}€)")
+                    logger.debug(f"[OK] {adresse} ({kaufpreis}€)")
 
                 except Exception as e:
-                    logger.warning(f"⚠️  Parse-Fehler in Listing {i}: {e}")
+                    logger.warning(f"[WARNING]  Parse-Fehler in Listing {i}: {e}")
 
                 time.sleep(delay)
 
         except Exception as e:
-            logger.error(f"❌ Fehler beim Scraping ImmoScout24: {e}")
+            logger.error(f"[ERROR] Fehler beim Scraping ImmoScout24: {e}")
 
         finally:
             await browser.close()
 
-    logger.info(f"✅ ImmoScout24: {len(properties)} Objekte gefunden")
+    logger.info(f"[OK] ImmoScout24: {len(properties)} Objekte gefunden")
     return properties
 
 
@@ -154,7 +154,7 @@ async def scrape_immoscout_details(page, link: str) -> Dict:
         await detail_page.close()
 
     except Exception as e:
-        logger.debug(f"⚠️  Fehler bei Detail-Scraping: {e}")
+        logger.debug(f"[WARNING]  Fehler bei Detail-Scraping: {e}")
 
     return details
 
@@ -177,6 +177,6 @@ def run_sync(postleitzahl: str = "46149") -> List[Dict]:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     results = run_sync("46149")
-    print(f"\n✅ Ergebnis: {len(results)} Props")
+    print(f"\n[OK] Ergebnis: {len(results)} Props")
     for r in results[:3]:
         print(f"  - {r['adresse']} | {r['kaufpreis']}€ | {r['wohnungen']} Whg | {r['baujahr']}")

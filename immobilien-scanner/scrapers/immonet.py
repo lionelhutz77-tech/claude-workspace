@@ -25,7 +25,7 @@ async def scrape_immonet(postleitzahl: str = "46149", delay: float = 1.5) -> Lis
         Liste von Immobilien-Daten
     """
 
-    logger.info(f"🔄 Scraping Immonet für PLZ {postleitzahl}...")
+    logger.info(f"[SCRAPE] Scraping Immonet für PLZ {postleitzahl}...")
 
     properties = []
 
@@ -42,13 +42,13 @@ async def scrape_immonet(postleitzahl: str = "46149", delay: float = 1.5) -> Lis
             # API-basiert: /search/list?type=apartment&zip=46149
             url = f"https://www.immonet.de/immobilien/search.html?zip={postleitzahl}&objecttype=Mehrfamilienhaus&action=search"
 
-            logger.info(f"📍 Navigiere zu: {url}")
+            logger.info(f"[PIN] Navigiere zu: {url}")
             await page.goto(url, wait_until="networkidle", timeout=30000)
             await page.wait_for_timeout(2000)
 
             # Listings finden (Immonet-HTML-Struktur)
             listings = await page.query_selector_all(".ListItem")
-            logger.info(f"📊 Gefundene Listings: {len(listings)}")
+            logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
 
             for i, listing in enumerate(listings[:50]):
                 try:
@@ -89,20 +89,20 @@ async def scrape_immonet(postleitzahl: str = "46149", delay: float = 1.5) -> Lis
                         "link": link
                     }
                     properties.append(prop)
-                    logger.debug(f"✅ {title_text.strip()[:50]} ({kaufpreis}€)")
+                    logger.debug(f"[OK] {title_text.strip()[:50]} ({kaufpreis}€)")
 
                 except Exception as e:
-                    logger.warning(f"⚠️  Parse-Fehler in Listing {i}: {e}")
+                    logger.warning(f"[WARNING]  Parse-Fehler in Listing {i}: {e}")
 
                 time.sleep(delay)
 
         except Exception as e:
-            logger.error(f"❌ Fehler beim Scraping Immonet: {e}")
+            logger.error(f"[ERROR] Fehler beim Scraping Immonet: {e}")
 
         finally:
             await browser.close()
 
-    logger.info(f"✅ Immonet: {len(properties)} Objekte gefunden")
+    logger.info(f"[OK] Immonet: {len(properties)} Objekte gefunden")
     return properties
 
 
@@ -132,6 +132,6 @@ def run_sync(postleitzahl: str = "46149") -> List[Dict]:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     results = run_sync("46149")
-    print(f"\n✅ Ergebnis: {len(results)} Props")
+    print(f"\n[OK] Ergebnis: {len(results)} Props")
     for r in results[:3]:
         print(f"  - {r['adresse'][:50]} | {r['kaufpreis']}€")

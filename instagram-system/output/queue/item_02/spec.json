@@ -1,0 +1,52 @@
+{
+  "thema": "Gemeinschaftssinn statt Ich-Fixierung",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als die kleinen Gesten",
+      "noch selbstverständlich waren?",
+      "",
+      "Ein Lächeln, ein Gruß,",
+      "ein bisschen Rücksicht?"
+    ],
+    "prompt": "a happy child sitting in a car, looking out of the side window during a family road trip, golden hour, natural relaxed pose"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Man teilte und nahm Rücksicht",
+      "oben_prompt": "two boys sharing a toy on the playground",
+      "unten_text": "Heute: Jeder ist sein eigener Mittelpunkt",
+      "unten_prompt": "a person walking alone, staring at their phone"
+    },
+    {
+      "oben_text": "Früher: Man half einander",
+      "oben_prompt": "a family helping an elderly neighbor with groceries",
+      "unten_text": "Heute: Jeder kämpft für sich selbst",
+      "unten_prompt": "a person struggling to carry their own bags"
+    },
+    {
+      "oben_text": "Früher: Man begegnete sich mit Respekt",
+      "oben_prompt": "a young girl giving up her seat to an older woman",
+      "unten_text": "Heute: Respekt ist selten geworden",
+      "unten_prompt": "a teenager ignoring an elderly person on the bus"
+    },
+    {
+      "oben_text": "Früher: Man lächelte und grüßte",
+      "oben_prompt": "two friends smiling and waving at each other",
+      "unten_text": "Heute: Jeder ist in seiner eigenen Welt",
+      "unten_prompt": "a person walking alone, not noticing others around them"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Was bedeutet Gemeinschaftssinn für dich?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "a warm friendly young woman smiling and giving a gentle friendly open-hand wave, five fingers clearly visible and natural, head and shoulders, golden hour meadow background"
+  },
+  "caption": "Weißt du noch? Früher teilte man, nahm Rücksicht, grüßte sich freundlich und half einander ganz selbstverständlich. Heute wird jeder schnell zu seinem eigenen Mittelpunkt. Dabei sind es genau diese kleinen Gesten, die uns als Menschen verbinden. Welche kleine Geste der Rücksicht vermisst du am meisten? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Gemeinschaftssinn #IchFixierung #Rücksicht #Höflichkeit #Miteinander #Erinnerungen #Kindheit #Jugend #Familie #Freundschaft #Respekt #Lächeln #Werte #Gesellschaft #Zusammenhalt #Mitgefühl #Empathie #Kultur #Tradition #Werteorientierung"
+}

@@ -1,0 +1,60 @@
+{
+  "thema": "Draußen spielen & Vertrauen",
+  "quelle": "Higgsfield Soul 2.0",
+  "hook": {
+    "zeilen": [
+      "Weißt du noch?",
+      "Als wir morgens rausgingen",
+      "und erst abends heimkamen?",
+      "",
+      "Als Eltern vertrauten,",
+      "ohne ständig zu fragen?"
+    ],
+    "prompt": "hook"
+  },
+  "paare": [
+    {
+      "oben_text": "Früher: Raus, bis die Laternen angingen",
+      "oben_prompt": "p0_oben",
+      "unten_text": "Heute: Alle 20 Minuten eine Kontroll-Nachricht",
+      "unten_prompt": "p0_unten"
+    },
+    {
+      "oben_text": "Früher: Dreckig und glücklich heimgekommen",
+      "oben_prompt": "p1_oben",
+      "unten_text": "Heute: Drinnen bleiben, bloß nichts riskieren",
+      "unten_prompt": "p1_unten"
+    },
+    {
+      "oben_text": "Früher: Niemand wusste jede Minute, wo du warst",
+      "oben_prompt": "p2_oben",
+      "unten_text": "Heute: Live-Standort auf dem Handy",
+      "unten_prompt": "p2_unten"
+    },
+    {
+      "oben_text": "Früher: Man fand selbst nach Hause",
+      "oben_prompt": "p3_oben",
+      "unten_text": "Heute: Für jeden Weg gefahren werden",
+      "unten_prompt": "p3_unten"
+    },
+    {
+      "oben_text": "Früher: Abenteuer am Bach, im Wald",
+      "oben_prompt": "p4_oben",
+      "unten_text": "Heute: Abenteuer nur noch auf dem Bildschirm",
+      "unten_prompt": "p4_unten"
+    }
+  ],
+  "cta": {
+    "zeilen": [
+      "Wann hast du dein Kind zuletzt",
+      "einfach losziehen lassen?",
+      "",
+      "Schreib es in die Kommentare.",
+      "",
+      "Folge @kiai1977"
+    ],
+    "prompt": "cta"
+  },
+  "caption": "Weißt du noch? Früher gingen wir morgens raus und kamen erst abends wieder - dreckig, müde, glücklich. Unsere Eltern vertrauten, ohne jede Minute zu wissen, wo wir waren. Heute begleitet uns die ständige Sorge und der Live-Standort. Ein bisschen mehr Vertrauen täte allen gut. Wann hast du dein Kind zuletzt einfach losziehen lassen? Schreib mir EIN Wort in die Kommentare. 👇",
+  "hashtags": "#Kindheit #Vertrauen #DraußenSpielen #Freiheit #Elternsein #FrüherVsHeute #Lebensweisheiten #Nachdenklich #BewusstLeben #Gedankenwelt #Menschlichkeit #Achtsamkeit #Erinnerungen #Werte #EchteVerbindung"
+}

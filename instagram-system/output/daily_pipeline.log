@@ -1,0 +1,110 @@
+2026-06-14 12:55:58  === Tages-Pipeline 2026-06-14 (dry=True) ===
+2026-06-14 12:56:04  Thema: Nachsicht statt Meckern
+2026-06-14 12:56:37  7 Slides gebaut: output\media\daily_2026-06-14\slides
+2026-06-14 12:56:37  DRY-RUN: nicht veroeffentlicht.
+2026-06-15 09:00:05  === Tages-Pipeline 2026-06-15 (dry=True) ===
+2026-06-15 09:00:15  Thema: Musik mit Wert
+2026-06-15 09:00:46  FEHLER:
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Claude\instagram-system\daily_pipeline.py", line 212, in main
+    run(dry=args.dry, thema=args.thema)
+  File "C:\Users\HP\Documents\Claude\instagram-system\daily_pipeline.py", line 54, in run
+    slides = build_from_spec(spec, base, stil="nostalgie")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Claude\instagram-system\tools\carousel_builder.py", line 315, in build_from_spec
+    raise RuntimeError(f"Bildgenerierung fehlgeschlagen: {img_id}")
+RuntimeError: Bildgenerierung fehlgeschlagen: hook
+
+2026-06-15 09:13:47  Veroeffentliche Karussell aus item_01: Augenblick statt Status
+2026-06-15 09:14:45  Veroeffentlicht: {'success': True, 'post_id': '18095673653223401'}
+2026-06-16 12:11:10  === Tages-Pipeline 2026-06-16 (dry=True) ===
+2026-06-16 12:11:21  FEHLER:
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_sync\connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_backends\sync.py", line 154, in start_tls
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\groq\_base_client.py", line 1007, in request
+    response = self._client.send(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Claude\instagram-system\daily_pipeline.py", line 211, in main
+    run(dry=args.dry, thema=args.thema)
+  File "C:\Users\HP\Documents\Claude\instagram-system\daily_pipeline.py", line 48, in run
+    spec = generate_spec(thema_override=thema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Claude\instagram-system\tools\theme_generator.py", line 153, in generate_spec
+    raw = generate_with_retry(client, PROMPT.format(thema=thema, thema_detail=detail))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Claude\instagram-system\tools\gemini_client.py", line 57, in generate_with_retry
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\groq\_base_client.py", line 1039, in request
+    raise APIConnectionError(request=request) from err
+groq.APIConnectionError: Connection error.
+
+2026-06-16 13:02:29  Veroeffentliche Karussell aus item_02: Gemeinschaftssinn statt Ich-Fixierung
+2026-06-16 13:03:25  Veroeffentlicht: {'success': True, 'post_id': '18594307582024981'}
+2026-06-17 06:53:04  Veroeffentliche Karussell aus item_04: Ein Geschenk, das zählt
+2026-06-17 06:54:04  Veroeffentlicht: {'success': True, 'post_id': '18064429874474932'}
+2026-06-17 07:04:43  Kein freigegebenes Karussell im Vorrat - heute kein Auto-Post.
+2026-06-17 20:25:27  Kein freigegebenes Karussell im Vorrat - heute kein Auto-Post.
+2026-06-18 20:12:11  Veroeffentliche Karussell aus item_07: Smartwatch als Fessel
+2026-06-18 20:13:16  Veroeffentlicht: {'success': True, 'post_id': '18098529581464782'}
+2026-06-19 19:42:25  Veroeffentliche Karussell aus item_05: Zu Hause beieinander
+2026-06-19 19:43:26  Veroeffentlicht: {'success': True, 'post_id': '18083167466438690'}
