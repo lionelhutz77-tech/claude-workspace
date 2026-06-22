@@ -1,6 +1,7 @@
 """
 Scraper für KL Immobilien (lokaler Makler Oberhausen)
-Statisches HTML → BeautifulSoup reicht
+WooCommerce-Shop: Immobilien sind "Produkte" unter /produkt/...
+Listings-Seite -> Detail-Seiten (Label:Wert-Paare im HTML)
 """
 
 import logging
@@ -12,108 +13,150 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
+LISTING_URL = "https://kl-immo-web.de/immobilienangeboten/kauf/"
+BASE = "https://kl-immo-web.de"
 
-def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> List[Dict]:
-    """
-    Scraper für KL Immobilien
-    Website: https://kl-immo-web.de/immobilienangebot/
+# Wortzahl -> Anzahl Wohneinheiten (aus Titel)
+WORTZAHL = {
+    "ein": 1, "zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5,
+    "sechs": 6, "sieben": 7, "acht": 8, "neun": 9, "zehn": 10,
+}
 
-    Args:
-        postleitzahl: PLZ (für Filterung, falls nötig)
-        delay: Verzögerung zwischen Requests
 
-    Returns:
-        Liste von Immobilien-Daten
-    """
-
-    logger.info(f"[SCRAPE] Scraping KL Immobilien...")
-
-    properties = []
-    session = requests.Session()
-    session.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+def _session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
     })
+    return s
+
+
+def _parse_label(text: str, label: str) -> str:
+    """Wert nach 'Label:' aus Fließtext holen (bis Zeilenende/nächstes Label)."""
+    m = re.search(rf"{label}\s*(?:ca\.)?\s*:?\s*([^\n|]{{1,60}})", text, re.IGNORECASE)
+    return m.group(1).strip() if m else ""
+
+
+def _parse_price(text: str) -> int:
+    """'449.000,00 EUR' -> 449000"""
+    m = re.search(r"Kaufpreis\s*:?\s*([\d.]+)", text)
+    if not m:
+        return 0
+    try:
+        return int(m.group(1).replace(".", ""))
+    except ValueError:
+        return 0
+
+
+def _parse_int(text: str, label: str, default: int) -> int:
+    raw = _parse_label(text, label)
+    m = re.search(r"\d+", raw)
+    return int(m.group(0)) if m else default
+
+
+def _units_from_title(title: str) -> int:
+    """Anzahl Wohneinheiten aus Titel ableiten."""
+    t = title.lower()
+    # 1. Hausform mit Zahlwort: "Zweifamilienhaus", "Fünffamilienhaus" (am eindeutigsten)
+    for wort, n in WORTZAHL.items():
+        if f"{wort}familienhaus" in t:
+            return n
+    # 2. "24 Wohnungen" (explizite Einheiten-Zahl, nur wenn keine Hausform)
+    m = re.search(r"(\d+)\s*(?:frei[a-z]*\s+)?wohnung", t)
+    if m:
+        return int(m.group(1))
+    # 3. Generisches MFH ohne klare Zahl -> konservativer Default
+    if "mehrfamilien" in t or "wohnensemble" in t or "portfolio" in t:
+        return 3
+    return 1
+
+
+def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 0.5) -> List[Dict]:
+    """Scraper für KL Immobilien (WooCommerce-Detailseiten)."""
+    logger.info("[SCRAPE] Scraping KL Immobilien...")
+
+    properties: List[Dict] = []
+    session = _session()
 
     try:
-        # KL Immobilien Listings-Seite
-        url = "https://kl-immo-web.de/immobilienangebot/"
+        r = session.get(LISTING_URL, timeout=15)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.content, "html.parser")
 
-        logger.info(f"[PIN] Navigiere zu: {url}")
-        response = session.get(url, timeout=10)
-        response.raise_for_status()
+        # Alle Detail-Links (/produkt/...) einsammeln, deduplizieren
+        produkt_links = []
+        seen = set()
+        for a in soup.find_all("a", href=re.compile(r"/produkt/")):
+            href = a["href"]
+            if not href.startswith("http"):
+                href = BASE + href
+            if href not in seen:
+                seen.add(href)
+                produkt_links.append(href)
 
-        soup = BeautifulSoup(response.content, "html.parser")
+        logger.info(f"[DATA] Gefundene Exposes: {len(produkt_links)}")
 
-        # KL Immobilien HTML-Struktur identifizieren
-        # Typischerweise: div.property-card, article.property, etc.
-        listings = soup.select(".property, article.listing, div.immobilie-eintrag, .immobilien-card")
-
-        # Fallback: generische Link-Suche
-        if not listings:
-            listings = soup.find_all("a", href=re.compile(r"/immobilie|/expose|/objekt"))
-
-        logger.info(f"[DATA] Gefundene Listings: {len(listings)}")
-
-        for i, listing in enumerate(listings[:30]):
+        for i, link in enumerate(produkt_links):
             try:
-                # HTML-Struktur variiert je nach Makler
-                # Versuche verschiedene Selektoren
+                dr = session.get(link, timeout=15)
+                dr.raise_for_status()
+                dsoup = BeautifulSoup(dr.content, "html.parser")
 
-                # Adresse
-                address_elem = listing.select_one(".address, .title, h2, h3, .property-title")
-                adresse = address_elem.get_text(strip=True) if address_elem else "???"
+                title = dsoup.title.string if dsoup.title else ""
+                title = title.split(" - KL Immobilien")[0].strip() if title else ""
 
-                # Preis
-                price_elem = listing.select_one(".price, .kaufpreis, .betrag")
-                price_text = price_elem.get_text(strip=True) if price_elem else "0"
-                kaufpreis = parse_price(price_text)
+                detail_text = dsoup.get_text("\n", strip=True)
 
-                # Link zu Expose
-                link = ""
-                link_elem = listing.find("a", href=True)
-                if link_elem:
-                    link = link_elem["href"]
-                    if not link.startswith("http"):
-                        link = "https://kl-immo-web.de" + link
+                kaufpreis = _parse_price(detail_text)
+                groesse = _parse_int(detail_text, "Wohnfläche", 100)
+                baujahr = _parse_int(detail_text, "Baujahr", 2000)
+                wohnungen = _units_from_title(title)
 
-                # Weitere Infos aus Text (Heuristik)
-                listing_text = listing.get_text()
+                # Adresse: KL veröffentlicht keine Objekt-Adresse (nur Büro-Adresse
+                # "Dorstener Str. 313" auf jeder Seite). Daher Titel als Bezeichnung.
+                # Stadt/PLZ aus Titel extrahieren, falls vorhanden.
+                stadt_match = re.search(r"\b(4\d{4})\b|\b(Oberhausen|Bottrop|Essen|Mülheim|Duisburg)\b", title)
+                stadt = (stadt_match.group(0) if stadt_match else "Oberhausen/Umgebung")
+                adresse = f"{title[:70]} [{stadt}]"
 
-                wohnungen = extract_number(listing_text, "Wohnungen", 1)
-                baujahr = extract_number(listing_text, "Baujahr", 2000)
-                groesse = extract_number(listing_text, r"(?:qm|m²|Fläche)", 100)
+                # Energieklasse (A-H), falls vorhanden
+                ek_match = re.search(r"Energieeffizienzklasse\s*:?\s*([A-H])", detail_text, re.IGNORECASE)
+                energieklasse = ek_match.group(1).upper() if ek_match else ""
 
-                # Merkmale
-                garten = bool(re.search(r"garten", listing_text, re.IGNORECASE))
-                balkon = bool(re.search(r"balkon", listing_text, re.IGNORECASE))
-                garage_match = re.search(r"(?:garage|stellplatz)\s*[:—]?\s*(\d+)", listing_text, re.IGNORECASE)
-                garage = int(garage_match.group(1)) if garage_match else 0
+                merkmal_garten = bool(re.search(r"garten", detail_text, re.IGNORECASE))
+                merkmal_balkon = bool(re.search(r"balkon", detail_text, re.IGNORECASE))
+                garage_match = re.search(r"(\d+)\s*(?:garage|stellpl)", detail_text, re.IGNORECASE)
+                merkmal_garage = int(garage_match.group(1)) if garage_match else (
+                    1 if re.search(r"garage|stellplatz", detail_text, re.IGNORECASE) else 0
+                )
 
-                # Filter: nur Mehrfamilienhäuser (Wohnungen > 1)
+                # Filter: nur Mehrfamilienhäuser (>= 2 WE) und echte Preise
                 if wohnungen < 2:
                     continue
+                if kaufpreis < 50000:
+                    continue
 
-                prop = {
+                properties.append({
                     "adresse": adresse,
                     "kaufpreis": kaufpreis,
                     "wohnungen": wohnungen,
                     "baujahr": baujahr,
                     "groesse_qm": groesse,
                     "renovierungen": "",
-                    "merkmal_garten": garten,
-                    "merkmal_balkon": balkon,
-                    "merkmal_garage": garage,
+                    "merkmal_garten": merkmal_garten,
+                    "merkmal_balkon": merkmal_balkon,
+                    "merkmal_garage": merkmal_garage,
+                    "energieklasse": energieklasse,
                     "quelle": "KL Immobilien",
-                    "link": link
-                }
+                    "link": link,
+                })
+                logger.debug(f"[OK] {adresse[:50]} ({kaufpreis}€, {wohnungen} WE)")
 
-                # Nur hinzufügen, wenn Kaufpreis > 0 (echte Angebote)
-                if kaufpreis > 50000:
-                    properties.append(prop)
-                    logger.debug(f"[OK] {adresse[:50]} ({kaufpreis}€)")
-
+            except requests.RequestException as e:
+                logger.warning(f"[WARNING] Detail-Fehler {link}: {e}")
             except Exception as e:
-                logger.warning(f"[WARNING]  Parse-Fehler in Listing {i}: {e}")
+                logger.warning(f"[WARNING] Parse-Fehler {link}: {e}")
 
             time.sleep(delay)
 
@@ -126,27 +169,9 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 1.0) -> Lis
     return properties
 
 
-def parse_price(price_str: str) -> int:
-    """Preis-String → Int"""
-    try:
-        clean = re.sub(r"[^0-9.]", "", price_str).replace(".", "")
-        return int(clean) if clean else 0
-    except:
-        return 0
-
-
-def extract_number(text: str, pattern: str, default: int = 0) -> int:
-    """Zahl aus Text extrahieren"""
-    try:
-        match = re.search(rf"{pattern}\s*[:—]?\s*(\d+)", text, re.IGNORECASE)
-        return int(match.group(1)) if match else default
-    except:
-        return default
-
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     results = scrape_kl_immobilien()
     print(f"\n[OK] Ergebnis: {len(results)} Props")
-    for r in results[:3]:
-        print(f"  - {r['adresse'][:50]} | {r['kaufpreis']}€ | {r['wohnungen']} Whg")
+    for r in results:
+        print(f"  - {r['adresse'][:55]} | {r['kaufpreis']:,}€ | {r['wohnungen']} WE | BJ {r['baujahr']} | {r['groesse_qm']}m²")
