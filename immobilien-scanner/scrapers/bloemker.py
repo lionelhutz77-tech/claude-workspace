@@ -1,74 +1,136 @@
-"""Blömker Immobilien (Bottrop)"""
-import logging, re
+"""
+Blömker Immobilien (Bottrop/Ruhrgebiet)
+Listing-Seite -> Detail-Seiten mit Label|Wert-Tabelle.
+Hinweis: Blömker handelt überwiegend Ein-/Zweifamilienhäuser.
+"""
+
+import logging
+import time
+import re
+import unicodedata
 from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
+LISTING_URL = "https://bloemker-immobilien.de/immobilien/"
+DETAIL_RE = re.compile(r"https://bloemker-immobilien\.de/immobilien/[a-z][a-z0-9\-]+-(\d+)/")
+
+WORTZAHL = {
+    "ein": 1, "zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5,
+    "sechs": 6, "sieben": 7, "acht": 8,
+}
+
+
+def _session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+    })
+    return s
+
+
+def _kv(text: str, label: str) -> str:
+    """Wert nach 'Label|' aus normalisiertem Pipe-Text holen."""
+    m = re.search(rf"{label}[^|]*\|\s*([^|]{{1,30}})", text)
+    return m.group(1).strip() if m else ""
+
+
+def _kv_int(text: str, label: str, default: int) -> int:
+    raw = _kv(text, label)
+    m = re.search(r"\d+", raw.replace(".", ""))
+    return int(m.group(0)) if m else default
+
+
+def _units(title: str, slug: str) -> int:
+    blob = (title + " " + slug).lower()
+    for wort, n in WORTZAHL.items():
+        if f"{wort}familienhaus" in blob:
+            return n
+    if "mehrfamilien" in blob:
+        return 3
+    return 1  # Einfamilienhaus / Wohnung / Doppelhaus etc.
+
+
 def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
     logger.info("[SCRAPE] Blömker Immobilien...")
-    properties = []
+    properties: List[Dict] = []
+    session = _session()
+
     try:
-        session = requests.Session()
-        session.headers.update({"User-Agent": "Mozilla/5.0"})
-        url = "https://bloemker-immobilien.de/immobilien/"
-        response = session.get(url, timeout=10)
-        soup = BeautifulSoup(response.content, "html.parser")
-        listings = soup.select(".property, .listing, .expose, article")
+        r = session.get(LISTING_URL, timeout=15)
+        r.raise_for_status()
 
-        for listing in listings[:30]:
+        # Detail-Links (nur Kauf, kein "mieten")
+        links = sorted(set(
+            m.group(0) for m in DETAIL_RE.finditer(r.text)
+            if "mieten" not in m.group(0)
+        ))
+        logger.info(f"[DATA] Gefundene Exposes: {len(links)}")
+
+        for link in links:
             try:
-                text = listing.get_text()
-                addr = listing.select_one("h2, h3, .title")
-                adresse = addr.get_text(strip=True) if addr else "???"
-                price = listing.select_one(".price, [class*='preis']")
-                kaufpreis = parse_price(price.get_text() if price else "0")
-                link = listing.find("a", href=True)
-                link = link["href"] if link else ""
-                if link and not link.startswith("http"):
-                    link = "https://bloemker-immobilien.de" + link
+                d = session.get(link, timeout=15)
+                d.raise_for_status()
+                dsoup = BeautifulSoup(d.content, "html.parser")
 
-                wohnungen = extract_number(text, "Wohnungen", 1)
-                baujahr = extract_number(text, "Baujahr", 2000)
-                groesse = extract_number(text, "m²", 100)
+                title = (dsoup.title.string or "").split("|")[0].strip() if dsoup.title else ""
+                text = unicodedata.normalize("NFKC", dsoup.get_text("|", strip=True))
+
+                kp_raw = _kv(text, "Kaufpreis")
+                kp_m = re.search(r"([\d.]+)", kp_raw)
+                kaufpreis = int(kp_m.group(1).replace(".", "")) if kp_m else 0
+
+                groesse = _kv_int(text, "Wohnfläche", 100)
+                baujahr = _kv_int(text, "Baujahr", 2000)
+                slug = link.rstrip("/").split("/")[-1]
+                wohnungen = _units(title, slug)
+
+                # Stadt aus Slug: ...-in-{stadt}-kaufen-{id}
+                stadt_m = re.search(r"-in-([a-z\-]+?)-(?:kaufen|kauf)", slug)
+                stadt = stadt_m.group(1).replace("-", " ").title() if stadt_m else "Ruhrgebiet"
+
+                ek_m = re.search(r"Energieeffizienzklasse[^|]*\|\s*([A-H])", text)
+                energieklasse = ek_m.group(1).upper() if ek_m else ""
 
                 if wohnungen < 2 or kaufpreis < 50000:
                     continue
 
-                # ESG/Energie-Info extrahieren
-                energieklasse = extract_energy_class(text)
-
                 properties.append({
-                    "adresse": adresse, "kaufpreis": kaufpreis, "wohnungen": wohnungen,
-                    "baujahr": baujahr, "groesse_qm": groesse, "renovierungen": "",
-                    "merkmal_garten": "Garten" in text, "merkmal_balkon": "Balkon" in text,
-                    "merkmal_garage": 1 if "Garage" in text else 0,
-                    "energieklasse": energieklasse,  # NEU: ESG
-                    "quelle": "Blömker Immobilien", "link": link
+                    "adresse": f"{title[:70]} [{stadt}]",
+                    "kaufpreis": kaufpreis,
+                    "wohnungen": wohnungen,
+                    "baujahr": baujahr,
+                    "groesse_qm": groesse,
+                    "renovierungen": "",
+                    "merkmal_garten": "garten" in text.lower(),
+                    "merkmal_balkon": "balkon" in text.lower(),
+                    "merkmal_garage": 1 if "garage" in text.lower() else 0,
+                    "energieklasse": energieklasse,
+                    "quelle": "Blömker Immobilien",
+                    "link": link,
                 })
+                logger.debug(f"[OK] {title[:45]} ({kaufpreis}€, {wohnungen} WE)")
+
+            except requests.RequestException as e:
+                logger.warning(f"[WARNING] Detail-Fehler {link}: {e}")
             except Exception as e:
-                logger.warning(f"[WARNING]  {e}")
+                logger.warning(f"[WARNING] Parse-Fehler {link}: {e}")
+
+            time.sleep(0.4)
+
     except Exception as e:
         logger.error(f"[ERROR] Blömker: {e}")
 
     logger.info(f"[OK] Blömker: {len(properties)} Objekte")
     return properties
 
-def parse_price(s: str) -> int:
-    try:
-        return int(re.sub(r"[^0-9.]", "", s).replace(".", ""))
-    except:
-        return 0
 
-def extract_number(text: str, pattern: str, default: int = 0) -> int:
-    try:
-        match = re.search(rf"{pattern}\s*[:—]?\s*(\d+)", text, re.IGNORECASE)
-        return int(match.group(1)) if match else default
-    except:
-        return default
-
-def extract_energy_class(text: str) -> str:
-    """Energieeffizienzklasse A-G extrahieren"""
-    match = re.search(r"(?:Energieklasse|EPC|Energieeffizienzklasse)\s*[:—]?\s*([A-G])", text, re.IGNORECASE)
-    return match.group(1) if match else None
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    res = scrape_bloemker()
+    print(f"\n[OK] {len(res)} Props")
+    for r in res:
+        print(f"  - {r['adresse'][:55]} | {r['kaufpreis']:,}€ | {r['wohnungen']} WE | BJ {r['baujahr']}")

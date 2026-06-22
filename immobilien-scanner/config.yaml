@@ -107,19 +107,19 @@ scraper_sources:
     delay_seconds: 1
 
   sariguel:
-    enabled: true
+    enabled: false  # JS-gerendert, keine statischen Daten
     url: "https://www.ct-immobilien.de"
     type: "html"
     delay_seconds: 1
 
   piezonka:
-    enabled: true
+    enabled: false  # leere Jimdo-Seite, keine Angebote
     url: "https://piezonka-immobilien-1.jimdosite.com"
     type: "html"
     delay_seconds: 1
 
   immo_oberhausen:
-    enabled: true
+    enabled: false  # Domain tot (DNS loest nicht auf)
     url: "https://www.immobilien-oberhausen.com"
     type: "html"
     delay_seconds: 1
