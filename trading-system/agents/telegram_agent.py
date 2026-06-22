@@ -70,7 +70,8 @@ def teste_verbindung() -> bool:
 # Nachrichten-Templates
 # ---------------------------------------------------------------------------
 
-def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None) -> str:
+def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None,
+                        fg_aktien: dict = None, fg_krypto: dict = None) -> str:
     """Formatiert den Tagesbericht als Telegram-Nachricht (HTML)."""
     datum = datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -82,6 +83,18 @@ def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None) -> str
         f"<i>{datum} Uhr</i>",
         "",
     ]
+
+    # Fear & Greed Stimmungsindikator
+    if fg_aktien:
+        score  = fg_aktien.get("score", 50)
+        label  = fg_aktien.get("label", "Neutral")
+        emoji  = "😨" if score <= 40 else ("😐" if score <= 60 else "🤑")
+        krypto_score = (fg_krypto or {}).get("score", 50)
+        krypto_label = (fg_krypto or {}).get("label", "Neutral")
+        lines += [
+            f"{emoji} <b>Markt-Stimmung:</b>  Aktien {score}/100 ({label})  |  Krypto {krypto_score}/100 ({krypto_label})",
+            "",
+        ]
 
     # Depot-Stand
     if depot_stats and depot_stats.get("trades_gesamt", 0) > 0:
@@ -153,12 +166,13 @@ def format_warnung(asset: str, nachricht: str) -> str:
 # Haupt-Sendefunktion fuer den Tagesbericht
 # ---------------------------------------------------------------------------
 
-def sende_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None) -> bool:
+def sende_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None,
+                       fg_aktien: dict = None, fg_krypto: dict = None) -> bool:
     """Sendet den vollstaendigen Tagesbericht an Telegram."""
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
         return False
 
-    nachricht = format_tagesbericht(ergebnisse, depot_stats)
+    nachricht = format_tagesbericht(ergebnisse, depot_stats, fg_aktien, fg_krypto)
     erfolg    = sende_nachricht(nachricht)
 
     if erfolg:
@@ -175,6 +189,33 @@ def sende_positions_update(geschlossene: list[dict]) -> None:
             pos["asset"], pos["pnl_eur"], pos["pnl_pct"], pos.get("status", "")
         )
         sende_nachricht(msg)
+
+
+def sende_vorlaeufer_bericht(ergebnisse: list[dict], top_n: int = 3) -> bool:
+    """Sendet den woechentlichen Vorlaeufer-Scanner-Bericht an Telegram."""
+    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
+        return False
+    if not ergebnisse:
+        return False
+
+    datum = datetime.now().strftime("%d.%m.%Y")
+    lines = [f"<b>Vorlaeufer-Scanner {datum}</b>",
+             "Aktien mit fruehemAMD/NVDA-Muster:", ""]
+
+    for i, e in enumerate(ergebnisse[:top_n], 1):
+        score  = e["score"]
+        balken = "🟩" * score + "⬜" * (10 - score)
+        lines.append(
+            f"<b>#{i} {e['ticker']} — {e['name']}</b>\n"
+            f"{balken} {score}/10\n"
+            f"${e['preis']:,.2f} | RSI {e['rsi']:.0f} | {e['sektor']}\n"
+            f"Fruehindikator: {e.get('fruehindikator', '-')}\n"
+            f"Risiko: {e.get('risiko', '-')}\n"
+            f"Timing: {e.get('timing', '-')}\n"
+        )
+
+    lines.append("<i>Kein Anlageratschlag. Modell-Output des Systems.</i>")
+    return sende_nachricht("\n".join(lines))
 
 
 # ---------------------------------------------------------------------------

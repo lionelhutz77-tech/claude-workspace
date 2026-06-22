@@ -40,6 +40,7 @@ from telegram_agent     import sende_tagesbericht, sende_positions_update
 from email_agent        import hole_email_signale, signale_als_dict
 from pattern_agent      import analysiere_muster
 from makro_agent        import erkenne_makro_events, makro_einfluss_auf_asset, drucke_makro_lage
+from fear_greed_agent   import hole_fear_greed_aktien, hole_fear_greed_krypto, fear_greed_punkte, drucke_fear_greed
 from learning_agent     import fuehre_lernzyklus_durch, hole_lern_bericht, hole_top_lehren
 from volume_agent       import analysiere_volumen
 from multi_depot        import (initialisiere as init_multi, filtere_fuer_strategie,
@@ -446,6 +447,16 @@ def main():
     else:
         print("  Keine signifikanten Makro-Events heute.")
 
+    # Fear & Greed Index laden
+    try:
+        fg_aktien = hole_fear_greed_aktien()
+        fg_krypto = hole_fear_greed_krypto()
+        drucke_fear_greed(fg_aktien, fg_krypto)
+    except Exception as e:
+        print(f"  [Fear&Greed] Fehler: {e}")
+        fg_aktien = {"score": 50, "label": "Neutral"}
+        fg_krypto = {"score": 50, "label": "Neutral"}
+
     # Schritt 3: Social Media
     drucke_fortschritt(3, 7, "Social Media Analyse (Google Trends + Reddit + StockTwits)")
     social_cache = {}
@@ -665,7 +676,7 @@ def main():
 
     # Telegram zuerst senden (bevor optionale Schritte wie Dashboard crashen koennen)
     print("\n  Sende Telegram-Bericht...")
-    sende_tagesbericht(ergebnisse, depot_stats)
+    sende_tagesbericht(ergebnisse, depot_stats, fg_aktien=fg_aktien, fg_krypto=fg_krypto)
     if geschlossene_pos:
         sende_positions_update(geschlossene_pos)
 

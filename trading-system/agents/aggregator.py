@@ -93,6 +93,7 @@ def berechne_ziel(preis: float, empfehlung: str, volatil: bool = False) -> float
 
 def aggregiere_aktie(ticker: str, nachrichten_cache: list, social_cache: dict = None, email_cache: dict = None) -> Gesamtsignal:
     """Aggregiert alle Signale fuer eine Aktie."""
+    from earnings_agent import prüfe_earnings
     ta   = analysiere_aktie(ticker)
     news = erstelle_asset_zusammenfassung(nachrichten_cache, ticker)
 
@@ -122,6 +123,15 @@ def aggregiere_aktie(ticker: str, nachrichten_cache: list, social_cache: dict = 
     begruendung.append(f"Social: {social.gesamt_sentiment.upper()} (Trends={social.google_trend_score}, Reddit={social.reddit_posts} Posts)")
     if email_info:
         begruendung.append(f"Email-Report: {email_sent.upper()} — '{email_info.get('betreff','')[:50]}'")
+
+    # Earnings-Check: Warnung wenn Quartalsergebnisse in Kürze
+    try:
+        earnings = prüfe_earnings(ticker)
+        if earnings.get("earnings_nah"):
+            gesamt -= 0.5  # Einstiegs-Score reduzieren (Roulette-Effekt)
+            begruendung.append(f"WARNUNG: {earnings['warnung']}")
+    except Exception:
+        pass
 
     # Technisches Veto: Wenn TA klar VERKAUFEN zeigt, kein KAUFEN moeglich
     if ta["empfehlung"] == "VERKAUFEN":

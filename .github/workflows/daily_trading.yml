@@ -5,6 +5,8 @@ on:
     # 07:00 UTC = 08:00 CET (Winter) / 09:00 CEST (Sommer)
     # Laueft Mo-Fr, Wochenende keine Boersenanalyse
     - cron: "0 7 * * 1-5"
+    # Vorlaeufer-Scanner: jeden Montag 07:30 UTC (nach dem Tagesbericht)
+    - cron: "30 7 * * 1"
   workflow_dispatch:  # Manueller Start per Knopf auf GitHub
 
 permissions:
@@ -86,6 +88,16 @@ jobs:
           EMAIL_ABSENDER_FILTER:  ${{ secrets.EMAIL_ABSENDER_FILTER }}
           CI: "true"
         run: python main.py
+
+      - name: Vorlaeufer-Scanner (nur montags)
+        if: github.event.schedule == '30 7 * * 1' || github.event_name == 'workflow_dispatch'
+        working-directory: trading-system
+        env:
+          GROQ_API_KEY:     ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CI: "true"
+        run: python forerunner_scan.py
 
       - name: Marktgedaechtnis committen
         run: |
