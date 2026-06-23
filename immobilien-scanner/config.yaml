@@ -71,8 +71,8 @@ scraper_sources:
     delay_seconds: 3
 
   immonet:
-    enabled: false
-    url: "https://www.immonet.de"
+    enabled: true  # = Immowelt (zusammengefuehrt), via Playwright, ~17 MFH/Lauf
+    url: "https://www.immowelt.de"
     type: "javascript"
     delay_seconds: 3
 

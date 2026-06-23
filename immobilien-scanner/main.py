@@ -132,10 +132,10 @@ def scrape_all_sources(config: Dict) -> List[Dict]:
 
     if config['scraper_sources'].get('immonet', {}).get('enabled', False):
         try:
-            from scrapers.immonet import run_sync as scrape_immonet
-            scrapers_to_import['Immonet'] = scrape_immonet
+            from scrapers.immowelt import run_sync as scrape_immowelt
+            scrapers_to_import['Immowelt/Immonet'] = scrape_immowelt
         except ImportError as e:
-            logger.warning(f"[WARNING] Immonet Import (Playwright): {e}")
+            logger.warning(f"[WARNING] Immowelt Import (Playwright): {e}")
 
     if config['scraper_sources'].get('sparkasse', {}).get('enabled', False):
         try:
