@@ -1,0 +1,394 @@
+[
+  {
+    "adresse": "119 m² & 135 m² - Zweifamilienhaus am Wald – ein Zuhause für Familie,  [Oberhausen/Umgebung]",
+    "kaufpreis": 699500,
+    "wohnungen": 2,
+    "baujahr": 1966,
+    "groesse_qm": 254,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/119-m%c2%b2-135-m%c2%b2-zweifamilienhaus-am-wald-ein-zuhause-fuer-familie-garten-tiere/",
+    "brutto_rendite": 3.3,
+    "netto_cashflow": 1154.0,
+    "netto_rendite": 9.9,
+    "rote_flaggen": [
+      "Niedrige Rendite: 3.3%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 3.3%, Cashflow 1154€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Portfolio für Entwickler und Strategen: 7 Mehrfamilienhäuser in Essen  [Essen]",
+    "kaufpreis": 2995000,
+    "wohnungen": 3,
+    "baujahr": 1954,
+    "groesse_qm": 2824,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/portfolio-fuer-entwickler-und-strategen-7-mehrfamilienhaeuser-in-essen-und-oberhausen/",
+    "brutto_rendite": 1.1,
+    "netto_cashflow": -2129.0,
+    "netto_rendite": -4.3,
+    "rote_flaggen": [
+      "Niedrige Rendite: 1.1%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 20,
+      "empfehlung": "Brutto 1.1%, Cashflow -2129€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Ich bin ein Zwei- bis Dreifamilienhaus mit Geschichte – stilvoll, urig [Oberhausen/Umgebung]",
+    "kaufpreis": 389000,
+    "wohnungen": 3,
+    "baujahr": 1912,
+    "groesse_qm": 211,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/ich-bin-ein-zwei-bis-dreifamilienhaus-mit-geschichte-stilvoll-urig-und-mit-wunderschoenem-garten/",
+    "brutto_rendite": 8.8,
+    "netto_cashflow": 2080.0,
+    "netto_rendite": 32.1,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 8.8%, Cashflow 2080€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Fünffamilienhaus mit 3 freien Wohnungen - 78 m² / 70 m²/36 m² & Lagerh [Oberhausen/Umgebung]",
+    "kaufpreis": 449000,
+    "wohnungen": 5,
+    "baujahr": 1927,
+    "groesse_qm": 385,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/fuenffamilienhaus-mit-3-freien-wohnungen-78-m%c2%b2-70-m%c2%b2-36-m%c2%b2-lagerhalle-gruene-oase-in-der-stadt/",
+    "brutto_rendite": 12.7,
+    "netto_cashflow": 3465.0,
+    "netto_rendite": 46.3,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 75,
+      "empfehlung": "Brutto 12.7%, Cashflow 3465€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Kleines Mehrfamilienhaus - großer Garten - Wohnung frei. [Oberhausen/Umgebung]",
+    "kaufpreis": 300000,
+    "wohnungen": 3,
+    "baujahr": 1901,
+    "groesse_qm": 281,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/kleines-mehrfamilienhaus-grosser-garten-wohnung-frei/",
+    "brutto_rendite": 11.4,
+    "netto_cashflow": 1985.0,
+    "netto_rendite": 39.7,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 65,
+      "empfehlung": "Brutto 11.4%, Cashflow 1985€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Modernes Wohnensemble mit 3 Mehrfamilienhäusern – luxuriöse Ausstattun [Oberhausen/Umgebung]",
+    "kaufpreis": 1599000,
+    "wohnungen": 3,
+    "baujahr": 1962,
+    "groesse_qm": 1017,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/modernes-wohnensemble-mit-3-mehrfamilienhaeusern-luxurioese-ausstattung-attraktives-mietpotenzial/",
+    "brutto_rendite": 2.1,
+    "netto_cashflow": 736.0,
+    "netto_rendite": 2.8,
+    "rote_flaggen": [
+      "Niedrige Rendite: 2.1%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 2.1%, Cashflow 736€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Drei Mehrfamilienhäuser mit 24 Wohnungen & 24 Balkone – 2023 modernisi [Oberhausen/Umgebung]",
+    "kaufpreis": 2469000,
+    "wohnungen": 24,
+    "baujahr": 1968,
+    "groesse_qm": 1684,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 9,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/drei-mehrfamilienhaeuser-mit-24-wohnungen-24-balkone-2023-modernisiert-mit-waermepumpen/",
+    "brutto_rendite": 11.1,
+    "netto_cashflow": 16996.0,
+    "netto_rendite": 41.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 80,
+      "empfehlung": "Brutto 11.1%, Cashflow 16996€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "115 m² & 132 m² Wfl. - Vermietung & Eigennutzung. Mehrfamilienhaus mit [Oberhausen/Umgebung]",
+    "kaufpreis": 495000,
+    "wohnungen": 3,
+    "baujahr": 1905,
+    "groesse_qm": 387,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/115-m%c2%b2-132-m%c2%b2-wfl-vermietung-eigennutzung-mehrfamilienhaus-mit-freien-wohnungen/",
+    "brutto_rendite": 6.9,
+    "netto_cashflow": 1804.0,
+    "netto_rendite": 21.9,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 60,
+      "empfehlung": "Brutto 6.9%, Cashflow 1804€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Leerstehendes Zweifamilienhaus mit Charakter wartet auf kreative neue  [Oberhausen/Umgebung]",
+    "kaufpreis": 299000,
+    "wohnungen": 2,
+    "baujahr": 1907,
+    "groesse_qm": 196,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/leerstehendes-zweifamilienhaus-mit-charakter-wartet-auf-kreative-neue-eigentuemer/",
+    "brutto_rendite": 7.6,
+    "netto_cashflow": 1286.0,
+    "netto_rendite": 25.8,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 55,
+      "empfehlung": "Brutto 7.6%, Cashflow 1286€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Bezugsfreie Wohnung mit Einbauküche – Modernisiert & gepflegt in klein [Oberhausen/Umgebung]",
+    "kaufpreis": 110000,
+    "wohnungen": 3,
+    "baujahr": 1962,
+    "groesse_qm": 62,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/bezugsfreie-wohnung-mit-einbaukueche-modernisiert-gepflegt-in-kleinem-mehrfamilienhaus/",
+    "brutto_rendite": 31.1,
+    "netto_cashflow": 2334.0,
+    "netto_rendite": 127.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 31.1%, Cashflow 2334€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Saniertes ZFH mit Garage, Sauna und Pool auf 878m² Grundstück [Gladbeck]",
+    "kaufpreis": 399000,
+    "wohnungen": 2,
+    "baujahr": 1906,
+    "groesse_qm": 165,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/haus-zweifamilienhaus-in-gladbeck-kaufen-4540/",
+    "brutto_rendite": 5.7,
+    "netto_cashflow": 1321.0,
+    "netto_rendite": 19.9,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 45,
+      "empfehlung": "Brutto 5.7%, Cashflow 1321€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  }
+]

@@ -12,13 +12,16 @@ from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from scrapers.objekt_klassifikation import klassifiziere
+except ImportError:
+    from objekt_klassifikation import klassifiziere
+
 logger = logging.getLogger(__name__)
 
 BASE = "https://immobilien-vanoepen.de"
 LISTING_URL = "https://immobilien-vanoepen.de/immobilien/"
 DETAIL_RE = re.compile(r"https://immobilien-vanoepen\.de/immobilien/[a-z0-9][a-z0-9%\-]+/")
-
-WORTZAHL = {"zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5, "sechs": 6}
 
 
 def _session() -> requests.Session:
@@ -46,19 +49,6 @@ def parse_inx_details(soup: BeautifulSoup) -> Dict[str, str]:
 def _num(val: str, default: int = 0) -> int:
     m = re.search(r"[\d.]+", val.replace(".", "") if val else "")
     return int(m.group(0)) if m else default
-
-
-def _units(title: str, details: Dict[str, str]) -> int:
-    blob = (title + " " + details.get("Objektart", "") + " " + details.get("Objekttyp", "")).lower()
-    for wort, n in WORTZAHL.items():
-        if f"{wort}familienhaus" in blob:
-            return n
-    if "mehrfamilien" in blob or "zinshaus" in blob or "wohnanlage" in blob:
-        return 3
-    we = details.get("Wohneinheiten") or details.get("Anzahl Wohneinheiten") or ""
-    if we and _num(we):
-        return _num(we)
-    return 1
 
 
 def scrape_vanoepen(postleitzahl: str = "46236") -> List[Dict]:
@@ -93,9 +83,15 @@ def scrape_vanoepen(postleitzahl: str = "46236") -> List[Dict]:
 
                 groesse = _num(det.get("Wohnfläche", ""), 100)
                 baujahr = _num(det.get("Baujahr", ""), 2000)
-                wohnungen = _units(title, det)
-                if wohnungen < 2:
-                    continue  # nur Mehrfamilienobjekte
+                # Klassifikation auf Titel + Objektart/Objekttyp aus den Detail-Feldern
+                typ_text = f"{title} {det.get('Objektart','')} {det.get('Objekttyp','')}"
+                kategorie, wohnungen, ist_einzelwohnung = klassifiziere(typ_text, groesse)
+                # Explizite Wohneinheiten-Angabe hat Vorrang bei MFH
+                we_feld = det.get("Wohneinheiten") or det.get("Anzahl Wohneinheiten") or ""
+                if kategorie == "MFH" and _num(we_feld) >= 2:
+                    wohnungen = _num(we_feld)
+                if kategorie in ("EFH", "UNKLAR"):
+                    continue  # Einfamilienhaus / unklar raus
 
                 full_text = unicodedata.normalize("NFKC", ds.get_text(" ", strip=True)).lower()
                 ek_m = re.search(r"energieeffizienzklasse\s*:?\s*([a-h])", full_text)
@@ -114,6 +110,8 @@ def scrape_vanoepen(postleitzahl: str = "46236") -> List[Dict]:
                     "merkmal_balkon": "balkon" in full_text,
                     "merkmal_garage": 1 if ("garage" in full_text or "stellplatz" in full_text) else 0,
                     "energieklasse": energieklasse,
+                    "objekt_typ": kategorie,
+                    "ist_einzelwohnung": ist_einzelwohnung,
                     "quelle": "van Oepen",
                     "link": link,
                 })

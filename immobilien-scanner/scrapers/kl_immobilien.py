@@ -11,16 +11,15 @@ from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from scrapers.objekt_klassifikation import klassifiziere
+except ImportError:
+    from objekt_klassifikation import klassifiziere
+
 logger = logging.getLogger(__name__)
 
 LISTING_URL = "https://kl-immo-web.de/immobilienangeboten/kauf/"
 BASE = "https://kl-immo-web.de"
-
-# Wortzahl -> Anzahl Wohneinheiten (aus Titel)
-WORTZAHL = {
-    "ein": 1, "zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5,
-    "sechs": 6, "sieben": 7, "acht": 8, "neun": 9, "zehn": 10,
-}
 
 
 def _session() -> requests.Session:
@@ -53,23 +52,6 @@ def _parse_int(text: str, label: str, default: int) -> int:
     raw = _parse_label(text, label)
     m = re.search(r"\d+", raw)
     return int(m.group(0)) if m else default
-
-
-def _units_from_title(title: str) -> int:
-    """Anzahl Wohneinheiten aus Titel ableiten."""
-    t = title.lower()
-    # 1. Hausform mit Zahlwort: "Zweifamilienhaus", "Fünffamilienhaus" (am eindeutigsten)
-    for wort, n in WORTZAHL.items():
-        if f"{wort}familienhaus" in t:
-            return n
-    # 2. "24 Wohnungen" (explizite Einheiten-Zahl, nur wenn keine Hausform)
-    m = re.search(r"(\d+)\s*(?:frei[a-z]*\s+)?wohnung", t)
-    if m:
-        return int(m.group(1))
-    # 3. Generisches MFH ohne klare Zahl -> konservativer Default
-    if "mehrfamilien" in t or "wohnensemble" in t or "portfolio" in t:
-        return 3
-    return 1
 
 
 def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 0.5) -> List[Dict]:
@@ -111,7 +93,8 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 0.5) -> Lis
                 kaufpreis = _parse_price(detail_text)
                 groesse = _parse_int(detail_text, "Wohnfläche", 100)
                 baujahr = _parse_int(detail_text, "Baujahr", 2000)
-                wohnungen = _units_from_title(title)
+                # Zentrale Klassifikation (Einzelwohnung vs. ganzes MFH vs. EFH)
+                kategorie, wohnungen, ist_einzelwohnung = klassifiziere(title, groesse)
 
                 # Adresse: KL veröffentlicht keine Objekt-Adresse (nur Büro-Adresse
                 # "Dorstener Str. 313" auf jeder Seite). Daher Titel als Bezeichnung.
@@ -131,8 +114,8 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 0.5) -> Lis
                     1 if re.search(r"garage|stellplatz", detail_text, re.IGNORECASE) else 0
                 )
 
-                # Filter: nur Mehrfamilienhäuser (>= 2 WE) und echte Preise
-                if wohnungen < 2:
+                # Filter: MFH oder Einzelwohnung behalten; EFH/unklar raus
+                if kategorie in ("EFH", "UNKLAR"):
                     continue
                 if kaufpreis < 50000:
                     continue
@@ -148,6 +131,8 @@ def scrape_kl_immobilien(postleitzahl: str = "46149", delay: float = 0.5) -> Lis
                     "merkmal_balkon": merkmal_balkon,
                     "merkmal_garage": merkmal_garage,
                     "energieklasse": energieklasse,
+                    "objekt_typ": kategorie,
+                    "ist_einzelwohnung": ist_einzelwohnung,
                     "quelle": "KL Immobilien",
                     "link": link,
                 })

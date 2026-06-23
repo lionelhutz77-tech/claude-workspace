@@ -15,7 +15,8 @@ search_criteria:
   max_kaufpreis: 750000
 
   # Miet-Annahmen
-  kaltmiete_pro_einheit: 950  # EUR/Monat
+  kaltmiete_pro_einheit: 950  # EUR/Monat (pro Einheit im Mehrfamilienhaus)
+  miete_pro_qm_wohnung: 8.0   # EUR/m² Kaltmiete fuer EINZELNE Eigentumswohnungen
 
   # Nebenkosten-Berechnung (monatlich pro Wohnung)
   verwaltungsquote_prozent: 10  # % der Kaltmiete

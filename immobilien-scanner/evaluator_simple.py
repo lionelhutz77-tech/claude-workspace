@@ -25,21 +25,32 @@ def evaluate_properties_simple(properties: List[Dict], config: Dict) -> List[Dic
         wohnungen = prop.get("wohnungen", 1)
         groesse_qm = prop.get("groesse_qm", 100)
         baujahr = prop.get("baujahr", 2000)
+        ist_einzelwohnung = prop.get("ist_einzelwohnung", False)
 
-        # Angenommene Kaltmiete
+        # Kaltmiete realistisch ermitteln:
+        # - Einzelwohnung: EINE Partei, Miete nach Wohnflaeche (m² x Marktmiete)
+        # - Mehrfamilienhaus: Einheiten x angenommene Miete pro Einheit
         kaltmiete_pro_unit = config['search_criteria']['kaltmiete_pro_einheit']
-        jahresmiete = kaltmiete_pro_unit * wohnungen * 12
+        miete_pro_qm = config['search_criteria'].get('miete_pro_qm_wohnung', 8.0)
+        if ist_einzelwohnung:
+            monatsmiete = groesse_qm * miete_pro_qm
+            anzahl_parteien = 1
+        else:
+            monatsmiete = kaltmiete_pro_unit * wohnungen
+            anzahl_parteien = wohnungen
+
+        jahresmiete = monatsmiete * 12
         brutto_rendite = (jahresmiete / kaufpreis * 100) if kaufpreis > 0 else 0
 
         # Kosten
-        verwaltung = kaltmiete_pro_unit * wohnungen * 12 * 0.10 / 12
+        verwaltung = monatsmiete * 0.10
         instandhaltung = groesse_qm * 1.50
         versicherung = 40
-        leerstand = kaltmiete_pro_unit * wohnungen * 0.03
+        leerstand = monatsmiete * 0.03
         kosten_monatlich = verwaltung + instandhaltung + versicherung + leerstand
 
         # Cashflow
-        cashflow_vor_kredit = kaltmiete_pro_unit * wohnungen - kosten_monatlich
+        cashflow_vor_kredit = monatsmiete - kosten_monatlich
         kreditrate = (kaufpreis * 0.80) / (30 * 12) * 0.05  # 5% total
         netto_cashflow = cashflow_vor_kredit - kreditrate
         eigenkapital = kaufpreis * 0.20
@@ -85,6 +96,8 @@ def evaluate_properties_simple(properties: List[Dict], config: Dict) -> List[Dic
 
         # Rote Flaggen
         rote_flaggen = []
+        if ist_einzelwohnung:
+            rote_flaggen.append("Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)")
         if baujahr < 1950:
             rote_flaggen.append("Baujahr vor 1950: Keller-Risiko")
         if brutto_rendite < 4:
@@ -109,6 +122,9 @@ def evaluate_properties_simple(properties: List[Dict], config: Dict) -> List[Dic
             "brutto_rendite": round(brutto_rendite, 1),
             "netto_cashflow": round(netto_cashflow, 0),
             "netto_rendite": round(netto_rendite, 1),
+            "monatsmiete_angenommen": round(monatsmiete, 0),
+            "anzahl_parteien": anzahl_parteien,
+            "objekt_typ": prop.get("objekt_typ", "MFH" if not ist_einzelwohnung else "EINZELWOHNUNG"),
             "rote_flaggen": rote_flaggen,
             "positive_merkmale": [m for m in ["Garage", "Garten", "Balkon", "Renoviert"]
                                  if ("garage" in str(prop).lower() or "garten" in str(prop).lower() or m.lower() in str(prop).lower())],

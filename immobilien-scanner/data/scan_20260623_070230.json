@@ -1,0 +1,956 @@
+[
+  {
+    "adresse": "119 m² & 135 m² - Zweifamilienhaus am Wald – ein Zuhause für Familie,  [Oberhausen/Umgebung]",
+    "kaufpreis": 699500,
+    "wohnungen": 2,
+    "baujahr": 1966,
+    "groesse_qm": 254,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/119-m%c2%b2-135-m%c2%b2-zweifamilienhaus-am-wald-ein-zuhause-fuer-familie-garten-tiere/",
+    "brutto_rendite": 3.3,
+    "netto_cashflow": 1154.0,
+    "netto_rendite": 9.9,
+    "rote_flaggen": [
+      "Niedrige Rendite: 3.3%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 3.3%, Cashflow 1154€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Portfolio für Entwickler und Strategen: 7 Mehrfamilienhäuser in Essen  [Essen]",
+    "kaufpreis": 2995000,
+    "wohnungen": 3,
+    "baujahr": 1954,
+    "groesse_qm": 2824,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/portfolio-fuer-entwickler-und-strategen-7-mehrfamilienhaeuser-in-essen-und-oberhausen/",
+    "brutto_rendite": 1.1,
+    "netto_cashflow": -2129.0,
+    "netto_rendite": -4.3,
+    "rote_flaggen": [
+      "Niedrige Rendite: 1.1%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 20,
+      "empfehlung": "Brutto 1.1%, Cashflow -2129€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Ich bin ein Zwei- bis Dreifamilienhaus mit Geschichte – stilvoll, urig [Oberhausen/Umgebung]",
+    "kaufpreis": 389000,
+    "wohnungen": 3,
+    "baujahr": 1912,
+    "groesse_qm": 211,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/ich-bin-ein-zwei-bis-dreifamilienhaus-mit-geschichte-stilvoll-urig-und-mit-wunderschoenem-garten/",
+    "brutto_rendite": 8.8,
+    "netto_cashflow": 2080.0,
+    "netto_rendite": 32.1,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 8.8%, Cashflow 2080€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Fünffamilienhaus mit 3 freien Wohnungen - 78 m² / 70 m²/36 m² & Lagerh [Oberhausen/Umgebung]",
+    "kaufpreis": 449000,
+    "wohnungen": 5,
+    "baujahr": 1927,
+    "groesse_qm": 385,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/fuenffamilienhaus-mit-3-freien-wohnungen-78-m%c2%b2-70-m%c2%b2-36-m%c2%b2-lagerhalle-gruene-oase-in-der-stadt/",
+    "brutto_rendite": 12.7,
+    "netto_cashflow": 3465.0,
+    "netto_rendite": 46.3,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 75,
+      "empfehlung": "Brutto 12.7%, Cashflow 3465€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Kleines Mehrfamilienhaus - großer Garten - Wohnung frei. [Oberhausen/Umgebung]",
+    "kaufpreis": 300000,
+    "wohnungen": 3,
+    "baujahr": 1901,
+    "groesse_qm": 281,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/kleines-mehrfamilienhaus-grosser-garten-wohnung-frei/",
+    "brutto_rendite": 11.4,
+    "netto_cashflow": 1985.0,
+    "netto_rendite": 39.7,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 65,
+      "empfehlung": "Brutto 11.4%, Cashflow 1985€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Modernes Wohnensemble mit 3 Mehrfamilienhäusern – luxuriöse Ausstattun [Oberhausen/Umgebung]",
+    "kaufpreis": 1599000,
+    "wohnungen": 3,
+    "baujahr": 1962,
+    "groesse_qm": 1017,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/modernes-wohnensemble-mit-3-mehrfamilienhaeusern-luxurioese-ausstattung-attraktives-mietpotenzial/",
+    "brutto_rendite": 2.1,
+    "netto_cashflow": 736.0,
+    "netto_rendite": 2.8,
+    "rote_flaggen": [
+      "Niedrige Rendite: 2.1%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 2.1%, Cashflow 736€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Drei Mehrfamilienhäuser mit 24 Wohnungen & 24 Balkone – 2023 modernisi [Oberhausen/Umgebung]",
+    "kaufpreis": 2469000,
+    "wohnungen": 24,
+    "baujahr": 1968,
+    "groesse_qm": 1684,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 9,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/drei-mehrfamilienhaeuser-mit-24-wohnungen-24-balkone-2023-modernisiert-mit-waermepumpen/",
+    "brutto_rendite": 11.1,
+    "netto_cashflow": 16996.0,
+    "netto_rendite": 41.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 80,
+      "empfehlung": "Brutto 11.1%, Cashflow 16996€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "115 m² & 132 m² Wfl. - Vermietung & Eigennutzung. Mehrfamilienhaus mit [Oberhausen/Umgebung]",
+    "kaufpreis": 495000,
+    "wohnungen": 3,
+    "baujahr": 1905,
+    "groesse_qm": 387,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/115-m%c2%b2-132-m%c2%b2-wfl-vermietung-eigennutzung-mehrfamilienhaus-mit-freien-wohnungen/",
+    "brutto_rendite": 6.9,
+    "netto_cashflow": 1804.0,
+    "netto_rendite": 21.9,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 60,
+      "empfehlung": "Brutto 6.9%, Cashflow 1804€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Leerstehendes Zweifamilienhaus mit Charakter wartet auf kreative neue  [Oberhausen/Umgebung]",
+    "kaufpreis": 299000,
+    "wohnungen": 2,
+    "baujahr": 1907,
+    "groesse_qm": 196,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/leerstehendes-zweifamilienhaus-mit-charakter-wartet-auf-kreative-neue-eigentuemer/",
+    "brutto_rendite": 7.6,
+    "netto_cashflow": 1286.0,
+    "netto_rendite": 25.8,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 55,
+      "empfehlung": "Brutto 7.6%, Cashflow 1286€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Bezugsfreie Wohnung mit Einbauküche – Modernisiert & gepflegt in klein [Oberhausen/Umgebung]",
+    "kaufpreis": 110000,
+    "wohnungen": 3,
+    "baujahr": 1962,
+    "groesse_qm": 62,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/bezugsfreie-wohnung-mit-einbaukueche-modernisiert-gepflegt-in-kleinem-mehrfamilienhaus/",
+    "brutto_rendite": 31.1,
+    "netto_cashflow": 2334.0,
+    "netto_rendite": 127.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 31.1%, Cashflow 2334€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Saniertes ZFH mit Garage, Sauna und Pool auf 878m² Grundstück [Gladbeck]",
+    "kaufpreis": 399000,
+    "wohnungen": 2,
+    "baujahr": 1906,
+    "groesse_qm": 165,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/haus-zweifamilienhaus-in-gladbeck-kaufen-4540/",
+    "brutto_rendite": 5.7,
+    "netto_cashflow": 1321.0,
+    "netto_rendite": 19.9,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 45,
+      "empfehlung": "Brutto 5.7%, Cashflow 1321€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Altstadt-Mitte, Oberhausen (46045)",
+    "kaufpreis": 249000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 186,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "E",
+    "zimmer": "7",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/818dfe72-d2fd-442e-b303-fcb7611c9f31",
+    "brutto_rendite": 13.7,
+    "netto_cashflow": 2133.0,
+    "netto_rendite": 51.4,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 13.7%, Cashflow 2133€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Alsfeld, Oberhausen (46145)",
+    "kaufpreis": 440000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 170,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "8,5",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/97b8745a-a27f-47aa-8364-116fe5e8394d",
+    "brutto_rendite": 5.2,
+    "netto_cashflow": 1309.0,
+    "netto_rendite": 17.9,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 60,
+      "empfehlung": "Brutto 5.2%, Cashflow 1309€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Marienkirche, Oberhausen (46047)",
+    "kaufpreis": 256000,
+    "wohnungen": 4,
+    "baujahr": 2000,
+    "groesse_qm": 263,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "12",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/0d920598-e0b1-41a8-b92a-33e4ac3baf4b",
+    "brutto_rendite": 17.8,
+    "netto_cashflow": 2843.0,
+    "netto_rendite": 66.6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 17.8%, Cashflow 2843€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Mehrfamilienhaus Oberhausen",
+    "kaufpreis": 985000,
+    "wohnungen": 8,
+    "baujahr": 2000,
+    "groesse_qm": 567,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "E",
+    "zimmer": "",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/f853aee5-aa33-4013-b0d6-6938ea3a2623",
+    "brutto_rendite": 9.3,
+    "netto_cashflow": 5612.0,
+    "netto_rendite": 34.2,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 9.3%, Cashflow 5612€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Frohnhausen, Essen (45144)",
+    "kaufpreis": 559000,
+    "wohnungen": 5,
+    "baujahr": 2000,
+    "groesse_qm": 340,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "18",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/5dc40470-dbe0-4d4d-be72-874b5c690858",
+    "brutto_rendite": 10.2,
+    "netto_cashflow": 3520.0,
+    "netto_rendite": 37.8,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 10.2%, Cashflow 3520€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Buschhausen, Oberhausen (46149)",
+    "kaufpreis": 330000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 217,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "H",
+    "zimmer": "7",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/d648c067-ba0f-4307-ac31-628cc872615b",
+    "brutto_rendite": 10.4,
+    "netto_cashflow": 2077.0,
+    "netto_rendite": 37.8,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 10.4%, Cashflow 2077€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 75,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Holten, Oberhausen (46147)",
+    "kaufpreis": 389000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 144,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "H",
+    "zimmer": "6",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/02dfc1b9-a5e8-4c18-b57d-5c6c3274664f",
+    "brutto_rendite": 5.9,
+    "netto_cashflow": 1354.0,
+    "netto_rendite": 20.9,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 60,
+      "empfehlung": "Brutto 5.9%, Cashflow 1354€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Buschhausen, Oberhausen (46149)",
+    "kaufpreis": 934000,
+    "wohnungen": 5,
+    "baujahr": 2000,
+    "groesse_qm": 372,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "B",
+    "zimmer": "12,5",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/261692iwfjxa",
+    "brutto_rendite": 6.1,
+    "netto_cashflow": 3431.0,
+    "netto_rendite": 22.0,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 80,
+      "empfehlung": "Brutto 6.1%, Cashflow 3431€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Heide, Oberhausen (46117)",
+    "kaufpreis": 338000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/551f6df6-dc92-41cb-bfb2-244bd874c34d",
+    "brutto_rendite": 6.7,
+    "netto_cashflow": 1425.0,
+    "netto_rendite": 25.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 55,
+      "empfehlung": "Brutto 6.7%, Cashflow 1425€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Osterfeld-Ost, Oberhausen (46119)",
+    "kaufpreis": 598000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/55a57683-6e86-4a96-8c82-c741061580ad",
+    "brutto_rendite": 3.8,
+    "netto_cashflow": 1397.0,
+    "netto_rendite": 14.0,
+    "rote_flaggen": [
+      "Niedrige Rendite: 3.8%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 50,
+      "empfehlung": "Brutto 3.8%, Cashflow 1397€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Alsfeld, Oberhausen (46149)",
+    "kaufpreis": 509000,
+    "wohnungen": 7,
+    "baujahr": 2000,
+    "groesse_qm": 481,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/4b3f98e5-cb66-401b-9db4-41f0e3083443",
+    "brutto_rendite": 15.7,
+    "netto_cashflow": 4967.0,
+    "netto_rendite": 58.6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 15.7%, Cashflow 4967€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 60,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Sterkrade-Mitte, Oberhausen (46149)",
+    "kaufpreis": 275000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 160,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "6",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/d33880b7-3448-444e-b496-8f882d36a45e",
+    "brutto_rendite": 8.3,
+    "netto_cashflow": 1342.0,
+    "netto_rendite": 29.3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 8.3%, Cashflow 1342€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 75,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Sterkrade-Mitte, Oberhausen (46047)",
+    "kaufpreis": 289000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 201,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "8",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/8dd24a94-f704-44b9-8a41-9c40ffcee4fb",
+    "brutto_rendite": 11.8,
+    "netto_cashflow": 2106.0,
+    "netto_rendite": 43.7,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 11.8%, Cashflow 2106€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Borbeck, Oberhausen (46117)",
+    "kaufpreis": 890000,
+    "wohnungen": 6,
+    "baujahr": 2000,
+    "groesse_qm": 452,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "C",
+    "zimmer": "24",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/477f430c-970c-4da6-8f07-393bd2d7ad8a",
+    "brutto_rendite": 7.7,
+    "netto_cashflow": 4142.0,
+    "netto_rendite": 27.9,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 7.7%, Cashflow 4142€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Osterfeld-Ost, Oberhausen (46117)",
+    "kaufpreis": 629000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 209,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "10",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/d7c394d1-33be-4b0f-b2d7-2b87cba2c130",
+    "brutto_rendite": 5.4,
+    "netto_cashflow": 2056.0,
+    "netto_rendite": 19.6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 45,
+      "empfehlung": "Brutto 5.4%, Cashflow 2056€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Altstadt-Süd, Oberhausen (46045)",
+    "kaufpreis": 349000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 216,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "1",
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/d4261e1a-8a7d-48b0-943b-b770c64a0883",
+    "brutto_rendite": 9.8,
+    "netto_cashflow": 2077.0,
+    "netto_rendite": 35.7,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 9.8%, Cashflow 2077€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  }
+]

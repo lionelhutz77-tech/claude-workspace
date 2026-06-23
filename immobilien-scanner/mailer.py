@@ -130,6 +130,17 @@ def build_html_report(profit_props: List[Dict], family_props: List[Dict], config
             rote_flaggen = "<br>".join(f"⚠️ {f}" for f in prop.get("rote_flaggen", []))
             positive = "<br>".join(f"✅ {f}" for f in prop.get("positive_merkmale", []))
 
+            # Objekttyp lesbar + Hinweis bei Einzelwohnung
+            typ_map = {"MFH": "Mehrfamilienhaus", "EINZELWOHNUNG": "Einzelwohnung",
+                       "EFH": "Einfamilienhaus", "UNKLAR": "Haus"}
+            typ_label = typ_map.get(prop.get("objekt_typ", "MFH"), "Haus")
+            parteien = prop.get("anzahl_parteien", prop.get("wohnungen", 1))
+            miete = prop.get("monatsmiete_angenommen", 0)
+            if prop.get("ist_einzelwohnung"):
+                eck_einheiten = f"<span style='color:#c0392b;'><strong>{typ_label}</strong> (1 Partei)</span>"
+            else:
+                eck_einheiten = f"<strong>{typ_label}</strong> ({parteien} Einheiten)"
+
             rows += f"""
             <tr style="background-color: {color};">
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;"><strong>{i}. {prop['adresse']}</strong></td>
@@ -138,11 +149,13 @@ def build_html_report(profit_props: List[Dict], family_props: List[Dict], config
                 </td>
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;">
                     <strong>{prop['kaufpreis']:,}€</strong><br>
-                    {prop['wohnungen']} Whg | Baujahr {prop['baujahr']}
+                    {eck_einheiten}<br>
+                    {prop.get('groesse_qm','?')} m² | Baujahr {prop['baujahr']}
                 </td>
                 <td style="padding: 12px; border-bottom: 1px solid #ddd;">
                     <strong>{prop['brutto_rendite']:.1f}%</strong> Brutto<br>
                     <span style="color: #27ae60;"><strong>{prop['netto_cashflow']}€</strong>/Mo</span><br>
+                    <span style="font-size:11px;">angenomm. Miete {miete:.0f}€/Mo</span><br>
                     {prop['netto_rendite']:.1f}% auf EK
                 </td>
                 <td style="padding: 12px; border-bottom: 1px solid #ddd; font-size: 11px;">

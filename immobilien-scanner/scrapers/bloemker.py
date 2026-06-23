@@ -12,15 +12,15 @@ from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from scrapers.objekt_klassifikation import klassifiziere
+except ImportError:
+    from objekt_klassifikation import klassifiziere
+
 logger = logging.getLogger(__name__)
 
 LISTING_URL = "https://bloemker-immobilien.de/immobilien/"
 DETAIL_RE = re.compile(r"https://bloemker-immobilien\.de/immobilien/[a-z][a-z0-9\-]+-(\d+)/")
-
-WORTZAHL = {
-    "ein": 1, "zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5,
-    "sechs": 6, "sieben": 7, "acht": 8,
-}
 
 
 def _session() -> requests.Session:
@@ -42,16 +42,6 @@ def _kv_int(text: str, label: str, default: int) -> int:
     raw = _kv(text, label)
     m = re.search(r"\d+", raw.replace(".", ""))
     return int(m.group(0)) if m else default
-
-
-def _units(title: str, slug: str) -> int:
-    blob = (title + " " + slug).lower()
-    for wort, n in WORTZAHL.items():
-        if f"{wort}familienhaus" in blob:
-            return n
-    if "mehrfamilien" in blob:
-        return 3
-    return 1  # Einfamilienhaus / Wohnung / Doppelhaus etc.
 
 
 def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
@@ -86,7 +76,9 @@ def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
                 groesse = _kv_int(text, "Wohnfläche", 100)
                 baujahr = _kv_int(text, "Baujahr", 2000)
                 slug = link.rstrip("/").split("/")[-1]
-                wohnungen = _units(title, slug)
+                kategorie, wohnungen, ist_einzelwohnung = klassifiziere(
+                    f"{title} {slug.replace('-', ' ')}", groesse
+                )
 
                 # Stadt aus Slug: ...-in-{stadt}-kaufen-{id}
                 stadt_m = re.search(r"-in-([a-z\-]+?)-(?:kaufen|kauf)", slug)
@@ -95,7 +87,7 @@ def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
                 ek_m = re.search(r"Energieeffizienzklasse[^|]*\|\s*([A-H])", text)
                 energieklasse = ek_m.group(1).upper() if ek_m else ""
 
-                if wohnungen < 2 or kaufpreis < 50000:
+                if kategorie in ("EFH", "UNKLAR") or kaufpreis < 50000:
                     continue
 
                 properties.append({
@@ -109,6 +101,8 @@ def scrape_bloemker(postleitzahl: str = "46119") -> List[Dict]:
                     "merkmal_balkon": "balkon" in text.lower(),
                     "merkmal_garage": 1 if "garage" in text.lower() else 0,
                     "energieklasse": energieklasse,
+                    "objekt_typ": kategorie,
+                    "ist_einzelwohnung": ist_einzelwohnung,
                     "quelle": "Blömker Immobilien",
                     "link": link,
                 })

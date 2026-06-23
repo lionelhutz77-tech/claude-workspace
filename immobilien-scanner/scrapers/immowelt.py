@@ -10,6 +10,11 @@ import unicodedata
 from typing import List, Dict
 from playwright.sync_api import sync_playwright
 
+try:
+    from scrapers.objekt_klassifikation import klassifiziere
+except ImportError:
+    from objekt_klassifikation import klassifiziere
+
 logger = logging.getLogger(__name__)
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -21,20 +26,6 @@ CARD_JS = """els=>els.map(a=>{
   let href=a.getAttribute("href");
   return {href:href, text:(n.innerText||"").replace(/\\s+/g," ").trim()};
 })"""
-
-WORTZAHL = {"zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "fuenf": 5, "sechs": 6}
-
-
-def _units_from_type(text: str, wohnflaeche: int) -> int:
-    """Anzahl Wohneinheiten aus Objekttyp ableiten."""
-    t = text.lower()
-    for wort, n in WORTZAHL.items():
-        if f"{wort}familienhaus" in t:
-            return n
-    if "mehrfamilienhaus" in t or "wohnanlage" in t or "wohnhaus" in t:
-        # generisches MFH: konservativ ueber Wohnflaeche schaetzen (~70 m²/Einheit)
-        return max(2, round(wohnflaeche / 70)) if wohnflaeche else 2
-    return 1  # Einfamilienhaus / Doppelhaus / Reihenhaus / Wohnung
 
 
 def _parse_card(href: str, text: str) -> Dict | None:
@@ -68,9 +59,10 @@ def _parse_card(href: str, text: str) -> Dict | None:
     zi_m = re.search(r"([\d,]+)\s*Zimmer", text)
     zimmer = zi_m.group(1) if zi_m else ""
 
-    wohnungen = _units_from_type(text, wohnflaeche)
-    if wohnungen < 2:
-        return None  # kein Mehrfamilienobjekt
+    # Zentrale Klassifikation (Einzelwohnung vs. ganzes MFH vs. EFH)
+    kategorie, wohnungen, ist_einzelwohnung = klassifiziere(text, wohnflaeche)
+    if kategorie in ("EFH", "UNKLAR"):
+        return None  # Einfamilienhaus / unklar -> kein passendes Mietobjekt
 
     # Energieklasse: "... 22 E 249.000 €" -> Buchstabe zwischen Zahl und Preis
     ek_m = re.search(r"\d\s+([A-H])\s+[\d.]+\s*€", text)
@@ -99,6 +91,8 @@ def _parse_card(href: str, text: str) -> Dict | None:
         "merkmal_garage": 1 if re.search(r"garage|stellplatz", text, re.IGNORECASE) else 0,
         "energieklasse": energieklasse,
         "zimmer": zimmer,
+        "objekt_typ": kategorie,
+        "ist_einzelwohnung": ist_einzelwohnung,
         "quelle": "Immowelt/Immonet",
         "link": href.split("?")[0] if href else "",
     }
