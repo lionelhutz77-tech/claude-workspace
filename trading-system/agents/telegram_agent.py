@@ -117,12 +117,17 @@ def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None,
             strat_str = f" [{strat}]" if strat else ""
             risiko  = f.get("risiko", "MITTEL")
             r_emoji = {"NIEDRIG": "🟢", "MITTEL": "🟡", "HOCH": "🔴"}.get(risiko, "⚪")
-            lines.append(
+            kaufzeile = (
                 f"{r_emoji} <b>{e['asset']}</b>{strat_str}  "
                 f"Einstieg: ${f.get('einstieg', e.get('preis', 0)):,.2f}  "
                 f"Ziel: ${f.get('ziel', 0):,.2f}  "
                 f"SL: ${f.get('stop_loss', 0):,.2f}"
             )
+            lines.append(kaufzeile)
+            # Unpriced Optionality anzeigen wenn vorhanden
+            optio = f.get("optionalitaet", "")
+            if optio and optio.lower() not in ("keine erkennbar", "keine", "-", ""):
+                lines.append(f"  💡 <i>Optionalität: {optio[:120]}</i>")
         lines.append("")
 
     # ABWARTEN

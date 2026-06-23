@@ -60,22 +60,33 @@ KANDIDATEN = [
     # Wildcards
     {"ticker": "CEVA",   "name": "CEVA Inc.",             "sektor": "KI-IP",
      "these": "Lizenziert KI-IP-Cores — sitzt in jedem Mobilchip, kaum bekannt aber struktureller Moat"},
+    # Ad-Tech / Antitrust-Nutzniesser (Lernquelle: Claude Portfolio $MGNI +32%)
+    {"ticker": "MGNI",   "name": "Magnite",               "sektor": "Ad-Tech/Streaming",
+     "these": "Groesste unabhaengige Streaming-TV-Anzeigenplattform; profitiert direkt von DOJ-Google-Antitrust (jeder 1% Marktanteil = ~$50M Umsatz); KI-Orchestrierung gestartet"},
+    {"ticker": "TTD",    "name": "The Trade Desk",        "sektor": "Ad-Tech",
+     "these": "Fuehrender programmatischer Werbemarkt; struktureller Nutzniesser wenn Google Ad-Tech aufgebrochen wird"},
+    {"ticker": "PUBM",   "name": "PubMatic",              "sektor": "Ad-Tech",
+     "these": "Unabhaengige Supply-Side-Plattform; guenstig bewertet, profitiert von Google-Antitrust-Entscheidung"},
 ]
 
 # Referenzstories für die KI-Bewertung
 REFERENZ_STORIES = """
 Bewährte Vorläufer-Muster (historisch):
 - AMD 2016 bei $2: Neue Zen-CPU-Architektur schlägt Intel → 2 Jahre später $30 (+1400%)
-- NVDA 2020 bei $50: Data Center + Gaming dominanz + Ampere GPU → $300 (+500%)
+- NVDA 2020 bei $50: Data Center + Gaming Dominanz + Ampere GPU → $300 (+500%)
 - TSLA 2019 bei $25: Erster profitabler Quartal, Model 3 Hochlauf → $400 (+1500%)
 - MSFT 2016 bei $40: Azure-Cloud-Wachstum unter Satya Nadella → $300 (+650%)
+- MGNI 2026 bei $14: Boring Franchise (13x forward earnings), DOJ-Google-Antitrust als
+  uneingepreiste Optionalität ("jeder 1% Marktanteil = $50M Umsatz"), KI-Orchestration-Launch
+  → +32% in 6 Wochen (bestätigt durch reales $50k-Claude-Portfolio-Experiment)
 
 Gemeinsame Frühindikatoren aller dieser Fälle:
 1. Struktureller Vorteil gegenüber etablierten Playern (Technologie, Kosten, Timing)
-2. Erster Großkunde bestätigt Produkt öffentlich → validierter Markt
-3. Wachstum in einem neuen Segment das der Markt noch unterschätzt
-4. Management mit klarer Strategie und Execution-Track-Record
-5. Bewertung noch nicht vollständig die zukünftige Größe einpreist
+2. UNPRICED OPTIONALITY: Ein quantifizierbarer Katalysator den der Markt noch nicht eingepreist hat
+3. Erster Großkunde bestätigt Produkt öffentlich → validierter Markt
+4. Saubere Bilanz / Schuldenabbau / Kredit-Upgrade als Risikoreduktion
+5. Wachstum in neuem Segment das Markt noch unterschätzt
+6. Bewertung deutlich unter Sektor-Durchschnitt (z.B. 13x vs 25x übliches KGV)
 """
 
 

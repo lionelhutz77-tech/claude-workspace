@@ -22,19 +22,27 @@ MODEL = "llama-3.3-70b-versatile"
 # ---------------------------------------------------------------------------
 
 BULL_SYSTEM = """Du bist ein aggressiver Growth-Investor mit 15 Jahren Erfahrung.
-Du suchst aktiv nach Kaufgelegenheiten und argumentierst fuer Einstiege.
-Du betonst Wachstumspotenzial, Momentum und positive Katalysatoren.
+Du hast frueh in AMD (2016, $2), NVDA (2020, $50) und TSLA (2019, $25) investiert.
+Du suchst aktiv nach Kaufgelegenheiten — besonders nach:
+  - "Unpriced Optionality": Katalysatoren die der Markt NOCH NICHT eingepreist hat
+  - Boring Franchises mit sauberer Bilanz bei niedrigen Multiplen
+  - Spezifische quantifizierbare Upside-Levers (z.B. "Jeder 1% Marktanteil = X Mio Umsatz")
+  - Produkt-Launches oder regulatorische Entscheidungen als versteckte Katalysatoren
 Sei ueberzeugend aber sachlich. Maximal 5 Stichpunkte, praezise und stark."""
 
 BEAR_SYSTEM = """Du bist ein vorsichtiger Value-Investor und Risikoanalyst mit 15 Jahren Erfahrung.
 Du hinterfragst Kaufempfehlungen kritisch und zeigst Risiken auf.
+Du pruefst besonders ob vermeintliche "Katalysatoren" wirklich uneingepreist sind
+oder ob der Markt sie laengst kennt und bereits eingepreist hat.
 Du betonst Bewertung, Abwaertsrisiken und negative Szenarien.
 Sei kritisch aber sachlich. Maximal 5 Stichpunkte, praezise und stark."""
 
 PORTFOLIO_SYSTEM = """Du bist ein erfahrener Portfolio-Manager, der Bull- und Bear-Argumente
 objektiv abwaegt und eine finale, risikobewusste Entscheidung trifft.
+Du fragst immer: Was hat der Markt in diesem Asset NOCH NICHT eingepreist?
+Gibt es einen quantifizierbaren Katalysator den andere uebersehen haben?
 Du bewertest die Qualitaet der Argumente, nicht nur ihre Anzahl.
-Deine Entscheidung ist klar, begruendet und enthalt konkrete Handlungsparameter."""
+Deine Entscheidung ist klar, begruendet und enthaelt konkrete Handlungsparameter."""
 
 
 # ---------------------------------------------------------------------------
@@ -127,10 +135,13 @@ BEAR-ARGUMENTE:
 
 Triff eine finale Entscheidung. Wenn das technische Signal positiv ist und die Bull-Argumente ueberwiegen, empfiehl KAUFEN — auch bei leicht gemischten Signalen.
 ABWARTEN nur wenn wirklich beide Seiten gleichstark sind. VERKAUFEN nur bei klar negativen Signalen.
+
+Beantworte auch: Was hat der Markt in diesem Asset noch NICHT eingepreist? (Unpriced Optionality)
 Antworte in exakt diesem Format:
 
 GEWINNER: [BULL oder BEAR oder UNENTSCHIEDEN]
 BEGRUENDUNG: [2-3 Saetze warum]
+OPTIONALITAET: [Was der Markt noch nicht eingepreist hat — oder "keine erkennbar"]
 EMPFEHLUNG: [KAUFEN oder VERKAUFEN oder ABWARTEN]
 EINSTIEG: [aktueller Preis in USD, z.B. {signal['preis']:,.2f}]
 ZIEL: [Kursziel in USD — muss hoeher als Einstieg sein bei KAUFEN]
@@ -184,14 +195,15 @@ RISIKO: [NIEDRIG oder MITTEL oder HOCH]"""
             stop = round(einstieg * 0.95, 2)   # Fallback: -5%
 
     return {
-        "gewinner":      extrahiere("GEWINNER", "UNENTSCHIEDEN"),
-        "begruendung":   extrahiere("BEGRUENDUNG", ""),
-        "empfehlung":    empfehlung,
-        "einstieg":      einstieg,
-        "ziel":          ziel,
-        "stop_loss":     stop,
-        "risiko":        extrahiere("RISIKO", "MITTEL"),
-        "volltext":      text,
+        "gewinner":       extrahiere("GEWINNER", "UNENTSCHIEDEN"),
+        "begruendung":    extrahiere("BEGRUENDUNG", ""),
+        "optionalitaet":  extrahiere("OPTIONALITAET", ""),
+        "empfehlung":     empfehlung,
+        "einstieg":       einstieg,
+        "ziel":           ziel,
+        "stop_loss":      stop,
+        "risiko":         extrahiere("RISIKO", "MITTEL"),
+        "volltext":       text,
     }
 
 

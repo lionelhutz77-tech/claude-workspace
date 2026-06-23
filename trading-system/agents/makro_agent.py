@@ -111,6 +111,29 @@ MAKRO_EVENTS = {
         "staerke": -1,
         "beschreibung": "Oelpreisanstieg — Energiekosten steigen, Transport & Chemie (EVK) leiden",
     },
+    "haushaltssperre": {
+        "keywords": ["continuing resolution", "cr freeze", "government shutdown",
+                     "budget freeze", "spending freeze", "stopgap funding",
+                     "appropriations stalled", "defense budget freeze",
+                     "haushaltssperre", "regierungsstillstand", "ausgabenstopp",
+                     "shutdown"],
+        "negativ_assets": ["PLTR", "LMT", "NOC", "GD", "RTX", "LDOS", "BAH", "SAIC"],
+        "positiv_assets": [],
+        "staerke": -2,
+        "beschreibung": "Haushaltssperre/Continuing Resolution — eingefrorene Staatsausgaben "
+                        "verzoegern neue Programme; Regierungs-/Ruestungs-Auftragnehmer (v.a. PLTR) leiden",
+    },
+
+    # --- Regulierung / Antitrust ---
+    "google_antitrust": {
+        "keywords": ["google antitrust", "doj google", "alphabet breakup", "google ad break",
+                     "google search breakup", "google monopoly ruling", "google divestiture",
+                     "ad tech antitrust", "programmatic monopoly", "google adtech ruling"],
+        "negativ_assets": ["GOOGL", "META"],
+        "positiv_assets": ["MGNI", "TTD", "PUBM", "IAS", "APPS"],
+        "staerke": +2,
+        "beschreibung": "Google Antitrust — Marktanteile fliessen zu unabhaengigen Ad-Tech-Firmen",
+    },
 
     # --- Krypto-spezifisch ---
     "btc_etf_abfluesse": {
