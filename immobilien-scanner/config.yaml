@@ -95,13 +95,13 @@ scraper_sources:
     delay_seconds: 1
 
   von_poll:
-    enabled: false
+    enabled: false  # 403 Forbidden bei Requests -> braeuchte Playwright (spaeter moeglich)
     url: "https://www.von-poll.com/de/immobilien/oberhausen"
     type: "javascript"
     delay_seconds: 2
 
   arr_immobilien:
-    enabled: false
+    enabled: false  # .htm-CMS ohne Listing-Struktur, keine parsebaren Objekte
     url: "https://www.arr-immobilien.de"
     type: "html"
     delay_seconds: 1
@@ -125,7 +125,7 @@ scraper_sources:
     delay_seconds: 1
 
   marquardt:
-    enabled: true
+    enabled: false  # alter php4/FlowFact-Katalog, liefert keine Daten via GET
     url: "https://www.immo-marquardt.de"
     type: "html"
     delay_seconds: 1
@@ -145,7 +145,7 @@ scraper_sources:
     region: "Bottrop"
 
   boenighausen:
-    enabled: true
+    enabled: false  # Berlin-fokussiert (kaum Ruhrgebiet), duenne Daten -> geringer Wert
     url: "https://www.boenighausen-immobilien.de"
     type: "html"
     delay_seconds: 1

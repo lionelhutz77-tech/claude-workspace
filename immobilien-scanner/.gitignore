@@ -55,3 +55,4 @@ test_report.html
 
 # Daten (optional, für Local-Entwicklung)
 # data/*.json - NICHT ignorieren für Production!
+run_final.log
