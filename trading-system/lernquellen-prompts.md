@@ -28,8 +28,17 @@ The Deep Dive · „How [X] makes money" · Peer Comparison · „Most growth pe
 - **Pure Problem** — Kontext ausblenden, nacktes Problem ansehen.
 - **Action Now** — nur: was ist heute/morgen konkret umsetzbar?
 
-## Vorschlag zur Integration (nach „Lernquelle"-Konvention)
-- Bear-Case + Peer-Comparison in `bull_bear_debate.py` ergänzen.
-- 5-Agenten-Review als zusätzlichen Prüf-Layer vor dem Portfolio-Manager-Verdikt.
+## Integration (Stand 2026-06-24)
+**Erledigt in `bull_bear_debate.py`** (additive Prompt-Anreicherung, keine neuen Groq-Calls,
+Ausgabeformat/Parsing unverändert):
+- Bull-Prompt: „Growth per Dollar" + Peer-Comparison-Linse.
+- Bear-Prompt: strukturierter Bear-Case (Bewertungs-Check teuer ggü. Historie/Peers +
+  quantifiziertes Abwärts-Szenario).
+- Portfolio-Manager: 5-Brillen-Denkweise (First Principles / Risk Hunter / Opportunity
+  Scout / Pure Problem / Action Now) als gedanklicher Prüf-Layer vor dem Urteil.
+- Verifiziert: `py_compile` ok, Parsing-Felder + Format-Block unverändert. Live-Debatte
+  NICHT ausgeführt (spart Groq-Tagesbudget; greift automatisch beim 08:00-Lauf).
+
+## Noch offen
 - „Morning Note"-Format (Anthropic financial-services-plugins) als Vorlage für den 08:00-Bericht.
-→ Eigene Session mit bau-qualitaet, nicht nebenbei. Auf Zuruf.
+- Die expliziten Institutions-Prompts (DCF/Screener/Earnings) als optionalen Tiefen-Modus.
