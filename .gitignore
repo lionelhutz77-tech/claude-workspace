@@ -1,0 +1,13 @@
+# Sicherheitsnetz fuer das OEFFENTLICHE Repo claude-workspace:
+# niemals Secrets committen. Gilt fuer alle Unterordner.
+**/.env
+.env
+**/.env.local
+
+# nur Beispiele mit Platzhaltern sind erlaubt
+!**/.env.example
+
+# Python
+**/__pycache__/
+*.pyc
+**/venv/
