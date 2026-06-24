@@ -84,10 +84,26 @@ UGC-Automation. Interessant fürs Verständnis des Soul-Workflows, den wir schon
   Ehrlich: „Lead-Gen-Websites $50k/Monat im Schlaf" ist Hype-Framing; Kern (Lead-Gen für
   lokale Betriebe) ist legitim, aber nichts Neues ggü. unserer Nebenerwerb-Bewertung.
 
-## 🎬 Videos (nicht analysierbar)
+## 🎬 Videos (ausgewertet: ffmpeg-Frames + Groq-Whisper-Transkript, 2026-06-24)
 
-11 `.MP4` (2 oben, 9 in `Archiv/`) konnte ich nicht auswerten (kein Videoinhalt lesbar).
-Vermutlich Reel-Versionen der obigen Themen. Bei Bedarf einzeln ansehen.
+**Projektrelevant (3):**
+- **V1 (MCWB0416) — Price-Action/Kerzen-Lehre:** Body/Wicks als Käufer-vs-Verkäufer-Duell,
+  Engulfing-Setup, 3 grüne Kerzen = Momentum, „Unentschlossenheit → Überzeugung". Sauberer
+  Erklär-Baustein → ggf. für `pattern_agent`/Bericht-TA-Erklärung. *trading-system.*
+- **V2 (MKXD1692) — Krypto-Marktstruktur (sehr gehaltvoll):** Open Interest, Funding Rate,
+  Spot-Delta, Liquidationen, Fair Value Gap, Value Area Low/High, Range-Trading, bärischer
+  Trend. → echte Erweiterungs-Idee für die Krypto-Analyse (siehe Backlog). Auch Discord/TG-
+  Promo, also Framework nehmen, nicht den „folge mir". *trading-system.*
+- **V6 (LPCR5976) — CMBlue Lignin-Batterie:** deutsche Nicht-Lithium-Langzeitspeicher
+  (Holzabfall/Lignin, nicht brennbar, Mercedes/Samsung-Investor, ab ~10h Speicherung 6× günstiger
+  als Lithium). → Investment-Thema (Energiespeicher) UND persönlich relevant (passt zum
+  Husatech-Speicherangebot `IMG_8513`). *trading-system Universe + privat.*
+
+**Nicht projektrelevant (7):** V3/V4/V7/V8/V9/V10/V11 = Entertainment/Memes (Doberman-Futter-
+Challenge, Straßen-Prank, Tanz-Clips, Mariachi). Höchstens als Reel-Format/Hook-Referenz, kein
+inhaltlicher Übernahme-Wert.
+
+**Defekt (1):** V5 (IIHP6315.MP4) ist nur 14 Bytes („moov atom not found") — nicht lesbar.
 
 ---
 

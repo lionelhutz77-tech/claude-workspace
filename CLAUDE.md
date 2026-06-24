@@ -26,6 +26,11 @@ Leitfaden für Claude Code in diesem Workspace. Dies ist **kein Scratchpad mehr*
 - Machbarkeit vorab prüfen, bekannte Blocker früh nennen.
 - Nützliche Tipps/Methoden proaktiv übernehmen (als Inspiration, nicht 1:1); dabei Token sparen.
 
+## Backlog / Offene Ideen
+- `OFFENE-IDEEN.md` ist die zentrale Backlog-Liste. **Zu Beginn jeder Session** kurz die
+  offenen (⬜) Punkte daraus ansprechen und das nächste sinnvolle Stück vorschlagen — eins
+  nach dem anderen, erst auf „Go" umsetzen. Nach Erledigung dort Status pflegen.
+
 ## Weiteres
 
 - `.claude/skills/` — eigene Skills. `KONTEXT.md` — portables Kontext-File für die Claude-App.
