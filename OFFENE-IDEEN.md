@@ -4,8 +4,9 @@ Stand 2026-06-24. Reihenfolge = grobe Priorität. Status: ⬜ offen · 🔄 in A
 Wir gehen **eins nach dem anderen** an; Claude schlägt das nächste vor, du gibst das Go.
 
 ## trading-system
-- ⬜ **Tiefen-Modus für den 08:00-Bericht** — optionaler „Deep Dive" mit Institutions-Prompts
-  (DCF / Screener / Earnings-Breakdown). Token-Budget abwägen (Groq ~100k/Tag). *Höchster Nutzen.*
+- ✅ **Tiefen-Modus** — `deep_dive_agent.py`: bündelt ALLE Signale (TA, Volume/FVG, Pattern,
+  P/E-Bewertung, SEC-Insider, Korrelation, Bull/Bear) zu einer Institutions-Analyse für die
+  Top-3 KAUFEN. Im Bericht + Dashboard + Telegram-Teaser. Nur 3 Extra-Calls, budgetsicher.
 - ⬜ **„Morning Note"-Format** (Anthropic financial-services-plugins) als Berichts-Vorlage.
 
 ## instagram-system / Content

@@ -224,6 +224,19 @@ def _detail_karte(e: dict) -> str:
                 if z.strip() and "EMPFEHLUNG:" not in z]
     ki_html  = "".join(f"<p>{z}</p>" for z in ki_abs[:14])
 
+    # Tiefen-Analyse (nur fuer Top-Kaufkandidaten vorhanden)
+    deep_html = ""
+    if e.get("deep_dive"):
+        absaetze = "".join(
+            f"<p>{z.strip()}</p>"
+            for z in e["deep_dive"].splitlines() if z.strip()
+        )
+        deep_html = f"""
+        <div class="deep-dive" style="margin-top:14px;padding:12px;border:1px solid #2c3e50;border-radius:8px;background:rgba(52,152,219,0.06);">
+          <h4>🔍 Tiefen-Analyse (Top-Kaufkandidat)</h4>
+          {absaetze}
+        </div>"""
+
     trade_box = ""
     if f["empfehlung"] == "KAUFEN":
         trade_box = f"""
@@ -259,6 +272,7 @@ def _detail_karte(e: dict) -> str:
           <h4>🤖 KI-Revision (Llama 3.3 70B)</h4>
           {ki_html or "<p>Keine KI-Analyse verfuegbar.</p>"}
         </div>
+        {deep_html}
         {_korrelations_sektion(e)}
       </div>
     </details>"""

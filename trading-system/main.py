@@ -309,6 +309,19 @@ def erstelle_tagesbericht(ergebnisse: list[dict]) -> list[str]:
             zeilen.append(f"  Stop-Loss    : ${f['stop_loss']:,.2f}")
             zeilen.append(f"  Risiko       : {f['risiko']}")
 
+    # --- TIEFEN-ANALYSE (nur Top-Kaufkandidaten) ---
+    deep = [e for e in ergebnisse if e.get("deep_dive")]
+    if deep:
+        zeilen.append("\n" + DOPPELLINIE)
+        zeilen.append("  TIEFEN-ANALYSE (Top-Kaufkandidaten)")
+        zeilen.append(DOPPELLINIE)
+        for e in deep:
+            typ = "AKTIE" if e["asset_typ"] == "aktie" else "KRYPTO"
+            zeilen.append(f"\n  [{typ}] {e['asset']}  --  ${e['preis']:,.2f}")
+            zeilen.append("  " + "-" * 50)
+            for z in e["deep_dive"].splitlines():
+                zeilen.append(f"  {z}")
+
     zeilen.append("\n" + DOPPELLINIE)
     zeilen.append("  HINWEIS: Alle Empfehlungen dienen nur zur Information.")
     zeilen.append("  Keine Anlageberatung. Eigene Recherche erforderlich.")
@@ -631,6 +644,26 @@ def main():
     drucke_fortschritt(8, 9, "KI-Analyse (Revision + Bull/Bear-Debatte)")
     ergebnisse = ki_phase(signale)
 
+    # Tiefen-Analyse fuer die Top-Kaufkandidaten (1 Groq-Call je Asset, nur Top-N).
+    # Nicht kritisch: Faellt sie aus (z.B. Groq-Limit), laeuft der Bericht normal weiter.
+    try:
+        from deep_dive_agent import waehle_top_kaufen, deep_dive, DEEP_DIVE_TOP_N
+        top_picks = waehle_top_kaufen(ergebnisse, DEEP_DIVE_TOP_N)
+        if top_picks:
+            print(f"\n  Tiefen-Analyse fuer Top-{len(top_picks)} Kaufkandidaten...")
+            for e in top_picks:
+                print(f"    -> {e['asset']} ...", end=" ", flush=True)
+                try:
+                    e["deep_dive"] = deep_dive(e)
+                    print("OK")
+                except Exception as ex:
+                    print(f"uebersprungen ({ex})")
+                time.sleep(1)
+        else:
+            print("\n  Tiefen-Analyse: keine KAUFEN-Signale heute — uebersprungen.")
+    except Exception as e:
+        print(f"  Tiefen-Analyse Fehler (nicht kritisch): {e}")
+
     # Schritt 9: Bericht + Memory speichern
     drucke_fortschritt(9, 9, "Tagesbericht erstellen + Signale im Gedaechtnis speichern")
     bericht = erstelle_tagesbericht(ergebnisse)
@@ -679,6 +712,22 @@ def main():
     sende_tagesbericht(ergebnisse, depot_stats, fg_aktien=fg_aktien, fg_krypto=fg_krypto)
     if geschlossene_pos:
         sende_positions_update(geschlossene_pos)
+
+    # Kompakter Tiefen-Analyse-Teaser (nur FAZIT je Top-Pick) — nicht kritisch
+    try:
+        deep = [e for e in ergebnisse if e.get("deep_dive")]
+        if deep:
+            from deep_dive_agent import hole_fazit
+            from telegram_agent import sende_nachricht
+            zeilen = ["<b>🔍 TIEFEN-ANALYSE — Top-Kaufkandidaten</b>", ""]
+            for e in deep:
+                fazit = hole_fazit(e["deep_dive"])
+                zeilen.append(f"<b>{e['asset']}</b>: {fazit}")
+            zeilen.append("")
+            zeilen.append("Vollständige Analyse im Bericht & Dashboard.")
+            sende_nachricht("\n".join(zeilen))
+    except Exception as e:
+        print(f"  Deep-Dive-Teaser Fehler (nicht kritisch): {e}")
 
     # HTML-Dashboard erstellen (nicht kritisch -- Fehler stoppen den Lauf nicht)
     try:

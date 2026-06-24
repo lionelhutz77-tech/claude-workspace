@@ -39,6 +39,12 @@ Ausgabeformat/Parsing unverändert):
 - Verifiziert: `py_compile` ok, Parsing-Felder + Format-Block unverändert. Live-Debatte
   NICHT ausgeführt (spart Groq-Tagesbudget; greift automatisch beim 08:00-Lauf).
 
+## Tiefen-Modus erledigt (2026-06-24)
+`deep_dive_agent.py`: 1 Groq-Call je Top-3-KAUFEN, bündelt ALLE Systemsignale (TA, Volume/FVG,
+Pattern, P/E-Bewertung, SEC-Insider, Korrelation, Bull/Bear) zu einer strukturierten
+Institutions-Analyse (These / Bewertung / Katalysatoren / Bear-Case / Handlung + FAZIT).
+Integriert in main.py (nach KI-Phase, guarded), Textbericht, Dashboard-Detailkarte und
+kompaktem Telegram-Teaser. Bewusst KEIN erfundenes DCF — nur reale Systemdaten.
+
 ## Noch offen
 - „Morning Note"-Format (Anthropic financial-services-plugins) als Vorlage für den 08:00-Bericht.
-- Die expliziten Institutions-Prompts (DCF/Screener/Earnings) als optionalen Tiefen-Modus.
