@@ -24,5 +24,7 @@ Wir gehen **eins nach dem anderen** an; Claude schlägt das nächste vor, du gib
 - ✅ Sicherheits-Leak (Groq-Key) behoben: rotiert, beide .env neu, aus Repo entfernt, .gitignore-Netz.
 - ✅ Trading-Prompts integriert (Bear-Case, Peer-Comparison, 5-Brillen) in bull_bear_debate.py.
 - ✅ Ideen-Ordner gesichtet & sortiert (ideen-auswertung.md).
+- ✅ trump-scanner von Railway → Cloudflare Worker (Cron, kostenlos) migriert & live.
+  **Offen (du):** Railway-Deployment abschalten/löschen, damit nichts mehr läuft/kostet.
 - ✅ 11 Videos ausgewertet (ffmpeg-Frames + Groq-Whisper); 3 relevant (V1 Price-Action,
   V2 Krypto-Marktstruktur, V6 CMBlue-Batterie), Rest Entertainment, V5 defekt.
