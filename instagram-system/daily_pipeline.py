@@ -47,18 +47,41 @@ def log(msg):
 # Darum pruefen wir die ECHTE Account-Lage (Graph API) als Quelle der Wahrheit.
 # ---------------------------------------------------------------------------
 
-def _caption_sig(text: str) -> str:
-    """Distinktive, normalisierte Signatur einer Caption (ohne den allen
-    gemeinsamen 'Weisst du noch? Frueher'-Prefix)."""
-    t = re.sub(r"[^a-zäöüß0-9 ]", "", (text or "").lower()).strip()
-    if t.startswith("weißt du noch") or t.startswith("weisst du noch"):
-        return t[22:62].strip()
-    return t[:40].strip()
+LEDGER = Path("output/published_ledger.json")
 
 
-def _account_captions(limit: int = 25):
-    """Holt die letzten Account-Captions + Zeitstempel. Gibt (sigs, neueste_ts)
-    zurueck oder (None, None), wenn die API nicht erreichbar ist."""
+def _caption_core(text: str) -> str:
+    """Stabile, normalisierte Caption-Signatur: erste 90 Zeichen (inkl. des
+    distinktiven Teils nach dem Prefix). Deterministisch zu build_caption(spec),
+    daher robust fuer Ledger-Abgleich UND Account-Abgleich."""
+    return re.sub(r"[^a-zäöüß0-9 ]", "", (text or "").lower()).strip()[:90]
+
+
+def _load_ledger() -> set:
+    """Menge aller je veroeffentlichten Caption-Cores (persistentes Gedaechtnis)."""
+    try:
+        return set(json.load(open(LEDGER, encoding="utf-8")).get("cores", []))
+    except Exception:
+        return set()
+
+
+def _ledger_add(core: str, info: str = "") -> None:
+    if not core:
+        return
+    cores = _load_ledger()
+    cores.add(core)
+    LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    json.dump({"cores": sorted(cores)}, open(LEDGER, "w", encoding="utf-8"),
+              ensure_ascii=False, indent=0)
+
+
+def _ledger_has(core: str) -> bool:
+    return bool(core) and core in _load_ledger()
+
+
+def _account_captions(limit: int = 50):
+    """Holt die letzten Account-Caption-Cores + neuesten Zeitstempel. Gibt
+    (cores, neueste_ts) zurueck oder (None, None), wenn die API nicht erreichbar ist."""
     try:
         uid, token = _account()
         url = f"https://graph.instagram.com/v21.0/{uid}/media"
@@ -67,20 +90,19 @@ def _account_captions(limit: int = 25):
             "access_token": token}, timeout=30)
         r.raise_for_status()
         data = r.json().get("data", [])
-        sigs = [_caption_sig(m.get("caption", "")) for m in data if m.get("caption")]
+        cores = [_caption_core(m.get("caption", "")) for m in data if m.get("caption")]
         neueste = data[0].get("timestamp") if data else None
-        return sigs, neueste
+        return cores, neueste
     except Exception as e:
         log(f"WARN Account-Abgleich nicht moeglich: {e}")
         return None, None
 
 
-def _ist_live(sig: str, account_sigs) -> bool:
-    """True, wenn die Signatur bereits in den Account-Captions auftaucht."""
-    if not sig or not account_sigs:
+def _ist_live(core: str, account_cores) -> bool:
+    """True, wenn der Caption-Core bereits unter den Account-Captions auftaucht."""
+    if not core or not account_cores:
         return False
-    kern = sig[:28]
-    return any(kern and kern in a for a in account_sigs)
+    return any(core == a or core in a or a in core for a in account_cores)
 
 
 def _stunden_seit(ts_iso: str):
@@ -141,6 +163,19 @@ def run(dry=False, thema=None):
 
     # 4. Caption (einheitliche Struktur)
     caption = build_caption(spec)
+    core = _caption_core(caption)
+
+    # GUARD: schon veroeffentlicht (Ledger/Account)? -> nicht erneut posten.
+    account_cores, _ = _account_captions()
+    if _ledger_has(core) or _ist_live(core, account_cores):
+        log(f"'{spec['thema']}' ist bereits veroeffentlicht — Vollautomatik-Post uebersprungen.")
+        for name in remote_names:
+            try:
+                delete_video(name)
+            except Exception:
+                pass
+        _ledger_add(core, "guard-run")
+        return {"success": True, "skipped": "already_published"}
 
     # 5. Veroeffentlichen
     try:
@@ -152,6 +187,8 @@ def run(dry=False, thema=None):
                 delete_video(name)
             except Exception as e:
                 log(f"WARN Aufraeumen {name}: {e}")
+    if result.get("success"):
+        _ledger_add(core, str(result))
     return result
 
 
@@ -167,19 +204,21 @@ def publish_folder(base: Path):
         sys.exit(1)
     spec = json.load(open(spec_file, encoding="utf-8"))
     caption = build_caption(spec)
-    sig = _caption_sig(caption)
+    core = _caption_core(caption)
 
-    account_sigs, neueste_ts = _account_captions()
+    account_cores, neueste_ts = _account_captions()
 
-    # GUARD 1: Inhalt schon live? -> nur markieren, NICHT erneut posten.
-    if _ist_live(sig, account_sigs):
-        log(f"{base.name} ('{spec['thema']}') ist bereits live — uebersprungen (Doppelpost verhindert).")
-        _markiere_published(base, "bereits live (Dedup-Guard)")
-        return {"success": True, "skipped": "already_live"}
+    # GUARD 1: schon veroeffentlicht? -> persistentes Ledger ODER Live-Account.
+    #          -> nur markieren, NICHT erneut posten (verhindert Doppelpost endgueltig).
+    if _ledger_has(core) or _ist_live(core, account_cores):
+        log(f"{base.name} ('{spec['thema']}') ist bereits veroeffentlicht — uebersprungen (Doppelpost verhindert).")
+        _ledger_add(core, "guard1")
+        _markiere_published(base, "bereits veroeffentlicht (Ledger/Account)")
+        return {"success": True, "skipped": "already_published"}
 
-    # GUARD 2: heute schon gepostet? -> max. 1 Post/Tag.
+    # GUARD 2: in den letzten 12h schon gepostet? -> max. 1 Post/Tag.
     std = _stunden_seit(neueste_ts)
-    if account_sigs is not None and std is not None and std < 12:
+    if account_cores is not None and std is not None and std < 12:
         log(f"Vor {std:.1f}h wurde bereits gepostet — uebersprungen (max 1/Tag).")
         return {"success": True, "skipped": "already_today"}
 
@@ -206,17 +245,22 @@ def publish_folder(base: Path):
             except Exception as e:
                 log(f"WARN Aufraeumen {name}: {e}")
 
-    # GUARD 3: Bei (gemeldetem) Fehler nachpruefen, ob der Post TROTZDEM live ging
-    # (403-trotz-Live-Quirk). Wenn ja -> als veroeffentlicht markieren, sonst echter Fehlschlag.
+    # GUARD 3: Bei (gemeldetem) Fehler MEHRFACH nachpruefen, ob der Post TROTZDEM
+    # live ging (der 403-trotz-Live-Quirk kann verzoegert zustellen). Wenn ja ->
+    # als veroeffentlicht markieren (Ledger!), sonst echter Fehlschlag.
     if not result.get("success"):
-        time.sleep(8)
-        caps2, _ = _account_captions()
-        if _ist_live(sig, caps2):
-            log(f"{base.name} ging trotz API-Fehler live — als veroeffentlicht markiert.")
-            result = {"success": True, "recovered_from_error": True}
-        else:
+        for wartezeit in (15, 30, 60):
+            time.sleep(wartezeit)
+            caps2, _ = _account_captions()
+            if _ist_live(core, caps2):
+                log(f"{base.name} ging trotz API-Fehler live — als veroeffentlicht markiert.")
+                result = {"success": True, "recovered_from_error": True}
+                break
+        if not result.get("success"):
             log(f"FEHLER: {base.name} wurde NICHT veroeffentlicht ({fehler}). Nicht markiert.")
             return result
+
+    _ledger_add(core, str(result))
 
     _markiere_published(base, result)
     return result
