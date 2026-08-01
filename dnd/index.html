@@ -20,6 +20,25 @@
 <body>
   <div id="app" class="app-container"></div>
 
+  <!-- Service Worker Cleanup - SOFORT AUSFÜHREN -->
+  <script>
+    (async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const reg of registrations) {
+            if (reg.scope.includes('schulweg-nrw')) {
+              await reg.unregister();
+              console.log('Alte Service Worker deinstalliert:', reg.scope);
+            }
+          }
+        } catch (e) {
+          console.warn('Fehler beim Cleanup alter Service Worker:', e);
+        }
+      }
+    })();
+  </script>
+
   <!-- JavaScript-Module in korrekter Reihenfolge -->
   <script src="js/utils.js"></script>
   <script src="js/storage.js"></script>
