@@ -42,7 +42,7 @@ const DndApp = (() => {
     // Service Worker registrieren
     if ('serviceWorker' in navigator) {
       try {
-        await navigator.serviceWorker.register('service-worker.js', { scope: '/schulweg-nrw/dnd/' });
+        await navigator.serviceWorker.register('service-worker.js', { scope: '/claude-workspace/dnd/' });
         console.log('Service Worker registriert');
       } catch (e) {
         console.warn('Service Worker Registrierung fehlgeschlagen:', e);
