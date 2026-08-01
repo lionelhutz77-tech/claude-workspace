@@ -32,13 +32,6 @@ const DndViews = (() => {
   }
 
   /**
-   * Rendert Zauberansicht
-   */
-  function renderSpells(character) {
-    renderPlaceholder('Zauberverwaltung', 'Zauber-Features');
-  }
-
-  /**
    * Rendert Inventaransicht
    */
   function renderInventory(character) {
@@ -104,7 +97,6 @@ const DndViews = (() => {
 
   return {
     renderCombat,
-    renderSpells,
     renderInventory,
     renderNotes,
     renderSettings,

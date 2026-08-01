@@ -148,6 +148,7 @@ const DndUI = (() => {
             <button class="favorite-button" data-action="inventory">🎒 Inventar</button>
             <button class="favorite-button" data-action="shortRest">🏕 K. Rast</button>
             <button class="favorite-button" data-action="longRest">🛌 L. Rast</button>
+            <button class="favorite-button" data-action="notes">📝 Notizen</button>
             <button class="favorite-button" data-action="history">📜 Verlauf</button>
           </div>
         </div>
@@ -157,7 +158,6 @@ const DndUI = (() => {
       <div class="nav-bar">
         <button class="nav-button active" data-view="dashboard">📊 Dashboard</button>
         <button class="nav-button" data-view="combat">⚔ Kampf</button>
-        <button class="nav-button" data-view="spells">✨ Zauber</button>
         <button class="nav-button" data-view="inventory">🎒 Inventar</button>
         <button class="nav-button" data-view="notes">📝 Notizen</button>
         <button class="nav-button" data-view="settings">⚙ Mehr</button>
@@ -269,6 +269,38 @@ const DndUI = (() => {
       case 'editAbility':
         const ability = this.dataset.ability;
         if (ability) handleEditAbility(character, ability);
+        break;
+
+      case 'editExperience':
+        handleEditExperience(character);
+        break;
+
+      case 'editRace':
+        handleEditRace(character);
+        break;
+
+      case 'editBackground':
+        handleEditBackground(character);
+        break;
+
+      case 'editAlignment':
+        handleEditAlignment(character);
+        break;
+
+      case 'editExhaustion':
+        handleEditExhaustion(character);
+        break;
+
+      case 'editProficiencyBonus':
+        handleEditProficiencyBonus(character);
+        break;
+
+      case 'editHitDice':
+        handleEditHitDice(character);
+        break;
+
+      case 'editInspiration':
+        handleEditInspiration(character);
         break;
     }
   }
@@ -647,6 +679,143 @@ const DndUI = (() => {
         character.abilities[ability].score = newScore;
         character.abilities[ability].modifier = Math.floor((newScore - 10) / 2);
       }
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Erfahrungspunkte bearbeiten
+   */
+  async function handleEditExperience(character) {
+    const exp = await DndModal.inputDialog(
+      'Erfahrungspunkte',
+      'EP:',
+      String(character.meta.experience || 0),
+      'number'
+    );
+    if (exp !== null) {
+      character.meta.experience = Math.max(0, parseInt(exp) || 0);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Rasse/Abstammung bearbeiten
+   */
+  async function handleEditRace(character) {
+    const race = await DndModal.inputDialog(
+      'Abstammung',
+      'Volk/Rasse:',
+      character.basics.race || '',
+      'text'
+    );
+    if (race !== null) {
+      character.basics.race = race;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Hintergrund bearbeiten
+   */
+  async function handleEditBackground(character) {
+    const background = await DndModal.inputDialog(
+      'Hintergrund',
+      'Hintergrund:',
+      character.basics.background || '',
+      'text'
+    );
+    if (background !== null) {
+      character.basics.background = background;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Gesinnung bearbeiten
+   */
+  async function handleEditAlignment(character) {
+    const alignment = await DndModal.inputDialog(
+      'Gesinnung',
+      'Gesinnung:',
+      character.basics.alignment || '',
+      'text'
+    );
+    if (alignment !== null) {
+      character.basics.alignment = alignment;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Erschöpfung bearbeiten
+   */
+  async function handleEditExhaustion(character) {
+    const exhaustion = await DndModal.inputDialog(
+      'Erschöpfung',
+      'Erschöpfungsstufe (0-6):',
+      String(character.exhaustion || 0),
+      'number'
+    );
+    if (exhaustion !== null) {
+      character.exhaustion = Math.max(0, Math.min(6, parseInt(exhaustion) || 0));
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Übungsbonus bearbeiten
+   */
+  async function handleEditProficiencyBonus(character) {
+    const bonus = await DndModal.inputDialog(
+      'Übungsbonus',
+      'Bonus:',
+      String(character.proficiency.bonus || 2),
+      'number'
+    );
+    if (bonus !== null) {
+      character.proficiency.bonus = Math.max(1, parseInt(bonus) || 2);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Trefferwürfel bearbeiten
+   */
+  async function handleEditHitDice(character) {
+    const hd = await DndModal.inputDialog(
+      'Trefferwürfel',
+      'Aktuell:',
+      String(character.hitpoints.hd.current || 1),
+      'number'
+    );
+    if (hd !== null) {
+      const newHd = Math.max(0, parseInt(hd) || 1);
+      character.hitpoints.hd.current = Math.min(newHd, character.hitpoints.hd.max);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Inspiration bearbeiten
+   */
+  async function handleEditInspiration(character) {
+    const inspiration = await DndModal.inputDialog(
+      'Inspiration',
+      'Inspiration vorhanden? (ja/nein):',
+      character.inspiration ? 'ja' : 'nein',
+      'text'
+    );
+    if (inspiration !== null) {
+      character.inspiration = inspiration.toLowerCase().includes('j');
       DndStorage.saveCharacter(character);
       renderDashboard(character);
     }
