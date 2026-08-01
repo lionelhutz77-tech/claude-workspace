@@ -18,12 +18,20 @@ const DndUI = (() => {
         <!-- Header -->
         <div class="dashboard-header">
           <div class="character-title">
-            <h1>${DndUtils.escapeHtml(character.meta.name || 'Ohne Namen')}</h1>
+            <h1 data-action="editName" style="cursor: pointer; user-select: none; padding: 8px; border-radius: 4px; hover:background: var(--bg-secondary);">
+              ${DndUtils.escapeHtml(character.meta.name || 'Ohne Namen')}
+            </h1>
           </div>
           <div class="character-info">
-            <div><strong>${DndUtils.escapeHtml(character.basics.class.name || 'Klasse')}</strong></div>
-            <div>${DndUtils.escapeHtml(character.basics.class.subclass || 'Unterklasse')}</div>
-            <div>Stufe ${character.basics.class.level}</div>
+            <div style="cursor: pointer; padding: 4px 8px; border-radius: 4px;" data-action="editClass">
+              <strong>${DndUtils.escapeHtml(character.basics.class.name || 'Klasse')}</strong>
+            </div>
+            <div style="cursor: pointer; padding: 4px 8px; border-radius: 4px;" data-action="editSubclass">
+              ${DndUtils.escapeHtml(character.basics.class.subclass || 'Unterklasse')}
+            </div>
+            <div style="cursor: pointer; padding: 4px 8px; border-radius: 4px;" data-action="editLevel">
+              Stufe ${character.basics.class.level}
+            </div>
           </div>
         </div>
 
@@ -34,7 +42,7 @@ const DndUI = (() => {
           <div class="hp-display">
             <div class="hp-value">
               <span class="hp-value-current">${character.hitpoints.current}</span>
-              <span class="hp-value-max">/ ${character.hitpoints.max}</span>
+              <span class="hp-value-max" data-action="editMaxHp" style="cursor: pointer; user-select: none;">/ ${character.hitpoints.max}</span>
             </div>
 
             <div class="hp-bar">
@@ -68,7 +76,7 @@ const DndUI = (() => {
             <div class="stat-label">Initiative</div>
             <div class="stat-value">${character.initiative > 0 ? '+' : ''}${character.initiative}</div>
           </div>
-          <div class="stat-box">
+          <div class="stat-box" data-action="editSpeed">
             <div class="stat-label">Bewegung</div>
             <div class="stat-value">${character.speed} ft</div>
           </div>
@@ -223,6 +231,44 @@ const DndUI = (() => {
 
       case 'history':
         switchView('history', character);
+        break;
+
+      // Edit Actions
+      case 'editName':
+        handleEditName(character);
+        break;
+
+      case 'editClass':
+        handleEditClass(character);
+        break;
+
+      case 'editSubclass':
+        handleEditSubclass(character);
+        break;
+
+      case 'editLevel':
+        handleEditLevel(character);
+        break;
+
+      case 'editAc':
+        handleEditAc(character);
+        break;
+
+      case 'editInitiative':
+        handleEditInitiative(character);
+        break;
+
+      case 'editSpeed':
+        handleEditSpeed(character);
+        break;
+
+      case 'editMaxHp':
+        handleEditMaxHp(character);
+        break;
+
+      case 'editAbility':
+        const ability = this.dataset.ability;
+        if (ability) handleEditAbility(character, ability);
         break;
     }
   }
@@ -441,6 +487,169 @@ const DndUI = (() => {
   function renderHistoryView(character) {
     const html = '<div style="padding: 20px;"><h2>Änderungsverlauf</h2><p>Verlaufs-Features folgen...</p></div>';
     app.innerHTML = html;
+  }
+
+  // ===== EDIT HANDLER =====
+
+  /**
+   * Name bearbeiten
+   */
+  async function handleEditName(character) {
+    const name = await DndModal.inputDialog(
+      'Charaktername',
+      'Name:',
+      character.meta.name || '',
+      'text'
+    );
+    if (name !== null) {
+      character.meta.name = name || 'Charakter ohne Namen';
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Klasse bearbeiten
+   */
+  async function handleEditClass(character) {
+    const className = await DndModal.inputDialog(
+      'Klasse',
+      'Klasse:',
+      character.basics.class.name || '',
+      'text'
+    );
+    if (className !== null) {
+      character.basics.class.name = className;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Unterklasse bearbeiten
+   */
+  async function handleEditSubclass(character) {
+    const subclass = await DndModal.inputDialog(
+      'Unterklasse',
+      'Unterklasse:',
+      character.basics.class.subclass || '',
+      'text'
+    );
+    if (subclass !== null) {
+      character.basics.class.subclass = subclass;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Stufe bearbeiten
+   */
+  async function handleEditLevel(character) {
+    const level = await DndModal.inputDialog(
+      'Stufe',
+      'Stufe:',
+      String(character.basics.class.level),
+      'number'
+    );
+    if (level !== null) {
+      const newLevel = Math.max(1, Math.min(20, parseInt(level) || 1));
+      character.basics.class.level = newLevel;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * AC bearbeiten
+   */
+  async function handleEditAc(character) {
+    const ac = await DndModal.inputDialog(
+      'Rüstungsklasse',
+      'AC:',
+      String(character.ac),
+      'number'
+    );
+    if (ac !== null) {
+      character.ac = Math.max(1, parseInt(ac) || 10);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Initiative bearbeiten
+   */
+  async function handleEditInitiative(character) {
+    const initiative = await DndModal.inputDialog(
+      'Initiative',
+      'Initiative Modifikator:',
+      String(character.initiative),
+      'number'
+    );
+    if (initiative !== null) {
+      character.initiative = parseInt(initiative) || 0;
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Bewegungsgeschwindigkeit bearbeiten
+   */
+  async function handleEditSpeed(character) {
+    const speed = await DndModal.inputDialog(
+      'Bewegungsgeschwindigkeit',
+      'Fuß pro Runde:',
+      String(character.speed),
+      'number'
+    );
+    if (speed !== null) {
+      character.speed = Math.max(0, parseInt(speed) || 30);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Max HP bearbeiten
+   */
+  async function handleEditMaxHp(character) {
+    const maxHp = await DndModal.inputDialog(
+      'Maximale Trefferpunkte',
+      'Max HP:',
+      String(character.hitpoints.max),
+      'number'
+    );
+    if (maxHp !== null) {
+      const newMax = Math.max(1, parseInt(maxHp) || 10);
+      character.hitpoints.max = newMax;
+      // Stelle sicher, dass aktuell HP nicht überschritten wird
+      character.hitpoints.current = Math.min(character.hitpoints.current, newMax);
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
+  }
+
+  /**
+   * Attribut bearbeiten
+   */
+  async function handleEditAbility(character, ability) {
+    const score = await DndModal.inputDialog(
+      `${ability.charAt(0).toUpperCase() + ability.slice(1)}`,
+      'Attributswert:',
+      String(character.abilities[ability]?.score || 10),
+      'number'
+    );
+    if (score !== null) {
+      const newScore = Math.max(1, Math.min(20, parseInt(score) || 10));
+      if (character.abilities[ability]) {
+        character.abilities[ability].score = newScore;
+        character.abilities[ability].modifier = Math.floor((newScore - 10) / 2);
+      }
+      DndStorage.saveCharacter(character);
+      renderDashboard(character);
+    }
   }
 
   return {

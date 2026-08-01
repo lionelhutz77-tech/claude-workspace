@@ -8,12 +8,15 @@ const DndViews = (() => {
    */
   function renderPlaceholder(title, feature) {
     const html = `
-      <div style="padding: 20px; text-align: center;">
+      <div style="padding: 20px; max-width: 800px; margin: 0 auto;">
+        <div style="margin-bottom: 20px;">
+          <button onclick="DndNav.toDashboard()" style="padding: 8px 16px; margin-right: 8px;">← Zurück</button>
+          <button onclick="DndNav.toDashboard()" style="padding: 8px 16px;">📊 Dashboard</button>
+        </div>
         <h2>${DndUtils.escapeHtml(title)}</h2>
         <p style="color: var(--text-secondary); margin-top: 20px;">
           ${DndUtils.escapeHtml(feature)} wird in einer zukünftigen Version verfügbar sein.
         </p>
-        <button onclick="history.back()" style="margin-top: 20px;">Zurück</button>
       </div>
     `;
 
@@ -65,7 +68,14 @@ const DndViews = (() => {
 
     const transactions = DndTransaction.getHistory().slice(-20);
 
-    let html = '<div style="padding: 20px; max-width: 800px; margin: 0 auto;"><h2>Änderungsverlauf</h2>';
+    let html = `
+      <div style="padding: 20px; max-width: 800px; margin: 0 auto;">
+        <div style="margin-bottom: 20px;">
+          <button onclick="DndNav.toDashboard()" style="padding: 8px 16px; margin-right: 8px;">← Zurück</button>
+          <button onclick="DndNav.toDashboard()" style="padding: 8px 16px;">📊 Dashboard</button>
+        </div>
+        <h2>Änderungsverlauf</h2>
+    `;
 
     if (transactions.length === 0) {
       html += '<p style="color: var(--text-secondary);">Kein Verlauf vorhanden.</p>';
