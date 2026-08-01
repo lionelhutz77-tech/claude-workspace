@@ -3,7 +3,7 @@
   "short_name": "D&D",
   "description": "D&D 5e Spielbegleiter - schnelle Verwaltung während der Sitzung",
   "start_url": "./index.html",
-  "scope": "/schulweg-nrw/dnd/",
+  "scope": "/claude-workspace/dnd/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#2c1810",
