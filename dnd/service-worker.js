@@ -1,6 +1,6 @@
 /* D&D Companion Service Worker - vollständig unabhängig von der Lern-App */
 
-const CACHE_NAME = 'dnd-companion-v1';
+const CACHE_NAME = 'dnd-companion-v2';
 const ASSET_CACHE = 'dnd-assets-v1';
 
 const ASSETS_TO_CACHE = [
