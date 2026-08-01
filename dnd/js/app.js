@@ -42,6 +42,16 @@ const DndApp = (() => {
     // Service Worker registrieren
     if ('serviceWorker' in navigator) {
       try {
+        // Deinstalliere alte Service Worker aus schulweg-nrw
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (const reg of registrations) {
+          if (reg.scope.includes('schulweg-nrw')) {
+            await reg.unregister();
+            console.log('Alte Service Worker deinstalliert:', reg.scope);
+          }
+        }
+
+        // Registriere neue Service Worker
         await navigator.serviceWorker.register('service-worker.js', { scope: '/claude-workspace/dnd/' });
         console.log('Service Worker registriert');
       } catch (e) {
