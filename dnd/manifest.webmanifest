@@ -1,0 +1,45 @@
+{
+  "name": "D&D Companion",
+  "short_name": "D&D",
+  "description": "D&D 5e Spielbegleiter - schnelle Verwaltung während der Sitzung",
+  "start_url": "./index.html",
+  "scope": "/schulweg-nrw/dnd/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#2c1810",
+  "background_color": "#1a1410",
+  "screenshots": [
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
