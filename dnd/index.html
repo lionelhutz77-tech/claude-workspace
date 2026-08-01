@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="D&D Companion" />
+  <meta name="theme-color" content="#2c1810" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <title>D&D Companion</title>
+</head>
+<body>
+  <div id="app" class="app-container"></div>
+
+  <!-- JavaScript-Module in korrekter Reihenfolge -->
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/character.js"></script>
+  <script src="js/transaction.js"></script>
+  <script src="js/resources.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        // Service Worker mit relativem Scope ./ registrieren
+        // Das funktioniert lokal UND auf GitHub Pages
+        navigator.serviceWorker.register('service-worker.js', { scope: './' }).then(function (reg) {
+          console.log('Service Worker registriert mit Scope:', reg.scope);
+        }).catch(function (e) {
+          console.warn('Service Worker Registrierung fehlgeschlagen:', e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

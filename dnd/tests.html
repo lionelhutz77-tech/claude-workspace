@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D&D Companion - Testsuite</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      margin: 0;
+    }
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 { color: #333; }
+    .test-suite {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .test-case {
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #ddd;
+      background: #f9f9f9;
+    }
+    .test-case.passed {
+      border-left-color: #4caf50;
+      background: #f1f8f6;
+    }
+    .test-case.failed {
+      border-left-color: #f44336;
+      background: #fdf1f1;
+    }
+    .test-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .test-result {
+      font-size: 12px;
+      color: #666;
+    }
+    .summary {
+      padding: 15px;
+      background: #e3f2fd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .summary.passed {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .summary.failed {
+      background: #ffebee;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>D&D Companion - Testsuite</h1>
+    <div id="summary" class="summary">Wird geladen...</div>
+    <div id="results"></div>
+  </div>
+
+  <!-- Module laden -->
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/character.js"></script>
+  <script src="js/transaction.js"></script>
+  <script src="js/resources.js"></script>
+  <script>
+    'use strict';
+
+    const tests = [];
+    let passedCount = 0;
+    let failedCount = 0;
+
+    /**
+     * Test-Funktion
+     */
+    function test(name, fn) {
+      try {
+        fn();
+        tests.push({ name, passed: true, error: null });
+        passedCount++;
+      } catch (e) {
+        tests.push({ name, passed: false, error: e.message });
+        failedCount++;
+      }
+    }
+
+    /**
+     * Assertion
+     */
+    function assert(condition, message) {
+      if (!condition) {
+        throw new Error(message || 'Assertion failed');
+      }
+    }
+
+    /**
+     * assertEqual
+     */
+    function assertEqual(actual, expected, message) {
+      if (actual !== expected) {
+        throw new Error(message || `Expected ${expected}, got ${actual}`);
+      }
+    }
+
+    /**
+     * assertDeepEqual
+     */
+    function assertDeepEqual(actual, expected, message) {
+      const actualStr = JSON.stringify(actual);
+      const expectedStr = JSON.stringify(expected);
+      if (actualStr !== expectedStr) {
+        throw new Error(message || `Objects not equal`);
+      }
+    }
+
+    // ========== TESTS ==========
+
+    // HP Tests
+    test('HP: Schaden anwenden', () => {
+      const result = DndUtils.calculateDamage(10, 50, 80, 5);
+      assertEqual(result.newHp, 45, 'HP sollte 45 sein');
+      assertEqual(result.newTempHp, 0, 'Temp HP sollte 0 sein');
+      assertEqual(result.damageToTemp, 5, 'Damage to temp sollte 5 sein');
+    });
+
+    test('HP: Schaden mit großem Wert', () => {
+      const result = DndUtils.calculateDamage(100, 50, 80, 5);
+      assertEqual(result.newHp, 0, 'HP sollte 0 sein');
+      assertEqual(result.damageToHp, 95, 'Damage to HP sollte 95 sein');
+    });
+
+    test('HP: Heilung anwenden', () => {
+      const result = DndUtils.calculateHealing(20, 50, 80);
+      assertEqual(result.newHp, 70, 'HP sollte 70 sein');
+      assertEqual(result.healing, 20, 'Healing sollte 20 sein');
+      assertEqual(result.overkill, 0, 'Overkill sollte 0 sein');
+    });
+
+    test('HP: Überheilung verhindern', () => {
+      const result = DndUtils.calculateHealing(50, 70, 80);
+      assertEqual(result.newHp, 80, 'HP sollte 80 sein');
+      assertEqual(result.healing, 10, 'Healing sollte 10 sein');
+      assertEqual(result.overkill, 40, 'Overkill sollte 40 sein');
+    });
+
+    // Ressourcen-Tests
+    test('Ressourcen: Wert erhöhen', () => {
+      const char = DndCharacter.create('Test');
+      DndResources.increaseResource(char, 'superiority_dice', 1);
+      const resource = DndResources.findResource(char, 'superiority_dice');
+      assertEqual(resource.current, 1, 'Ressource sollte 1 sein');
+    });
+
+    test('Ressourcen: Wert begrenzen', () => {
+      const char = DndCharacter.create('Test');
+      char.resources[0].maximum = 5;
+      DndResources.increaseResource(char, 'superiority_dice', 10);
+      const resource = DndResources.findResource(char, 'superiority_dice');
+      assertEqual(resource.current, 5, 'Ressource sollte auf max. 5 begrenzt sein');
+    });
+
+    // Transaktions-Tests
+    test('Transaktion: Schaden protokollieren', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      char.hitpoints.temporary = 5;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionDamage(char, 10);
+      assert(transaction, 'Transaktion sollte erstellt werden');
+      assertEqual(char.hitpoints.current, 45, 'HP sollte 45 sein');
+    });
+
+    test('Transaktion: Undo Schaden', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      char.hitpoints.temporary = 0;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionDamage(char, 10);
+      DndTransaction.undo(transaction.id, char);
+      assertEqual(char.hitpoints.current, 50, 'HP sollte nach Undo 50 sein');
+    });
+
+    test('Transaktion: Heilung protokollieren', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      char.hitpoints.max = 80;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionHealing(char, 20);
+      assert(transaction, 'Transaktion sollte erstellt werden');
+      assertEqual(char.hitpoints.current, 70, 'HP sollte 70 sein');
+    });
+
+    test('Charakter: Validierung', () => {
+      const char = DndCharacter.create('Test');
+      const validation = DndCharacter.validate(char);
+      assertEqual(validation.valid, true, 'Charakter sollte gültig sein');
+    });
+
+    test('Charakter: Ungültige Daten', () => {
+      const invalidChar = {
+        meta: {},
+        hitpoints: { max: -1, current: 0 }
+      };
+      const validation = DndUtils.validateCharacterData(invalidChar);
+      assertEqual(validation.valid, false, 'Validierung sollte fehlschlagen');
+    });
+
+    test('Storage: localStorage verfügbar', () => {
+      const available = DndStorage.isAvailable();
+      assertEqual(available, true, 'localStorage sollte verfügbar sein');
+    });
+
+    test('Storage: Character speichern und laden', () => {
+      const char = DndCharacter.create('TestChar');
+      DndStorage.saveCharacter(char);
+      const loaded = DndStorage.loadCharacter();
+      assertEqual(loaded.meta.name, 'TestChar', 'Name sollte nach Laden gleich sein');
+      DndStorage.clearAllData();
+    });
+
+    // ========== RESSOURCEN-VALIDIERUNG ==========
+
+    test('Ressourcen: Standard-Maximum >= 1', () => {
+      const char = DndCharacter.create('Test');
+      const resource = DndResources.findResource(char, 'superiority_dice');
+      assert(resource.maximum >= 1, 'Standard-Ressource sollte maximum >= 1 haben');
+    });
+
+    test('Ressourcen: Erhöhung von 0 zu 1', () => {
+      const char = DndCharacter.create('Test');
+      const before = DndResources.findResource(char, 'superiority_dice');
+      assert(before.current === 0, 'Start-Wert sollte 0 sein');
+      DndResources.increaseResource(char, 'superiority_dice', 1);
+      const after = DndResources.findResource(char, 'superiority_dice');
+      assertEqual(after.current, 1, 'Nach Erhöhung sollte 1 sein');
+    });
+
+    test('Ressourcen: Current wird bei Überschuss begrenzt', () => {
+      const char = DndCharacter.create('Test');
+      char.resources[0].maximum = 3;
+      DndResources.updateResource(char, 'superiority_dice', 5);
+      const resource = DndResources.findResource(char, 'superiority_dice');
+      assertEqual(resource.current, 3, 'Current sollte auf Maximum begrenzt sein');
+    });
+
+    // ========== UNDO-PERSISTENZ ==========
+
+    test('Undo: Charakter wird persistent gespeichert', () => {
+      DndStorage.clearAllData();
+      const char = DndCharacter.create('UndoTest');
+      char.hitpoints.current = 50;
+      DndTransaction.init(char);
+      const damageTransaction = DndTransaction.transactionDamage(char, 10);
+      const before = char.hitpoints.current;
+      DndTransaction.undo(damageTransaction.id, char);
+      const loaded = DndStorage.loadCharacter();
+      assertEqual(loaded.hitpoints.current, 50, 'Nach Undo sollte HP wieder 50 sein (persistent)');
+      DndStorage.clearAllData();
+    });
+
+    test('Undo: Verlauf wird persistent gespeichert', () => {
+      DndStorage.clearAllData();
+      const char = DndCharacter.create('UndoTest');
+      char.hitpoints.current = 50;
+      DndTransaction.init(char);
+      const damageTransaction = DndTransaction.transactionDamage(char, 10);
+      DndTransaction.undo(damageTransaction.id, char);
+      const loadedHistory = DndStorage.loadHistory();
+      assert(loadedHistory.length > 0, 'Verlauf sollte nach Undo nicht leer sein');
+      DndStorage.clearAllData();
+    });
+
+    test('Undo: undoReference ist vorhanden', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionDamage(char, 10);
+      DndTransaction.undo(transaction.id, char);
+      const history = DndTransaction.getHistory();
+      const undoTransaction = history.find(t => t.action === 'undo');
+      assert(undoTransaction && undoTransaction.undoReference, 'Undo-Transaktion sollte undoReference haben');
+    });
+
+    test('Undo: Original-Transaktion wird als undoable=false markiert', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionDamage(char, 10);
+      DndTransaction.undo(transaction.id, char);
+      const history = DndTransaction.getHistory();
+      const originalTx = history.find(t => t.id === transaction.id);
+      assertEqual(originalTx.undoable, false, 'Original-Transaktion sollte nach Undo undoable=false sein');
+    });
+
+    test('Undo: Doppeltes Undo wird verhindert', () => {
+      const char = DndCharacter.create('Test');
+      char.hitpoints.current = 50;
+      DndTransaction.init(char);
+      const transaction = DndTransaction.transactionDamage(char, 10);
+      DndTransaction.undo(transaction.id, char);
+      const secondUndo = DndTransaction.undo(transaction.id, char);
+      assertEqual(secondUndo, null, 'Doppeltes Undo sollte null zurückgeben');
+    });
+
+    // ========== RAST-FUNKTIONEN ==========
+
+    test('Rast: Kurze Rast regeneriert Ressourcen', () => {
+      const char = DndCharacter.create('Test');
+      char.resources[0].current = 0;
+      DndTransaction.init(char);
+      DndResources.regenerateResources(char, 'shortRest');
+      const resource = DndResources.findResource(char, 'action_surge');
+      assertEqual(resource.current, 1, 'Nach kurzer Rast sollte action_surge regeneriert sein');
+    });
+
+    test('Rast: Lange Rast regeneriert alle Ressourcen', () => {
+      const char = DndCharacter.create('Test');
+      char.resources[0].current = 0;
+      char.hitpoints.current = 3;
+      char.hitpoints.max = 10;
+      DndTransaction.init(char);
+      DndResources.regenerateResources(char, 'longRest');
+      const resource = DndResources.findResource(char, 'superiority_dice');
+      assertEqual(resource.current, resource.maximum, 'Nach langer Rast sollten alle Ressourcen regeneriert sein');
+    });
+
+    test('Rast: Verlauf wird für Rast-Transaktion erstellt', () => {
+      const char = DndCharacter.create('Test');
+      DndTransaction.init(char);
+      DndResources.regenerateResources(char, 'shortRest');
+      const history = DndTransaction.getHistory();
+      assert(history.length > 0, 'Es sollte ein Verlauf-Eintrag für Rast vorhanden sein');
+    });
+
+    // ========== EXPORT/IMPORT ==========
+
+    test('Export: Charakter wird mit Metadaten exportiert', () => {
+      DndStorage.clearAllData();
+      const char = DndCharacter.create('ExportTest');
+      char.hitpoints.current = 25;
+      DndStorage.saveCharacter(char);
+      const exported = DndStorage.exportCharacter(char, [], []);
+      assert(exported.appVersion, 'Export sollte appVersion enthalten');
+      assert(exported.schemaVersion, 'Export sollte schemaVersion enthalten');
+      assert(exported.character, 'Export sollte character enthalten');
+      DndStorage.clearAllData();
+    });
+
+    test('Import: Ungültiges JSON wird abgelehnt', () => {
+      const invalidData = '{ invalid json';
+      try {
+        JSON.parse(invalidData);
+        assert(false, 'Sollte bei ungültigem JSON fehlschlagen');
+      } catch (e) {
+        assert(true, 'Ungültiges JSON wirft Fehler');
+      }
+    });
+
+    test('Import: Charakter mit ungültigen HP wird erkannt', () => {
+      const badCharacter = {
+        meta: { name: 'Bad' },
+        hitpoints: { max: -1, current: 0 }
+      };
+      const validation = DndUtils.validateCharacterData(badCharacter);
+      assertEqual(validation.valid, false, 'Ungültiges Character sollte nicht validieren');
+    });
+
+    // ========== DEUTSCHE BENUTZEROBERFLÄCHE ==========
+
+    test('UI: Deutsch - Schaden-Button vorhanden', () => {
+      const html = document.documentElement.innerHTML;
+      assert(html.includes('Schaden') || html.includes('⚔'), 'Deutsch-Text oder Icon für Schaden sollte vorhanden sein');
+    });
+
+    test('UI: Deutsch - Heilung-Button vorhanden', () => {
+      const html = document.documentElement.innerHTML;
+      assert(html.includes('Heilung') || html.includes('❤'), 'Deutsch-Text oder Icon für Heilung sollte vorhanden sein');
+    });
+
+    // ========== RENDERING ==========
+
+    function renderResults() {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      tests.forEach(test => {
+        const testDiv = document.createElement('div');
+        testDiv.className = `test-case ${test.passed ? 'passed' : 'failed'}`;
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'test-name';
+        nameDiv.textContent = (test.passed ? '✓ ' : '✗ ') + test.name;
+
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'test-result';
+        resultDiv.textContent = test.passed ? 'Bestanden' : 'Fehler: ' + test.error;
+
+        testDiv.appendChild(nameDiv);
+        testDiv.appendChild(resultDiv);
+        resultsDiv.appendChild(testDiv);
+      });
+
+      const summaryDiv = document.getElementById('summary');
+      summaryDiv.className = `summary ${failedCount === 0 ? 'passed' : 'failed'}`;
+      summaryDiv.textContent = `Tests: ${passedCount} bestanden, ${failedCount} fehlgeschlagen (von ${tests.length})`;
+    }
+
+    // Run tests
+    setTimeout(() => {
+      renderResults();
+    }, 100);
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .icon-bg { fill: #2c1810; }
+      .icon-fg { fill: #e8e6e1; }
+    </style>
+  </defs>
+  <circle cx="96" cy="96" r="96" class="icon-bg"/>
+  <path class="icon-fg" d="M 96 30 L 110 50 L 130 55 L 115 70 L 120 90 L 96 80 L 72 90 L 77 70 L 62 55 L 82 50 Z M 50 120 L 60 140 L 80 138 L 68 152 L 75 172 L 55 158 L 35 172 L 42 152 L 30 138 L 50 140 Z M 142 120 L 152 140 L 172 138 L 160 152 L 167 172 L 147 158 L 127 172 L 134 152 L 122 138 L 142 140 Z"/>
+</svg>
