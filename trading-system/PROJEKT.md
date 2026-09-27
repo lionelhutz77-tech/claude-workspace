@@ -1,5 +1,11 @@
 # Trading Intelligence System — Projektplan
 
+**Aktueller Zusatz (21.09.2026):** Vier getrennte virtuelle 10.000-€-Depots
+testen KONSENS, MOMENTUM, VALUE und TAILWIND nach vorregistrierten Regeln.
+Die bisherigen fünf 1.000-€-Depots bleiben als eigener Verlauf erhalten.
+Methodik und Berichtspfad: [EXPERIMENT-10000.md](EXPERIMENT-10000.md).
+Diese Testserie sendet keine Brokerorders.
+
 ## Vision
 
 Tägliche, automatisierte Kauf-/Verkaufsempfehlungen für Aktien und Kryptowährungen,

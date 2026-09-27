@@ -1,7 +1,7 @@
 """
 Tailwind Connector
-Laedt die Signale des Tailwind Scanners und integriert sie als Zusatz-Punkte
-in die taeglich Analyse des Trading-Systems.
+Laedt die Signale des Tailwind Scanners und integriert sie als separat
+messbare Evidenz in die taegliche Analyse des Trading-Systems.
 
 Datenfluss:
   tailwind-scanner/data/latest_signals.json
@@ -10,10 +10,9 @@ Datenfluss:
     ↓
   wende_tailwind_bonus_an(signal)  — wird auf jedes aggregierte Signal angewendet
 
-Score-Einfluss:
-  STARK   (≥ 55/100) → +3 Gesamtpunkte + Begruendung
-  MODERAT (≥ 30/100) → +1 Gesamtpunkt  + Begruendung
-  SCHWACH            → kein Einfluss
+Score-Einfluss ist standardmaessig deaktiviert, bis der isolierte TAILWIND-
+Strategiearm seine Out-of-sample-Wirkung belegt. Fuer kontrollierte Vergleiche
+kann TAILWIND_SCORE_BONUS_ENABLED=1 gesetzt werden.
 """
 
 import json
@@ -100,8 +99,9 @@ def _lade_github() -> dict | None:
 
 def wende_tailwind_bonus_an(signal: dict, tailwind_signale: dict[str, dict]) -> dict:
     """
-    Prueft ob das Asset im Tailwind-Scanner als STARK/MODERAT eingestuft wurde.
-    Wenn ja: addiert Bonuspunkte und ergaenzt die Begruendung.
+    Annotiert ein Asset mit dem Tailwind-Signal. Bonuspunkte werden nur in
+    einem expliziten Vergleichslauf aktiviert; standardmaessig bleibt der
+    Hauptscore unveraendert.
     Gibt das (ggf. angepasste) Signal-Dict zurueck.
     """
     ticker = signal.get("asset", "")
@@ -118,11 +118,13 @@ def wende_tailwind_bonus_an(signal: dict, tailwind_signale: dict[str, dict]) -> 
     elif stufe == "MODERAT":
         bonus = _BONUS_MODERAT
     else:
-        return signal  # SCHWACH = kein Einfluss
+        bonus = 0
 
     # Signal-Dict kopieren und anpassen
     signal = dict(signal)
-    signal["gesamt_punkte"] = round(signal.get("gesamt_punkte", 0) + bonus, 2)
+    bonus_enabled = os.getenv("TAILWIND_SCORE_BONUS_ENABLED", "0") == "1"
+    if bonus_enabled and bonus:
+        signal["gesamt_punkte"] = round(signal.get("gesamt_punkte", 0) + bonus, 2)
 
     # Kontext fuer KI-Analyse
     abstand = tw.get("kurs_info", {}).get("abstand_ath_prozent", 0)
@@ -145,6 +147,7 @@ def wende_tailwind_bonus_an(signal: dict, tailwind_signale: dict[str, dict]) -> 
     signal["tailwind_signal"] = stufe
     signal["tailwind_thema"]  = thema
     signal["tailwind_score"]  = score
+    signal["tailwind_bonus_applied"] = bonus if bonus_enabled else 0
 
     return signal
 

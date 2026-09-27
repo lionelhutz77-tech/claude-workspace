@@ -5,3 +5,5 @@ __pycache__/
 output/
 logs/
 data/sec_cache/
+data/archive/
+private/

@@ -1,0 +1,15 @@
+"use strict";
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const vm=require("node:vm");
+const html=fs.readFileSync(require("node:path").join(__dirname,"../output/real_portfolio_simulator.html"),"utf8");
+assert(!html.includes("__PORTFOLIO_DATA__") && !html.includes("__SIMULATOR_CORE__"));
+const blocks=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+assert.equal(blocks.length,3);
+for(const block of [blocks[1],blocks[2]])new vm.Script(block);
+const data=JSON.parse(blocks[0]);
+assert.equal(data.positions.length,42);
+const sum=Math.round(data.positions.reduce((a,p)=>a+p.value_eur,0)*100)/100;
+assert.equal(sum,75701.45);
+assert.equal(Math.round((data.displayed_total_eur-sum-data.cash_eur)*100)/100,6.43);
+console.log("real_portfolio_output: HTML, Skripte und 42 Positionen PASS");

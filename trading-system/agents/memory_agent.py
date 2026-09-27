@@ -20,6 +20,7 @@ from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass
 
 import yfinance as yf
+from signal_fusion import build_evidence_snapshot, ensure_schema, store_evidence
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -106,22 +107,28 @@ def initialisiere_db():
         CREATE INDEX IF NOT EXISTS idx_ereignisse_datum ON ereignisse(datum);
         CREATE INDEX IF NOT EXISTS idx_signale_asset    ON tages_signale(asset);
         """)
+        spalten = {r[1] for r in conn.execute("PRAGMA table_info(tages_signale)")}
+        if "asset_typ" not in spalten:
+            # Typ mitspeichern, damit die Auswertung Aktie/Krypto nicht raten muss (NEAR-Kollision).
+            conn.execute("ALTER TABLE tages_signale ADD COLUMN asset_typ TEXT")
+        ensure_schema(conn)
 
 
 # ---------------------------------------------------------------------------
 # Daten speichern
 # ---------------------------------------------------------------------------
 
-def speichere_signal(signal: dict):
+def speichere_signal(signal: dict, observed_at: str | None = None):
     """Speichert das heutige Signal fuer spaeteres Tracking."""
     initialisiere_db()
     f = signal.get("finale", {})
+    snapshot = build_evidence_snapshot(signal, observed_at)
     with _verbindung() as conn:
         conn.execute("""
         INSERT INTO tages_signale
             (datum, asset, empfehlung, einstieg, ziel, stop_loss,
-             tech_signal, news_sentiment, social_sentiment, gesamt_punkte)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             tech_signal, news_sentiment, social_sentiment, gesamt_punkte, asset_typ)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             datetime.now().strftime("%Y-%m-%d"),
             signal.get("asset"),
@@ -133,7 +140,9 @@ def speichere_signal(signal: dict):
             signal.get("news_sentiment"),
             signal.get("social_sentiment", "neutral"),
             signal.get("gesamt_punkte", 0),
+            signal.get("asset_typ"),
         ))
+        store_evidence(conn, snapshot)
 
 
 def aktualisiere_vergangene_signale():

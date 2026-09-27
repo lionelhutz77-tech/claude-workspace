@@ -16,10 +16,12 @@ Einrichtung:
 import sys
 import os
 import requests
+from html import escape
 from datetime import datetime
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -27,6 +29,11 @@ if hasattr(sys.stdout, "reconfigure"):
 TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 BASE_URL         = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
+
+
+def _html(value) -> str:
+    """Escape untrusted signal text without changing our own Telegram markup."""
+    return escape(str(value), quote=False)
 
 
 # ---------------------------------------------------------------------------
@@ -92,7 +99,7 @@ def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None,
         krypto_score = (fg_krypto or {}).get("score", 50)
         krypto_label = (fg_krypto or {}).get("label", "Neutral")
         lines += [
-            f"{emoji} <b>Markt-Stimmung:</b>  Aktien {score}/100 ({label})  |  Krypto {krypto_score}/100 ({krypto_label})",
+            f"{emoji} <b>Markt-Stimmung:</b>  Aktien {score}/100 ({_html(label)})  |  Krypto {krypto_score}/100 ({_html(krypto_label)})",
             "",
         ]
 
@@ -114,25 +121,25 @@ def format_tagesbericht(ergebnisse: list[dict], depot_stats: dict = None,
         for e in kaufen:
             f       = e["finale"]
             strat   = e.get("strategie", "")
-            strat_str = f" [{strat}]" if strat else ""
+            strat_str = f" [{_html(strat)}]" if strat else ""
             risiko  = f.get("risiko", "MITTEL")
             r_emoji = {"NIEDRIG": "🟢", "MITTEL": "🟡", "HOCH": "🔴"}.get(risiko, "⚪")
             kaufzeile = (
-                f"{r_emoji} <b>{e['asset']}</b>{strat_str}  "
+                f"{r_emoji} <b>{_html(e['asset'])}</b>{strat_str}  "
                 f"Einstieg: ${f.get('einstieg', e.get('preis', 0)):,.2f}  "
                 f"Ziel: ${f.get('ziel', 0):,.2f}  "
                 f"SL: ${f.get('stop_loss', 0):,.2f}"
             )
             lines.append(kaufzeile)
             # Unpriced Optionality anzeigen wenn vorhanden
-            optio = f.get("optionalitaet", "")
+            optio = str(f.get("optionalitaet") or "")
             if optio and optio.lower() not in ("keine erkennbar", "keine", "-", ""):
-                lines.append(f"  💡 <i>Optionalität: {optio[:120]}</i>")
+                lines.append(f"  💡 <i>Optionalität: {_html(optio[:120])}</i>")
         lines.append("")
 
     # ABWARTEN
     if abwarten:
-        names = ", ".join(e["asset"] for e in abwarten)
+        names = ", ".join(_html(e["asset"]) for e in abwarten)
         lines.append(f"<b>⏸ Abwarten:</b> {names}")
         lines.append("")
 
@@ -151,18 +158,18 @@ def format_position_geschlossen(asset: str, pnl_eur: float, pnl_pct: float, stat
 
     datum = datetime.now().strftime("%d.%m.%Y")
     return (
-        f"{emoji} <b>Position geschlossen: {asset}</b>\n"
+        f"{emoji} <b>Position geschlossen: {_html(asset)}</b>\n"
         f"Ergebnis: <b>{label}</b>\n"
         f"P&L: <b>{pnl_eur:+.2f} EUR ({pnl_pct:+.1f}%)</b>\n"
-        f"Status: {status} | {datum}"
+        f"Status: {_html(status)} | {datum}"
     )
 
 
 def format_warnung(asset: str, nachricht: str) -> str:
     """Kritische Warnung (Stop-Loss nahe, ungewoehnliche Bewegung)."""
     return (
-        f"⚠️ <b>WARNUNG: {asset}</b>\n"
-        f"{nachricht}\n"
+        f"⚠️ <b>WARNUNG: {_html(asset)}</b>\n"
+        f"{_html(nachricht)}\n"
         f"<i>{datetime.now().strftime('%d.%m.%Y %H:%M')} Uhr</i>"
     )
 
@@ -211,12 +218,12 @@ def sende_vorlaeufer_bericht(ergebnisse: list[dict], top_n: int = 3) -> bool:
         score  = e["score"]
         balken = "🟩" * score + "⬜" * (10 - score)
         lines.append(
-            f"<b>#{i} {e['ticker']} — {e['name']}</b>\n"
+            f"<b>#{i} {_html(e['ticker'])} — {_html(e['name'])}</b>\n"
             f"{balken} {score}/10\n"
-            f"${e['preis']:,.2f} | RSI {e['rsi']:.0f} | {e['sektor']}\n"
-            f"Fruehindikator: {e.get('fruehindikator', '-')}\n"
-            f"Risiko: {e.get('risiko', '-')}\n"
-            f"Timing: {e.get('timing', '-')}\n"
+            f"${e['preis']:,.2f} | RSI {e['rsi']:.0f} | {_html(e['sektor'])}\n"
+            f"Fruehindikator: {_html(e.get('fruehindikator', '-'))}\n"
+            f"Risiko: {_html(e.get('risiko', '-'))}\n"
+            f"Timing: {_html(e.get('timing', '-'))}\n"
         )
 
     lines.append("<i>Kein Anlageratschlag. Modell-Output des Systems.</i>")

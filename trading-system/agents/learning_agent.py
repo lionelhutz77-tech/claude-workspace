@@ -23,14 +23,12 @@ from dataclasses import dataclass, field
 
 import yfinance as yf
 from dotenv import load_dotenv
-from groq import Groq
+from free_ai_client import generate_text
 
 load_dotenv()
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-_groq   = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL   = "llama-3.3-70b-versatile"
 DB_PFAD = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "market_memory.db")
 LERN_DB = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "learnings.db")
 
@@ -73,6 +71,8 @@ def initialisiere_lern_db():
             wirksam         INTEGER DEFAULT 1,
             fehler_nach_lehr INTEGER DEFAULT 0,
             ersetzt_durch   TEXT DEFAULT '',
+            eligible        INTEGER DEFAULT 0,
+            quality_reason  TEXT DEFAULT 'legacy_unverified',
             erstellt_am     TEXT DEFAULT CURRENT_TIMESTAMP,
             zuletzt         TEXT DEFAULT CURRENT_TIMESTAMP
         );
@@ -88,7 +88,9 @@ def initialisiere_lern_db():
         # Neue Spalten nachrüsten falls DB schon existiert (ohne Fehler)
         for col, typ in [("wirksam", "INTEGER DEFAULT 1"),
                          ("fehler_nach_lehr", "INTEGER DEFAULT 0"),
-                         ("ersetzt_durch", "TEXT DEFAULT ''")]:
+                         ("ersetzt_durch", "TEXT DEFAULT ''"),
+                         ("eligible", "INTEGER DEFAULT 0"),
+                         ("quality_reason", "TEXT DEFAULT 'legacy_unverified'")]:
             try:
                 conn.execute(f"ALTER TABLE system_lehren ADD COLUMN {col} {typ}")
             except Exception:
@@ -141,6 +143,7 @@ def hole_top_lehren(limit: int = 10) -> list[dict]:
         rows = conn.execute("""
             SELECT kategorie, lehre, beispiel, haeufigkeit, zuletzt
             FROM system_lehren
+            WHERE wirksam = 1 AND eligible = 1
             ORDER BY haeufigkeit DESC, zuletzt DESC
             LIMIT ?
         """, (limit,)).fetchall()
@@ -165,6 +168,14 @@ class AbweichungsAnalyse:
     fehler_typ: str = ""
     ki_analyse: str = ""
     lehre: str = ""
+
+
+def _asset_typ(asset: str, gespeichert: str | None) -> str:
+    """Gespeicherter Typ hat Vorrang; Altdaten ohne Typ nur ueber bekannte Krypto-Kuerzel."""
+    if gespeichert in ("aktie", "krypto"):
+        return gespeichert
+    from crypto_analyst import KRYPTO_IDS
+    return "krypto" if asset.upper() in KRYPTO_IDS else "aktie"
 
 
 def hole_tatsaechliche_kurse(asset: str, datum_signal: str, asset_typ: str = "aktie") -> dict:
@@ -216,8 +227,10 @@ def analysiere_abweichungen() -> list[AbweichungsAnalyse]:
     grenze = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
     with sqlite3.connect(DB_PFAD) as conn:
         conn.row_factory = sqlite3.Row
-        signale = conn.execute("""
-            SELECT ts.datum, ts.asset, ts.empfehlung, ts.einstieg
+        spalten = {r[1] for r in conn.execute("PRAGMA table_info(tages_signale)")}
+        typ_spalte = "ts.asset_typ" if "asset_typ" in spalten else "NULL"
+        signale = conn.execute(f"""
+            SELECT ts.datum, ts.asset, ts.empfehlung, ts.einstieg, {typ_spalte} AS asset_typ
             FROM tages_signale ts
             WHERE ts.datum >= ?
             ORDER BY ts.datum DESC
@@ -225,12 +238,12 @@ def analysiere_abweichungen() -> list[AbweichungsAnalyse]:
 
     ergebnisse = []
     for sig in signale:
-        if not sig["einstieg"] or sig["einstieg"] == 0:
+        # NaN-Einstiege (fehlende Kursdaten) sind nicht auswertbar: NaN != NaN.
+        if not sig["einstieg"] or sig["einstieg"] != sig["einstieg"]:
             continue
 
         kurse = hole_tatsaechliche_kurse(
-            sig["asset"], sig["datum"],
-            asset_typ="krypto" if sig["asset"] in ["BTC","ETH","SOL","XRP","BNB"] else "aktie"
+            sig["asset"], sig["datum"], asset_typ=_asset_typ(sig["asset"], sig["asset_typ"])
         )
 
         if not kurse:
@@ -250,6 +263,11 @@ def analysiere_abweichungen() -> list[AbweichungsAnalyse]:
         if kurse.get("kurs_10d"):
             analyse.kurs_10d   = kurse["kurs_10d"]
             analyse.rendite_10d = (kurse["kurs_10d"] / sig["einstieg"] - 1) * 100
+
+        # Unplausible Spruenge (>100 % in 10 Tagen) stammen aus Altdaten mit falschem
+        # Asset-Typ (z. B. NEAR-ETF-Preis gegen NEAR-Krypto) und werden nicht als Lehre gewertet.
+        if abs(analyse.rendite_5d) > 100 or abs(analyse.rendite_10d) > 100:
+            continue
 
         # Rendite auswerten
         rendite_best = max(
@@ -334,32 +352,21 @@ WARNSIGNALE: [Welche Signale haette man vorher sehen koennen?]
 LEHRE: [Eine konkrete Regel die das System in Zukunft beachten soll - max. 1 Satz]"""
 
     try:
-        for versuch in range(3):
-            try:
-                resp = _groq.chat.completions.create(
-                    model=MODEL,
-                    messages=[
-                        {"role": "system", "content": "Du bist ein praeziser Markt-Risikoanalyst. Antworte strukturiert und kurz."},
-                        {"role": "user",   "content": prompt}
-                    ],
-                    max_tokens=300,
-                    temperature=0.2,
-                )
-                text = resp.choices[0].message.content.strip()
+        text = generate_text(
+            "Du bist ein praeziser Markt-Risikoanalyst. Antworte strukturiert und kurz.",
+            prompt,
+            task="routine",
+            max_tokens=300,
+        )
 
-                # Lehre extrahieren
-                lehre = ""
-                for zeile in text.splitlines():
-                    if zeile.strip().upper().startswith("LEHRE:"):
-                        lehre = zeile.split(":", 1)[-1].strip()
-                        break
+        # Lehre extrahieren
+        lehre = ""
+        for zeile in text.splitlines():
+            if zeile.strip().upper().startswith("LEHRE:"):
+                lehre = zeile.split(":", 1)[-1].strip()
+                break
 
-                return text, lehre
-            except Exception as e:
-                if "429" in str(e) and versuch < 2:
-                    time.sleep(30 * (versuch + 1))
-                else:
-                    raise
+        return text, lehre
     except Exception as e:
         return f"KI-Analyse nicht verfuegbar: {e}", ""
 
@@ -384,6 +391,7 @@ def fuehre_lernzyklus_durch() -> dict:
     verpasst  = [a for a in fehler if a.fehler_typ == "VERPASSTE_CHANCE"]
     verluste  = [a for a in fehler if a.fehler_typ != "VERPASSTE_CHANCE"]
     korrekte  = [a for a in alle if a.fehler_typ == "KORREKT_KAUFEN"]
+    kauf_bewertet = [a for a in alle if a.empfehlung == "KAUFEN" and (a.kurs_5d or a.kurs_10d)]
 
     print(f"  {len(alle)} Signale geprueft — "
           f"{len(verluste)} Verlust-Fehler, "
@@ -449,7 +457,10 @@ def fuehre_lernzyklus_durch() -> dict:
         "fehler":            len(verluste),
         "verpasste_chancen": len(verpasst),
         "korrekte":          len(korrekte),
-        "trefferquote":      len(korrekte) / len(alle) * 100 if alle else 0,
+        # Trefferquote nur ueber bewertete KAUFEN-Signale; Abwarten-Signale koennen
+        # per Definition kein "korrekter Kauf" sein und verzerrten die Quote auf 0 %.
+        "kauf_bewertet":     len(kauf_bewertet),
+        "trefferquote":      len(korrekte) / len(kauf_bewertet) * 100 if kauf_bewertet else 0,
         "analysen":          [a for a in kandidaten if a.ki_analyse],
         "alle_abweichungen": alle,
         "top_lehren":        top_lehren,
@@ -543,27 +554,16 @@ Generiere eine STAERKERE, PRAEZISERE Version dieser Regel:
 NEUE_LEHRE: [Neue, haertere Formulierung]"""
 
     try:
-        for versuch in range(3):
-            try:
-                resp = _groq.chat.completions.create(
-                    model=MODEL,
-                    messages=[
-                        {"role": "system", "content": "Du bist ein Risikomanager. Formuliere Trading-Regeln praezise und absolut."},
-                        {"role": "user",   "content": prompt},
-                    ],
-                    max_tokens=150,
-                    temperature=0.2,
-                )
-                text = resp.choices[0].message.content.strip()
-                for zeile in text.splitlines():
-                    if zeile.strip().upper().startswith("NEUE_LEHRE:"):
-                        return zeile.split(":", 1)[-1].strip()
-                return text.splitlines()[0][:200]
-            except Exception as e:
-                if "429" in str(e) and versuch < 2:
-                    time.sleep(30 * (versuch + 1))
-                else:
-                    return ""
+        text = generate_text(
+            "Du bist ein Risikomanager. Formuliere Trading-Regeln praezise und absolut.",
+            prompt,
+            task="routine",
+            max_tokens=150,
+        )
+        for zeile in text.splitlines():
+            if zeile.strip().upper().startswith("NEUE_LEHRE:"):
+                return zeile.split(":", 1)[-1].strip()
+        return text.splitlines()[0][:200]
     except Exception:
         return ""
 
@@ -623,7 +623,7 @@ def erstelle_tages_lern_report(lern_ergebnis: dict, probleme: list[dict], angepa
     zeilen.append(f"\n  1. PROGNOSE vs. REALITAET (letzte 30 Tage)")
     zeilen.append(f"  {sub}")
     zeilen.append(f"  Analysierte Signale   : {lern_ergebnis['signale_gesamt']}")
-    zeilen.append(f"  Korrekte Calls        : {lern_ergebnis['korrekte']}  ({lern_ergebnis['trefferquote']:.1f}%)")
+    zeilen.append(f"  Kauf-Trefferquote     : {lern_ergebnis['korrekte']} von {lern_ergebnis.get('kauf_bewertet', 0)} bewerteten KAUFEN  ({lern_ergebnis['trefferquote']:.1f}%)")
     zeilen.append(f"  Verlust-Fehler        : {lern_ergebnis['fehler']}")
     zeilen.append(f"  Verpasste Chancen     : {lern_ergebnis.get('verpasste_chancen', 0)}")
 
@@ -745,7 +745,7 @@ def drucke_lernbericht(ergebnis: dict):
     print(f"  TAEGLICH LERN-BERICHT")
     print(f"{'='*62}")
     print(f"  Signale geprueft    : {ergebnis['signale_gesamt']}")
-    print(f"  Korrekte Calls      : {ergebnis['korrekte']}  ({ergebnis['trefferquote']:.1f}%)")
+    print(f"  Kauf-Trefferquote   : {ergebnis['korrekte']} von {ergebnis.get('kauf_bewertet', 0)} bewerteten KAUFEN  ({ergebnis['trefferquote']:.1f}%)")
     print(f"  Verlust-Fehler      : {ergebnis['fehler']}")
     print(f"  Verpasste Chancen   : {ergebnis.get('verpasste_chancen', 0)}")
 

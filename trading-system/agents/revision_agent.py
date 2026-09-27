@@ -1,18 +1,11 @@
 """
-Revisions-Agent -- KI-gestuetzt (Groq / Llama 3.3 70B)
+Revisions-Agent -- KI-gestuetzt (Groq / zentral konfigurierte Routine-Route)
 Nimmt das aggregierte Signal eines Assets und erstellt eine tiefgehende,
 strukturierte Analyse mit Begruendung und finaler Empfehlung.
 """
 
-import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dotenv import load_dotenv
-from groq import Groq
-
-load_dotenv()
-_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+from free_ai_client import generate_text
 
 SYSTEM_PROMPT = """Du bist ein erfahrener Finanzanalyst mit 20 Jahren Erfahrung
 in technischer Analyse, Fundamentalanalyse und Marktpsychologie. Du analysierst
@@ -84,28 +77,9 @@ def analysiere_mit_ki(signal: dict) -> dict:
     """
     prompt = erstelle_analyse_prompt(signal)
 
-    for versuch in range(3):
-        try:
-            response = _client.chat.completions.create(
-                model=MODEL,
-                messages=[
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user",   "content": prompt},
-                ],
-                max_tokens=600,
-                temperature=0.3,
-            )
-            break
-        except Exception as e:
-            if "429" in str(e) and versuch < 2:
-                import time
-                wartezeit = 30 * (versuch + 1)
-                print(f" [Rate-Limit, warte {wartezeit}s]", end="", flush=True)
-                time.sleep(wartezeit)
-            else:
-                raise
-
-    analyse_text = response.choices[0].message.content.strip()
+    analyse_text = generate_text(
+        SYSTEM_PROMPT, prompt, task="routine", max_tokens=600
+    )
 
     # Finale Empfehlung aus dem Text extrahieren
     empfehlung = signal["empfehlung"]  # Fallback

@@ -1,0 +1,91 @@
+{
+  "limits": {
+    "max_input_chars": 12000,
+    "max_output_chars": 6000,
+    "profile_output_chars": {
+      "routine": 1800,
+      "worker": 3200,
+      "deep": 3600
+    },
+    "request_timeout_seconds": 45
+  },
+  "routing": {
+    "default_profile": "routine",
+    "profiles": {
+      "routine": {
+        "tasks": ["routine", "summarize", "classify", "extract", "translate", "brainstorm", "format"],
+        "provider": "groq",
+        "depth": "routine",
+        "reason": "Schnelles kostenloses Kontingent für begrenzte Standardaufgaben."
+      },
+      "worker": {
+        "tasks": ["coding", "research", "prototype", "test", "documentation", "presentation_outline", "visual_brief", "data_extraction"],
+        "provider": "gemini_cli",
+        "depth": "routine",
+        "reason": "Eigenes kostenloses Arbeitskontingent für Code, Recherche und Entwürfe."
+      },
+      "deep": {
+        "tasks": ["deep", "debate", "review", "architecture", "risk", "market_synthesis"],
+        "provider": "groq",
+        "depth": "deep",
+        "reason": "Stärkeres Modell nur für anspruchsvolle Analyse und Gegenprüfung."
+      }
+    },
+    "deterministic_local_tasks": ["file_search", "diff", "calculation", "validation", "schema_check", "formatting"],
+    "quota_policy": {
+      "ollama": "local_unmetered",
+      "groq": "provider_limit_not_exposed; detect errors, do not estimate remaining quota",
+      "gemini_cli": "provider_limit_not_exposed; detect errors, do not estimate remaining quota",
+      "automatic_cross_provider_retry": false
+    }
+  },
+  "providers": {
+    "groq": {
+      "enabled": true,
+      "base_url": "https://api.groq.com/openai/v1",
+      "routine_model": "openai/gpt-oss-20b",
+      "deep_model": "openai/gpt-oss-120b",
+      "reserve_models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "reserve_policy": "same_provider_http_429_only",
+      "free_plan_verified_at": "2026-09-11",
+      "allowed_sensitivity": ["public", "project"]
+    },
+    "gemini_cli": {
+      "enabled": true,
+      "model": "auto",
+      "home_dir": ".gemini-home",
+      "allowed_sensitivity": ["public", "project"],
+      "task_types": ["coding", "research", "prototype", "test", "documentation", "presentation_outline", "visual_brief", "data_extraction"]
+    },
+    "ollama": {
+      "enabled": true,
+      "base_url": "http://127.0.0.1:11434",
+      "local_only": true,
+      "routine_model": "qwen3:1.7b",
+      "deep_model": "qwen3:1.7b",
+      "allowed_sensitivity": ["public", "project", "personal"]
+    },
+    "claude_code": {
+      "enabled": false,
+      "mode": "review_only",
+      "reason": "Separate review bridge; never used as the routine generation provider."
+    },
+    "openai_api": {
+      "enabled": false,
+      "reason": "Not assumed free; Codex subscription is not an API allowance."
+    },
+    "codex_cli": {
+      "enabled": false,
+      "reason": "Recursive calls consume the same Codex allowance."
+    },
+    "omniroute": {
+      "enabled": false,
+      "local_only": true,
+      "base_url": "http://127.0.0.1:20128",
+      "mode": "quarantined_candidate",
+      "reason": "Nicht installiert oder geroutet: erst Minimal-Build, Security-Audit, verschlüsselte Credentials und explizite Free-Provider-Allowlist nachweisen."
+    }
+  }
+}

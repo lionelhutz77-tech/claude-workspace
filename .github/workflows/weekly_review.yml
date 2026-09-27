@@ -1,0 +1,70 @@
+name: Sonntags-Review Trading-System
+
+on:
+  schedule:
+    # Sonntag 17:13 UTC = 19:13 MESZ / 18:13 MEZ
+    - cron: "13 17 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trading-system
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: trading-system/requirements.txt
+
+      - name: Abhaengigkeiten installieren
+        working-directory: trading-system
+        run: pip install -r requirements.txt
+
+      - name: Wochen-Review erstellen
+        working-directory: trading-system
+        env:
+          GROQ_API_KEY:     ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CI: "true"
+          PYTHONIOENCODING: utf-8
+        run: python weekly_review.py
+
+      - name: Review und Lerndaten committen
+        if: always()
+        run: |
+          git config user.name  "Trading Intelligence Bot"
+          git config user.email "bot@trading-intelligence.local"
+          git add trading-system/data/learnings.db
+          if [ -f trading-system/output/wochen_review_aktuell.md ]; then
+            mkdir -p trading-system/reviews
+            cp trading-system/output/wochen_review_aktuell.md "trading-system/reviews/review_$(date +'%Y-%m-%d').md"
+            git add trading-system/reviews/
+          fi
+          git diff --cached --quiet || git commit -m "Wochen-Review $(date +'%Y-%m-%d')"
+          git pull --rebase
+          git push
+
+      - name: Telegram-Warnung bei Fehler
+        if: failure()
+        env:
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=⚠️ Sonntags-Review fehlgeschlagen oder unvollstaendig. Details: ${RUN_URL}" > /dev/null

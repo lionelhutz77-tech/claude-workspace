@@ -38,14 +38,18 @@ class Nachricht:
 # ---------------------------------------------------------------------------
 
 RSS_QUELLEN = {
-    "Reuters Business": "https://feeds.reuters.com/reuters/businessNews",
-    "Reuters Finance":  "https://feeds.reuters.com/reuters/financialNews",
+    # Reuters-Feeds existieren nicht mehr (DNS-Fehler, geprueft 27.09.2026).
+    "MarketWatch":      "https://feeds.content.dowjones.io/public/rss/mw_topstories",
+    "FT Markets":       "https://www.ft.com/markets?format=rss",
+    "Investing.com":    "https://www.investing.com/rss/news.rss",
     "Yahoo Finance":    "https://finance.yahoo.com/news/rssindex",
     "CNBC Top News":    "https://www.cnbc.com/id/100003114/device/rss/rss.html",
     "CNBC Finance":     "https://www.cnbc.com/id/10000664/device/rss/rss.html",
     "CoinDesk":         "https://www.coindesk.com/arc/outboundfeeds/rss/",
     "CoinTelegraph":    "https://cointelegraph.com/rss",
     "Seeking Alpha":    "https://seekingalpha.com/market_currents.xml",
+    "Decrypt":          "https://decrypt.co/feed",
+    "The Block":        "https://www.theblock.co/rss.xml",
 }
 
 # ---------------------------------------------------------------------------

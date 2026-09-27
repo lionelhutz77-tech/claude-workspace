@@ -21,6 +21,7 @@ import re
 from email.header import decode_header
 from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass, field
+from typing import Callable
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -54,6 +55,156 @@ class EmailSignal:
     richtung: str = "neutral"         # "bullish", "bearish", "neutral"
     sentiment_punkte: int = 0
     zusammenfassung: str = ""
+
+
+# ---------------------------------------------------------------------------
+# Datenschutzfreundlicher Laufstatus
+# ---------------------------------------------------------------------------
+
+EMAIL_HEALTH_CONFIG_FEHLT = "KONFIGURATION_FEHLT"
+EMAIL_HEALTH_VERBINDUNG_FEHLER = "LOGIN_ODER_VERBINDUNG_FEHLGESCHLAGEN"
+EMAIL_HEALTH_0_UNSEEN = "VERBINDUNG_OK_0_UNSEEN"
+EMAIL_HEALTH_NACHRICHTEN = "VERBINDUNG_OK_NACHRICHTEN"
+EMAIL_HEALTH_FILTER_AUSSCHLUSS = "FILTER_SCHLIESST_NACHRICHTEN_AUS"
+EMAIL_HEALTH_LAUF_VERALTET = "LAUF_VERALTET"
+
+
+@dataclass(frozen=True)
+class EmailHealth:
+    """Kompakter, sicherer Zustand der Inbox-Pipeline.
+
+    Das Objekt enthaelt bewusst weder Header noch Absender, Mail-IDs,
+    Fehlermeldungen oder Zugangsdaten. ``basis_status`` bleibt erhalten, wenn
+    ein ansonsten bekannter Zustand wegen eines alten erfolgreichen Laufs als
+    veraltet markiert wird.
+    """
+
+    status: str
+    basis_status: str
+    filter_aktiv: bool
+    ungelesen_gesamt: int | None = None
+    ungelesen_passend: int | None = None
+    lauf_veraltet: bool = False
+
+
+def klassifiziere_email_health(
+    *,
+    konfiguriert: bool,
+    verbindung_ok: bool,
+    filter_aktiv: bool,
+    ungelesen_gesamt: int | None = None,
+    ungelesen_passend: int | None = None,
+    letzter_erfolgreicher_lauf: datetime | None = None,
+    jetzt: datetime | None = None,
+    stale_nach: timedelta = timedelta(hours=30),
+) -> EmailHealth:
+    """Ordnet ausschliesslich Metadaten einem stabilen Health-Status zu.
+
+    Diese Funktion ist rein: Sie baut keine Verbindung auf und veraendert keine
+    Mailbox. Ein fehlender Zeitstempel bedeutet dabei *nicht* automatisch
+    "veraltet", weil ein erster Lauf noch keinen vorherigen Erfolg haben kann.
+    """
+    if not konfiguriert:
+        basis_status = EMAIL_HEALTH_CONFIG_FEHLT
+    elif not verbindung_ok:
+        basis_status = EMAIL_HEALTH_VERBINDUNG_FEHLER
+    elif filter_aktiv and (ungelesen_gesamt or 0) > 0 and (ungelesen_passend or 0) == 0:
+        basis_status = EMAIL_HEALTH_FILTER_AUSSCHLUSS
+    elif ((ungelesen_passend if filter_aktiv else ungelesen_gesamt) or 0) > 0:
+        basis_status = EMAIL_HEALTH_NACHRICHTEN
+    else:
+        basis_status = EMAIL_HEALTH_0_UNSEEN
+
+    lauf_veraltet = False
+    if letzter_erfolgreicher_lauf is not None:
+        now = jetzt or datetime.now(timezone.utc)
+        last_run = letzter_erfolgreicher_lauf
+        if last_run.tzinfo is None:
+            last_run = last_run.replace(tzinfo=timezone.utc)
+        if now.tzinfo is None:
+            now = now.replace(tzinfo=timezone.utc)
+        lauf_veraltet = now - last_run > stale_nach
+
+    return EmailHealth(
+        status=EMAIL_HEALTH_LAUF_VERALTET if lauf_veraltet else basis_status,
+        basis_status=basis_status,
+        filter_aktiv=filter_aktiv,
+        ungelesen_gesamt=ungelesen_gesamt,
+        ungelesen_passend=ungelesen_passend,
+        lauf_veraltet=lauf_veraltet,
+    )
+
+
+def _anzahl_ungelesener(mail: imaplib.IMAP4_SSL, suchkriterium: str) -> int | None:
+    """Liest nur eine Anzahl; kein Fetch und keine Zustandsaenderung."""
+    status, ids = mail.search(None, suchkriterium)
+    if status != "OK":
+        return None
+    return len(ids[0].split()) if ids and ids[0] else 0
+
+
+def pruefe_email_health(
+    *,
+    letzter_erfolgreicher_lauf: datetime | None = None,
+    jetzt: datetime | None = None,
+    stale_nach: timedelta = timedelta(hours=30),
+    mail_factory: Callable[[], imaplib.IMAP4_SSL] | None = None,
+) -> EmailHealth:
+    """Prueft GMX lesend und gibt ausschliesslich maskierte Metadaten zurueck.
+
+    Die Funktion ist absichtlich nicht Teil des Tages-Workflows: Sie markiert
+    keine Nachrichten und veraendert dessen bisheriges Verhalten nicht.
+    """
+    filter_aktiv = bool(ABSENDER_LISTE)
+    if not GMX_EMAIL or not GMX_PASSWORT:
+        return klassifiziere_email_health(
+            konfiguriert=False,
+            verbindung_ok=False,
+            filter_aktiv=filter_aktiv,
+            letzter_erfolgreicher_lauf=letzter_erfolgreicher_lauf,
+            jetzt=jetzt,
+            stale_nach=stale_nach,
+        )
+
+    mail = None
+    try:
+        mail = (mail_factory or (lambda: imaplib.IMAP4_SSL(GMX_IMAP_SERVER, GMX_IMAP_PORT)))()
+        mail.login(GMX_EMAIL, GMX_PASSWORT)
+        if mail.select("INBOX")[0] != "OK":
+            raise imaplib.IMAP4.error("INBOX nicht verfuegbar")
+
+        ungelesen_gesamt = _anzahl_ungelesener(mail, "UNSEEN")
+        if ungelesen_gesamt is None:
+            raise imaplib.IMAP4.error("UNSEEN-Abfrage fehlgeschlagen")
+        ungelesen_passend = ungelesen_gesamt
+        if filter_aktiv:
+            ungelesen_passend = sum(
+                _anzahl_ungelesener(mail, f'UNSEEN FROM "{absender}"') or 0
+                for absender in ABSENDER_LISTE
+            )
+        return klassifiziere_email_health(
+            konfiguriert=True,
+            verbindung_ok=True,
+            filter_aktiv=filter_aktiv,
+            ungelesen_gesamt=ungelesen_gesamt,
+            ungelesen_passend=ungelesen_passend,
+            letzter_erfolgreicher_lauf=letzter_erfolgreicher_lauf,
+            jetzt=jetzt,
+            stale_nach=stale_nach,
+        )
+    except Exception:
+        # Keine Providerfehler ausgeben: Sie koennen personenbezogene Details enthalten.
+        return klassifiziere_email_health(
+            konfiguriert=True,
+            verbindung_ok=False,
+            filter_aktiv=filter_aktiv,
+            letzter_erfolgreicher_lauf=letzter_erfolgreicher_lauf,
+            jetzt=jetzt,
+            stale_nach=stale_nach,
+        )
+    finally:
+        if mail is not None:
+            trenne_gmx(mail)
 
 
 # ---------------------------------------------------------------------------

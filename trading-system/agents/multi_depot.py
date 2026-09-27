@@ -1,5 +1,5 @@
 """
-Multi-Depot — 4 Strategien im Vergleich
+Multi-Depot — 5 Strategien im Vergleich
 Jede Strategie laeuft mit eigenem virtuellen Kapital (je 1.000 EUR)
 und wird nach denselben Regeln abgerechnet (Trade Republic Kosten).
 
@@ -8,6 +8,7 @@ Strategien:
   2. VALUE      — kauft ueberverkaufte Assets (niedriger RSI, Contrarian)
   3. BALANCED   — unser Hauptsystem (alle Signale gewichtet)
   4. PATTERN    — nur Pattern-Agent Empfehlungen (Kerzen, Fib, Stochastik)
+  5. TAILWIND   — isolierter Testarm fuer starke Tailwind-Scanner-Signale
 """
 
 import sys
@@ -29,7 +30,7 @@ KOSTEN_PRO_SEITE = 0.002
 MIN_POSITION     = 20.0
 MAX_POSITION_PCT = 0.35
 
-STRATEGIEN = ["MOMENTUM", "VALUE", "BALANCED", "PATTERN"]
+STRATEGIEN = ["MOMENTUM", "VALUE", "BALANCED", "PATTERN", "TAILWIND"]
 
 
 # ---------------------------------------------------------------------------
@@ -38,47 +39,78 @@ STRATEGIEN = ["MOMENTUM", "VALUE", "BALANCED", "PATTERN"]
 
 def initialisiere():
     os.makedirs(os.path.dirname(DB_PFAD), exist_ok=True)
-    with sqlite3.connect(DB_PFAD) as conn:
-        conn.executescript(f"""
-        CREATE TABLE IF NOT EXISTS depots (
-            strategie   TEXT PRIMARY KEY,
-            cash        REAL DEFAULT {STARTKAPITAL},
-            erstellt_am TEXT DEFAULT CURRENT_TIMESTAMP
-        );
+    conn = sqlite3.connect(DB_PFAD)
+    try:
+        with conn:
+            _initialisiere_schema(conn)
+    finally:
+        conn.close()
 
-        CREATE TABLE IF NOT EXISTS positionen (
-            id              INTEGER PRIMARY KEY AUTOINCREMENT,
-            strategie       TEXT NOT NULL,
-            asset           TEXT NOT NULL,
-            asset_typ       TEXT DEFAULT 'aktie',
-            eroeffnet_am    TEXT,
-            einstieg_preis  REAL,
-            einheiten       REAL,
-            investiert_eur  REAL,
-            ziel_preis      REAL,
-            stop_loss_preis REAL,
-            status          TEXT DEFAULT 'offen',
-            schluss_preis   REAL DEFAULT 0,
-            schluss_datum   TEXT DEFAULT '',
-            pnl_eur         REAL DEFAULT 0,
-            pnl_pct         REAL DEFAULT 0
-        );
 
-        CREATE TABLE IF NOT EXISTS verlauf (
-            datum       TEXT,
-            strategie   TEXT,
-            depotwert   REAL,
-            pnl_eur     REAL,
-            pnl_pct     REAL,
-            PRIMARY KEY (datum, strategie)
-        );
-        """)
+def _initialisiere_schema(conn: sqlite3.Connection) -> None:
+    """Initialisiert das Schema innerhalb einer vom Aufrufer verwalteten Verbindung."""
+    conn.executescript(f"""
+    CREATE TABLE IF NOT EXISTS depots (
+        strategie   TEXT PRIMARY KEY,
+        cash        REAL DEFAULT {STARTKAPITAL},
+        erstellt_am TEXT DEFAULT CURRENT_TIMESTAMP
+    );
 
-        # Depots initialisieren
-        for s in STRATEGIEN:
+    CREATE TABLE IF NOT EXISTS positionen (
+        id              INTEGER PRIMARY KEY AUTOINCREMENT,
+        strategie       TEXT NOT NULL,
+        asset           TEXT NOT NULL,
+        asset_typ       TEXT DEFAULT 'aktie',
+        eroeffnet_am    TEXT,
+        einstieg_preis  REAL,
+        einheiten       REAL,
+        investiert_eur  REAL,
+        ziel_preis      REAL,
+        stop_loss_preis REAL,
+        status          TEXT DEFAULT 'offen',
+        schluss_preis   REAL DEFAULT 0,
+        schluss_datum   TEXT DEFAULT '',
+        pnl_eur         REAL DEFAULT 0,
+        pnl_pct         REAL DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS verlauf (
+        datum       TEXT,
+        strategie   TEXT,
+        depotwert   REAL,
+        pnl_eur     REAL,
+        pnl_pct     REAL,
+        PRIMARY KEY (datum, strategie)
+    );
+    """)
+
+    # Depots initialisieren
+    for s in STRATEGIEN:
+        conn.execute(
+            "INSERT OR IGNORE INTO depots (strategie, cash) VALUES (?, ?)",
+            (s, STARTKAPITAL)
+        )
+        # Ein neu hinzugefuegter Testarm braucht sofort eine nachvollziehbare
+        # Startbewertung; sonst erscheint er im gemeinsamen Dashboard als
+        # Depot ohne Start- und Istwert.
+        hat_verlauf = conn.execute(
+            "SELECT 1 FROM verlauf WHERE strategie=? LIMIT 1", (s,)
+        ).fetchone()
+        if not hat_verlauf:
+            cash = conn.execute(
+                "SELECT cash FROM depots WHERE strategie=?", (s,)
+            ).fetchone()[0]
+            pnl_eur = float(cash) - STARTKAPITAL
             conn.execute(
-                "INSERT OR IGNORE INTO depots (strategie, cash) VALUES (?, ?)",
-                (s, STARTKAPITAL)
+                "INSERT INTO verlauf (datum, strategie, depotwert, pnl_eur, pnl_pct) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (
+                    datetime.now().strftime("%Y-%m-%d"),
+                    s,
+                    cash,
+                    round(pnl_eur, 2),
+                    round(pnl_eur / STARTKAPITAL * 100, 2),
+                ),
             )
 
 
@@ -134,6 +166,19 @@ def filtere_fuer_strategie(strategie: str, alle_signale: list[dict]) -> list[dic
             s for s in alle_signale
             if s.get("pattern_empfehlung") == "KAUFEN"
         ][:5]
+
+    elif strategie == "TAILWIND":
+        # Eigener Out-of-sample-Arm: Tailwind darf das Hauptsignal nicht
+        # unbemerkt verstaerken, wird aber separat und messbar gehandelt.
+        kandidaten = [
+            s for s in alle_signale
+            if s.get("tailwind_signal") == "STARK"
+        ]
+        return sorted(
+            kandidaten,
+            key=lambda x: x.get("tailwind_score", 0),
+            reverse=True,
+        )[:5]
 
     return []
 

@@ -17,13 +17,7 @@ import sys
 import time
 import json
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dotenv import load_dotenv
-from groq import Groq
-
-load_dotenv()
-_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+from free_ai_client import generate_text
 
 
 # ---------------------------------------------------------------------------
@@ -131,8 +125,8 @@ def _hole_ta_daten(ticker: str) -> dict | None:
         return None
 
 
-def _groq_score(kandidat: dict, ta: dict, news_sentiment: str, news_anzahl: int) -> dict:
-    """Lässt Groq die AMD-Mustererkennung für einen Kandidaten durchführen."""
+def _ki_score(kandidat: dict, ta: dict, news_sentiment: str, news_anzahl: int) -> dict:
+    """Laesst die Recherche-Route die AMD-Mustererkennung durchfuehren."""
     ticker = kandidat["ticker"]
     preis  = ta["preis"]
     ma50   = ta["ma50"]
@@ -164,16 +158,14 @@ TIMING: [Schätzung wann der Run beginnen könnte, z.B. "6-12 Monate" oder "bere
 VERGLEICH: [welchem historischen Vorläufer ähnelt es am meisten und warum]"""
 
     try:
-        resp = _client.chat.completions.create(
-            model=MODEL,
-            messages=[
-                {"role": "system", "content": "Du erkennst Aktienmuster früher als der Markt. Sei präzise, nicht schwammig."},
-                {"role": "user",   "content": prompt},
-            ],
+        text = generate_text(
+            "Du erkennst Aktienmuster früher als der Markt. Sei präzise, nicht schwammig.",
+            prompt,
+            # Musterbewertung ohne Webrecherche; Groq-Tiefenroute laeuft auch in der Cloud,
+            # die Gemini-CLI-Route ("research") gibt es nur auf dem PC.
+            task="market_synthesis",
             max_tokens=300,
-            temperature=0.25,
         )
-        text = resp.choices[0].message.content.strip()
 
         def extrahiere(label: str) -> str:
             for zeile in text.splitlines():
@@ -200,7 +192,7 @@ VERGLEICH: [welchem historischen Vorläufer ähnelt es am meisten und warum]"""
 
 
 def analysiere_kandidat(kandidat: dict, nachrichten: list = None) -> dict | None:
-    """Vollständige Analyse eines Kandidaten: TA + News + Groq."""
+    """Vollstaendige Analyse eines Kandidaten: TA + News + Gateway-KI."""
     ticker = kandidat["ticker"]
     if nachrichten is None:
         nachrichten = []
@@ -220,7 +212,7 @@ def analysiere_kandidat(kandidat: dict, nachrichten: list = None) -> dict | None
     except Exception:
         pass
 
-    groq_result = _groq_score(kandidat, ta, news_sentiment, news_anzahl)
+    ki_result = _ki_score(kandidat, ta, news_sentiment, news_anzahl)
 
     return {
         "ticker":         ticker,
@@ -229,7 +221,7 @@ def analysiere_kandidat(kandidat: dict, nachrichten: list = None) -> dict | None
         "these":          kandidat["these"],
         **ta,
         "news_sentiment": news_sentiment,
-        **groq_result,
+        **ki_result,
     }
 
 

@@ -2,24 +2,15 @@
 Tiefen-Analyse (Deep Dive) fuer die Top-Kaufkandidaten.
 Buendelt ALLE vorhandenen System-Signale (TA, Volume/FVG, Pattern, Bewertung,
 SEC-Insider, Korrelation, Backtest, Bull/Bear) zu EINER strukturierten
-Institutions-Analyse. Ein Groq-Call pro Asset, nur fuer die Top-N — budgetschonend.
+Institutions-Analyse. Ein begrenzter Gateway-Call pro Asset, nur fuer die Top-N.
 
 Wichtig: Es werden AUSSCHLIESSLICH die vorhandenen Systemdaten synthetisiert,
-keine Fundamentalzahlen erfunden (kein Pseudo-DCF). Faellt der Groq-Call aus,
+keine Fundamentalzahlen erfunden (kein Pseudo-DCF). Faellt der KI-Aufruf aus,
 wird das Asset still uebersprungen (Tagesbericht laeuft normal weiter).
 """
 
-import os
 import sys
-import time
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dotenv import load_dotenv
-from groq import Groq
-
-load_dotenv()
-_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+from free_ai_client import generate_text
 
 # Wie viele der staerksten KAUFEN-Signale bekommen eine Tiefen-Analyse?
 DEEP_DIVE_TOP_N = 3
@@ -33,26 +24,8 @@ Schreibe sachlich, dicht, auf Deutsch, ohne Werbe-Floskeln. Keine Anlageberatung
 
 
 def _ki_aufruf(system: str, user_prompt: str, max_tokens: int = 600) -> str:
-    """Einzelner Groq-Aufruf mit Retry bei Rate-Limit (wie bull_bear_debate)."""
-    for versuch in range(3):
-        try:
-            response = _client.chat.completions.create(
-                model=MODEL,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user",   "content": user_prompt},
-                ],
-                max_tokens=max_tokens,
-                temperature=0.4,
-            )
-            return response.choices[0].message.content.strip()
-        except Exception as e:
-            if "429" in str(e) and versuch < 2:
-                wartezeit = 30 * (versuch + 1)
-                print(f" [Rate-Limit, warte {wartezeit}s]", end="", flush=True)
-                time.sleep(wartezeit)
-            else:
-                raise
+    """Begrenzter Tiefen-Aufruf ueber das gemeinsame Gateway."""
+    return generate_text(system, user_prompt, task="deep", max_tokens=max_tokens)
 
 
 def _baue_datenblatt(sig: dict) -> str:
@@ -124,7 +97,7 @@ def _baue_datenblatt(sig: dict) -> str:
 
 
 def deep_dive(sig: dict) -> str:
-    """Erzeugt die strukturierte Tiefen-Analyse fuer EIN Asset (ein Groq-Call)."""
+    """Erzeugt die strukturierte Tiefen-Analyse fuer EIN Asset (ein Gateway-Call)."""
     datenblatt = _baue_datenblatt(sig)
     prompt = f"""SYSTEMDATEN zum Asset (nur diese verwenden, nichts erfinden):
 {datenblatt}

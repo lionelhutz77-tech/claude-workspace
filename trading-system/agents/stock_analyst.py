@@ -15,6 +15,11 @@ def lade_kursdaten(ticker: str, zeitraum: str = "3mo") -> pd.DataFrame:
     """Lädt historische Kursdaten für einen Ticker (z.B. 'AAPL', 'MSFT')."""
     aktie = yf.Ticker(ticker)
     df = aktie.history(period=zeitraum)
+    # Yahoo liefert vor Handelsbeginn teils eine leere Zeile fuer den laufenden Tag;
+    # ohne Bereinigung wird der Schlusskurs NaN und alle Signale werden wertlos.
+    df = df.dropna(subset=["Close"])
+    if len(df) < 50:
+        raise ValueError(f"Zu wenig gueltige Kursdaten fuer {ticker} ({len(df)} Tage).")
     return df
 
 

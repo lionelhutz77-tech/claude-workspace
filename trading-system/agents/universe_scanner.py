@@ -60,13 +60,15 @@ def lade_sp500_ticker() -> list[str]:
             "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
             headers=headers, timeout=15
         )
-        tables = pd.read_html(resp.text, attrs={"id": "constituents"})
+        # pandas >= 3 akzeptiert HTML nur noch als Datei-Objekt, nicht als String.
+        from io import StringIO
+        tables = pd.read_html(StringIO(resp.text), attrs={"id": "constituents"})
         ticker = [t.replace(".", "-") for t in tables[0]["Symbol"].tolist()]
         if len(ticker) >= 400:
             print(f"    {len(ticker)} S&P 500 Titel geladen (Wikipedia).")
             return ticker
-    except Exception:
-        pass
+    except Exception as exc:
+        print(f"    Wikipedia-Liste nicht ladbar: {type(exc).__name__}: {str(exc)[:120]}")
 
     # Versuch 3: Vollstaendige eingebettete Liste (alle 503 S&P 500 Titel, Stand 2025)
     print("    Nutze eingebettete vollstaendige S&P 500 Liste (503 Titel).")
@@ -206,6 +208,13 @@ def scanne_kryptos(anzahl: int = 50) -> list[dict]:
     """
     kryptos = lade_top_kryptos(anzahl)
     ergebnisse = []
+
+    # Echte CoinGecko-IDs an den Krypto-Analysten weitergeben (z. B. TRX -> tron),
+    # sonst raet er die ID aus dem Kuerzel und erhaelt 404.
+    from crypto_analyst import registriere_coingecko_id
+    for coin in kryptos:
+        if coin.get("marktkapitalisierung"):  # nur echte CoinGecko-Treffer, keine Notfallliste
+            registriere_coingecko_id(coin["symbol"], coin["id"])
 
     print(f"    Technische Bewertung fuer {len(kryptos)} Kryptos...")
     for i, coin in enumerate(kryptos):

@@ -14,7 +14,7 @@ import os
 import sys
 import time
 import dataclasses
-from datetime import datetime
+from datetime import datetime, timezone
 
 # UTF-8 Ausgabe erzwingen (behebt Sonderzeichen-Darstellung auf Windows)
 sys.stdout.reconfigure(encoding="utf-8")
@@ -36,8 +36,14 @@ from memory_agent       import initialisiere_db, speichere_signal, aktualisiere_
 from universe_scanner   import scanne_universum, lade_sp500_ticker, scanne_kryptos
 from correlation_agent  import analysiere_alle_korrelationen
 from strategy_agent     import klassifiziere_strategie, berechne_kosten, retro_analyse_alle
-from telegram_agent     import sende_tagesbericht, sende_positions_update
-from email_agent        import hole_email_signale, signale_als_dict
+from telegram_agent     import sende_tagesbericht, sende_positions_update, sende_nachricht
+from email_agent        import (
+    EMAIL_HEALTH_CONFIG_FEHLT,
+    EMAIL_HEALTH_VERBINDUNG_FEHLER,
+    hole_email_signale,
+    pruefe_email_health,
+    signale_als_dict,
+)
 from pattern_agent      import analysiere_muster
 from makro_agent        import erkenne_makro_events, makro_einfluss_auf_asset, drucke_makro_lage
 from fear_greed_agent   import hole_fear_greed_aktien, hole_fear_greed_krypto, fear_greed_punkte, drucke_fear_greed
@@ -54,6 +60,7 @@ from portfolio_agent    import (initialisiere_portfolio, oeffne_positionen_tages
 from revision_agent        import analysiere_mit_ki
 from bull_bear_debate      import debatte, drucke_debatte
 from dashboard             import speichere_und_oeffne
+from morning_note          import morning_note_lines
 from tailwind_connector    import lade_tailwind_signale, wende_tailwind_bonus_an, hole_tailwind_universe
 from sec_agent             import scanne_alle as sec_scanne_alle, wende_sec_an
 from valuation_agent       import scanne_alle as val_scanne_alle, wende_an as wende_bewertung_an
@@ -99,6 +106,41 @@ def drucke_header():
 
 def drucke_fortschritt(schritt: int, gesamt: int, text: str):
     print(f"\n  [{schritt}/{gesamt}] {text}")
+
+
+def protokolliere_email_health_und_warne():
+    """Meldet den maskierten Inbox-Zustand, ohne den Tageslauf zu beeinflussen."""
+    try:
+        health = pruefe_email_health()
+    except Exception:
+        # Der Healthcheck ist rein beobachtend und darf nie die Pipeline stoppen.
+        print("  [Email-Health] Statuspruefung fehlgeschlagen.")
+        return None
+
+    basis_status = health.basis_status
+    if health.status == basis_status:
+        print(f"  [Email-Health] {health.status}")
+    else:
+        print(f"  [Email-Health] {health.status} (Basis: {basis_status})")
+
+    warnungen = {
+        EMAIL_HEALTH_CONFIG_FEHLT: (
+            "⚠️ <b>Email-Pipeline:</b> Die Newsletter-Quelle ist nicht konfiguriert. "
+            "Der Trading-Lauf wird ohne Email-Signale fortgesetzt."
+        ),
+        EMAIL_HEALTH_VERBINDUNG_FEHLER: (
+            "⚠️ <b>Email-Pipeline:</b> Die Newsletter-Quelle ist derzeit nicht erreichbar. "
+            "Der Trading-Lauf wird ohne Email-Signale fortgesetzt."
+        ),
+    }
+    warnung = warnungen.get(basis_status)
+    if warnung:
+        try:
+            sende_nachricht(warnung)
+        except Exception:
+            # Telegram ist optional; auch sein Fehler darf den Lauf nicht abbrechen.
+            print("  [Email-Health] Telegram-Warnung konnte nicht gesendet werden.")
+    return health
     print("  " + "-" * 50)
 
 
@@ -251,6 +293,9 @@ def erstelle_tagesbericht(ergebnisse: list[dict]) -> list[str]:
     zeilen.append("  TRADING INTELLIGENCE SYSTEM -- TAGESBERICHT")
     zeilen.append(f"  {jetzt}")
     zeilen.append(DOPPELLINIE)
+    zeilen.append("  MORNING NOTE (lokaler Laufzeitpunkt; Quelldatenfrische separat prüfen)")
+    zeilen.extend(f"  {line}" for line in morning_note_lines(ergebnisse))
+    zeilen.append("")
 
     kaufen    = [e for e in ergebnisse if e["finale"]["empfehlung"] == "KAUFEN"]
     verkaufen = [e for e in ergebnisse if e["finale"]["empfehlung"] == "VERKAUFEN"]
@@ -362,6 +407,7 @@ def wende_kill_switch_an(signale: list[dict], aktiv: bool, grund: str) -> list[d
 
 
 def main():
+    run_observed_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     drucke_header()
 
     # Schritt 0: Systeme initialisieren + Lernzyklus
@@ -372,7 +418,7 @@ def main():
     try:
         lern_ergebnis = fuehre_lernzyklus_durch()
         print(f"  {lern_ergebnis['signale_gesamt']} Signale geprueft — "
-              f"{lern_ergebnis['korrekte']} korrekt "
+              f"{lern_ergebnis['korrekte']} von {lern_ergebnis.get('kauf_bewertet', 0)} KAUFEN korrekt "
               f"({lern_ergebnis['trefferquote']:.1f}%) — "
               f"{lern_ergebnis['fehler']} Verluste — "
               f"{lern_ergebnis.get('verpasste_chancen', 0)} verpasste Chancen")
@@ -437,6 +483,7 @@ def main():
 
     # Schritt 2: Email-Signale aus GMX
     drucke_fortschritt(2, 10, "Email-Signale aus GMX lesen")
+    protokolliere_email_health_und_warne()
     try:
         email_signale     = hole_email_signale()
         email_signal_dict = signale_als_dict(email_signale)
@@ -677,7 +724,7 @@ def main():
     # Heutige Signale im Gedaechtnis speichern
     for e in ergebnisse:
         try:
-            speichere_signal(e)
+            speichere_signal(e, observed_at=run_observed_at)
         except Exception:
             pass
     print(f"  {len(ergebnisse)} Signale im Marktgedaechtnis gespeichert.")
@@ -707,6 +754,20 @@ def main():
     speichere_multi()
     multi_stats = hole_alle_statistiken()
 
+    # Neue, getrennte 10.000-EUR-Testserie; nur Paper und nie kritisch fuer den Hauptlauf.
+    experiment_stats = []
+    try:
+        from experiment_runner import run_daily
+        experiment_run, experiment_stats = run_daily(ergebnisse, run_observed_at)
+        from experiment_status import REPORT, render_report
+        REPORT.parent.mkdir(parents=True, exist_ok=True)
+        REPORT.write_text(render_report(experiment_stats), encoding="utf-8")
+        print(f"  [Experiment 10.000 EUR] {experiment_run['status']}: "
+              f"{experiment_run.get('queued', 0)} vorgemerkt, "
+              f"{experiment_run.get('filled', 0)} virtuell ausgefuehrt")
+    except Exception as e:
+        print(f"  [Experiment 10.000 EUR] Nicht aktualisiert: {type(e).__name__}")
+
     # Telegram zuerst senden (bevor optionale Schritte wie Dashboard crashen koennen)
     print("\n  Sende Telegram-Bericht...")
     sende_tagesbericht(ergebnisse, depot_stats, fg_aktien=fg_aktien, fg_krypto=fg_krypto)
@@ -733,7 +794,7 @@ def main():
     try:
         print("\n  HTML-Dashboard wird erstellt...")
         speichere_und_oeffne(ergebnisse, backtest_ergebnisse, depot_stats,
-                             retro_ergebnisse, multi_stats, lern_ergebnis)
+                             retro_ergebnisse, multi_stats, lern_ergebnis, experiment_stats)
     except Exception as e:
         print(f"  [Dashboard] Fehler (nicht kritisch): {e}")
 

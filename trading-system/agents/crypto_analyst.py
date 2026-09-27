@@ -25,7 +25,26 @@ KRYPTO_IDS = {
     "XRP":  "ripple",
     "ADA":  "cardano",
     "DOGE": "dogecoin",
+    "TRX":  "tron",
+    "LINK": "chainlink",
+    "AVAX": "avalanche-2",
+    "DOT":  "polkadot",
+    "LTC":  "litecoin",
+    "BCH":  "bitcoin-cash",
+    "XLM":  "stellar",
+    "TON":  "the-open-network",
+    "SUI":  "sui",
+    "ONDO": "ondo-finance",
+    "NEAR": "near",
+    "UNI":  "uniswap",
+    "HBAR": "hedera-hashgraph",
 }
+
+
+def registriere_coingecko_id(symbol: str, coin_id: str) -> None:
+    """Uebernimmt die vom Scanner gelieferte CoinGecko-ID statt sie zu raten."""
+    if symbol and coin_id:
+        KRYPTO_IDS[symbol.upper()] = coin_id
 
 
 def _netzwerk_verfuegbar() -> bool:
@@ -52,13 +71,37 @@ def _get_mit_retry(url: str, params: dict, versuche: int = 3) -> requests.Respon
     raise Exception("Rate-Limit nach mehreren Versuchen nicht ueberwunden.")
 
 
+def _lade_kursdaten_yahoo(symbol: str, tage: int = 90) -> pd.DataFrame:
+    """Ersatzquelle Yahoo Finance (SYMBOL-USD), wenn CoinGecko nicht liefert."""
+    import yfinance as yf
+
+    hist = yf.Ticker(f"{symbol.upper()}-USD").history(period=f"{tage}d")
+    hist = hist.dropna(subset=["Close"])
+    if len(hist) < 30:
+        raise ValueError(f"Keine ausreichenden Yahoo-Daten fuer {symbol}-USD.")
+    df = hist[["Close"]].copy()
+    df["Open"] = df["Close"].shift(1)
+    df["High"] = df["Close"]
+    df["Low"] = df["Close"]
+    df.attrs["quelle"] = "Yahoo Finance"
+    return df
+
+
 def lade_kursdaten(symbol: str, tage: int = 90) -> pd.DataFrame:
-    """Laedt taegl. Schlusskurse von CoinGecko fuer die letzten `tage` Tage."""
+    """Laedt taegl. Schlusskurse (CoinGecko, sichtbar ersetzt durch Yahoo bei Ausfall)."""
+    try:
+        return _lade_kursdaten_coingecko(symbol, tage)
+    except Exception as exc:
+        print(f"    CoinGecko fuer {symbol} nicht verfuegbar ({str(exc)[:80]}) -> Yahoo Finance.")
+        return _lade_kursdaten_yahoo(symbol, tage)
+
+
+def _lade_kursdaten_coingecko(symbol: str, tage: int = 90) -> pd.DataFrame:
     coin_id = KRYPTO_IDS.get(symbol.upper(), symbol.lower())
     url = f"{COINGECKO_BASE}/coins/{coin_id}/market_chart"
     params = {"vs_currency": "usd", "days": tage, "interval": "daily"}
 
-    response = _get_mit_retry(url, params)
+    response = _get_mit_retry(url, params, versuche=2)  # Yahoo-Ersatz vorhanden, nicht lange warten
 
     # Liefert: {"prices": [[timestamp, preis], ...], ...}
     preise = response.json()["prices"]
@@ -69,10 +112,34 @@ def lade_kursdaten(symbol: str, tage: int = 90) -> pd.DataFrame:
     df["Open"] = df["Close"].shift(1)
     df["High"] = df["Close"]
     df["Low"] = df["Close"]
+    df.attrs["quelle"] = "CoinGecko"
     return df
 
 
-def lade_aktuellen_preis(symbol: str) -> dict:
+def lade_aktuellen_preis(symbol: str, df: pd.DataFrame | None = None) -> dict:
+    """Live-Preis von CoinGecko; bei Ausfall letzter Schlusskurs der Tagesreihe."""
+    try:
+        live = _lade_aktuellen_preis_coingecko(symbol)
+        if live.get("preis"):
+            return live
+    except Exception as exc:
+        print(f"    CoinGecko-Livepreis fuer {symbol} nicht verfuegbar ({str(exc)[:80]}).")
+    if df is None:
+        import yfinance as yf
+
+        df = yf.Ticker(f"{symbol.upper()}-USD").history(period="5d").dropna(subset=["Close"])
+        print(f"    Preis fuer {symbol} aus Yahoo Finance.")
+    if len(df) < 2:
+        raise ValueError(f"Kein Preis fuer {symbol} verfuegbar.")
+    letzter, vorher = float(df["Close"].iloc[-1]), float(df["Close"].iloc[-2])
+    return {
+        "preis": letzter,
+        "change_24h": (letzter / vorher - 1) * 100 if vorher else 0,
+        "marktkapitalisierung": 0,
+    }
+
+
+def _lade_aktuellen_preis_coingecko(symbol: str) -> dict:
     """Holt den aktuellen Preis, 24h-Veraenderung und Marktkapitalisierung."""
     coin_id = KRYPTO_IDS.get(symbol.upper(), symbol.lower())
     url = f"{COINGECKO_BASE}/simple/price"
@@ -82,7 +149,7 @@ def lade_aktuellen_preis(symbol: str) -> dict:
         "include_24hr_change": "true",
         "include_market_cap": "true",
     }
-    response = _get_mit_retry(url, params)
+    response = _get_mit_retry(url, params, versuche=2)  # Yahoo-Ersatz vorhanden, nicht lange warten
     daten = response.json().get(coin_id, {})
     return {
         "preis": daten.get("usd", 0),
@@ -198,7 +265,7 @@ def analysiere_krypto(symbol: str) -> dict:
     print(f"  Lade Daten fuer {symbol}...")
     df = lade_kursdaten(symbol)
     df = berechne_indikatoren(df)
-    live = lade_aktuellen_preis(symbol)
+    live = lade_aktuellen_preis(symbol, df)
     ergebnis = erstelle_einschaetzung(symbol, df, live)
     return ergebnis
 

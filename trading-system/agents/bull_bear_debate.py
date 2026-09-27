@@ -1,20 +1,13 @@
 """
-Bull/Bear-Debatte -- KI-gestuetzt (Groq / Llama 3.3 70B)
+Bull/Bear-Debatte -- KI-gestuetzt (Groq / zentral konfigurierte Deep-Route)
 Zwei gegensaetzliche Agenten debattieren ueber ein Asset:
   - Bull-Agent: argumentiert fuer Kauf
   - Bear-Agent: argumentiert gegen Kauf
   - Portfolio-Manager: wertet die Debatte aus und faellt die finale Entscheidung
 """
 
-import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dotenv import load_dotenv
-from groq import Groq
-
-load_dotenv()
-_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+from free_ai_client import generate_text
 
 
 # ---------------------------------------------------------------------------
@@ -63,26 +56,7 @@ Deine Entscheidung ist klar, begruendet und enthaelt konkrete Handlungsparameter
 
 def _ki_aufruf(system: str, user_prompt: str, max_tokens: int = 400) -> str:
     """Einzelner KI-Aufruf mit gegebenem System-Prompt."""
-    for versuch in range(3):
-        try:
-            response = _client.chat.completions.create(
-                model=MODEL,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user",   "content": user_prompt},
-                ],
-                max_tokens=max_tokens,
-                temperature=0.4,
-            )
-            return response.choices[0].message.content.strip()
-        except Exception as e:
-            if "429" in str(e) and versuch < 2:
-                import time
-                wartezeit = 30 * (versuch + 1)
-                print(f" [Rate-Limit, warte {wartezeit}s]", end="", flush=True)
-                time.sleep(wartezeit)
-            else:
-                raise
+    return generate_text(system, user_prompt, task="deep", max_tokens=max_tokens)
 
 
 def bull_argument(signal: dict) -> str:

@@ -8,6 +8,7 @@ import os
 import sys
 import webbrowser
 from datetime import datetime
+from morning_note import morning_note_html
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -327,7 +328,7 @@ def _backtest_sektion(backtest_ergebnisse: list) -> str:
     </div>"""
 
 
-def erstelle_html(ergebnisse: list[dict], datum: str, backtest_ergebnisse: list = None, depot_stats: dict = None, retro_ergebnisse: list = None, multi_stats: list = None, lern_ergebnis: dict = None) -> str:
+def erstelle_html(ergebnisse: list[dict], datum: str, backtest_ergebnisse: list = None, depot_stats: dict = None, retro_ergebnisse: list = None, multi_stats: list = None, lern_ergebnis: dict = None, experiment_stats: list = None) -> str:
     backtest_ergebnisse = backtest_ergebnisse or []
     backtest_map = {b.asset: b for b in backtest_ergebnisse}
     kaufen    = [e for e in ergebnisse if e["finale"]["empfehlung"] == "KAUFEN"]
@@ -510,6 +511,8 @@ def erstelle_html(ergebnisse: list[dict], datum: str, backtest_ergebnisse: list 
   <h1>📊 Trading Intelligence System</h1>
   <p class="datum">Tagesbericht · {datum}</p>
 
+  {morning_note_html(ergebnisse)}
+
   <h2>✅ Kaufen ({len(kaufen)})</h2>
   <div class="karten-grid">{kaufen_html}</div>
 
@@ -521,6 +524,8 @@ def erstelle_html(ergebnisse: list[dict], datum: str, backtest_ergebnisse: list 
   {_lern_sektion(lern_ergebnis or {})}
 
   {_multi_depot_sektion(multi_stats or [])}
+
+  {_experiment_sektion(experiment_stats or [])}
 
   {_depot_sektion(depot_stats)}
 
@@ -608,13 +613,14 @@ def _lern_sektion(lern_ergebnis: dict) -> str:
 
 
 def _multi_depot_sektion(multi_stats: list) -> str:
-    """Rendert den Strategie-Vergleich aller 4 Depots."""
+    """Rendert den Strategie-Vergleich aller vorhandenen Depots."""
     if not multi_stats:
         return ""
 
     farben = {"MOMENTUM": "#f0a500", "VALUE": "#8b5cf6",
-               "BALANCED": "#00c896", "PATTERN": "#38bdf8"}
-    emoji  = {"MOMENTUM": "🚀", "VALUE": "💎", "BALANCED": "⚖️", "PATTERN": "📊"}
+               "BALANCED": "#00c896", "PATTERN": "#38bdf8", "TAILWIND": "#ec4899"}
+    emoji  = {"MOMENTUM": "🚀", "VALUE": "💎", "BALANCED": "⚖️",
+              "PATTERN": "📊", "TAILWIND": "🌬️"}
 
     karten = ""
     for s in multi_stats:
@@ -637,8 +643,34 @@ def _multi_depot_sektion(multi_stats: list) -> str:
         </div>"""
 
     return f"""
-    <h2>🏆 Strategie-Vergleich (4 Musterdepots)</h2>
+    <h2>🏆 Strategie-Vergleich ({len(multi_stats)} Musterdepots)</h2>
     <div class="md-grid">{karten}</div>"""
+
+
+def _experiment_sektion(stats: list) -> str:
+    if not stats:
+        return ""
+    cards = ""
+    for row in stats:
+        equity = row["equity_eur"]
+        value = f"{equity:,.2f} EUR" if equity is not None else "nicht bewertbar"
+        performance = (f"{row['return_pct']:+.2f}%" if row["return_pct"] is not None
+                       else "Kurs fehlt")
+        hit = (f"{row['hit_rate_pct']:.1f}%" if row["hit_rate_pct"] is not None
+               else "noch keine geschlossenen Trades")
+        cards += f"""<div class="md-karte">
+          <div class="md-name">{row['strategy']}</div>
+          <div class="md-wert">{value}</div>
+          <div class="md-pnl">{performance} · realisiert {row['realized_pnl_eur']:+,.2f} EUR</div>
+          <div class="md-meta">Trefferquote: {hit} · offen: {row['open_positions']}
+          · vorgemerkt: {row['pending_orders']} · max. Rückgang: {row['max_drawdown_pct']:.2f}%
+          · fehlende Kurse: {row['stale_positions']}</div>
+        </div>"""
+    return ("<h2>🧪 Neue Testserie: 4 × 10.000 EUR virtuell</h2>"
+            "<p>Vier alternative Verwendungen desselben 10.000-EUR-Budgets; "
+            "keine echten Orders. Signale werden erst zu später beobachteten Kursen "
+            "virtuell ausgeführt. Trefferquote erst nach geschlossenen Trades.</p>"
+            f"<div class='md-grid'>{cards}</div>")
 
 
 def _depot_sektion(stats: dict) -> str:
@@ -776,14 +808,14 @@ def _retro_sektion(retro_ergebnisse: list) -> str:
     </div>"""
 
 
-def speichere_und_oeffne(ergebnisse: list[dict], backtest_ergebnisse: list = None, depot_stats: dict = None, retro_ergebnisse: list = None, multi_stats: list = None, lern_ergebnis: dict = None) -> str:
+def speichere_und_oeffne(ergebnisse: list[dict], backtest_ergebnisse: list = None, depot_stats: dict = None, retro_ergebnisse: list = None, multi_stats: list = None, lern_ergebnis: dict = None, experiment_stats: list = None) -> str:
     os.makedirs("output", exist_ok=True)
     datum   = datetime.now().strftime("%d.%m.%Y %H:%M Uhr")
     datei   = datetime.now().strftime("output/dashboard_%Y-%m-%d_%H%M.html")
     aktuell = "output/dashboard_aktuell.html"
 
     html = erstelle_html(ergebnisse, datum, backtest_ergebnisse or [], depot_stats,
-                         retro_ergebnisse or [], multi_stats, lern_ergebnis)
+                         retro_ergebnisse or [], multi_stats, lern_ergebnis, experiment_stats)
     with open(datei,   "w", encoding="utf-8") as f:
         f.write(html)
     with open(aktuell, "w", encoding="utf-8") as f:
