@@ -18,7 +18,9 @@ import os
 import imaplib
 import email as email_lib
 import re
+import sqlite3
 from email.header import decode_header
+from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass, field
 from typing import Callable
@@ -300,8 +302,9 @@ def _hole_email_ids_fuer_absender(
     Datum-Filter als Sicherheitsnetz damit alte Stapel-Emails ignoriert werden.
     """
     try:
-        # UNSEEN = nur ungelesene; SINCE = Sicherheitsnetz (max. 30 Tage alt)
-        status, ids = mail.search(None, f'UNSEEN FROM "{absender}" SINCE {datum_str}')
+        # Nicht mehr nur UNSEEN: gelesene Newsletter (Handy, anderer Lauf) gingen sonst
+        # verloren. Doppelverarbeitung verhindert _bereits_verarbeitet() ueber die Message-ID.
+        status, ids = mail.search(None, f'FROM "{absender}" SINCE {datum_str}')
         if status == "OK" and ids[0]:
             return ids[0].split()
     except Exception as e:
@@ -309,21 +312,57 @@ def _hole_email_ids_fuer_absender(
     return []
 
 
-def _lade_email_by_id(mail: imaplib.IMAP4_SSL, email_id: bytes, als_gelesen_markieren: bool = True) -> dict | None:
+def _verarbeitet_db() -> sqlite3.Connection:
+    pfad = Path(__file__).resolve().parents[1] / "data" / "market_memory.db"
+    conn = sqlite3.connect(pfad)
+    conn.execute("CREATE TABLE IF NOT EXISTS verarbeitete_emails "
+                 "(message_id TEXT PRIMARY KEY, verarbeitet_am TEXT NOT NULL)")
+    return conn
+
+
+def _bereits_verarbeitet(message_id: str) -> bool:
+    if not message_id:
+        return False
+    conn = _verarbeitet_db()
+    try:
+        return conn.execute("SELECT 1 FROM verarbeitete_emails WHERE message_id=?",
+                            (message_id,)).fetchone() is not None
+    finally:
+        conn.close()
+
+
+def _markiere_verarbeitet(message_id: str) -> None:
+    if not message_id:
+        return
+    conn = _verarbeitet_db()
+    try:
+        conn.execute("INSERT OR IGNORE INTO verarbeitete_emails VALUES (?, ?)",
+                     (message_id, datetime.now(timezone.utc).isoformat(timespec="seconds")))
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _lade_email_by_id(mail: imaplib.IMAP4_SSL, email_id: bytes, als_gelesen_markieren: bool = False) -> dict | None:
     """
     Laedt eine einzelne Email anhand ihrer ID.
     Markiert sie danach als gelesen (\\Seen) damit sie beim naechsten Lauf
     nicht erneut verarbeitet wird.
     """
     try:
-        status, daten = mail.fetch(email_id, "(RFC822)")
+        # BODY.PEEK liest, ohne die Mail im Postfach als gelesen zu markieren.
+        status, daten = mail.fetch(email_id, "(BODY.PEEK[])")
         if status != "OK":
             return None
         msg      = email_lib.message_from_bytes(daten[0][1])
         betreff  = _dekodiere_header(msg.get("Subject", ""))
         absender = _dekodiere_header(msg.get("From", ""))
         datum    = msg.get("Date", "")
+        message_id = (msg.get("Message-ID") or "").strip()
+        if _bereits_verarbeitet(message_id):
+            return None
         text     = _extrahiere_text(msg)
+        _markiere_verarbeitet(message_id)
 
         # Als gelesen markieren — verhindert Doppelverarbeitung bei naechstem Lauf
         if als_gelesen_markieren:
@@ -369,7 +408,8 @@ def lese_emails(stunden_zurueck: int = 25) -> list[dict]:
 
         # Sicherheitsnetz: max. 30 Tage alte Emails beruecksichtigen
         # (verhindert dass ein jahrelanger Stapel unglesener Mails auf einmal verarbeitet wird)
-        seit      = datetime.now(timezone.utc) - timedelta(days=30)
+        # 3 Tage reichen (taeglicher Lauf + Puffer); aeltere Newsletter sind als Signal veraltet.
+        seit      = datetime.now(timezone.utc) - timedelta(days=3)
         datum_str = seit.strftime("%d-%b-%Y")
 
         if ABSENDER_LISTE:
@@ -395,10 +435,11 @@ def lese_emails(stunden_zurueck: int = 25) -> list[dict]:
 
             # Max 20 insgesamt verarbeiten
             for eid, quelle in alle_ids[-20:]:
-                em = _lade_email_by_id(mail, eid, als_gelesen_markieren=True)
+                em = _lade_email_by_id(mail, eid)
                 if em:
                     em["newsletter_quelle"] = quelle
                     emails.append(em)
+            print(f"  [Email] {len(emails)} davon noch nicht verarbeitet.")
 
         else:
             # Kein Absender-Filter — alle UNGELESENEN der letzten 30 Tage (Ad-Filter greift)

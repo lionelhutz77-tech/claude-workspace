@@ -28,7 +28,7 @@ _JSON_LOKAL   = _SCANNER_DIR / "data" / "latest_signals.json"
 # GitHub raw URL als Fallback (GitHub Actions committed die Datei taeglich)
 _GITHUB_URL = (
     "https://raw.githubusercontent.com/lionelhutz77-tech/tailwind-scanner"
-    "/main/data/latest_signals.json"
+    "/master/data/latest_signals.json"  # Branch heisst master (main lieferte 404)
 )
 
 # Wie alt darf die JSON-Datei maximal sein? (in Tagen)
