@@ -258,6 +258,12 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001 - Review soll trotzdem erscheinen, Fehler sichtbar
         tailwind_fehler.append(str(exc)[:200])
         z += ["## Tailwind: Vorhersagekraft & Ursachen", f"Nicht verfuegbar: {str(exc)[:200]}", ""]
+    # Stufe 4: regelbasierte Strategiearme
+    try:
+        from strategie_arme import wochen_abschnitt
+        z += [wochen_abschnitt(), ""]
+    except Exception as exc:  # noqa: BLE001
+        z += ["## Regel-Strategiearme", f"Nicht verfuegbar: {str(exc)[:200]}", ""]
     z += [f"Offene Hypothesen gesamt: {offene}. Sie aendern keine laufende Strategie, sondern werden "
           "als eigene Testarme bzw. in den Folge-Reviews gegen neue Daten geprueft.",
           "", "Automatisierte Modell-Ausgabe, keine Anlageberatung. Keine Gewaehr."]

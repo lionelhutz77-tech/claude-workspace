@@ -71,6 +71,16 @@ jobs:
           set -o pipefail
           python main.py 2>&1 | tee logs/cloud_run.log
 
+      - name: Regel-Strategiearme (Stufe 4)
+        working-directory: trading-system
+        env:
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING: utf-8
+        run: |
+          set -o pipefail
+          python strategie_arme.py 2>&1 | tee logs/strategie_arme.log
+
       - name: Vorlaeufer-Scanner (nur montags)
         if: github.event.schedule == '47 5 * * 1'
         working-directory: trading-system
