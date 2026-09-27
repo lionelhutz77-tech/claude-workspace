@@ -3,20 +3,11 @@ chcp 65001 >nul
 set PYTHONIOENCODING=utf-8
 cd /d "C:\Users\HP\Documents\Claude\trading-system"
 
-:: Warte 2 Minuten damit Netzwerk nach PC-Start/Anmeldung bereit ist
-ping -n 121 127.0.0.1 >nul
-
-:: Datum fuer Log-Dateiname (format: JJJJ-MM-TT) -- PowerShell (WMIC deprecated auf Windows 11)
+:: Seit 27.09.2026 laeuft das Trading-System ausschliesslich in der Cloud
+:: (GitHub Actions, daily_trading.yml). Ein lokaler Lauf wuerde einen zweiten,
+:: abweichenden Depotstand erzeugen. Deshalb holt dieser Task nur noch den
+:: Cloud-Stand auf den PC. Fuer einen bewussten lokalen Testlauf: python main.py
+if not exist logs mkdir logs
 for /f %%I in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd"') do set LOGDATUM=%%I
-
-:: Schutz: Wenn der Task heute schon gelaufen ist, nicht nochmal starten
-:: (verhindert Doppellauf wenn 08:00-Trigger + Anmelde-Trigger gleichzeitig aktiv)
-if exist "logs\run_%LOGDATUM%.log" (
-    echo [%LOGDATUM%] Task heute bereits ausgefuehrt -- wird uebersprungen.
-    exit /b 0
-)
-
-call venv\Scripts\activate.bat
-echo [%LOGDATUM%] Trading Intelligence System startet... >> logs\run_%LOGDATUM%.log
-python main.py >> logs\run_%LOGDATUM%.log 2>&1
-echo [%LOGDATUM%] Abgeschlossen. >> logs\run_%LOGDATUM%.log
+echo [%LOGDATUM%] Cloud-Betrieb: lokaler Lauf deaktiviert, hole Cloud-Stand. >> logs\lokal_task.log
+venv\Scripts\python.exe cloud_daten_holen.py >> logs\lokal_task.log 2>&1
