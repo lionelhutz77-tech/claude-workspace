@@ -223,9 +223,12 @@ def run_pipeline():
         evaluated_properties = cleaned_properties
 
     # 5. Filtern (nur Schwellwerte erfüllt)
+    kriterien = config["search_criteria"]
     filtered = [
         p for p in evaluated_properties
         if p.get("netto_cashflow", 0) >= config["evaluation_thresholds"]["category_profit"]["min_cashflow_monatlich"]
+        # Preisrahmen aus config.yaml wurde bisher nicht angewendet (2,8-Mio.-Objekte im Report).
+        and kriterien.get("min_kaufpreis", 0) <= (p.get("kaufpreis") or 0) <= kriterien.get("max_kaufpreis", float("inf"))
     ]
     logger.info(f"[FILTER] Nach Filterung: {len(filtered)}/{len(evaluated_properties)} empfohlenswert")
 

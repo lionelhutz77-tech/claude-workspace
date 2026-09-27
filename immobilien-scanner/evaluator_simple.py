@@ -42,18 +42,27 @@ def evaluate_properties_simple(properties: List[Dict], config: Dict) -> List[Dic
         jahresmiete = monatsmiete * 12
         brutto_rendite = (jahresmiete / kaufpreis * 100) if kaufpreis > 0 else 0
 
-        # Kosten
-        verwaltung = monatsmiete * 0.10
-        instandhaltung = groesse_qm * 1.50
-        versicherung = 40
-        leerstand = monatsmiete * 0.03
+        # Wohnflaeche plausibilisieren: Parserfehler ("3 m²") wuerden die
+        # Instandhaltung kleinrechnen. Dann ~70 m² je Einheit annehmen und markieren.
+        flaeche_geschaetzt = not groesse_qm or groesse_qm < 20 * max(1, anzahl_parteien)
+        flaeche_fuer_kosten = 70 * max(1, anzahl_parteien) if flaeche_geschaetzt else groesse_qm
+
+        # Kosten (Quoten aus config.yaml)
+        kriterien = config['search_criteria']
+        verwaltung = monatsmiete * kriterien.get('verwaltungsquote_prozent', 10) / 100
+        instandhaltung = flaeche_fuer_kosten * kriterien.get('instandhaltung_euro_pro_qm', 1.50)
+        versicherung = kriterien.get('versicherung_monatlich', 40)
+        leerstand = monatsmiete * kriterien.get('leerstand_puffer_prozent', 3) / 100
         kosten_monatlich = verwaltung + instandhaltung + versicherung + leerstand
 
-        # Cashflow
+        # Cashflow: Annuitaet = Darlehen x (Zins + Tilgung) / 12.
+        # Frueher: Darlehen / 360 x 5 % -> Rate um Faktor 30 zu klein, fast alles "profitabel".
+        ltv = kriterien.get('ltv_prozent', 80) / 100
+        annuitaet = (kriterien.get('zinssatz_prozent', 4.0) + kriterien.get('tilgung_prozent', 1.0)) / 100
         cashflow_vor_kredit = monatsmiete - kosten_monatlich
-        kreditrate = (kaufpreis * 0.80) / (30 * 12) * 0.05  # 5% total
+        kreditrate = kaufpreis * ltv * annuitaet / 12
         netto_cashflow = cashflow_vor_kredit - kreditrate
-        eigenkapital = kaufpreis * 0.20
+        eigenkapital = kaufpreis * (1 - ltv)
         netto_rendite = (netto_cashflow * 12 / eigenkapital * 100) if eigenkapital > 0 else 0
 
         # Simpel Scoring
@@ -102,6 +111,8 @@ def evaluate_properties_simple(properties: List[Dict], config: Dict) -> List[Dic
             rote_flaggen.append("Baujahr vor 1950: Keller-Risiko")
         if brutto_rendite < 4:
             rote_flaggen.append(f"Niedrige Rendite: {brutto_rendite:.1f}%")
+        if flaeche_geschaetzt:
+            rote_flaggen.append("Wohnflaeche unplausibel/fehlend: Kosten mit ~70 m² je Einheit geschaetzt")
 
         # Kategorie PROFIT
         kategorie_profit = {

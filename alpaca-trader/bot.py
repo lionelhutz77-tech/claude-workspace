@@ -47,13 +47,34 @@ def get_price(ticker):
 
 def submit_order(symbol, qty):
     body = {"symbol": symbol, "qty": qty, "side": "buy",
-            "type": "market", "time_in_force": "day"}
+            "type": "market", "time_in_force": "day",
+            "client_order_id": f"lionel-initial-v1-{symbol}"}
     r = requests.post(f"{BASE}/v2/orders", json=body, headers=HEADERS, timeout=15)
     return r.status_code, r.text
 
 
+def ensure_fresh_paper_account():
+    """This script allocates a test account once, never tops up an existing run."""
+    if not PAPER:
+        raise RuntimeError("Nur Alpaca Paper ist erlaubt.")
+    for path, params in (("/v2/positions", None), ("/v2/orders", {"status": "all", "limit": 1})):
+        response = requests.get(f"{BASE}{path}", headers=HEADERS, params=params, timeout=15)
+        if response.status_code != 200:
+            raise RuntimeError(f"Paper-Konto konnte nicht geprueft werden: {path} ({response.status_code}).")
+        payload = response.json()
+        if not isinstance(payload, list):
+            raise RuntimeError(f"Unerwartete Paper-Konto-Antwort: {path}.")
+        if payload:
+            raise RuntimeError(
+                "Paper-Konto enthaelt bereits Positionen oder Orders. "
+                "Keine erneute Initialanlage; neuen Testzyklus bewusst vorbereiten."
+            )
+
+
 def main():
     check_keys()
+    if LIVE:
+        ensure_fresh_paper_account()
     modus = "LIVE (echte Paper-Orders)" if LIVE else "TROCKENLAUF (keine Order)"
     print("=" * 60)
     print(f"  MUSTERDEPOT-BOT  --  Modus: {modus}")
