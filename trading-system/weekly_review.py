@@ -225,6 +225,7 @@ def main() -> int:
                                                 a["hypothese"], a["pruefregel"]))
     offene = conn.execute("SELECT COUNT(*) FROM review_hypothesen WHERE status='offen'").fetchone()[0]
 
+    tailwind_fehler: list[str] = []
     ziel_netto = ZIEL_WOCHE_PCT + 2 * GEBUEHR_JE_TRADE_PCT
     z = [f"# Wochen-Review {heute.isoformat()} (Woche ab {seit})", ""]
     z += ["## Signale der Woche",
@@ -250,6 +251,13 @@ def main() -> int:
     for f, a in analysen:
         z += [f"### {f['art']}: {f['asset']} ({_pct(f['rendite_pct'])}, {a['news']} Schlagzeilen im Archiv)",
               a["text"], ""]
+    # Stufe 3: Tailwind-Historie, Vorhersagekraft und Ursachen grosser Bewegungen
+    try:
+        from tailwind_kontext import aktualisiere as tailwind_lernschritt
+        z += [tailwind_lernschritt(max_faelle=10), ""]
+    except Exception as exc:  # noqa: BLE001 - Review soll trotzdem erscheinen, Fehler sichtbar
+        tailwind_fehler.append(str(exc)[:200])
+        z += ["## Tailwind: Vorhersagekraft & Ursachen", f"Nicht verfuegbar: {str(exc)[:200]}", ""]
     z += [f"Offene Hypothesen gesamt: {offene}. Sie aendern keine laufende Strategie, sondern werden "
           "als eigene Testarme bzw. in den Folge-Reviews gegen neue Daten geprueft.",
           "", "Automatisierte Modell-Ausgabe, keine Anlageberatung. Keine Gewaehr."]
@@ -282,6 +290,9 @@ def main() -> int:
         print(f"Telegram nicht gesendet: {exc}")
 
     ki_fehler = sum(1 for _, a in analysen if a["text"].startswith("KI-Analyse nicht verfuegbar"))
+    if tailwind_fehler:
+        print(f"QUALITAETSPROBLEM: Tailwind-Lernschritt fehlgeschlagen: {tailwind_fehler[0]}")
+        return 1
     if ki_fehler:
         print(f"QUALITAETSPROBLEM: {ki_fehler} KI-Analysen fehlgeschlagen.")
         return 1

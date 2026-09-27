@@ -19,7 +19,7 @@ env:
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +39,7 @@ jobs:
           GROQ_API_KEY:     ${{ secrets.GROQ_API_KEY }}
           TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
           CI: "true"
           PYTHONIOENCODING: utf-8
         run: python weekly_review.py
@@ -48,7 +49,7 @@ jobs:
         run: |
           git config user.name  "Trading Intelligence Bot"
           git config user.email "bot@trading-intelligence.local"
-          git add trading-system/data/learnings.db
+          git add trading-system/data/learnings.db trading-system/data/tailwind_history.db
           if [ -f trading-system/output/wochen_review_aktuell.md ]; then
             mkdir -p trading-system/reviews
             cp trading-system/output/wochen_review_aktuell.md "trading-system/reviews/review_$(date +'%Y-%m-%d').md"

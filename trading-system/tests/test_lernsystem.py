@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agents"))
 
 import news_digest  # noqa: E402
+import tailwind_kontext  # noqa: E402
 import weekly_review  # noqa: E402
 
 
@@ -48,6 +49,30 @@ class DigestLogikTests(unittest.TestCase):
     def test_ausgefallener_fear_greed_wird_nicht_als_neutral_gemeldet(self) -> None:
         text = news_digest._kennzahlen_text({"Fear&Greed Aktien": {"score": 50, "label": "Neutral", "fehler": "x"}})
         self.assertIn("nicht verfuegbar", text)
+
+
+class TailwindKontextTests(unittest.TestCase):
+    def test_report_zeilen_beider_formate_werden_gelesen(self) -> None:
+        alt = ('<tr> <td><strong>ANET</strong></td> <td>AI Networking</td> <td style="x">70/100</td> '
+               '<td><span style="y">STARK</span></td> <td>$170.68</td> <td>5.1% unter ATH</td> </tr>')
+        neu = ('<tr> <td><strong>KTOS</strong></td> <td>Defense Tech / Drohnen</td> <td style="x">42/100</td> '
+               '<td><span style="y">MODERAT</span></td> <td>$1,047.02</td> <td>$102.76</td> </tr>')
+        zeilen = tailwind_kontext.parse_report(alt + neu)
+        self.assertEqual([z["ticker"] for z in zeilen], ["ANET", "KTOS"])
+        self.assertEqual(zeilen[1]["stufe"], "MODERAT")
+        self.assertAlmostEqual(zeilen[1]["kurs"], 1047.02)
+
+    def test_statistik_zaehlt_je_aktie_und_woche_nur_erstes_signal(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(tailwind_kontext, "DB_PFAD", Path(tmp) / "t.db"):
+                conn = tailwind_kontext._db()
+                for tag, r in (("2026-09-21", 5.0), ("2026-09-22", 50.0), ("2026-09-23", 50.0)):
+                    conn.execute("INSERT INTO signale VALUES (?, 'X', 'T', 60, 'STARK', 1, ?, ?, 0, 0)",
+                                 (tag, r, r))
+                werte = tailwind_kontext.auswertung_je_stufe(conn)
+                conn.close()
+        self.assertEqual(werte[0]["anzahl"], 1)
+        self.assertAlmostEqual(werte[0]["mehr_10t"], 5.0)
 
 
 if __name__ == "__main__":
