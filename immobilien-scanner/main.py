@@ -254,9 +254,17 @@ def run_pipeline():
         json.dump(evaluated_properties, f, indent=2, ensure_ascii=False)
     logger.info(f"[ARCHIVE] Daten archiviert: {archive_file}")
 
-    # 8. Lokalen Report im Browser oeffnen (falls vorhanden)
+    # 8a. Kurzbericht per Telegram (Mailversand ist aufgegeben; kommt auch in der Cloud an)
+    try:
+        from telegram_bericht import sende as sende_telegram
+        if sende_telegram(filtered, len(evaluated_properties)):
+            logger.info("[OK] Telegram-Kurzbericht gesendet")
+    except Exception as e:
+        logger.warning(f"[WARNING] Telegram-Kurzbericht fehlgeschlagen: {e}")
+
+    # 8b. Lokalen Report im Browser oeffnen (nur am PC, nicht in GitHub Actions)
     report_file = Path("reports") / "report_neuester.html"
-    if report_file.exists() and filtered:
+    if report_file.exists() and filtered and not os.environ.get("CI"):
         try:
             import webbrowser
             webbrowser.open(report_file.resolve().as_uri())

@@ -1,0 +1,68 @@
+name: Immobilien-Scanner Wochenlauf
+
+on:
+  schedule:
+    # Freitag 13:07 UTC = 15:07 MESZ / 14:07 MEZ (wie der bisherige PC-Task)
+    - cron: "7 13 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: immobilien-scanner/requirements.txt
+
+      - name: Abhaengigkeiten + Chromium
+        working-directory: immobilien-scanner
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Scan ausfuehren
+        working-directory: immobilien-scanner
+        env:
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CI: "true"
+          PYTHONIOENCODING: utf-8
+        run: |
+          set -o pipefail
+          python main.py 2>&1 | tee scan.log
+          # Stiller Ausfall: keine Objekte gefunden -> sichtbar fehlschlagen
+          if grep -q "Gesamt nach Duplikat-Filter: 0 " scan.log || ! grep -q "Gesamt nach Duplikat-Filter" scan.log; then
+            echo "QUALITAETSPROBLEM: keine Objekte gefunden"; exit 1
+          fi
+
+      - name: Archiv und Report committen
+        if: always()
+        run: |
+          git config user.name  "Immobilien Scanner Bot"
+          git config user.email "bot@immobilien-scanner.local"
+          git add immobilien-scanner/data/ immobilien-scanner/reports/ 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Immobilien-Scan $(date +'%Y-%m-%d')"
+          git pull --rebase
+          git push
+
+      - name: Telegram-Warnung bei Fehler
+        if: failure()
+        env:
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=⚠️ Immobilien-Scan in der Cloud fehlgeschlagen. Details: ${RUN_URL}" > /dev/null
