@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
+    # Nur bei Aenderungen an der D&D-App neu veroeffentlichen, nicht bei jedem
+    # taeglichen Daten-Commit der Trading-Bots.
+    paths:
+      - "dnd/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
