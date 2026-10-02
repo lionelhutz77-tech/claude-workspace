@@ -1,0 +1,1552 @@
+[
+  {
+    "adresse": "Sanieren-Anbauen-Einziehen: Wohnung mit Garten und Anbauoption von 39  [Oberhausen/Umgebung]",
+    "kaufpreis": 75000,
+    "wohnungen": 1,
+    "baujahr": 1,
+    "groesse_qm": 1900,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/sanieren-anbauen-einziehen-wohnung-mit-garten-und-anbauoption-von-39-m%c2%b2-in-einem-zweifamilienhaus/",
+    "brutto_rendite": 243.2,
+    "netto_cashflow": 10084.0,
+    "netto_rendite": 806.7,
+    "monatsmiete_angenommen": 15200.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 65,
+      "empfehlung": "Brutto 243.2%, Cashflow 10084€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Portfolio für Entwickler und Strategen: 7 Mehrfamilienhäuser in Essen  [Essen]",
+    "kaufpreis": 2995000,
+    "wohnungen": 2,
+    "baujahr": 1,
+    "groesse_qm": 2,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/portfolio-fuer-entwickler-und-strategen-7-mehrfamilienhaeuser-in-essen-und-oberhausen-2/",
+    "brutto_rendite": 0.8,
+    "netto_cashflow": -8580.0,
+    "netto_rendite": -17.2,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko",
+      "Niedrige Rendite: 0.8%",
+      "Wohnflaeche unplausibel/fehlend: Kosten mit ~70 m² je Einheit geschaetzt"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 5,
+      "empfehlung": "Brutto 0.8%, Cashflow -8580€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Sorgfältiger Eigentümer sucht sorgfältigen Nachfolger für 3 Mehrfamili [Oberhausen/Umgebung]",
+    "kaufpreis": 2835000,
+    "wohnungen": 24,
+    "baujahr": 1,
+    "groesse_qm": 3,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/sorgfaeltiger-eigentuemer-sucht-sorgfaeltigen-nachfolger-fuer-3-mehrfamilienhaeuser-mit-24-wohnungen/",
+    "brutto_rendite": 9.7,
+    "netto_cashflow": 7826.0,
+    "netto_rendite": 16.6,
+    "monatsmiete_angenommen": 22800,
+    "anzahl_parteien": 24,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko",
+      "Wohnflaeche unplausibel/fehlend: Kosten mit ~70 m² je Einheit geschaetzt"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 65,
+      "empfehlung": "Brutto 9.7%, Cashflow 7826€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Dreifamilienhaus mit 108 m², 56 m² und 57 m² Wohnfläche mit charmantem [Oberhausen/Umgebung]",
+    "kaufpreis": 255000,
+    "wohnungen": 3,
+    "baujahr": 1,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/dreifamilienhaus-mit-108-m%c2%b2-56-m%c2%b2-und-57-m%c2%b2-wohnflaeche-mit-charmantem-innenhof/",
+    "brutto_rendite": 13.4,
+    "netto_cashflow": 1440.0,
+    "netto_rendite": 33.9,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 45,
+      "empfehlung": "Brutto 13.4%, Cashflow 1440€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Viel Platz und Potenzial – Dreifamilienhaus mit ca. 340 m² Wohnfläche [Oberhausen/Umgebung]",
+    "kaufpreis": 429000,
+    "wohnungen": 3,
+    "baujahr": 1,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/viel-platz-und-potenzial-dreifamilienhaus-mit-ca-340-m%c2%b2-wohnflaeche/",
+    "brutto_rendite": 8.0,
+    "netto_cashflow": 860.0,
+    "netto_rendite": 12.0,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 45,
+      "empfehlung": "Brutto 8.0%, Cashflow 860€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Investmentchance für Strategen: 3 Häuser – 16 Wohnungen – 15 Balkone | [Oberhausen/Umgebung]",
+    "kaufpreis": 1269000,
+    "wohnungen": 16,
+    "baujahr": 1,
+    "groesse_qm": 2,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 10,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/investmentchance-fuer-strategen-3-haeuser-16-wohnungen-15-balkone-einstiegsmieten-ab-445-eur-m%c2%b2/",
+    "brutto_rendite": 14.4,
+    "netto_cashflow": 7274.0,
+    "netto_rendite": 34.4,
+    "monatsmiete_angenommen": 15200,
+    "anzahl_parteien": 16,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko",
+      "Wohnflaeche unplausibel/fehlend: Kosten mit ~70 m² je Einheit geschaetzt"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 14.4%, Cashflow 7274€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Freistehendes Zweifamilienhaus - mieterfrei -zur freien Gestaltung! [Oberhausen/Umgebung]",
+    "kaufpreis": 369000,
+    "wohnungen": 2,
+    "baujahr": 1,
+    "groesse_qm": 500,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/freistehendes-zweifamilienhaus-mieterfrei-zur-freien-gestaltung/",
+    "brutto_rendite": 6.2,
+    "netto_cashflow": -367.0,
+    "netto_rendite": -6.0,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 6.2%, Cashflow -367€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Vierfamilienhaus: 95,77 m² & 82,32 m² & 75,84 m² & 54,66 m². Terrasse, [Oberhausen/Umgebung]",
+    "kaufpreis": 375000,
+    "wohnungen": 4,
+    "baujahr": 1,
+    "groesse_qm": 202,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "KL Immobilien",
+    "link": "https://kl-immo-web.de/produkt/vierfamilienhaus-9577-m%c2%b2-8232-m%c2%b2-7584-m%c2%b2-5466-m%c2%b2-terrasse-garten-balkon/",
+    "brutto_rendite": 12.2,
+    "netto_cashflow": 1713.0,
+    "netto_rendite": 27.4,
+    "monatsmiete_angenommen": 3800,
+    "anzahl_parteien": 4,
+    "rote_flaggen": [
+      "Baujahr vor 1950: Keller-Risiko"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 12.2%, Cashflow 1713€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! 6 Wohnungen und zwei mögl. Wohnungen nach Ausbau mit 9 Garage [Gelsenkirchen]",
+    "kaufpreis": 459000,
+    "wohnungen": 6,
+    "baujahr": 1977,
+    "groesse_qm": 383,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/haus-mehrfamilienhaus-in-gelsenkirchen-kaufen-3858/",
+    "brutto_rendite": 14.9,
+    "netto_cashflow": 2814.0,
+    "netto_rendite": 36.8,
+    "monatsmiete_angenommen": 5700,
+    "anzahl_parteien": 6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 95,
+      "empfehlung": "Brutto 14.9%, Cashflow 2814€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Zentrale 3-Raum ETW mit Tiefgaragenstellplatz, Aufzug und Log [Gladbeck]",
+    "kaufpreis": 149000,
+    "wohnungen": 1,
+    "baujahr": 1984,
+    "groesse_qm": 78,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/wohnung-eigentumswohnung-etagenwohnung-in-gladbeck-kaufen-2848/",
+    "brutto_rendite": 5.0,
+    "netto_cashflow": -111.0,
+    "netto_rendite": -4.5,
+    "monatsmiete_angenommen": 624.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 5.0%, Cashflow -111€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Helle 3,5-Zimmer Wohnung inkl. TG-Stellplatz und Balkon mit B [Gladbeck]",
+    "kaufpreis": 180000,
+    "wohnungen": 1,
+    "baujahr": 1974,
+    "groesse_qm": 96,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/wohnung-eigentumswohnung-etagenwohnung-in-gladbeck-kaufen-4359/",
+    "brutto_rendite": 5.1,
+    "netto_cashflow": -116.0,
+    "netto_rendite": -3.9,
+    "monatsmiete_angenommen": 768.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 5.1%, Cashflow -116€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Großzügige DG-Wohnung mit Garage & Option zur Teilung in Glad [Gladbeck]",
+    "kaufpreis": 199000,
+    "wohnungen": 1,
+    "baujahr": 1992,
+    "groesse_qm": 104,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/wohnung-eigentumswohnung-etagenwohnung-in-gladbeck-kaufen-4561/",
+    "brutto_rendite": 5.0,
+    "netto_cashflow": -135.0,
+    "netto_rendite": -4.1,
+    "monatsmiete_angenommen": 832.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 5.0%, Cashflow -135€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Blömker! Vermietete 2,5-Zimmer Wohnung, stufenlos erreichbar, mit Logg [Gladbeck]",
+    "kaufpreis": 150000,
+    "wohnungen": 1,
+    "baujahr": 2005,
+    "groesse_qm": 53,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "Blömker Immobilien",
+    "link": "https://bloemker-immobilien.de/immobilien/wohnung-eigentumswohnung-etagenwohnung-in-gladbeck-kaufen-4817/",
+    "brutto_rendite": 3.4,
+    "netto_cashflow": -251.0,
+    "netto_rendite": -10.0,
+    "monatsmiete_angenommen": 424.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 3.4%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 25,
+      "empfehlung": "Brutto 3.4%, Cashflow -251€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Dachgeschoss-Wohnung mit Stellplatz in Bottrop [Bottrop/Marl]",
+    "kaufpreis": 89000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 59,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "G",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/dachgeschoss-wohnung-mit-stellplatz-in-bottrop/",
+    "brutto_rendite": 6.4,
+    "netto_cashflow": -15.0,
+    "netto_rendite": -1.0,
+    "monatsmiete_angenommen": 472.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 6.4%, Cashflow -15€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "-RESERVIERT- Dreifamilienhaus mit Entwicklungspotenzial in D [Bottrop/Marl]",
+    "kaufpreis": 269000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 232,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "H",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/dreifamilienhaus-mit-entwicklungspotenzial-in-dorsten-holsterhausen/",
+    "brutto_rendite": 12.7,
+    "netto_cashflow": 1195.0,
+    "netto_rendite": 26.7,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 95,
+      "empfehlung": "Brutto 12.7%, Cashflow 1195€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "-PROVISIONSFREI- Dreifamilienhaus mit großem Grundstück in M [Bottrop/Marl]",
+    "kaufpreis": 449000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 247,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/dreifamilienhaus-mit-grossem-grundstueck-in-marl-brassert/",
+    "brutto_rendite": 7.6,
+    "netto_cashflow": 572.0,
+    "netto_rendite": 7.6,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 7.6%, Cashflow 572€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Dreifamilienhaus mit Traumgrundstück und freier EG-Wohnung [Bottrop/Marl]",
+    "kaufpreis": 599000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 294,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "E",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/dreifamilienhaus-mit-traumgrundstueck-und-freier-eg-wohnung/",
+    "brutto_rendite": 5.7,
+    "netto_cashflow": 2.0,
+    "netto_rendite": 0.0,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 5.7%, Cashflow 2€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Wohnung mit großem Balkon in Fuhlenbrock [Bottrop/Marl]",
+    "kaufpreis": 279000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "energieklasse": "D",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/eigentumswohnung-in-bottrop-fuhlenbrock-mit-balkon-und-grosser-fensterfront/",
+    "brutto_rendite": 3.4,
+    "netto_cashflow": -424.0,
+    "netto_rendite": -9.1,
+    "monatsmiete_angenommen": 800.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 3.4%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 25,
+      "empfehlung": "Brutto 3.4%, Cashflow -424€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Eigentumswohnung mit großem Balkon, Parkett und Kamin im Rat [Bottrop/Marl]",
+    "kaufpreis": 255000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 88,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "C",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/eigentumswohnung-mit-grossem-balkon-parkett-und-kamin-im-rathausviertel/",
+    "brutto_rendite": 3.3,
+    "netto_cashflow": -410.0,
+    "netto_rendite": -9.6,
+    "monatsmiete_angenommen": 704.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 3.3%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 3.3%, Cashflow -410€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Eigentumswohnung mit großem Wohn- und Essbereich und Terrass [Bottrop/Marl]",
+    "kaufpreis": 189000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 80,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/eigentumswohnung-mit-grossem-wohn-und-essbereich-und-terrasse-in-bottrop-grafenwald/",
+    "brutto_rendite": 4.1,
+    "netto_cashflow": -233.0,
+    "netto_rendite": -7.4,
+    "monatsmiete_angenommen": 640.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 4.1%, Cashflow -233€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Eigentumswohnung mit großzügigem Balkon und Blick in den Erl [Bottrop/Marl]",
+    "kaufpreis": 169000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 63,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "D",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/eigentumswohnung-mit-grosszuegigem-balkon-und-blick-in-den-erlbruchpark/",
+    "brutto_rendite": 3.6,
+    "netto_cashflow": -259.0,
+    "netto_rendite": -9.2,
+    "monatsmiete_angenommen": 504.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 3.6%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 3.6%, Cashflow -259€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Erdgeschosswohnung mit Terrasse und Tiefgaragenstellplatz im [Bottrop/Marl]",
+    "kaufpreis": 289000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 87,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "C",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/erdgeschosswohnung-mit-terrasse-und-tiefgaragenstellplatz-im-rathausviertel/",
+    "brutto_rendite": 2.9,
+    "netto_cashflow": -528.0,
+    "netto_rendite": -11.0,
+    "monatsmiete_angenommen": 696.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 2.9%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 2.9%, Cashflow -528€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "-RESERVIERT- Maisonette-Wohnung in Bottrop-Stadtmitte mit Ba [Bottrop/Marl]",
+    "kaufpreis": 189000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 95,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 0,
+    "energieklasse": "C",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/maisonette-wohnung-in-bottrop-stadtmitte-mit-balkon/",
+    "brutto_rendite": 4.8,
+    "netto_cashflow": -151.0,
+    "netto_rendite": -4.8,
+    "monatsmiete_angenommen": 760.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 4.8%, Cashflow -151€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Maisonettewohnung mit vier Zimmern, Galerie und Balkon im Ra [Bottrop/Marl]",
+    "kaufpreis": 299000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 111,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "C",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/maisonettewohnung-mit-vier-zimmern-galerie-und-balkon-im-rathausviertel/",
+    "brutto_rendite": 3.6,
+    "netto_cashflow": -431.0,
+    "netto_rendite": -8.6,
+    "monatsmiete_angenommen": 888.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 3.6%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 3.6%, Cashflow -431€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Mehrfamilienhaus mit Gartenparzellen, sieben Garagen und Nac [Bottrop/Marl]",
+    "kaufpreis": 500000,
+    "wohnungen": 5,
+    "baujahr": 2000,
+    "groesse_qm": 322,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": false,
+    "merkmal_garage": 1,
+    "energieklasse": "E",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/mehrfamilienhaus-mit-gartenparzellen-sieben-garagen-und-nachbargrundstueck/",
+    "brutto_rendite": 11.4,
+    "netto_cashflow": 1943.0,
+    "netto_rendite": 23.3,
+    "monatsmiete_angenommen": 4750,
+    "anzahl_parteien": 5,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 80,
+      "empfehlung": "Brutto 11.4%, Cashflow 1943€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Zweifamilienhaus mit Traumgrundstück in Toplage von Grafenwa [Bottrop/Marl]",
+    "kaufpreis": 660000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 213,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/mehrgenerationenhaus-in-bottrop-grafenwald/",
+    "brutto_rendite": 3.5,
+    "netto_cashflow": -906.0,
+    "netto_rendite": -8.2,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [
+      "Niedrige Rendite: 3.5%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 3.5%, Cashflow -906€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Renditestarke Kapitalanlage: 7 Wohnungen, 1 Gewerbe und 1 Ga [Bottrop/Marl]",
+    "kaufpreis": 869000,
+    "wohnungen": 7,
+    "baujahr": 2000,
+    "groesse_qm": 415,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/renditestarke-kapitalanlage-7-wohnungen-1-gewerbe-und-1-garagenhof/",
+    "brutto_rendite": 9.2,
+    "netto_cashflow": 2226.0,
+    "netto_rendite": 15.4,
+    "monatsmiete_angenommen": 6650,
+    "anzahl_parteien": 7,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 100,
+      "empfehlung": "Brutto 9.2%, Cashflow 2226€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "-RESERVIERT- Traumhafte ETW mit Aufzug, Einbauküche, Garage  [Bottrop/Marl]",
+    "kaufpreis": 569000,
+    "wohnungen": 1,
+    "baujahr": 2000,
+    "groesse_qm": 134,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "EINZELWOHNUNG",
+    "ist_einzelwohnung": true,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/traumhafte-etw-mit-aufzug-einbaukueche-garage-stellplatz/",
+    "brutto_rendite": 2.3,
+    "netto_cashflow": -1205.0,
+    "netto_rendite": -12.7,
+    "monatsmiete_angenommen": 1072.0,
+    "anzahl_parteien": 1,
+    "rote_flaggen": [
+      "Einzelne Eigentumswohnung (nur 1 Partei, kein ganzes Haus)",
+      "Niedrige Rendite: 2.3%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 2.3%, Cashflow -1205€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Wohnhaus mit zwei Hallen und einem Büro in in Bottrop-Grafen [Bottrop/Marl]",
+    "kaufpreis": 850000,
+    "wohnungen": 3,
+    "baujahr": 2000,
+    "groesse_qm": 225,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/wohn-und-gewerbeensemble-mit-zwei-hallen-in-bottrop-grafenwald-2/",
+    "brutto_rendite": 4.0,
+    "netto_cashflow": -731.0,
+    "netto_rendite": -5.2,
+    "monatsmiete_angenommen": 2850,
+    "anzahl_parteien": 3,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 45,
+      "empfehlung": "Brutto 4.0%, Cashflow -731€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Zwei Hallen + Büro und Wohnhaus in Bottrop-Grafenwald [Bottrop/Marl]",
+    "kaufpreis": 850000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/wohn-und-gewerbeensemble-mit-zwei-hallen-in-bottrop-grafenwald/",
+    "brutto_rendite": 2.7,
+    "netto_cashflow": -1370.0,
+    "netto_rendite": -9.7,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [
+      "Niedrige Rendite: 2.7%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 2.7%, Cashflow -1370€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Zweifamilienhaus mit zwei Gartenbereichen, zwei Terrassen un [Bottrop/Marl]",
+    "kaufpreis": 319000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 141,
+    "renovierungen": "",
+    "merkmal_garten": true,
+    "merkmal_balkon": true,
+    "merkmal_garage": 1,
+    "energieklasse": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "van Oepen",
+    "link": "https://immobilien-vanoepen.de/immobilien/zweifamilienhaus-mit-zwei-gartenbereichen-zwei-terrassen-und-garage/",
+    "brutto_rendite": 7.1,
+    "netto_cashflow": 338.0,
+    "netto_rendite": 6.4,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 65,
+      "empfehlung": "Brutto 7.1%, Cashflow 338€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Holten, Sterkrade (46147)",
+    "kaufpreis": 389000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 144,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "H",
+    "zimmer": "6",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/02dfc1b9-a5e8-4c18-b57d-5c6c3274664f",
+    "brutto_rendite": 5.9,
+    "netto_cashflow": 100.0,
+    "netto_rendite": 1.5,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 40,
+      "empfehlung": "Brutto 5.9%, Cashflow 100€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Osterfeld-West, Oberhausen (46117)",
+    "kaufpreis": 525000,
+    "wohnungen": 5,
+    "baujahr": 2000,
+    "groesse_qm": 384,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "",
+    "zimmer": "16",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/3a564894-42f9-494d-8ba5-e7fa3e1cea66",
+    "brutto_rendite": 10.9,
+    "netto_cashflow": 1766.0,
+    "netto_rendite": 20.2,
+    "monatsmiete_angenommen": 4750,
+    "anzahl_parteien": 5,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 10.9%, Cashflow 1766€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Heide, Osterfeld (46117)",
+    "kaufpreis": 338000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/551f6df6-dc92-41cb-bfb2-244bd874c34d",
+    "brutto_rendite": 6.7,
+    "netto_cashflow": 336.0,
+    "netto_rendite": 6.0,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 6.7%, Cashflow 336€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Osterfeld-Ost, Osterfeld (46119)",
+    "kaufpreis": 598000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "B",
+    "zimmer": "",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/cd04a019-1edb-4a81-8014-8a2090ecd1a0",
+    "brutto_rendite": 3.8,
+    "netto_cashflow": -530.0,
+    "netto_rendite": -5.3,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [
+      "Niedrige Rendite: 3.8%"
+    ],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 30,
+      "empfehlung": "Brutto 3.8%, Cashflow -530€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Stadtmitte, Oberhausen (46149)",
+    "kaufpreis": 329000,
+    "wohnungen": 2,
+    "baujahr": 2000,
+    "groesse_qm": 100,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "E",
+    "zimmer": "8",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/db30e90d-b109-4069-b675-17d97f994024",
+    "brutto_rendite": 6.9,
+    "netto_cashflow": 366.0,
+    "netto_rendite": 6.7,
+    "monatsmiete_angenommen": 1900,
+    "anzahl_parteien": 2,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": false,
+      "score": 35,
+      "empfehlung": "Brutto 6.9%, Cashflow 366€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 25,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Marienkirche, Alt-Oberhausen (46047)",
+    "kaufpreis": 256000,
+    "wohnungen": 4,
+    "baujahr": 2000,
+    "groesse_qm": 263,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "12",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/0d920598-e0b1-41a8-b92a-33e4ac3baf4b",
+    "brutto_rendite": 17.8,
+    "netto_cashflow": 2018.0,
+    "netto_rendite": 47.3,
+    "monatsmiete_angenommen": 3800,
+    "anzahl_parteien": 4,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 17.8%, Cashflow 2018€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  },
+  {
+    "adresse": "Buschhausen, Oberhausen (46149)",
+    "kaufpreis": 695000,
+    "wohnungen": 6,
+    "baujahr": 2000,
+    "groesse_qm": 388,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "F",
+    "zimmer": "15",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/46faaf24-d33b-40fd-80f9-e8639efd6327",
+    "brutto_rendite": 9.8,
+    "netto_cashflow": 2020.0,
+    "netto_rendite": 17.4,
+    "monatsmiete_angenommen": 5700,
+    "anzahl_parteien": 6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 70,
+      "empfehlung": "Brutto 9.8%, Cashflow 2020€"
+    },
+    "kategorie_family": {
+      "qualifiziert": true,
+      "score": 60,
+      "empfehlung": "Zentral 46149, fuer Familie geeignet"
+    }
+  },
+  {
+    "adresse": "Borbeck, Oberhausen (46117)",
+    "kaufpreis": 750000,
+    "wohnungen": 6,
+    "baujahr": 2000,
+    "groesse_qm": 452,
+    "renovierungen": "",
+    "merkmal_garten": false,
+    "merkmal_balkon": false,
+    "merkmal_garage": 0,
+    "energieklasse": "C",
+    "zimmer": "24",
+    "objekt_typ": "MFH",
+    "ist_einzelwohnung": false,
+    "quelle": "Immowelt/Immonet",
+    "link": "https://www.immowelt.de/expose/477f430c-970c-4da6-8f07-393bd2d7ad8a",
+    "brutto_rendite": 9.1,
+    "netto_cashflow": 1741.0,
+    "netto_rendite": 13.9,
+    "monatsmiete_angenommen": 5700,
+    "anzahl_parteien": 6,
+    "rote_flaggen": [],
+    "positive_merkmale": [
+      "Garage",
+      "Garten",
+      "Balkon",
+      "Renoviert"
+    ],
+    "kategorie_profit": {
+      "qualifiziert": true,
+      "score": 85,
+      "empfehlung": "Brutto 9.1%, Cashflow 1741€"
+    },
+    "kategorie_family": {
+      "qualifiziert": false,
+      "score": 0,
+      "empfehlung": "Nicht zentral"
+    }
+  }
+]
