@@ -12,6 +12,6 @@ Clone the repository and explore the files inside.
 - Claude Code configurations
 - Learnings and snippets
 
-## Contibuting
+## Contributing
 
 Feel free to open issues or pull requests if you spot anything worth improving.
