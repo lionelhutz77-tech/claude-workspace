@@ -11,19 +11,21 @@ permissions:
   actions: read
   contents: read
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   watchdog:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Geprueften Watchdog-Code laden
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl --fail --silent --show-error --location \
+            --header "Authorization: Bearer ${GITHUB_TOKEN}" \
+            --header "Accept: application/vnd.github.raw+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/trading-system/scripts/cloud_watchdog.py?ref=${GITHUB_SHA}" \
+            --output cloud_watchdog.py
 
       - name: Cloud-Ablaufe pruefen
         id: health
@@ -31,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PYTHONIOENCODING: utf-8
-        run: python trading-system/scripts/cloud_watchdog.py > watchdog.log 2>&1
+        run: python3 cloud_watchdog.py > watchdog.log 2>&1
 
       - name: Telegram-Warnung bei fehlendem oder defektem Lauf
         if: steps.health.outcome == 'failure'
