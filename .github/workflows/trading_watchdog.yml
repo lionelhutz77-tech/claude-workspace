@@ -45,9 +45,9 @@ jobs:
             --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
             --data-urlencode "text=⚠️ Trading Cloud-Watchdog: Ein Lauf fehlt, hängt oder ist fehlgeschlagen.
 
-${DETAILS}
+          ${DETAILS}
 
-Details: ${RUN_URL}" > /dev/null
+          Details: ${RUN_URL}" > /dev/null
 
       - name: Watchdog-Ergebnis anzeigen
         if: always()
