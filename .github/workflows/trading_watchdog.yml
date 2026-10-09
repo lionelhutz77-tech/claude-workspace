@@ -1,0 +1,58 @@
+name: Trading Cloud-Watchdog
+
+on:
+  schedule:
+    # Spaeter Tagescheck nach News-Digest und Trading-Analyse.
+    # 19:17 UTC = 21:17 MESZ / 20:17 MEZ
+    - cron: "17 19 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cloud-Ablaufe pruefen
+        id: health
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONIOENCODING: utf-8
+        run: python trading-system/scripts/cloud_watchdog.py > watchdog.log 2>&1
+
+      - name: Telegram-Warnung bei fehlendem oder defektem Lauf
+        if: steps.health.outcome == 'failure'
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          DETAILS=$(tail -n 12 watchdog.log)
+          curl --fail --silent --show-error -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=⚠️ Trading Cloud-Watchdog: Ein Lauf fehlt, hängt oder ist fehlgeschlagen.
+
+${DETAILS}
+
+Details: ${RUN_URL}" > /dev/null
+
+      - name: Watchdog-Ergebnis anzeigen
+        if: always()
+        run: cat watchdog.log
+
+      - name: Defekten Cloud-Status als Fehler markieren
+        if: steps.health.outcome == 'failure'
+        run: exit 1
