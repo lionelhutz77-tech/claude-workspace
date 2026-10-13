@@ -1,26 +1,31 @@
-# Markt-News 2026-10-12
+# Markt-News 2026-10-13
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +0,59 %, Nasdaq 100 +0,51 %), während die europäischen Indizes leicht hinterherhinken (DAX +0,71 %). Im Kryptobereich dominieren Verluste (Bitcoin ‑1,25 %, Ethereum ‑0,30 %) und das Risiko‑Stimmungs‑Index liegt bei neutral‑bis‑gierig.
+Die US‑Aktienmärkte stagnierten gestern leicht, während der DAX kaum Veränderung zeigte. Kryptowährungen und Gold legten dagegen zu, wobei Öl stark nachgab.
 
 **AKTIEN**  
-- **Technologie‑ und KI‑Themen**: Salesforce übernimmt das KI‑Analytics‑Start‑up Loops, während HubSpot und monday.com wegen KI‑Bedenken von Barclays herabgestuft werden.  
-- **Halbleiter‑Preisdruck**: ASML plant eine 10 %ige Preissteigerung für Chip‑Komponenten an Samsung und SK Hynix, was die Margen im Halbleiter‑Supply‑Chain‑Segment belasten könnte.  
-- **Defensiv‑ und Infrastruktur‑Sektor**: Hexcel (Verteidigung/Aerospace) und Blackstone Digital Infrastructure Trust erhalten Upgrades, was das Interesse an defensiven und infrastrukturellen Assets stärkt.  
-- **Energie‑Rohstoffe**: Der Ölpreis (WTI) sprang um +2,16 % nach Nachrichten über den Ausbau der saudischen Exportkapazität, was Energie‑Aktien unterstützen könnte.
+- **Finanz‑ und Dienstleistungssektor**: Citigroup meldet starkes Q3‑Umsatzwachstum in Services und Equities (+6 %); Goldman Sachs übertrifft Gewinnschätzungen dank Aktienstärke.  
+- **Technologie**: Broadcom‑Chef kritisiert „Casino‑Mentalität“, was Chip‑Aktien wie Micron, SoftBank und ASML belastet; Adobe rutscht nach HSBC‑Downgrade.  
+- **Einzelhandel**: Albertsons zieht FY26‑Guidance zurück, um Turn‑around‑Plan zu fokussieren; Six Flags fällt nach fatalem Unfall.  
+- **Kredit‑/Finanzierungsmarkt**: Cipher Digital verliert 12 % nach Ankündigung einer $850 Millionen Zero‑Coupon‑Convertible‑Note; Metaplanet plant $329 Mio. Wandelanleihen zur Schuldentilgung.
 
 **KRYPTO**  
-- **Institutionelles Interesse**: Strategy Investment Management erhöht seine Bitcoin‑Bestände um 250 BTC (insgesamt 848 250 BTC) und investiert 21,5 Mio $ in Bitcoin‑Mining‑Hardware.  
-- **Stablecoin‑Entwicklung**: Standard Chartered startet die RLUSD‑Custody auf dem XRP‑Ledger und plant ein LMAX‑Collateral‑Link‑Projekt, was das Vertrauen in regulierte Stablecoins stärkt.  
-- **Regulatorische Aktivitäten**: Australien prüft Hebel‑Obergrenzen für Krypto‑Derivate, während die globale Aufsichtsbehörde verstärkt grenzüberschreitende Informations‑ und Stablecoin‑Risiken thematisiert.  
-- **Marktstimmung**: Der Fear‑&‑Greed‑Index für Krypto liegt bei 69 (Gier), jedoch drücken ein stärkerer Dollar und die jüngsten Preisrückgänge das Sentiment.
+- **Positive Stimmung**: Bitcoin (+1,77 %) und Ethereum (+2,18 %) steigen, unterstützt durch neutral‑bis‑leicht bullishe Fear‑&‑Greed‑Indizes.  
+- **Regulatorische Entwicklungen**: Südkorea blockiert 27 Krypto‑Börsen, während Russland Sberbank die Erlaubnis für Krypto‑Handel erteilt.  
+- **Infrastruktur‑Risiken**: Ledger‑Geräte mit mutmaßlichem LTE‑Spy‑Chip und MediaMarktSaturn‑Rückzug von Ledger‑Produkten erhöhen Sicherheitsbedenken.  
+- **Marktstruktur**: Binance kündigt das Abschalten von Mining‑Pool‑ und Cloud‑Mining‑Diensten an; Binance‑VIP‑Leiter berichtet über steigendes Hedge‑Fund‑Arbitrage‑Interesse.
 
 **MAKRO/POLITIK**  
-- **Energie‑ und geopolitische Spannungen**: Zelenskyj wirft Russland Verstöße gegen das von Trump initiierte „Energie‑Ceasefire“ vor; gleichzeitig erhöhen Saudi‑Arabien seine Pipeline‑Exportkapazität, was die Ölpreise weiter stützt.  
-- **US‑Zins‑ und Inf
+- **Energie**: WTI‑Rohöl fällt um 1,60 % nach Rückgang der russischen Diesel‑Lieferungen und nachlassender geopolitischer Spannung.  
+- **Geopolitik**: Iran verstärkt Nuklearanlagen; US‑Mittags‑Wahlen‑Debatte in Indien; mögliche US‑Streiks gegen Iran.  
+- **Finanzpolitik**: US‑10‑Jahres‑Rendite sinkt leicht (‑0,08 %); IMF warnt vor möglichen disorderly‑Spikes bei Anleihezinsen.
+
+**BEOBACHTEN**  
+- **US‑Quartalszahlen**: Weitere Ergebnisse von Technologie‑ und Finanzunternehmen (z. B. weitere Chip‑Aktien, weitere Banken).  
+- **Krypto‑Regulierung**: Reaktionen auf Südkoreas Börsenverbot u
 
 ---
-Artikel (24h): 122 | neu archiviert: 118 | Archiv gesamt: 2249
+Artikel (24h): 200 | neu archiviert: 151 | Archiv gesamt: 2400
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
