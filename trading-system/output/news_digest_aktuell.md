@@ -1,32 +1,26 @@
-# Markt-News 2026-10-14
+# Markt-News 2026-10-15
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte blieben gestern weitgehend seitwärts, wobei der S&P 500 leicht rückläufig und der DAX leicht im Plus schloss. Der Kryptomarkt zeigte kaum Bewegung, während Rohstoffe gemischt reagierten – Öl stieg, Gold fiel leicht.
+Die globalen Aktienmärkte setzten ihre Korrektur fort – der S&P 500 fiel um 1,11 % und der Nasdaq 100 um 2,02 %, während der DAX nur leicht bei –0,27 % lag. Risiko‑Aversion zeigte sich zudem im Kryptomarkt (Bitcoin –0,41 %, Ethereum –1,93 %) und im Anleihen‑Segment (US‑10J‑Rendite –0,52 %).  
 
 **AKTIEN**  
-- **Technologie/Chip‑Sektor:** ASML‑Ergebnisse übertrafen Erwartungen und lösten einen Aufschwung bei europäischen Tech‑Aktien aus.  
-- **Gesundheitswesen:** GSK kündigte in Belgien über 1.200 Stellenstreichungen an, was das Sentiment im Pharmabereich belastet.  
-- **Finanz‑/Banken:** US‑Großbanken erhalten hohe Strafen (z. B. $1,2 Mrd. für Bank of America), was regulatorische Risiken betont.  
-- **Konsum/Einzelhandel:** Cheesecake Factory erhielt von Citi ein erhöhtes Kursziel nach starkem Besucher‑Traffic.
+- **Technologie‑ und Chip‑Sektor**: Massive Ausverkäufe bei Nvidia, AMD, Micron und anderen AI‑Titeln nach einem „AI‑sell‑off“ (FT Markets, CNBC).  
+- **Halbleiter‑Hersteller**: Trotz starkem Gewinnbericht von TSMC (sechster Quartalsrekord) bleibt die Stimmung angespannt, da Investoren die Nachhaltigkeit des AI‑Spending hinterfragen (Seeking Alpha, CNBC).  
+- **Energie**: Öl (WTI) sank um 1,35 % und die Energie‑Aktien‑Performance wird durch das „50 % Sprint“ im Energiesektor (Seeking Alpha) und geopolitische Risiken (Ukraine‑Angriffe auf russische Raffinerien) belastet.  
+- **Finanz‑ und Banken‑Sektor**: Bank‑Aktien unter Druck durch regulatorische Themen (FTC‑Untersuchungen gegen OpenAI/Anthropic, Bank of America‑Ergebnis‑Miss und Strafe).  
 
 **KRYPTO**  
-- **Bitcoin:** Leichte Aufwärtsbewegung (+0,08 %) nach Fed‑Kommentar von Williams, der keine Zinserhöhungen bis 2027 sieht.  
-- **Ethereum:** Kaum Veränderung (‑0,07 %).  
-- **Regulierung:** Frankreich prüft eine Steuer auf regulierte Stablecoins, was potenziell Abwanderungen von Krypto‑Tradern auslösen könnte.  
-- **Marktstimmung:** Fear & Greed Index für Krypto liegt bei 62 (Gier), während das Aktien‑Sentiment neutral ist (45).
+- **Markt‑Sentiment**: Fear & Greed‑Index für Krypto liegt bei 53 (neutral), während Aktien‑Index bei 30 (Angst) – ein Hinweis auf relative Stabilität im Kryptobereich.  
+- **Bitcoin‑Preis**: Leichter Rückgang (–0,41 %) nach einem heißen US‑CPI, das die Erwartung von Zinserhöhungen befeuerte (Investing.com).  
+- **ETF‑Bewegungen**: Bitcoin‑ETFs verloren 261 Mio. USD an Mittel; gleichzeitig ziehen sich Anbieter wie VanEck aus Anträgen für Lido‑staked‑Ether‑ETF zurück (CoinTelegraph, The Block).  
+- **Regulatorische Entwicklungen**: Thailand prüft neue Krypto‑ETF‑Regeln, Australien sammelt Feedback zu Krypto‑Plattform‑Vorschriften, und Sberbank erhält Genehmigung für Bitcoin‑Handel (CoinTelegraph, Decrypt).  
 
 **MAKRO/POLITIK**  
-- **US‑Zins‑Ausblick:** Fed‑Offizieller Williams signalisierte, dass keine Zinserhöhungen bis 2027 nötig seien, was die Risiko‑Premien senkt.  
-- **Geopolitik:** Angriffe auf saudische Aramco‑Einrichtungen und die Houthis‑Attacke auf das Saudi‑Aramco‑Headquarter erhöhen das geopolitische Risiko für Öl.  
-- **EU‑Regulierung:** Die EZB greift offenbar nicht aktiv in den Anleihemarkt ein, während die EU über neue Stablecoin‑Steuern diskutiert.
-
-**BEOBACHTEN**  
-- **US‑Inflationsdaten:** Erwartete Veröffentlichung könnte die US‑Zins‑Erwartungen erneut beeinflussen.  
-- **ASML‑Bestellpipeline:** Weiteres Kundeninteresse bis 2030 könnte den Chip‑Sektor weiter antreiben.  
-- **Regulatorische Entwicklungen:** Fortschritte bei der französischen Stablecoin‑Steuer und mögliche neue EU‑Krypto‑Regeln könnten die Kryptomärkte stark bewegen.
+- **Zins‑ und Inflationsentwicklung**: US‑CPI überraschte stark, was die Fed‑Unsicherheit verstärkte; gleichzeitig senkte der Dollar von 18‑Monats‑Höchstständen ab (Investing.com).  
+- **Geldpolitik im UK**: Die Bank of England plant im November eine Zinserhöhung auf 4 %
 
 ---
-Artikel (24h): 195 | neu archiviert: 122 | Archiv gesamt: 2522
+Artikel (24h): 195 | neu archiviert: 162 | Archiv gesamt: 2684
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
