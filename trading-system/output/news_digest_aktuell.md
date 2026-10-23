@@ -1,30 +1,27 @@
-# Markt-News 2026-10-22
+# Markt-News 2026-10-23
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +0,58 %, Nasdaq 100 +1,13 %), während der deutsche DAX stark nachgab (‑1,18 %). Im Kryptobereich herrscht weiterhin Abwärtsdruck (Bitcoin ‑2,60 %, Ethereum ‑2,70 %) und das Risiko‑Sentiment ist mit einem Fear‑&‑Greed‑Index von 29 für Aktien im „Angst“-Bereich, während Krypto‑Investoren mit 68 im „Gier“-Modus bleiben.  
+Die Aktienmärkte sind gestern stark gefallen (S&P 500 ‑ 1,21 %, Nasdaq 100 ‑ 2,90 %, DAX ‑ 0,84 %), während Rohöl kräftig zulegte (+1,74 %). Das Risiko‑Stimmungs‑Barometer für Aktien liegt bei 21 (Angst), für Krypto bei 50 (neutral).
 
 **AKTIEN**  
-- **AI‑ und Technologiewarnungen**: Nasdaq‑Futures fielen über 1 % nach erneuten Sorgen um KI‑Kosten und -Risiken (Investing.com).  
-- **Kosten‑ und Struktur‑Cuts**: Barclays kündigt den Abbau von 5 000 Stellen im Zuge einer KI‑gestützten Effizienzoffensive an (Investing.com, CNBC).  
-- **Branchen‑Spezifika**: Essity leidet unter rückläufigen Konsumausgaben in den USA (Investing.com); Samsung überholt SK Hynix im HBM‑Umsatz (Bernstein).  
-- **Unternehmens‑Updates**: IHG Hotels & Resorts meldet starkes Q3‑2026‑Wachstum, während C‑RAD durch EMEA‑Schwäche stark zurückgeht (Investing.com).  
+- **Technologie‑ und KI‑Aktien unter Druck** – nach dem starken Kursrückgang von Nvidia‑CEO‑Besuchen und AI‑Rally‑Abschwächungen (z. B. MarketWatch‑Artikel zu AI‑gefüllten Aktien).  
+- **Automobil‑ und Industrie‑Sektor** – Volvo Cars stürzt 27 % nach Hinweis auf plötzlich rückläufige China‑Verkäufe; Konecranes verliert nach Auftragsmissen 13 %; Trelleborg meldet Gewinn‑Zuwachs dank Luft‑ und Halbleiter‑Nachfrage.  
+- **Energie‑ und Rohstoff‑Aktien** – Ölpreis über $100 USD, getrieben von geopolitischen Spannungen im Nahen Osten, unterstützt Energie‑Titel.  
+- **Finanz‑ und Banken‑Sektor** – Verdi ruft zu Warnstreiks bei privaten Banken auf, was Unsicherheit im deutschen Bankensektor schürt; Norwegens Staatsfonds verzeichnet Milliardenverlust.
 
 **KRYPTO**  
-- **ETF‑Zuflüsse**: Bitcoin‑ETFs ziehen in drei Tagen über 1 Mrd. $ an (The Block, CoinDesk).  
-- **Preis‑Volatilität**: Bitcoin fällt nach Erreichen von 85 000 $ wieder unter 82 000 $, getrieben von KI‑Verkäufen und steigenden Ölpreisen (Investing.com, CoinDesk).  
-- **Regulatorische Entwicklungen**: Südkorea nähert sich dem Abschluss eines Krypto‑Gesetzes, während die Steuerdebatte weiter brennt (The Block).  
-- **Technische Forschung**: Starknet‑Community unterstützt stark die Erforschung einer post‑quantum Layer‑1‑Lösung (CoinTelegraph, The Block).  
+- **Stabile Stimmung** – Fear & Greed Index für Krypto liegt bei 50 (neutral); Bitcoin und Ethereum zeigen leichte Gewinne (+0,26 % bzw. +0,42 %).  
+- **Regulatorische Entwicklungen** – Schweden diskutiert die e‑Krona, während HSBC in Hongkong einen Stablecoin (RedCoin) einführt; Malaysia, Thailand und Singapur verstärken grenzüberschreitende Stablecoin‑Initiativen.  
+- **Technische Risiken** – Ethereum verschiebt den Glamsterdam‑Testnet‑Start wegen Sicherheitsbedenken; Bitcoin‑Core ändert Sicherheits‑Policy, weil KI‑gestützte Bug‑Suche zunimmt.  
+- **Markt‑Liquidität** – Bitcoin‑ETFs verlieren im Oktober $635 Mio, was das Interesse an börsengehandelten Krypto‑Produkten dämpft.
 
 **MAKRO/POLITIK**  
-- **Öl‑ und Energiepreise**: WTI‑Rohöl steigt um 2,64 % nach Mitteln‑Osten‑Sorgen und möglichen US‑/Israel‑Iran‑Spannungen (FT Markets, CNBC).  
-- **Zins‑ und Renditemarkt**: US‑10‑Jahres‑Rendite steigt um 0,57 % (Kennzahlen).  
-- **Geopolitik**: USA ziehen Diplomaten aus Saudi‑Arabien zurück, während mögliche Iran‑Schläge diskutiert werden (CNBC).  
-
-**BEOBACHTEN**  
-- **KI‑Kosten‑Entwicklung**: Weitere Ankündigungen zu KI‑basierten Kostensenkungen (z. B. bei Barclays) könnten die Technol
+- **Energie‑ und Geopolitik** – Ölpreis steigt trotz wachsendem Angebot, getrieben von Eskalationsgefahren im Nahen Osten und Iran‑Rhetorik.  
+- **Euro‑Zonen‑Wachstum** – Wachstum verlangsamt sich auf ein 4‑Monats‑Tief, während steigende Kosten und soziale Unruhen in Frankreich die Stimmung belasten.  
+- **US‑Zins‑ und Anleihemärkte** – US‑10‑Jahres‑Rendite f
 
 ---
-Artikel (24h): 199 | neu archiviert: 163 | Archiv gesamt: 3572
+Artikel (24h): 191 | neu archiviert: 152 | Archiv gesamt: 3724
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
