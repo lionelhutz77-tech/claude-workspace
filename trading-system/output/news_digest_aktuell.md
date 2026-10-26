@@ -1,31 +1,31 @@
-# Markt-News 2026-10-25
+# Markt-News 2026-10-26
 
-**MARKTLAGE:**  
-Die wichtigsten Indizes verzeichneten gestern Verluste – der S&P 500 fiel um 0,52 % und der DAX um 0,75 %, während der Nasdaq 100 nahezu unverändert blieb. Auch die wichtigsten Krypto‑Assets und Gold verloren an Wert, während Öl (WTI) stark zulegte (+ 3,82 %).  
+**MARKTLAGE**  
+Die US‑Aktienmärkte blieben gestern schwach (S&P 500 –0,52 %, Nasdaq 0,00 %), während der europäische DAX mit +0,85 % zulegte. Rohstoffe und Anleihen zeigten gemischte Signale – Öl fiel stark (‑2,04 %), Gold stieg leicht (+0,45 %) und die US‑10‑Jahres‑Rendite kletterte um +0,71 %.
 
-**AKTIEN:**  
-- KI‑Aktien unter Druck: Goldman Sachs senkt das Kospi‑Ziel um 25 % nach einem breiten AI‑Sell‑off.  
-- Gesundheitssektor im Fokus: Positive Phase‑I‑Daten von Xencor (XmAb819) und vielversprechende Ergebnisse von BioNTech, Bristol‑Myers und J&J im Krebsbereich.  
-- Automobilindustrie: Audi kündigt ein 4,2 Mrd. $‑Werk in Georgia an, was langfristige US‑Investitionen signalisiert.  
-- Einzelhandel & digitale Preise: Walmart, Best Buy und andere testen digitale Preisschilder, was mögliche Preis‑Differenzierung auslöst.  
+**AKTIEN**  
+- Defensive Sektoren profitieren von steigenden Anleiherenditen und Öl‑Abschwung (z. B. Energie‑ und Rohstoff‑Aktien).  
+- Technologie‑ und Halbleiter‑Aktien bleiben unter Druck, da Morgan Stanley ein mögliches 15 %‑Support‑Level‑Rückgang signalisiert.  
+- Banken und Finanzdienstleister stehen im Fokus: KKR‑Ernennung, BofA‑Senkung des Kursziels für Booz Allen Hamilton und Calpers‑Verkauf von Big‑Tech‑Aktien wegen AI‑Unsicherheit.  
+- Unternehmensspezifische Nachrichten: Lithium‑Argentina kauft Convertible Notes zurück, WuXi AppTec hebt Volljahres‑Guidance, Toyota/Honda testen humanoide Roboter – potenzielle Impulse für Automobil‑ und Robotik‑Sektor.
 
-**KRYPTO:**  
-- Bitcoin testet die 80 000 $‑Marke und fiel kurzzeitig darunter, was zu einem Verlust von 404 Mio. $ bei Long‑Positionen führte.  
-- Marktstimmung bleibt neutral (Fear & Greed‑Index 54), während Bitcoin‑Großhalter vermehrt Kredite und Yield‑Strategien nutzen.  
-- Regulatorische Unsicherheit: Argentinien legt das Ermittlungsverfahren gegen Präsident Milei und das LIBRA‑Memecoin aus.  
-- Technologische Entwicklungen: Block präsentiert eine neue Voice‑AI, die sowohl Faszination als auch Betrugsängste weckt.  
+**KRYPTO**  
+- Bitcoin‑ETFs beendeten eine zweitägige Outflow‑Phase mit einem Zufluss von $301 Mio, was das leichte Kursplus (+0,37 %) unterstützt.  
+- Ethereum bleibt nahezu unverändert (+0,05 %).  
+- Marktstimmung im Krypto‑Bereich ist neutral (Fear & Greed‑Index 50).  
+- Regulatorische Unsicherheiten: Süd‑Korea erwägt weitere Verzögerung der Krypto‑Gewinnsteuer, UK‑Banken erhalten tausende Beschwerden über Krypto‑Restriktionen, und Standard Chartered‑geführtes Anchorpoint betont vorsichtige Haltung bei Retail‑Stablecoins.
 
-**MAKRO/POLITIK:**  
-- Geopolitische Spannungen: Saudi‑Arabien interceptiert Drohnen und Raketen im Kampf gegen die Houthi‑Rebellen; US‑Botschaften erhöhen die Sicherheit nach iranischen Drohungen.  
-- Energie‑ und Transportrisiken: Der Black Sea wird zum gefährlichsten Schifffahrtsweg, während ein Ölleck im Golf die Umweltbelastung erhöht.  
-- US‑Zinsentwicklung: Die Rendite der 10‑Jahres‑US‑Staatsanleihen stieg um 0,71 %, was auf steigende Inflationserwartungen hindeutet.  
+**MAKRO/POLITIK**  
+- Öl‑Preise fallen weiter, da Händler das Risiko eines saudischen Angriffs auf die Lieferketten abwägen (FT Markets).  
+- Europäische Kreditbedingungen verschärfen sich laut ECB‑Umfrage, was die Unternehmensfinanzierung belasten könnte.  
+- Politische Unsicherheit in Brasilien nach der Wahl von Lula, während Bolsonaro die Niederlage nicht anerkennt – mögliche Auswirkungen auf lateinamerikanische Märkte.
 
-**BEOBACHTEN:**  
-- Weiteres Vorgehen der USA und Iran im Vorfeld der US‑Zwischenwahlen, das die Risikobereitschaft der Anleger beeinflussen könnte.  
-- Entwicklungen im KI‑Finanzierungsumfeld, insbesondere nach den Aussagen von Nvidia und den AI‑Bauplänen der Trump‑Adm
+**BEOBACHTEN**  
+- Anstehende Fed‑ und EZB‑Zinsentscheidungen (Hinweise im Crypto‑Week‑Ahead‑Report).  
+- Weitere Entwicklungen im KI‑Sektor, insbesondere die „neocloud“
 
 ---
-Artikel (24h): 67 | neu archiviert: 57 | Archiv gesamt: 3890
+Artikel (24h): 86 | neu archiviert: 85 | Archiv gesamt: 3975
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
