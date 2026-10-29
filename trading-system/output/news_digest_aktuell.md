@@ -1,26 +1,27 @@
-# Markt-News 2026-10-28
+# Markt-News 2026-10-29
 
-**MARKTLAGE:**  
-Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +0,60 %, Nasdaq 100 +1,29 %), während der DAX kaum Bewegung zeigte (‑0,04 %). Auf den Rohstoff‑ und Devisenmärkten dominierten steigende Ölpreise (+1,64 %) und ein leicht stärkerer US‑10‑Jahres‑Zins (+0,14 %).  
+**MARKTLAGE**  
+Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +0,28 %, Nasdaq 100 +0,55 %), während der DAX stark zulegte (+0,94 %). Kryptowährungen und Rohstoffe blieben dagegen schwach, Bitcoin und Ethereum fielen jeweils um rund 1,5 % und Öl (WTI) verlor 1,43 %.
 
-**AKTIEN:**  
-- **Gewinn‑Beats und Guidance‑Anpassungen** treiben einzelne Titel: Flex, AerCap, Extreme Networks, Garmin und The Chefs’ Warehouse übertrafen EPS‑ und Umsatzschätzungen, teilweise mit erhöhten Ausblicken.  
-- **Schwache Guidance** belastet: Lennox fällt trotz Umsatz‑Beat, weil die Prognose enttäuscht; Dana verfehlte EPS, was den Sektor Technologie‑Hardware drückt.  
-- **Banken‑ und Versorgungssektor**: Deutsche Bank und American Electric Power lieferten starke Quartalsergebnisse, während europäische Banken‑Ergebnisse die breitere Marktstimmung dämpften.  
-- **AI‑ und Halbleiter‑Rallye**: SK Hynix‑Ergebnisse und der KI‑Optimismus in Asien (Kospi‑Sprung) unterstützen Technologie‑ und Chip‑Aktien, während Analysten vor einer möglichen AI‑Blase warnen.  
+**AKTIEN**  
+- **Technologie‑ und Konsum‑Sektor**: Alphabet verfehlte die Erwartungen, was das Vertrauen in KI‑getriebene Wachstumsmodelle belastet; Microsoft übertraf die Schätzungen dank Cloud‑Stärke.  
+- **Gesundheits‑ und Pharma**: Eli Lilly übertrifft erneut die Schätzungen und hebt die Umsatzprognose, getrieben von starkem Zepbound‑ und Mounjaro‑Verkauf; Merck steigert den Gewinnausblick nach starken Keytruda‑Daten.  
+- **Finanz‑ und Immobilien**: ING verfehlte die Gewinnerwartungen und kündigte Stellenabbau an, während Vonovia die Ziele nach unten korrigierte – beides belastet den europäischen Finanz‑ und Immobiliensektor.  
+- **Einzelhandel/Delivery**: DoorDash verfehlte sowohl EPS als auch Umsatz, während ein möglicher Kauf von Instacart als strategische Konsolidierung im Food‑Delivery‑Markt diskutiert wird.
 
-**KRYPTO:**  
-- **Marktstimmung**: Fear & Greed‑Index für Krypto liegt bei 51 (neutral), während Aktien‑Angst bei 34 bleibt.  
-- **Preis‑Entwicklung**: Bitcoin (+0,56 %) und Ethereum (+0,47 %) zeigen leichte Gewinne; Bitcoin‑ETF‑Zuflüsse erreichen 176 Mio. USD.  
-- **Regulatorische und Sicherheits‑News**: Bithumb meldet Datenleck und interne Systemhacks; Coinbase weist einen Vendor‑Breach zurück und betont, dass Kundengelder nicht betroffen sind.  
-- **Institutionelles Interesse**: DBS berichtet, dass fast 90 % großer Unternehmen Token‑Cash‑Lösungen testen; Ripple erhält Investment‑Grade‑Rating für RLUSD‑Stablecoin.  
+**KRYPTO**  
+- Bitcoin bleibt unter $80 000, getrieben von Fed‑Dissent‑Nachrichten und schwacher Marktstimmung (Fear & Greed = 36 – Angst).  
+- Ethereum leidet unter Sicherheitsproblemen bei einem indischen Zertifikatsanbieter, was das Vertrauen in das Netzwerk belastet.  
+- ARK Investment erhöht die Position in Robinhood nach einem 23 %igen Kursrückgang – ein Hinweis auf opportunistisches „Buy‑the‑dip“.  
+- Neue regulatorische Entwicklungen: NYSE‑Besitzer plant die Einführung von Hyperliquid‑Perpetual‑Futures in den USA, während Kalshi wegen illegalen Glücksspiels in den USA strafrechtlich verfolgt wird.
 
-**MAKRO/POLITIK:**  
-- **Zins‑ und Inflationsentwicklung**: US‑10‑Jahres‑Rendite steigt leicht; Mortgage‑Rates fallen zum zweiten Mal in Folge, aber Risiko‑Kreditnachfrage bleibt hoch.  
-- **Politische Unsicherheiten**: Israelische Anleihen und Schekel fallen nach einer gespaltenen Parlamentswahl; US‑Mittelfristige Wahl‑Themen (Kosten‑der‑Lebenshaltung, Midterms) könnten die Risikobereitschaft beein
+**MAKRO/POLITIK**  
+- Die US‑Arbeitsengagement‑Umfrage zeigt das niedrigste Niveau seit 2011, ein möglicher Frühindikator für die Konsumnachfrage.  
+- Christine Lagarde kündigt ihren Rücktritt als EZB‑Präsidentin zum Februar 2027 an, was Unsicherheit über die künftige Geldpolitik in Europa schafft.  
+- Der Fed hat erneut keinen Zinsschritt vorgenommen; bevorstehende GD
 
 ---
-Artikel (24h): 190 | neu archiviert: 162 | Archiv gesamt: 4295
+Artikel (24h): 196 | neu archiviert: 159 | Archiv gesamt: 4454
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
