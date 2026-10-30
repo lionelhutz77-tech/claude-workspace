@@ -1,27 +1,30 @@
-# Markt-News 2026-10-29
+# Markt-News 2026-10-30
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +0,28 %, Nasdaq 100 +0,55 %), während der DAX stark zulegte (+0,94 %). Kryptowährungen und Rohstoffe blieben dagegen schwach, Bitcoin und Ethereum fielen jeweils um rund 1,5 % und Öl (WTI) verlor 1,43 %.
+Die wichtigsten Indizes haben gestern weiter nachgegeben – S&P 500 –0,30 %, Nasdaq 100 –1,38 % und DAX –0,50 % – während Rohöl (WTI) mit +2,23 % das einzige große Plus verzeichnete. Das Fear‑&‑Greed‑Index signalisiert in beiden Bereichen Angst (Aktien 34, Krypto 30).
 
 **AKTIEN**  
-- **Technologie‑ und Konsum‑Sektor**: Alphabet verfehlte die Erwartungen, was das Vertrauen in KI‑getriebene Wachstumsmodelle belastet; Microsoft übertraf die Schätzungen dank Cloud‑Stärke.  
-- **Gesundheits‑ und Pharma**: Eli Lilly übertrifft erneut die Schätzungen und hebt die Umsatzprognose, getrieben von starkem Zepbound‑ und Mounjaro‑Verkauf; Merck steigert den Gewinnausblick nach starken Keytruda‑Daten.  
-- **Finanz‑ und Immobilien**: ING verfehlte die Gewinnerwartungen und kündigte Stellenabbau an, während Vonovia die Ziele nach unten korrigierte – beides belastet den europäischen Finanz‑ und Immobiliensektor.  
-- **Einzelhandel/Delivery**: DoorDash verfehlte sowohl EPS als auch Umsatz, während ein möglicher Kauf von Instacart als strategische Konsolidierung im Food‑Delivery‑Markt diskutiert wird.
+- **Technologie‑ und AI‑Sektor**: Massive Kursverluste bei Amazon (‑7 %) und Intel (‑25 %) nach enttäuschenden Vorab‑Ergebnissen und steigenden AI‑Ausgaben‑Bedenken.  
+- **Energie**: Ölpreis‑Rally dank hoher Diesel‑Preise; Chevron und Exxon übertrafen die Erwartungen, BP meldete Rekordgewinn.  
+- **Defensiv‑/Konsumgüter**: Colgate‑Palmolive und General Dynamics konnten trotz volatilen Umfeldes ihre Umsätze über den Erwartungen abschließen.  
+- **Halbleiter‑ und Cloud‑Anbieter**: Microsoft plant ein 25 Mrd. $‑Schuldenpaket für AI‑Ausbau, während Intel weiter unter Druck steht.
 
 **KRYPTO**  
-- Bitcoin bleibt unter $80 000, getrieben von Fed‑Dissent‑Nachrichten und schwacher Marktstimmung (Fear & Greed = 36 – Angst).  
-- Ethereum leidet unter Sicherheitsproblemen bei einem indischen Zertifikatsanbieter, was das Vertrauen in das Netzwerk belastet.  
-- ARK Investment erhöht die Position in Robinhood nach einem 23 %igen Kursrückgang – ein Hinweis auf opportunistisches „Buy‑the‑dip“.  
-- Neue regulatorische Entwicklungen: NYSE‑Besitzer plant die Einführung von Hyperliquid‑Perpetual‑Futures in den USA, während Kalshi wegen illegalen Glücksspiels in den USA strafrechtlich verfolgt wird.
+- Der Binance‑Hack von rund 6,3 Mrd. $ hat zu massiven Liquidations‑ und Verkaufsdruck geführt; Bitcoin, Ether und XRP verloren zusammen über 1,5 Mrd. $ an gehebelten Positionen.  
+- Binance‑Hacker teilten 1,4 Mrd. $ Bitcoin in 19 schwer zu blockierende Wallets, was das Vertrauen in zentrale Börsen weiter erschüttert.  
+- Trezor warnt vor möglichen Hardware‑Implantaten in Safe 5‑Geräten, was zusätzliche Sicherheitsbedenken hervorruft.  
+- Trotz des Schocks zeigen einige Krypto‑Assets (z. B. THORChain‑RUNE) kurzfristige Erholungs‑ bzw. Rally‑Bewegungen.
 
 **MAKRO/POLITIK**  
-- Die US‑Arbeitsengagement‑Umfrage zeigt das niedrigste Niveau seit 2011, ein möglicher Frühindikator für die Konsumnachfrage.  
-- Christine Lagarde kündigt ihren Rücktritt als EZB‑Präsidentin zum Februar 2027 an, was Unsicherheit über die künftige Geldpolitik in Europa schafft.  
-- Der Fed hat erneut keinen Zinsschritt vorgenommen; bevorstehende GD
+- **US‑Mittlere Wahl 2026**: Die bevorstehenden Midterm‑Wahlen erhöhen die Unsicherheit, insbesondere für den Finanz‑ und Technologiesektor.  
+- **Geopolitische Spannungen**: US‑Iran‑Militäroperationen treiben europäische Gaspreise um 40 % in die Höhe; Iran‑Angriffe auf Tanker im Persischen Golf erhöhen das Risiko für Öl‑ und Energiemärkte.  
+- **Zentralbank‑Entscheidungen**: Die US‑10‑Jahres‑Rendite fiel um 1,11 % (Signal für steigende Risikoaversion), während die BOJ die Zinsen unverändert lässt, was globale Liquiditätsbedingungen beeinflusst.
+
+**BEOBACHTEN**  
+- **Weitere Entwicklungen im Binance‑Hack**: Neue Breac
 
 ---
-Artikel (24h): 196 | neu archiviert: 159 | Archiv gesamt: 4454
+Artikel (24h): 225 | neu archiviert: 175 | Archiv gesamt: 4629
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
