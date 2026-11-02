@@ -1,31 +1,30 @@
-# Markt-News 2026-11-01
+# Markt-News 2026-11-02
 
 **MARKTLAGE**  
-Die Aktienmärkte sind gestern stark gefallen (S&P 500 –1,82 %, Nasdaq 100 –3,46 %, DAX –0,85 %), während Rohstoffe und Kryptowährungen gemischte Bewegungen zeigten. Die Angst‑Stimmung ist hoch (Fear & Greed Index Aktien 26, Krypto 34).  
+Die US‑Aktienmärkte haben gestern stark nachgegeben (S&P 500 –1,82 %, Nasdaq 100 –3,46 %), während der DAX nur leicht rückläufig war. Das Risiko‑Sentiment ist angesichts der bevorstehenden US‑Midterms und der jüngsten Crypto‑Hacks deutlich gesunken (Fear & Greed‑Index Aktien 25, Krypto 37).
 
 **AKTIEN**  
-- Gewinnwarnungen und verfehlte Erwartungen bei Unternehmen wie SCREEN Holdings, Eastman und Komatsu drücken die Marktstimmung.  
-- Positive Quartalsergebnisse von Alliant Energy, Veralto, Sun Pharma und Churchill Downs bieten einzelne Gegenpole, bleiben jedoch von den breiten Verlusten überschattet.  
-- Der Energiesektor profitiert von einem starken Anstieg des WTI‑Öls (+2,08 %) und von Nachrichten, dass Öl‑Majors trotz steigender Kraftstoffpreise keine neuen Raffinerien bauen.  
-- Banken‑ und Finanz‑News (z. B. Home Bancshares‑Aktienverkauf, OceanFirst‑Kauf) tragen zur Unsicherheit bei.  
+- **Defensive Sektoren**: Der Rückgang im Technologiesektor (Nasdaq) wird durch Berichte über Lieferengpässe bei Apple und die anhaltende AI‑Sell‑off‑Welle verstärkt.  
+- **Rohstoff‑ und Energie‑Aktien**: Ölpreis‑Einbruch (WTI –4,46 %) nach Berichten über US‑Iran‑Diplomatie belastet Energie‑Aktien.  
+- **Verteidigung & Infrastruktur**: Positive Analysten‑Updates für General Dynamics (U‑Boot‑Stärke) und Alstom (nach Gewinnwarnung) zeigen gemischte Signale im Industriesektor.  
+- **Finanz‑ und Kredit‑ETFs**: Mehrere Vanguard‑Bond‑ETFs geben Dividenden bekannt, was kurzfristig das Interesse an kurzfristigen festverzinslichen Produkten beflügeln könnte.
 
 **KRYPTO**  
-- Der Binance‑Hack (6,3 Mrd. $) dominiert die Berichterstattung; die schrittweise Wiederaufnahme von Auszahlungen und die Rückerstattung von 90 % der gestohlenen Mittel beruhigen die Märkte leicht (Bitcoin +0,50 %, Ethereum +0,58 %).  
-- FBI‑Bestätigung, dass nordkoreanische Hacker hinter dem Diebstahl stecken, erhöht das Risiko‑Bewusstsein.  
-- Diskussionen über DeFi‑Sicherheitslücken (Chainalysis‑Incident) und neue Staking‑Trends trotz sinkender Renditen zeigen ein gespaltenes Marktumfeld.  
-- Institutionelle Interesse an Krypto‑Staking und Tokenisierung (z. B. Uber‑Projekt mit HSBC) bleibt bestehen.  
+- **Massive Binance‑Abflüsse**: Kunden ziehen nach dem Hack mehrere Milliarden Dollar ab (outflows > $5 Mrd.), was den Bitcoin‑Preis weiter unter Druck setzt.  
+- **Bitcoin‑Volatilität**: Trotz leichter Erholung (‑0,91 %) bleibt die Volatilitätskurve erhöht, getrieben durch den Hack‑Nachhall und saisonale Unsicherheiten.  
+- **Regulatorischer Druck**: FATF‑Prüfungen von Krypto‑Hubs und die nordkoreanische Hacker‑Bedrohung erhöhen das Risiko‑Bewusstsein.  
+- **ETF‑Abflüsse**: Spot‑Bitcoin‑ETFs verzeichnen die größten täglichen Abflüsse seit vier Monaten, was das institutionelle Interesse dämpft.
 
 **MAKRO/POLITIK**  
-- US‑Zinsentwicklung: Die Rendite der 10‑Jahres‑US‑Staatsanleihe fiel um 1,20 % und spiegelt die Unsicherheit über die Wirtschaftsentwicklung wider.  
-- Energie‑ und Rohstoffpolitik: OPEC+ hält die Ölproduktionsziele für Dezember stabil, während Deutschland sein Winter‑Gasspeicher‑Ziel verfehlt.  
-- Geopolitische Spannungen: Russland muss Getreide über die Arktis transportieren, und US‑Mittlerwahl‑Kampagnen (Pop‑up‑Super‑PACs) erhöhen die Marktvolatilität.  
+- **US‑Midterm‑Wahlen**: Die bevorstehenden Kongress‑Wahlen erhöhen die Marktvolatilität, besonders im Technologiesektor und bei AI‑Aktien.  
+- **Energie‑Politik**: Berichte über US‑Iran‑Diplomatie und steigende Ölpreise (Goldman‑Prognose $130 / Barrel) könnten die Inflationserwartungen anheben.  
+- **Regulatorische Aktionen**: FATF‑Initiativen und die US‑FBI‑Erklärung zu nordkoreanischen Hackern verstärken das regulatorische Risiko für Krypto‑Unternehmen.
 
 **BEOBACHTEN**  
-- Weiteres Vorgehen bei den Binance‑Auszahlungen und mögliche regulatorische Folgen des Hacks.  
-- US‑Mitt
+- **
 
 ---
-Artikel (24h): 86 | neu archiviert: 75 | Archiv gesamt: 4819
+Artikel (24h): 125 | neu archiviert: 117 | Archiv gesamt: 4936
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
