@@ -1,30 +1,27 @@
-# Markt-News 2026-11-02
+# Markt-News 2026-11-03
 
-**MARKTLAGE**  
-Die US‑Aktienmärkte haben gestern stark nachgegeben (S&P 500 –1,82 %, Nasdaq 100 –3,46 %), während der DAX nur leicht rückläufig war. Das Risiko‑Sentiment ist angesichts der bevorstehenden US‑Midterms und der jüngsten Crypto‑Hacks deutlich gesunken (Fear & Greed‑Index Aktien 25, Krypto 37).
+**MARKTLAGE:**  
+Die US‑Aktienmärkte sind gestern stark rückläufig, wobei der S&P 500 um ‑0,51 % und der Nasdaq 100 um ‑1,39 % gefallen sind – ein Zeichen zunehmender Risikoaversion, das sich im „Extreme Angst“-Index (19) widerspiegelt. Gleichzeitig zeigen Kryptowährungen leichte Aufwärtsbewegungen, während Gold und Rohöl gemischte Signale senden.
 
 **AKTIEN**  
-- **Defensive Sektoren**: Der Rückgang im Technologiesektor (Nasdaq) wird durch Berichte über Lieferengpässe bei Apple und die anhaltende AI‑Sell‑off‑Welle verstärkt.  
-- **Rohstoff‑ und Energie‑Aktien**: Ölpreis‑Einbruch (WTI –4,46 %) nach Berichten über US‑Iran‑Diplomatie belastet Energie‑Aktien.  
-- **Verteidigung & Infrastruktur**: Positive Analysten‑Updates für General Dynamics (U‑Boot‑Stärke) und Alstom (nach Gewinnwarnung) zeigen gemischte Signale im Industriesektor.  
-- **Finanz‑ und Kredit‑ETFs**: Mehrere Vanguard‑Bond‑ETFs geben Dividenden bekannt, was kurzfristig das Interesse an kurzfristigen festverzinslichen Produkten beflügeln könnte.
+- **Ertragsberichte als Treiber:** Yum! Brands (KFC‑Wachstum, Taco‑Bell‑Probleme) und Pfizer (Ausblick‑Anhebung, neuer CFO) überraschten die Märkte, wobei Yum! Brands trotz Umsatz‑Schwäche das Ergebnis leicht übertraf.  
+- **Sektor‑Differenzierung:** Die Konsum‑ und Getränke‑Segmente (Keurig Dr Pepper, Yum! Brands) zeigen gemischte Ergebnisse, während der Energiesektor (Energy Transfer, Gujarat Fluorochemicals) positive Ausblicke gibt.  
+- **Dividenden‑ und Bewertungs‑News:** Hamilton Lane kündigt eine Dividende von $0,60 an, was für Income‑Investoren interessant ist.  
+- **Negative Überraschungen:** ADT und Beam verfehlten die Gewinnerwartungen, was die Technologie‑ bzw. Sicherheits‑Aktien belastet.
 
 **KRYPTO**  
-- **Massive Binance‑Abflüsse**: Kunden ziehen nach dem Hack mehrere Milliarden Dollar ab (outflows > $5 Mrd.), was den Bitcoin‑Preis weiter unter Druck setzt.  
-- **Bitcoin‑Volatilität**: Trotz leichter Erholung (‑0,91 %) bleibt die Volatilitätskurve erhöht, getrieben durch den Hack‑Nachhall und saisonale Unsicherheiten.  
-- **Regulatorischer Druck**: FATF‑Prüfungen von Krypto‑Hubs und die nordkoreanische Hacker‑Bedrohung erhöhen das Risiko‑Bewusstsein.  
-- **ETF‑Abflüsse**: Spot‑Bitcoin‑ETFs verzeichnen die größten täglichen Abflüsse seit vier Monaten, was das institutionelle Interesse dämpft.
+- **Marktstimmung:** Der Fear & Greed‑Index für Krypto liegt bei 26 (Angst), jedoch steigen Bitcoin (+0,77 %) und Ethereum (+1,30 %).  
+- **Netto‑Zuflüsse:** Binance verzeichnete positive Netto‑Zuflüsse von $2,3 Mrd., trotz anhaltender regulatorischer Unsicherheiten.  
+- **Token‑Emission:** NEAR senkt die jährliche Token‑Emission um 7 % nach einem Governance‑Beschluss, was das Angebot reduziert.  
+- **Sicherheits‑ und Infrastruktur‑Entwicklungen:** Liquid Network hat nach einem $320 Mio. Exploit die volle Bitcoin‑Deckung wiederhergestellt; Binance nutzt einen Teil seiner SAFU‑Reserven für Bitcoin‑Rückkäufe.
 
 **MAKRO/POLITIK**  
-- **US‑Midterm‑Wahlen**: Die bevorstehenden Kongress‑Wahlen erhöhen die Marktvolatilität, besonders im Technologiesektor und bei AI‑Aktien.  
-- **Energie‑Politik**: Berichte über US‑Iran‑Diplomatie und steigende Ölpreise (Goldman‑Prognose $130 / Barrel) könnten die Inflationserwartungen anheben.  
-- **Regulatorische Aktionen**: FATF‑Initiativen und die US‑FBI‑Erklärung zu nordkoreanischen Hackern verstärken das regulatorische Risiko für Krypto‑Unternehmen.
-
-**BEOBACHTEN**  
-- **
+- **US‑Mittwahlen:** Die anstehenden Kongress‑Wahlen erhöhen die Unsicherheit, was sich in den breiten Marktverlusten und dem hohen Angst‑Index widerspiegelt.  
+- **Geopolitik im Nahen Osten:** US‑Luftschläge auf Irans Qeshm‑Insel haben die Ölpreise leicht nach oben getrieben (+0,67 %).  
+- **Regulatorische Entwicklungen:** Frankreich hat die geplante Krypto‑Exit‑Tax für 20
 
 ---
-Artikel (24h): 125 | neu archiviert: 117 | Archiv gesamt: 4936
+Artikel (24h): 214 | neu archiviert: 178 | Archiv gesamt: 5114
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
