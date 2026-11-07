@@ -1,27 +1,32 @@
-# Markt-News 2026-11-06
+# Markt-News 2026-11-07
 
-**MARKTLAGE:**  
-Die Aktienmärkte erlebten gestern einen kräftigen Rückgang – S&P 500 fiel um 4,36 % und der Nasdaq 100 um 6,36 %, während der DAX um 2,26 % nachgab. Gleichzeitig blieb die Stimmung im Kryptobereich leicht positiv, doch das allgemeine Fear‑&‑Greed‑Index signalisiert extreme Angst.
+**MARKTLAGE**  
+Die US‑Aktienmärkte erholten sich leicht nach einem starken KI‑Rückgang, während der DAX weiter nach unten drückte. Die Stimmung bleibt bei Angst, sowohl bei Aktien (Fear & Greed 22) als auch bei Krypto (25).
 
 **AKTIEN**  
-- **Technologie‑ und KI‑Aktien**: Massive Kursverluste nach dem „mid‑term shock“ und der Diskussion um ein mögliches Platzen der AI‑Blase (z. B. Chip‑ und Daten‑Center‑Unternehmen).  
-- **Gold‑ und Rohstoffwerte**: Gold verliert fast 1 % nach Goldman‑Sachs‑Warnung, dass es noch zu früh sei, in das Metall zu investieren; Öl (WTI) bleibt nahezu unverändert.  
-- **Finanz‑ und Immobiliensektor**: Banken‑ und Immobilien‑Updates (z. B. Unicredit‑Home‑Office‑Politik, Starwood‑Property‑Ergebnis) zeigen gemischte Signale, während PPL und Marcus & Millichap ihre Ergebnisse knapp über bzw. unter den Erwartungen lagen.  
-- **Biotech/Healthcare**: Moderna hebt 2026‑Ausblick an, was zu einem kurzfristigen Kursanstieg führt; andere Unternehmen wie Natera und Vera Therapeutics stehen im Fokus von Analysten‑Bewertungen.
+- KI‑ und Chip‑Aktien (Nvidia, AMD, CoreWeave) zeigen nach dem „violent“ Sell‑off nur eine vorsichtige Erholung.  
+- Energie‑ und Rohstoffsektor profitiert leicht von steigenden Ölpreisen (+0,34 % WTI) und der Erwartung höherer Energiepreise durch geopolitische Spannungen (Iran‑Krieg).  
+- Banken‑ und Finanzwerte stehen im Fokus nach Insider‑Verkäufen (Avidia Bancorp, Spar Group, Better Home & Finance).  
+- Versorgungs‑ und Infrastruktur‑Unternehmen (Berkshire Hathaway Utility, Telus) planen Kosteneinsparungen und AI‑Investitionen, was das Interesse an defensiven Sektoren stärkt.
 
 **KRYPTO**  
-- **ETF‑Abflüsse**: Über 0,5 Mrd. $ fließen aus Krypto‑ETFs ab, was das Vertrauen in den Spot‑Markt schwächt.  
-- **Regulatorische Entwicklungen**: Nigeria führt stabile‑Coin‑Lizenzierung ein, Griechenland plant ab 2027 eine 10 %‑Steuer auf Krypto‑Gewinne.  
-- **Sicherheits‑ und Hacker‑Themen**: Mehrere Berichte über Binance‑Hack (8‑Wochen‑Zugriff, 6,3 Mrd. $ Verlust) und neue Sicherheits‑Initiativen von Börsen.  
-- **Netzwerk‑Upgrades**: Zcash startet das NU7‑Upgrade, das Blockzeiten um das Dreifache reduziert und 60 % der Gebühren für zukünftige Block‑Rewards recycelt.
+- US‑Treasury schneidet MEXC wegen mutmaßlicher $16 Mrd. illegaler Transaktionen ab – belastet das Vertrauen in Krypto‑Börsen.  
+- Gnosis Pay erleidet Datenleck, während Binance‑Hack als „Cyber‑War“ bezeichnet wird – Sicherheitsbedenken bleiben hoch.  
+- Strive erhöht seine Bitcoin‑Bestände (15 124 BTC) und meldet Q3‑Gewinn, was das Interesse an institutionellem BTC‑Kauf stärkt.  
+- US‑Vorschlag für 401(k)-Einbindung von Altcoins bleibt unsicher, während die Fear‑&‑Greed‑Kennzahl bei 25 (Angst) liegt.
 
 **MAKRO/POLITIK**  
-- **US‑Zins‑ und Politik‑Entwicklung**: Demokratischer Wahlsieg lässt Analysten über mögliche Änderungen der Zins‑Politik nachdenken.  
-- **EU‑Steuer‑ und Regulierungs‑News**: Griechenlands Krypto‑Steuerplan und Nigeria’s Stable‑Coin‑Regulierung könnten globale Kapitalflüsse beeinflussen.  
-- **Geopolitische Spannungen**: Diskussionen über mögliche Öl‑Preisa
+- US‑Sanctions gegen kanadische Geldwechsel‑Firmen wegen Iran‑Beziehungen erhöhen geopolitische Risiken.  
+- ECB‑Kandidatur: Pablo Hernández de Cos wird für Lagarde‑Nachfolge nominiert, während De Cos vor Inflationsrisiken warnt.  
+- US‑Arbeitsmarkt‑Daten übertreffen Erwartungen (165 000 neue Jobs), doch Fed‑Vertreter warnen vor weiterem Inflationsdruck.
+
+**BEOBACHTEN**  
+- Weitere Entwicklungen rund um die US‑Sanctions und mögliche Auswirkungen auf Finanz‑ und Krypto‑Märkte.  
+- Reaktionen der KI‑ und Chip‑Industrie auf den anhaltenden Sell‑off und mögliche neue Investitionsentscheidungen (z. B. OpenAI‑Datenzentren).  
+- Fortschritte bei der Umsetzung von 401(k)-Regelungen für Krypto‑Assets und deren Einfluss auf institut
 
 ---
-Artikel (24h): 219 | neu archiviert: 168 | Archiv gesamt: 5611
+Artikel (24h): 168 | neu archiviert: 111 | Archiv gesamt: 5722
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
