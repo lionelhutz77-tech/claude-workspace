@@ -1,26 +1,32 @@
-# Markt-News 2026-11-09
+# Markt-News 2026-11-10
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre Erholung fort (S&P 500 +0,31 %, Nasdaq 100 +1,35 %), während Rohstoffe und Kryptowährungen unter Druck blieben (WTI ‑3,66 %, Bitcoin ‑0,02 %). Die Angst‑Stimmung ist in beiden Bereichen hoch (Fear & Greed Aktien 25, Krypto 29).
+Die US‑Aktienmärkte setzten ihre Rallye fort und legten seit gestern deutlich zu (+2,35 % S&P 500, +3,40 % Nasdaq 100), während die europäischen Indizes moderater zulegten (+1,18 % DAX). Kryptowährungen und Rohstoffe blieben dagegen im Minus, wobei Bitcoin und Ethereum um rund 1,5 % fielen und Öl (WTI) um 2,46 % nachgab.
 
 **AKTIEN**  
-- **KI‑ und Chip‑Sektor**: Nvidia geriet erneut in den Fokus wegen des Spionage‑Skandals um CEO Jensen Huang, was zu Kursverlusten führte; gleichzeitig profitieren andere Chip‑ und KI‑Unternehmen von der anhaltenden Nachfrage (z. B. AMD‑Surge, Cerebras‑Analyse).  
-- **Versorgungs‑ und Rohstoffunternehmen**: Murphy Oil expandiert im östlichen Mittelmeer, Barrick Mining erlebt Kursrallye, während die Ölpreise stark fallen.  
-- **Finanz‑ und Technologie‑Dienstleister**: Avalanche wird von der NYSE für tokenisierte Aktien ausgewählt, was das Interesse an Blockchain‑Infrastrukturen im traditionellen Finanzsektor befeuert.  
-- **Unternehmensgewinne**: Die meisten US‑Unternehmen erreichen knapp die Wall‑Street‑Erwartungen, doch schwere Marketing‑Investitionen belasten die Margen von Turning Point Brands.
+- Chip‑ und KI‑Aktien treiben den Aufschwung: Nvidia‑Skandal lässt andere Halbleiter‑Titel stark steigen.  
+- Einzelhandel und Konsum: Ethan Allen und Groupon verzeichneten nach enttäuschenden Ergebnissen Kursverluste.  
+- Defensive und Infrastruktur: Lowe’s, CNH Industrial und Wells Fargo erhalten von Analysten höhere Kursziele.  
+- Unternehmensnachrichten: SpaceX plant historische Star‑Ship‑Rückholungen, während Anthropic ein IPO im Wert von bis zu 1,4 Tsd. Mrd. $ anstrebt.
 
 **KRYPTO**  
-- **Institutionelle Käufe**: Strategy Investment und Super League Enterprise erhöhen ihre Bitcoin‑Bestände (jeweils über 1 000 BTC), was das Vertrauen institutioneller Anleger signalisiert.  
-- **Regulatorische Entwicklungen**: Coinbase erhält die endgültige OCC‑Zulassung für eine US‑Trust‑Bank und startet den nationalen Trust‑Bank‑Charter; gleichzeitig fordert die EU Branchenstandards für tokenisierte Wertpapiere.  
-- **Marktvolatilität**: Bitcoin verliert die 50‑Wochen‑Durchschnittslinie und verzeichnet massive Long‑Liquidationen (> 1 Mrd. USD); die Angst‑Stimmung bleibt hoch.  
-- **Technische Innovationen**: Solana bereitet die erste tokenisierte Aktienbörse vor, während Zcash‑Entwickler weitere Blockzeit‑Reduktionen diskutieren.
+- Marktangst: Fear & Greed‑Index für Aktien und Krypto liegt bei 32 (Angst).  
+- Bitcoin verliert gegenüber Aktien an Schwung, da ETF‑Abflüsse und steigende Outflows gemeldet werden.  
+- Binance warnt vor einer iOS‑Sicherheitslücke, die private Schlüssel gefährden könnte.  
+- Ripple und Ethereum Foundation sehen Führungswechsel bzw. Rechtsstreitigkeiten, was das Sentiment zusätzlich belastet.
 
 **MAKRO/POLITIK**  
-- **Zins- und Währungsentwicklung**: Die Rendite der US‑10‑Jahres‑Staatsanleihen fällt (-0,25 %), und der EUR/USD verliert leicht an Wert (-0,29 %).  
-- **Energie‑ und Rohstoffpreise**: Der Ölpreis (WTI) ist mit -3,66 % st
+- Ölpreis fällt unter 90 $ nach einer De‑Escalation der Iran‑Krise und Trumps zurückhaltender Haltung.  
+- US‑Inflationsdaten stehen im Fokus: Fed‑Gouverneur Waller spricht von einer möglichen Halb‑Punkt‑Zinserhöhung im Dezember.  
+- Politische Spannungen rund um Iran und Ukraine bleiben hoch, wobei Trump sowohl Friedensgespräche als auch mögliche Militäraktionen thematisiert.
+
+**BEOBACHTEN**  
+- Veröffentlichung der US‑Inflationszahlen (CPI) und die Reaktion der Fed auf mögliche Zinsanpassungen.  
+- Fortschritt und Marktreaktion auf Anthropics IPO‑Preisfestlegung (70‑78 $) und die Bewertung von bis zu 1,4 Tsd. Mrd. $.  
+- Entwicklungen bei Binance bezüglich der iOS‑Sicherheitslücke und mögliche regulatorische Folgen.
 
 ---
-Artikel (24h): 115 | neu archiviert: 115 | Archiv gesamt: 5903
+Artikel (24h): 208 | neu archiviert: 156 | Archiv gesamt: 6059
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
