@@ -1,27 +1,30 @@
-# Markt-News 2026-11-11
+# Markt-News 2026-11-12
 
-**MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre leichte Korrektur fort (S&P 500 ‑0,38 %, Nasdaq 100 ‑0,60 %), während der DAX dank KI‑Gewinner leicht zulegte (+0,69 %). Auf den Rohstoff‑ und Devisenmärkten stiegen Öl (+1,43 %) und die US‑10‑Jahres‑Rendite (+2,45 bps), während EUR/USD weiter nach unten drückte (‑0,76 %). Das Fear‑&‑Greed‑Index signalisiert Angst sowohl bei Aktien (34) als auch bei Krypto (29).
+**MARKTLAGE:**  
+Die US‑Aktienmärkte setzten ihre Aufwärtsbewegung fort (S&P 500 +1,31 %, Nasdaq 100 +2,28 %), während der DAX nur leicht zulegte (+0,31 %). Im Kryptobereich herrschte jedoch Angst, mit Bitcoin und Ethereum im Minus von rund 2 % und dem Fear‑&‑Greed‑Index für Krypto bei 28 (Angst).  
 
-**AKTIEN**  
-- **KI‑ und Halbleiter‑Sektor**: Nvidia steht im Fokus – Bewertung auf 15‑Jahres‑Tief, aber gleichzeitig Kurs‑Rally nach positiven Ausblicken und Kritik an CEO Jensen Huang.  
-- **AI‑Compute‑Unternehmen**: CoreWeave verzeichnet nach besser‑als‑erwarteten Ergebnissen ein starkes Kursplus (bis +14 %) und zieht Kapital an, was das Vertrauen in AI‑Infrastruktur stärkt.  
-- **Energie**: Ölpreis‑Aufschlag nach iranischer Ankündigung, dass kein nukleares Material das Land verlässt, unterstützt die positive Entwicklung von WTI.  
-- **Versorger/Industrie**: Aebi Schmidt und Caesarstone zeigen schwache Quartalsergebnisse, was zu Kursverlusten führt; gleichzeitig zeigen Unternehmen wie Great Eastern Shipping und Talen Energy überraschende Kurs‑Sprünge nach starken Ergebnissen.
+**AKTIEN:**  
+- **Technologie/AI:** Nvidia steht im Fokus, da Gerüchte über die mögliche Absetzung von CEO Jensen Huang die Aktie belasten („A dark day for Nvidia“, „Nvidia board weighs Jensen Huang’s future“).  
+- **Energie:** Rohölpreis steigt (+0,68 %) nach Trumps Aussage, dass kein Iran‑Deal nötig sei („Crude oil turns higher as Trump says no Iran deal needed“).  
+- **Finanz/Versicherung:** Zurich Insurance hebt Wachstumsausblick, während Munich Re von profitableren Geschäften berichtet.  
+- **Konsum/Einzelhandel:** Wendy’s weist ein Übernahmeangebot zurück, reduziert das Frühstücks‑Portfolio und verzeichnet dennoch Kurszuwachs.  
 
-**KRYPTO**  
-- **Marktstimmung**: Fear‑&‑Greed‑Index für Krypto bleibt im Angst‑Bereich (29).  
-- **Bitcoin**: Preis bleibt nahezu unverändert trotz heißem CPI‑Report; ETF‑Abflüsse setzen sich fort, während Short‑Halter 47 k BTC mit Verlust an Börsen senden.  
-- **Ethereum**: Minimaler Aufwärtstrend (+0,02 %).  
-- **Institutionelles Interesse**: Barclays erhöht seine Beteiligung am BlackRock Bitcoin‑ETF um 48 %; Deutsche Bank startet digitalen Asset‑Custody‑Service, was das institutionelle Vertrauen stärkt.
+**KRYPTO:**  
+- **Marktstimmung:** Fear‑&‑Greed‑Index für Krypto bei 28 (Angst) und Bitcoin‑ETFs verzeichnen Ausflows von 1,4 Mrd. $ in fünf Tagen.  
+- **Stablecoins:** Stablecoin‑Angebot fällt um 14,2 Mrd. $ – größter 30‑Tage‑Rückgang seit Juni 2022.  
+- **Regulierung/Innovation:** DTCC plant tokenisierte Aktien und Staatsanleihen auf Solana (2027); EU‑DeFi‑Vorschläge könnten Nutzer zu riskanteren Plattformen treiben.  
+- **Sicherheitsvorfälle:** Crypto‑Hack‑Verluste entsprechen 57 ¢ pro $1 on‑chain‑Ertrag; Chainalysis wird von Tron und Tether nach Auflösung der T3‑Crime‑Unit eingebunden.  
 
-**MAKRO/POLITIK**  
-- **US‑Verbraucherverhalten**: Trotz finanzieller Belastungen geben Konsumenten weiterhin Geld aus (CNBC‑Retail‑Monitor).  
-- **Geopolitik**: Iran betont, dass kein nukleares Material das Land verlässt – unterstützt den Öl‑Preis.  
-- **Regulatorik**: ECB warnt vor Verzögerungen beim Start des digitalen Euro; SEC‑Durchsetzungsaktionen im Krypto‑Sektor fallen
+**MAKRO/POLITIK:**  
+- **USA‑Politik:** Präsident Trump betont, dass kein Iran‑Deal nötig sei, was die Ölpreise stützt.  
+- **Wahl‑ und Gesetzes‑Updates:** Scott Colom gewinnt den US‑Senatssitz in Mississippi; US‑Kreditkartenschulden erreichen Rekordhoch, was Schatten‑Schulden‑Risiken erhöht.  
+- **Regulatorische Entwicklungen:** US‑Finanzaufsicht verzeichnet den niedrigsten Durchsetzungs‑Level seit 16 Jahren; Bafin verhängt Million‑Strafe gegen Deutsche Bank wegen IT‑Problemen.  
+
+**BEOBACHTEN:**  
+- **Nvidia‑Entscheidung:** Das Board‑Meeting zur
 
 ---
-Artikel (24h): 210 | neu archiviert: 157 | Archiv gesamt: 6216
-Quellen ohne Daten: Yahoo Finance
+Artikel (24h): 186 | neu archiviert: 154 | Archiv gesamt: 6370
+Quellen ohne Daten: Yahoo Finance, The Block
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
