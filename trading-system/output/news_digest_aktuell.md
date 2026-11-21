@@ -1,32 +1,32 @@
-# Markt-News 2026-11-20
+# Markt-News 2026-11-21
 
 **MARKTLAGE**  
-Die wichtigsten Indizes haben seit gestern stark nachgelassen (S&P 500 –2,02 %, Nasdaq 100 –2,21 %, DAX –2,51 %). Gleichzeitig herrscht extreme Angst bei Anlegern (Fear & Greed‑Index 15/12).  
+Die Aktienmärkte befinden sich in einer starken Korrektur: Der S&P 500 und der Nasdaq 100 haben in den letzten 24 Stunden um 3,7 % bzw. 5,6 % nachgelassen, während der DAX um 2,6 % gefallen ist. Gleichzeitig zeigen die Kryptomärkte nur geringe Aufwärtsbewegungen, wobei Bitcoin und Ethereum leicht zulegen.
 
 **AKTIEN**  
-- Der AI‑Boom wird durch den schwachen Start von **Anthropic** gedämpft; die Aktie fiel nach dem IPO um rund 13 % und zog den Technologiebereich mit nach unten.  
-- **Nvidia**, **Disney**, **Merck** und **Johnson & Johnson** standen im Fokus von Dividend‑Round‑Ups, was jedoch die allgemeine Risikoaversion nicht aufhellte.  
-- **Intuit** und weitere Software‑Titel zeigen ein schwaches Outlook, was die Stimmung im Software‑Sektor weiter belastet.  
-- **Defense‑Aktien** erhalten vermehrt Insider‑Interesse, da Analysten einen Militärausgaben‑Boom ab 2027 erwarten.  
+- Tech‑ und Chip‑Aktien treiben den Rückgang an (Nvidia‑Einbruch, AI‑Rout, Chip‑Welle).  
+- Energie‑ und Rohstoffwerte bleiben gemischt: WTI‑Preis leicht gestiegen, Gold stark gefallen.  
+- Banken‑ und Finanzwerte stehen im Fokus von Insider‑Transaktionen (Bank of America, Southwest Gas, Medifast).  
+- China‑H‑Shares erhalten ein Upgrade von Goldman, was das Interesse an chinesischen Aktien kurzfristig stützen könnte.
 
 **KRYPTO**  
-- **Bitcoin** liegt knapp über 61 000 USD und verliert leicht (‑0,25 %); die Volatilität steigt, da Bitcoin‑ETFs massive Nettoabflüsse von rund 582 Mio USD verzeichnen.  
-- **Ethereum** folgt leicht nach unten (‑0,46 %).  
-- Sicherheits‑Bedenken werden durch Berichte über einen **Binance‑Hacker**, der fast 600 Mio USD in ETH über THORChain und Chainflip bewegt, verstärkt.  
-- **Ark Invest** reduziert seine Ethereum‑ und Solana‑Staking‑ETF‑Bestände, während sie gleichzeitig stark in **Anthropic** investiert.  
+- Bitcoin liegt knapp über 60 k $, nach mehreren Tagen unterhalb der 60‑k‑Marke, während das Fear‑&‑Greed‑Index extreme Angst signalisiert.  
+- Ethereum zeigt mit +2,9 % die stärkste Performance im Kryptobereich.  
+- Sicherheitsbedenken nehmen zu: BTCS warnt vor möglicher Liquidation eines 54 Mio $‑Aave‑Loans, und mehrere Hacks/Exploits (Wrapped Monero) werden berichtet.  
+- Regulatorische Aktivitäten: US‑Kongress erwägt bis zu 30 % Belohnungen für Whistleblower bei Vorhersagemärkten, und Hongkong plant strengere Lizenzregeln für Krypto‑Custodians.
 
 **MAKRO/POLITIK**  
-- Die **US‑10‑Jahres‑Rendite** fiel um 1,62 % und spiegelt die steigende Risikoaversion wider.  
-- **EUR/USD** konnte leicht zulegen (+0,21 %), während die US‑Chinabeziehungen und Taiwan‑Spannungen nach Trumps Asien‑Reise weiterhin Unsicherheit erzeugen.  
-- Die **EU‑Regulierungsbehörden** diskutieren strengere Vorgaben für tokenisierte Märkte und DeFi‑Entwickler, was das regulatorische Umfeld für Krypto‑Assets belastet.  
+- US‑10‑Jahres‑Rendite hat um fast 3 % nachgelassen, was auf steigende Risikoaversion hindeutet.  
+- Europäische Geldpolitik bleibt unsicher: Bundesbankchef Nagel äußert Zweifel an seiner EZB‑Kandidatur.  
+- Handels- und geopolitische Spannungen: Öltransport durch den Hormuz‑Strom sinkt nach iranischen Angriffen, während US‑Tarifängste gegenüber China nachlassen.
 
 **BEOBACHTEN**  
-- Weitere Kursbewegungen könnten durch die **Entwicklung des Anthropic‑IPO** und mögliche Nachbesserungen im AI‑Sektor ausgelöst werden.  
-- **US‑Spot‑Bitcoin‑ETF‑Flüsse**: Anhaltende Nettoabflüsse könnten den Bitcoin‑Preis weiter unter Druck setzen.  
-- **US‑Zinsentwicklung**: Änderungen der 10‑Jahres‑Rendite o
+- **Jensen Huang**: bevorstehende öffentliche Aussage vor dem US‑Senat zu Chip‑Export‑Politik könnte die Tech‑Aktien weiter belasten.  
+- **Anthropic‑IPO**: Lock‑up‑Perioden und massive Aktienverkäufe könnten den KI‑Sektor weiter unter Druck setzen.  
+- **US‑Senat**: Fortschreiten des „Death Bets Act“ zur Regulierung von Vorhersagemärkten könnte breitere Marktstimm
 
 ---
-Artikel (24h): 216 | neu archiviert: 160 | Archiv gesamt: 7488
+Artikel (24h): 158 | neu archiviert: 105 | Archiv gesamt: 7593
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
