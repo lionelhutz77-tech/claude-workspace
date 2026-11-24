@@ -1,32 +1,26 @@
-# Markt-News 2026-11-23
+# Markt-News 2026-11-24
 
-**MARKTLAGE**  
-Die US‑Aktienmärkte erholten sich kräftig, getrieben von der Rückkehr Jens Huang als CEO von Nvidia, während Rohöl stark nachgab und die Risiko‑Stimmung nach wie vor von extremer Angst geprägt ist.  
+**MARKTLAGE:**  
+Die wichtigsten Indizes verzeichneten gestern deutliche Verluste – S&P 500 –0,83 %, Nasdaq 100 –2,23 % und DAX –0,97 % – während das Risiko‑ und Gier‑Index für Aktien und Krypto auf extreme Angst gefallen ist. Der Rückgang wurde von einem nachlassenden KI‑Rallye‑Effekt um Nvidia und breiteren Tech‑Schwäche getrieben.
 
 **AKTIEN**  
-- Nvidia‑Aktie +35 % nach Ankündigung der Wiederernennung von Jensen Huang – Haupttreiber für den breiten Rally‑Effekt.  
-- Technologie‑ und KI‑Sektoren profitieren von der positiven Stimmung rund um Nvidia und AI‑Investitionen (z. B. CrowdStrike/Zscaler Deal).  
-- Energie‑ und Rohstoff‑Aktien bleiben unter Druck, unterstützt nur durch BlackRock‑Dividenden‑Ankündigungen im Energy‑Bereich.  
-- Europäische Indizes (STOXX 600, DAX) steigen moderat, getrieben von Tech‑Rückprall, jedoch bleibt das Sentiment vorsichtig.  
+- **Tech‑Abschwung:** Nvidia‑Aktie fiel nach dem kurzen „Huang‑Comeback“ um über 5 % und löste einen breiteren Rückgang im US‑Tech‑Sektor aus (Jensen Huang‑Rallye verpufft).  
+- **Einzelhandel & Konsum:** Kohl’s meldete ein besseres Q3‑Ergebnis, aber die Aktie blieb unter Druck; Best Buy zeigte mit 6,1 % vergleichbarem Umsatzwachstum ein Lichtblick.  
+- **Industrie & Infrastruktur:** Airbus verkaufte sein US‑Weltraumgeschäft, während Semtech nach Quartalsergebnissen um 16 % einbrach; Dycom Industries fiel auf ein 52‑Wochen‑Tief.  
+- **Finanz‑ und Versicherungssektor:** Generali kündigte den Abbau von 800 Stellen in Deutschland an, und ING Deutschland führte eine neue Kreditkarte ein – beides signalisiert strukturelle Anpassungen im Finanzsektor.
 
 **KRYPTO**  
-- Bitcoin und Ethereum legten jeweils rund +2,5 % bis +2,8 % zu, unterstützt durch die allgemeine Markt‑Rally und positive Nachrichten zu tokenisierten Wertpapieren (OKX‑ICE).  
-- Tokenisierte Aktien und Krypto‑Assets erhalten neue Impulse durch die geplante NYSE/Nasdaq‑Plattform und das OKX‑ICE‑Projekt mit 113 handelbaren Assets.  
-- Binance‑Hacker‑Aktivität und regulatorische Maßnahmen (Südkorea, Japan) erzeugen weiterhin Unsicherheit im Kryptomarkt.  
-- Strategische Käufe großer Institutionen (z. B. Strategy, Michael Saylor) signalisieren Vertrauen in Bitcoin trotz kurzfristiger Volatilität.  
+- **Marktangst:** Fear & Greed‑Index für Krypto liegt bei 11 (extreme Angst); Bitcoin‑ETF‑Abflüsse erreichen fast 5 Mrd. USD, während Bitcoin unter 60 k $ zurückfiel.  
+- **Liquiditäts‑ und Schuldentilgung:** BTCS verkaufte ETH im Wert von 43,8 Mio. $, um Aave‑Schulden zu reduzieren; Ledn brachte ein onshore‑Produkt für Bitcoin‑Einlagen und -Kredite.  
+- **Regulatorische Entwicklungen:** Südkorea plant die Aufhebung des ICO‑Verbots und ein Bank‑geleitetes Stablecoin‑Regime; US‑Justiz beschlagnahmt 1,1 Mrd. USD USDC aus dem Binance‑Hack.  
+- **Institutionelle Aktivitäten:** BlackRock startete einen tokenisierten Money‑Market‑Fund für Hongkong‑Investoren; JPMorgan, HSBC und StoneX führten erste digitale Gold‑Transaktionen in London durch.
 
 **MAKRO/POLITIK**  
-- US‑Zins‑Markt: 10‑Jahres‑Rendite +1,02 % – Hinweis auf steigende Zins‑Erwartungen und mögliche Fed‑Straffung.  
-- Euro‑Dollar‑Kurs –0,52 % nach hawkish‑Fed‑Erwartungen und Dollar‑Stärke.  
-- Politische Entwicklungen: Trump‑Auftritte zu Nvidia und Crypto‑Gala, sowie regulatorische Initiativen in Südkorea und Japan, die das Krypto‑Umfeld beeinflussen könnten.  
-
-**BEOBACHTEN**  
-- Weitere Entwicklungen rund um die Rückkehr von Jensen Huang und mögliche Folgen für AI‑ und Chip‑Aktien.  
-- US‑Fed‑Entscheidungen und Zins‑Entwicklungen, insbesondere die 10‑Jahres‑Rendite.  
-- Regulatorische Schritte in Asien (Südkorea, Japan) und die Einführung tokenisierter Wertpapiere (OKX‑ICE) könnten die Liquidität u
+- **Zins‑ und Inflationsaussichten:** Fed‑Official John Williams deutete auf weiter steigende Zinsen zur Inflationsbekämpfung hin.  
+- **Geopolitik:** Russland beschuldigte Estland, feindliche Aktionen zu planen,
 
 ---
-Artikel (24h): 133 | neu archiviert: 136 | Archiv gesamt: 7785
+Artikel (24h): 225 | neu archiviert: 168 | Archiv gesamt: 7953
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
