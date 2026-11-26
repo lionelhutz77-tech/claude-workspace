@@ -1,32 +1,31 @@
-# Markt-News 2026-11-25
+# Markt-News 2026-11-26
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte haben nach einem starken Ausverkauf im Technologiebereich weiter nachgelassen, während Rohöl dank steigender Preise leicht zulegte. Das allgemeine Stimmungsbarometer zeigt extreme Angst sowohl bei Aktien als auch bei Kryptowährungen.
+Die US‑Aktienmärkte sind gestern leicht rückläufig, während der europäische DAX stark nachgezogen hat. Gleichzeitig herrscht in den Risiko‑Assets (Krypto, Aktien‑Fear‑&‑Greed‑Index) extreme Angst.
 
 **AKTIEN**  
-- KI‑ und Chip‑Aktien treiben den breiten Markt‑Rückgang an (Nvidia‑Einbruch, AI‑Trade‑Risse, Bloomberg‑Energy‑ und Nebius‑Verluste).  
-- Mid‑Cap‑Healthcare‑Unternehmen werden durch Quant‑Ratings nach der Gewinnsaison stärker differenziert.  
-- Unternehmensspezifische Risiken: Bloom Energy, Celestica, Credo Technology und Nebius Group verlieren jeweils rund 10 %+ im Zuge des Technologierückgangs.  
-- Makro‑Einflüsse: Inflationsdaten verschärfen die Erwartung einer weiteren Fed‑Zinserhöhung, was Anleihen‑ und Aktienkurse belastet.
+- **Technologie‑ und KI‑Sektor**: Trotz eines leichten Rückgangs des S&P 500 (‑0,25 %) bleibt die Unsicherheit um KI‑Risiken hoch (z. B. Nvidia‑Lieferstopp, AI‑Ausverkauf‑Debatte).  
+- **Immobilien**: Regionale Divergenz in Deutschland – Vonovia wird in Berlin abgelehnt, in Bayern jedoch willkommen (Handelsblatt).  
+- **Banken/Finanz‑Dienstleistungen**: Erwartete Führungswechsel bei der EZB (Pablo Hernández de Cos) und Diskussionen um EU‑Regeln für tokenisierte Wertpapiere (Nasdaq‑Exec).  
+- **Rohstoffe**: Gold (+1,84 %) und WTI‑Öl (+1,15 %) profitieren von steigender Risikobereitschaft, während US‑10‑J‑Renditen fallen (‑1,14 %).
 
 **KRYPTO**  
-- Bitcoin und Ethereum fallen weiter (‑3,09 % bzw. ‑2,71 %) im Zuge des breiten Tech‑Sell‑offs und steigender Angst.  
-- Regulatorische Unsicherheit: Französischer Senat lehnt Wallet‑Offenlegungspflicht ab, während Ukraine ein Krypto‑Steuergesetz mit 23 % einführt.  
-- Markt‑Liquidität: Bitcoin‑ETF‑Abflüsse erreichen fast 5 Mrd. USD; Stablecoin‑Einlösungen erreichen 12 Mrd. USD in 30 Tagen.  
-- Sicherheits‑ und Betrugs‑Themen: Bithumb warnt vor Phishing, ein Ponzi‑Fall in Haiti kostet 1,3 Mio. USD, und ein KI‑Betrug führt zu einem 260 K USD‑Fall.
+- **Marktstimmung**: Fear‑&‑Greed‑Index für Krypto bei 11 (Extreme Angst); Bitcoin‑ETF‑Abflüsse über 5 Mrd. $ und Spot‑ETF‑Einführung in der Schweiz zeigen Volatilität.  
+- **Preis‑Entwicklung**: Bitcoin leicht im Plus (+0,49 %), Ethereum ebenfalls (+0,27 %).  
+- **Regulierung**: Spanien stärkt AML‑Befugnisse zum Einfrieren von Krypto‑Konten; UK‑Regulator plant strengere DeFi‑Regeln nach Binance‑Hack.  
+- **Technologie‑Entwicklungen**: Zcash‑Team fordert Migration aus veralteten Privacy‑Pools; Vitalik Buterin fordert verifizierbare Chips für Hardware‑Wallets.
 
 **MAKRO/POLITIK**  
-- US‑Inflationsdaten (Core‑PCE) steigen weiter, was die Fed zu einer möglichen Zinsanhebung zwingt.  
-- OPEC+‑Spannungen: Größte Mitglieder streiten über Ölproduktionszahlen, während WTI‑Preis um +1,56 % steigt.  
-- Handelspolitik: Die USA planen neue Zölle gegen 14 Handelspartner, darunter China und die EU, was zusätzliche Unsicherheit für globale Lieferketten schafft.
+- **EZB‑Leitung**: Pablo Hernández de Cos wird voraussichtlich neuer EZB‑Präsident (mehrere Quellen).  
+- **Handelspolitik**: US‑Tarifdrohungen gegenüber Partnern (z. B. Embraer‑Kommentar) erhöhen Unsicherheit für globale Lieferketten.  
+- **Energie‑ und Rohstoff‑Risiken**: Russland‑Angriffe auf ukrainische Energieinfrastruktur und steigende Ölpreise beeinflussen Inflations‑ und Risiko‑Premien.
 
 **BEOBACHTEN**  
-- Weitere Entwicklungen im Nvidia‑Handel (Optionen‑Insider‑Trade, Jensen Huang‑Aussagen) könnten die Tech‑Aktien stark beeinflussen.  
-- Anstehende US‑Zinsentscheidungen der Fed, insbesondere im Kontext der steigenden Kerninflation.  
-- Regulatorische Schritte in Europa und Asien (z. B. französische
+- **EZB‑Nominierung**: Offizielle Bestätigung von Hernández de Cos als EZB‑Chef könnte die Euro‑Zins‑Erwartungen neu ausrichten.  
+- **US‑Tarif‑Entscheidungen**: Weitere Ankündigungen zu Zöllen, insbesondere im Luftfah
 
 ---
-Artikel (24h): 225 | neu archiviert: 163 | Archiv gesamt: 8116
+Artikel (24h): 214 | neu archiviert: 157 | Archiv gesamt: 8273
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
