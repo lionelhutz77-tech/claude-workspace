@@ -1,27 +1,32 @@
-# Markt-News 2026-11-27
+# Markt-News 2026-11-28
 
 **MARKTLAGE**  
-Die US‑Aktienmärkte setzten ihre Erholung fort und schlossen mit soliden Plus‑Zuwächsen, während die Kryptomärkte weiter unter starkem Angstdruck standen und weiter an Wert verloren. Rohstoffe wie Gold und Öl profitierten von der jüngsten Risikoaversion.
+Die US‑Aktienmärkte setzten ihre Aufwärtsdynamik fort (S&P 500 +1,60 %, Nasdaq 100 +2,61 %), während die wichtigsten Kryptowährungen weiter unter Druck standen. Gold profitierte stark (+2,94 %) und die US‑10‑Jahres‑Rendite stieg deutlich (+1,82 %).  
 
 **AKTIEN**  
-- Technologie‑ und KI‑Aktien (z. B. Nvidia, Microsoft, Google) erhielten Aufwärtsdruck nach Analysten‑Upgrades und einer allgemeinen Trendwende im US‑Tech‑Sektor.  
-- Einzelhandels‑ und Konsumgüterwerte (Harley‑Davidson, Lululemon) erreichten Jahreshochs, unterstützt durch positive Nachrichten zu Lieferketten‑ und Nachhaltigkeitszielen.  
-- Finanz‑ und Banken‑Sektor zeigte gemischte Signale: Brasilianische Banken profitierten von politischen Ernennungen, während europäische Banken (z. B. Commerzbank, Unicredit) im Fokus regulatorischer Aufsicht standen.  
-- Rohstoff‑ und Energie‑Aktien (z. B. Rheinmetall, Öl‑Produzenten) wurden durch steigende Ölpreise und Diskussionen um Exportkontrollen für Batterien beflügelt.
+- KI‑ und Halbleiter‑Themen bleiben treibend: Nvidia steht im Fokus von Kongress‑Hearings und Analysten‑Upgrades, während AI‑bezogene Aktien werden als defensive Optionen diskutiert.  
+- Banken‑ und Finanzsektor: First Citizens Bank übernimmt United Fidelity; BNY Mellon kündigt kleine Dividenden für Municipals an.  
+- Rohstoff‑ und Energie‑Sektor: WTI‑Öl fällt leicht (‑0,72 %); Argentina‑Streit um Falkland‑Öl wird vom Internationalen Gerichtshof abgewiesen.  
+- Immobilien‑ und Konsum‑Sektor: Deutsche Heizkosten‑Sorgen und US‑Black‑Friday‑Konsumausblick beeinflussen DAX‑ und Einzelhandels‑Stimmungen.  
 
 **KRYPTO**  
-- Bitcoin und Ethereum setzten ihre Abwärtsbewegung fort (‑1,9 % bzw. ‑1,3 %) trotz kurzfristiger Preis‑Erholungen, getrieben von anhaltender Angst (Fear & Greed‑Index 12).  
-- Sicherheitsbedenken bleiben hoch: neue KI‑Mathe‑Durchbrüche wecken erneut Diskussionen über mögliche Angriffe auf Bitcoin‑Netzwerke.  
-- Regulatorische Entwicklungen: Binance erhielt Genehmigung für ein tokenisiertes IPO‑Programm, während die EU ihre MiCA‑Registrierung bis 2027 überarbeiten will.  
-- Infrastruktur‑Updates: Ethereum plant das „Glamsterdam“ Testnet‑Upgrade für Mitte Dezember, was langfristig das Netzwerk stärken könnte.
+- Angst‑Stimmung erreicht Extremwerte (Fear & Greed Krypto = 10), Bitcoin und Ethereum verlieren jeweils rund 1,3 %.  
+- Marktteilnehmer beobachten steigende USDT‑Angebote als mögliche Voraussetzung für eine Bitcoin‑Erholung (CryptoQuant).  
+- Regulatorische Entwicklungen: ASEAN+3 arbeitet an grenzüberschreitenden Krypto‑Zahlungsinitiativen; China plant bis 2027 neue Blockchain‑Identitätsvorschriften.  
+- Unternehmens‑News: Binance erhält Vorab‑Zulassung für ein Asien‑Hub in Bhutan und plant ein tokenisiertes IPO‑Programm.  
 
 **MAKRO/POLITIK**  
-- EU‑Politik: Diskussionen über strengere Exportkontrollen für Batterien und die Weiterentwicklung von MiCA‑Regeln zeigen zunehmende regulatorische Aufmerksamkeit für Technologie‑ und Klimasektoren.  
-- US‑Zinsmarkt: Die Rendite der 10‑Jahres‑US‑Staatsanleihe stieg um 0,78 %, was auf steigende Inflationserwartungen hindeutet.  
-- Brasilien: Der Aufstieg der brasilianischen Aktien nach der Ernennung des Bradesco‑Vorsitzenden zum Finanzmin
+- US‑Zinsentwicklung: Die 10‑Jahres‑Rendite steigt stark (+1,82 %), was das Risiko‑ und Bewertungsumfeld für Aktien beeinflusst.  
+- Internationale Spannungen: Iran blockiert erneut Schiffe im Persischen Golf, während Saudi‑Arabien seine Vision‑2030‑Ausgaben anpasst.  
+- Europäische Haushaltsdebatte: EU‑Staaten können sich nicht auf ein 1,7 Billionen‑Euro‑Budget einigen, was fiskalische Unsicherheit erzeugt.  
+
+**BEOBACHTEN**  
+- Kongress‑Hearings zu Nvidia und KI‑Regulierung – mögliche Auswirkungen auf Tech‑Aktien.  
+- Entwicklung der US‑USDT‑Supply‑Growth und deren Einfluss auf die Bitcoin‑Preisfindung.  
+- Black‑Friday‑Konsumausgaben
 
 ---
-Artikel (24h): 170 | neu archiviert: 135 | Archiv gesamt: 8408
+Artikel (24h): 108 | neu archiviert: 59 | Archiv gesamt: 8467
 Quellen ohne Daten: Yahoo Finance
 
 Automatisierte Modell-Ausgabe, keine Anlageberatung.
